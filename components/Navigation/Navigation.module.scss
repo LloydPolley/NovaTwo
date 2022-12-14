@@ -1,0 +1,35 @@
+// @import '../../styles/variables.scss';
+
+.nav {
+  position: sticky;
+  top: 0;
+  max-width: 100vw;
+  width: 100%;
+  z-index: 2;
+  padding: 16px 0;
+  background-color: black;
+
+  a {
+    color: white;
+    margin: 10px 12px;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  svg {
+    color: white;
+    font-size: 16px;
+    margin: 0 12px;
+  }
+
+  &__content {
+    max-width: 1600px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.dice:hover {
+  color: green;
+}

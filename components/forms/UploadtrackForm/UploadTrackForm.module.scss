@@ -1,0 +1,22 @@
+.form-container {
+  text-align: center;
+  button {
+    margin: auto;
+    margin-top: 50px;
+    display: block;
+  }
+}
+
+.auth-form {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-top: 50px;
+
+  button {
+    padding: 10px;
+    width: 280px;
+    margin: 50px auto 20px;
+  }
+}
