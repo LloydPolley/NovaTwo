@@ -28,7 +28,7 @@ export default function useSignIn() {
   const signIn = (email, password) => {
     try {
       console.log("trying");
-      signInWithEmailAndPassword(auth, email, password);
+      return signInWithEmailAndPassword(auth, email, password);
     } catch (e) {
       console.log("catch");
       return { ...e };

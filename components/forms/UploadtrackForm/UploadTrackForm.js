@@ -8,7 +8,7 @@ import styles from "./UploadTrackForm.module.scss";
 const cx = classNames.bind(styles);
 
 function UploadTrackForm() {
-  const [file, setFile] = useState();
+  // const [file, setFile] = useState();
   const {
     register,
     handleSubmit,
@@ -16,32 +16,32 @@ function UploadTrackForm() {
     formState: { errors },
   } = useForm();
 
-  const { uploadTrack } = useAddTrack();
+  const { addTrack, uploadTrack } = useAddTrack();
 
-  const onSubmit = (data) => {
-    const { trackName } = data;
-    uploadTrack(trackName);
+  const onSubmit = async (data) => {
+    const { name, artist, file } = data;
+    console.log("file", file);
+    uploadTrack(artist, file[0]);
+    addTrack({ name, artist, fileName: file[0].name });
   };
 
   return (
     <div className={cx("form-container")}>
-      <form
+      {/* <form
         encType="multipart/form-data"
         onSubmit={(e) => {
           e.preventDefault();
           uploadTrack(file);
         }}
-        onChange={(e) => {
-          setFile(e.target.files[0]);
-          console.log(e.target.files[0]);
-        }}
       >
         <input type="file" />
         <input type="submit" />
-      </form>
+      </form> */}
 
       <form className={cx("auth-form")} onSubmit={handleSubmit(onSubmit)}>
-        <input placeholder={"Track name"} {...register("trackName")} />
+        <input placeholder={"Track"} {...register("name")} required />
+        <input placeholder={"Artist"} {...register("artist")} required />
+        <input type="file" {...register("file")} />
         <input type="submit" />
       </form>
     </div>
