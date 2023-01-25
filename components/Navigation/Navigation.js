@@ -1,15 +1,15 @@
+"use client";
+
 import classNames from "classnames/bind";
 import style from "./Navigation.module.scss";
 import Link from "next/link";
-import useSignIn from "../../hooks/useSignIn";
-// import { FaSearch, FaDiceD6 } from "react-icons/fa";
+import { useLoginContext } from "../../context/LoginContext";
 
 const cx = classNames.bind(style);
 
 const Navigation = () => {
-  // const { signIn, userInfo } = useSignIn();
-  const userInfo = null;
-  // console.log("user", userInfo);
+  const { userData } = useLoginContext();
+
   return (
     <div className={cx("nav")}>
       <div className={cx("nav__content")}>
@@ -20,10 +20,13 @@ const Navigation = () => {
         </div>
         <div className={cx("nav__profile")}>
           <span>
-            {!userInfo?.email ? (
+            {!userData?.email ? (
               <Link href="/profile">Log In</Link>
             ) : (
-              <Link href="/profile">userInfo.email</Link>
+              <>
+                <Link href="/profile">{userData?.displayName || "user"}</Link>
+                <Link href="/upload">UPLOAD</Link>
+              </>
             )}
           </span>
         </div>

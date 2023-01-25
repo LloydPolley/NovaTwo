@@ -1,0 +1,16 @@
+.dj-page {
+  text-align: center;
+}
+
+.dj-list {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dj-widget {
+  border: 1px solid white;
+  border-radius: 5px;
+  min-height: 250px;
+  flex: 1;
+  margin: 10px;
+}

@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import useSignIn from "../../../hooks/useSignIn";
 import useAddTrack from "../../../hooks/useAddTrack";
 import classNames from "classnames/bind";
 import styles from "./UploadTrackForm.module.scss";
+import { useLoginContext } from "../../../context/LoginContext";
+import { AggregateField } from "firebase/firestore";
 
 const cx = classNames.bind(styles);
 
@@ -16,31 +17,23 @@ function UploadTrackForm() {
     formState: { errors },
   } = useForm();
 
+  const { userData } = useLoginContext();
   const { addTrack, uploadTrack } = useAddTrack();
+
+  console.log("uyser", userData);
 
   const onSubmit = async (data) => {
     const { name, artist, file } = data;
+    const { displayName } = userData;
     console.log("file", file);
-    uploadTrack(artist, file[0]);
-    addTrack({ name, artist, fileName: file[0].name });
+    uploadTrack({ name, artist: displayName, file: file[0] });
+    addTrack({ name, artist: displayName, fileName: file[0].name });
   };
 
   return (
     <div className={cx("form-container")}>
-      {/* <form
-        encType="multipart/form-data"
-        onSubmit={(e) => {
-          e.preventDefault();
-          uploadTrack(file);
-        }}
-      >
-        <input type="file" />
-        <input type="submit" />
-      </form> */}
-
       <form className={cx("auth-form")} onSubmit={handleSubmit(onSubmit)}>
-        <input placeholder={"Track"} {...register("name")} required />
-        <input placeholder={"Artist"} {...register("artist")} required />
+        <input placeholder={"Track name"} {...register("name")} required />
         <input type="file" {...register("file")} />
         <input type="submit" />
       </form>

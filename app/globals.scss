@@ -1,3 +1,5 @@
+@import "./../styles/form.scss";
+
 html,
 body {
   padding: 0;
@@ -22,6 +24,11 @@ body {
   margin: auto;
 }
 
+p,
+label {
+  color: #f3f3f4;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -32,6 +39,6 @@ body {
   }
   body {
     color: white;
-    background: black;
+    background: #0c1127;
   }
 }
