@@ -9,31 +9,15 @@ import { useAudioContext } from "../../context/AudioContext";
 const cx = classNames.bind(style);
 
 const AudioPlayer = () => {
-  const { isPlaying, setIsPlaying, audioSrc } = useAudioContext();
+  const { isPlaying, audioToggle } = useAudioContext();
 
-  const musicPlayers =
-    typeof Audio !== "undefined" ? new Audio(audioSrc) : undefined;
-  const { current } = useRef(musicPlayers);
-
-  const audioToggle = () => {
-    current?.play();
-
-    console.log("toggle");
-    // if (isPlaying) {
-    //   current?.pause();
-    // } else {
-    //   console.log("play");
-    // }
-
-    // setIsPlaying(!isPlaying);
-  };
-
-  useEffect(() => {
-    console.log("------------------");
-    if (isPlaying) {
-      audioToggle();
-    }
-  }, [isPlaying]);
+  // useEffect(() => {
+  //   console.log("------------------");
+  //   if (!isPlaying) {
+  //     current?.play();
+  //     setIsPlaying(!isPlaying);
+  //   }
+  // }, [isPlaying]);
 
   return (
     <div className={cx("audio-player")}>

@@ -8,6 +8,7 @@ import useGetTracks from "../../hooks/useGetTracks";
 import { useEffect, useState } from "react";
 import { useLoginContext } from "../../context/LoginContext";
 import { useAudioContext } from "../../context/AudioContext";
+import TrackSquare from "../../components/Track/TrackSquare";
 
 const cx = classNames.bind(styles);
 
@@ -17,36 +18,34 @@ export default function Tracks() {
 
   // const { details, setDetails } = useLoginContext();
 
-  const { setIsPlaying, setAudioSrc, isPlaying } = useAudioContext();
+  const { setIsPlaying, setAudioSrc, isPlaying, play, fetchAudio } =
+    useAudioContext();
 
   useEffect(() => {
     getTracks();
   }, []);
 
-  const handlePlay = () => {
-    setAudioSrc(
-      "https://firebasestorage.googleapis.com/v0/b/novatwo-f3f41.appspot.com/o/Maceo%20Plex%2Ftracks%2Ftest?alt=media&token=0d6f84d6-1cb4-4b32-b130-d5b356d57753"
-    );
-    setIsPlaying(!isPlaying);
-    console.log("play button hit");
-  };
-
   return (
     <div className={cx("tracks-page")}>
       <h1>Tracks</h1>
-      <div className={cx("track-list")}>
+      <div className={cx("header")}>
+        <h2>New on Nova</h2>
+      </div>
+      <div className={cx("track-squares")}>
         {trackList &&
           trackList.map((track) => {
-            // console.log("tracj", track);
             if (!track.artist) return;
-
-            const { artist, name } = track;
-
+            console.log("track", track);
+            const { artist, name, fileUrl } = track;
+            // fetchAudio(fileUrl);
             return (
-              <div className={cx("dj-widget")} key={`${artist} - ${name}`}>
-                <p>{`${artist} - ${name}`}</p>
-                <button onClick={handlePlay}>Play</button>
-              </div>
+              <TrackSquare
+                name={name}
+                artist={artist}
+                play={play}
+                url={fileUrl}
+                key={Math.random()}
+              />
             );
           })}
       </div>

@@ -1,0 +1,28 @@
+.dj-square {
+  position: relative;
+  border: 1px solid rgba(198, 198, 198, 0.302);
+  width: 250px;
+  height: 250px;
+  display: flex;
+  flex-direction: column-reverse;
+
+  button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    border: none;
+  }
+}
+
+.label {
+  background-color: rgba(31, 31, 31, 0.415);
+  text-align: left;
+  p {
+    margin-left: 10px;
+    margin-bottom: 5px;
+  }
+}

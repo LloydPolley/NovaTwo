@@ -35,37 +35,6 @@ export default function useAddTrack() {
     });
   };
 
-  const downloadTrack = async (file) => {
-    const storageRef = ref(
-      storage,
-      `tracks/Kevin de Vries - Dance With Me.m4a`
-    );
-
-    getDownloadURL(
-      ref(storageRef, "`tracks/Kevin de Vries - Dance With Me.m4a`")
-    )
-      .then((url) => {
-        // `url` is the download URL for 'images/stars.jpg'
-
-        // This can be downloaded directly:
-        const xhr = new XMLHttpRequest();
-        xhr.responseType = "blob";
-        xhr.onload = (event) => {
-          const blob = xhr.response;
-        };
-        xhr.open("GET", url);
-        xhr.send();
-      })
-      .catch((error) => {
-        // Handle any errors
-        console.log("eorror");
-      });
-
-    uploadBytes(storageRef, file).then((snapshot) => {
-      console.log("uploaded", snapshot);
-    });
-  };
-
   const readTracks = async () => {
     const snapshot = await getDocs(collection(db, "tracks"));
     const arr = [];
