@@ -1,23 +1,35 @@
 import { useEffect, useState } from "react";
 import { db, storage } from "../utils/firebase";
+import { collection, addDoc, getDocs } from "firebase/firestore";
 import {
-  collection,
-  addDoc,
-  getDocs,
+  ref,
   getDownloadURL,
-} from "firebase/firestore";
-import { ref, uploadBytes } from "firebase/storage";
+  getStorage,
+  uploadBytes,
+  getBlob,
+} from "firebase/storage";
 
 export default function useAddTrack() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userInfo, setUserInfo] = useState(null);
+  const [audioSrc, setAudioSrc] = useState(undefined);
 
-  const addTrack = async ({ name, artist, fileName }) => {
+  const addTrack = async ({
+    name,
+    artist,
+    trackName,
+    audioFileLocation,
+    artworkFileLocation,
+  }) => {
+    console.log("audio src", audioSrc);
     try {
+      const date = new Date().toLocaleString();
+
       const docRef = await addDoc(collection(db, "tracks"), {
         name,
         artist,
-        fileUrl: `${artist}/tracks/${fileName}`,
+        trackName,
+        audioFileLocation,
+        artworkFileLocation,
+        date,
       });
       console.log("doc written", docRef);
     } catch (e) {
@@ -26,13 +38,28 @@ export default function useAddTrack() {
     }
   };
 
-  const uploadTrack = async ({ artist, file }) => {
-    const { name } = file;
-    const storageRef = ref(storage, `${artist}/tracks/${name}`);
+  const uploadFile = async ({ type = "audio", artist, file, trackName }) => {
+    console.log(`upload ${type} -----`);
 
-    uploadBytes(storageRef, file).then((snapshot) => {
-      console.log("uploaded", snapshot);
-    });
+    const { name } = file;
+    const storageRef = ref(
+      storage,
+      `${artist}/tracks/${trackName}/${type}/${name}`
+    );
+
+    const snapShot = await uploadBytes(storageRef, file);
+    console.log("snap", snapShot);
+  };
+
+  const fetchAudio = async (audioUrl) => {
+    try {
+      console.log("passed in ", audioUrl);
+      const storage = await getStorage();
+      const url = await getDownloadURL(ref(storage, audioUrl));
+      return url;
+    } catch (e) {
+      console.log("fetch audio error", e);
+    }
   };
 
   const readTracks = async () => {
@@ -45,5 +72,5 @@ export default function useAddTrack() {
     return arr;
   };
 
-  return { addTrack, readTracks, uploadTrack };
+  return { addTrack, readTracks, uploadFile, fetchAudio };
 }

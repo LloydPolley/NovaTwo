@@ -16,7 +16,6 @@ const Navigation = () => {
         <div className={cx("nav__music")}>
           <Link href="/">Home</Link>
           <Link href="/dj">DJs</Link>
-          <Link href="/tracks">tracks</Link>
         </div>
         <div className={cx("nav__profile")}>
           <span>

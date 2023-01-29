@@ -1,28 +1,36 @@
 .dj-square {
   position: relative;
-  border: 1px solid rgba(198, 198, 198, 0.302);
-  width: 250px;
-  height: 250px;
   display: flex;
   flex-direction: column-reverse;
 
-  button {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    height: 50px;
-    width: 50px;
-    border: none;
+  &:hover {
+    button {
+      opacity: 1;
+    }
   }
 }
 
 .label {
-  background-color: rgba(31, 31, 31, 0.415);
+  // background-color: rgba(31, 31, 31, 0.415);
   text-align: left;
   p {
     margin-left: 10px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    font-weight: bold;
   }
+}
+
+@media (min-width: 500px) {
+  // .dj-square {
+  //   flex: 0 1 calc(50% - 10px);
+  //   margin: 5px;
+  //   min-height: 250px;
+  // }
+}
+
+@media (min-width: 1000px) {
+  // .dj-square {
+  //   flex: 0 1 calc(25% - 10px);
+  //   min-height: 250px;
+  // }
 }

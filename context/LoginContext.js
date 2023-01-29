@@ -115,7 +115,6 @@ const LoginProvider = ({ children }) => {
         setIsLoggedIn(true);
         setUserInfo(user);
         readUser(user);
-        console.log("user", user);
       } else {
         setIsLoggedIn(false);
         setUserInfo(null);

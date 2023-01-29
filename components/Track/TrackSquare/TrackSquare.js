@@ -1,29 +1,31 @@
 import classNames from "classnames/bind";
 import style from "./TrackSquare.module.scss";
-import useGetTracks from "../../../hooks/useGetTracks";
-import { useEffect } from "react";
+import Play from "../../Buttons/Play";
 
 const cx = classNames.bind(style);
 
-const TrackSquare = ({ artist, name, play, url }) => {
-  // const { fetchAudio, audioUrl } = useGetTracks();
-
-  // useEffect(() => {
-  //   fetchAudio(url);
-  // }, []);
-
+const TrackSquare = ({
+  artist,
+  artworkFileLocation,
+  audioFileLocation,
+  date,
+  name,
+  trackName,
+}) => {
   return (
-    <div className={cx("dj-square")}>
+    <div
+      className={cx("dj-square")}
+      style={{
+        backgroundImage: `url(${artworkFileLocation})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
       <div className={cx("label")}>
-        <p>{`${artist} - ${name}`}</p>
+        <p>{`${name}`}</p>
+        <p>{`${artist}`}</p>
       </div>
-      <button
-        onClick={() => {
-          play();
-        }}
-      >
-        ►
-      </button>
+      <Play trackUrl={audioFileLocation} />
     </div>
   );
 };

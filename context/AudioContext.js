@@ -5,77 +5,37 @@ import { ref, getDownloadURL, getStorage } from "firebase/storage";
 
 export const AudioContext = createContext({
   isPlaying: false,
-  audioSrc: undefined,
-  setIsPlaying: () => {},
-  setAudioSrc: () => {},
-  audioToggle: () => {},
+  url: "",
   play: () => {},
-  fetchAudio: () => {},
+  pause: () => {},
 });
 
 const AudioProvider = ({ children }) => {
-  const { audioUrl } = useGetTracks();
-
   const [isPlaying, setIsPlaying] = useState(false);
-  const [audioSrc, setAudioSrc] = useState(
-    "https://firebasestorage.googleapis.com/v0/b/novatwo-f3f41.appspot.com/o/Innellea%2Ftracks%2FInnellea%20-%20Forced%20Adaptation.mp3?alt=media&token=0cdd4d23-ad97-4d2d-bf22-8da84ca16b14"
-  );
+  const [url, setUrl] = useState(null);
+  const audioPlayer = useRef();
 
-  const musicPlayers =
-    typeof Audio !== "undefined" ? new Audio(audioSrc) : undefined;
-  const { current } = useRef(musicPlayers);
-
-  useEffect(() => {
-    console.log("playing changed");
-  }, [isPlaying]);
-
-  const audioToggle = () => {
-    if (isPlaying) {
-      current?.pause();
-    } else {
-      current?.play();
-      console.log("play");
-    }
-
-    setIsPlaying(!isPlaying);
+  const play = async (trackUrl) => {
+    await setUrl(trackUrl);
+    audioPlayer.current.play();
+    setIsPlaying(true);
   };
 
-  const play = async () => {
-    if (isPlaying) {
-      current?.pause();
-    } else {
-      current?.play();
-      console.log("play");
-    }
-
-    setIsPlaying(!isPlaying);
-  };
-
-  const fetchAudio = async (urls) => {
-    try {
-      const storage = await getStorage();
-      await getDownloadURL(ref(storage, urls)).then((url) => {
-        console.log("url", url);
-        setAudioSrc(url);
-      });
-    } catch (e) {
-      // console.log("e", e);
-    }
+  const pause = async () => {
+    audioPlayer.current.pause();
+    setIsPlaying(false);
   };
 
   return (
     <AudioContext.Provider
       value={{
-        current,
-        isPlaying,
-        audioSrc,
-        audioToggle,
         play,
-        setIsPlaying,
-        setAudioSrc,
-        fetchAudio,
+        pause,
+        isPlaying,
+        url,
       }}
     >
+      <audio ref={audioPlayer} src={url || null} />
       {children}
     </AudioContext.Provider>
   );

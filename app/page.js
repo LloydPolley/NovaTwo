@@ -1,28 +1,55 @@
 "use client";
 
-import Head from "next/head";
-import Image from "next/image";
-import { useEffect, useState } from "react";
-import useAddTrack from "../hooks/useAddTrack";
+import classNames from "classnames/bind";
+import styles from "./Tracks.module.scss";
+import useGetTracks from "../hooks/useGetTracks";
+import { useEffect } from "react";
+import TrackSquare from "../components/Track/TrackSquare";
 
-// import styles from "../styles/Home.module.scss";
+const cx = classNames.bind(styles);
 
-export default function Home() {
-  const { readTracks } = useAddTrack();
-  const [tracks, setTracks] = useState();
+export default function Tracks() {
+  const { getTracks, trackList } = useGetTracks();
 
   useEffect(() => {
-    const tracks = readTracks();
-    console.log("tracks", tracks);
+    getTracks();
   }, []);
 
   return (
-    <div>
-      {tracks &&
-        tracks.map((track) => {
-          <div>hello</div>;
-        })}
-      <h1></h1>
+    <div className={cx("tracks-page")}>
+      <div className={cx("header")}>
+        <h2>Featured</h2>
+      </div>
+      <div className={cx("track-squares")}>
+        {trackList &&
+          trackList.map((track) => {
+            if (!track.artist) return;
+
+            const {
+              artist,
+              artworkFileLocation,
+              audioFileLocation,
+              date,
+              name,
+              trackName,
+            } = track;
+
+            return (
+              <TrackSquare
+                key={`${artist}-${date}`}
+                name={name}
+                artist={artist}
+                artworkFileLocation={artworkFileLocation}
+                audioFileLocation={audioFileLocation}
+                date={date}
+                trackName={trackName}
+              />
+            );
+          })}
+      </div>
+      <div className={cx("header")}>
+        <h2>Recent releases</h2>
+      </div>
     </div>
   );
 }
