@@ -4,7 +4,9 @@ import {
   collection,
   addDoc,
   getDocs,
+  getDoc,
   getDownloadURL,
+  doc,
 } from "firebase/firestore";
 import { ref, uploadBytes } from "firebase/storage";
 
@@ -21,5 +23,16 @@ export default function useDjs() {
     setDjList(arr);
   };
 
-  return { getDjs, djList };
+  const getDj = async (input) => {
+    const { queryKey } = input;
+    const docRef = doc(db, "users", queryKey[1]);
+    try {
+      const docSnap = await getDoc(docRef);
+      return docSnap.data();
+    } catch (e) {
+      console.log("error", e);
+    }
+  };
+
+  return { getDjs, getDj, djList };
 }

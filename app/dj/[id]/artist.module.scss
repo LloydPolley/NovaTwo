@@ -1,0 +1,12 @@
+.artist-page {
+  text-align: center;
+}
+
+.artist-header {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  background-color: #2196f3;
+  padding: 10px;
+  height: 500px;
+}

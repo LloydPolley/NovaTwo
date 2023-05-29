@@ -1,0 +1,25 @@
+.swiper-carousel {
+  width: 100%;
+}
+
+.hero {
+  margin: 10px 0;
+  box-sizing: border-box;
+  height: 500px;
+  background: linear-gradient(#9198e5, #0f0f0f);
+}
+
+@media (min-width: 500px) {
+  // .dj-square {
+  //   flex: 0 1 calc(50% - 10px);
+  //   margin: 5px;
+  //   min-height: 250px;
+  // }
+}
+
+@media (min-width: 1000px) {
+  // .dj-square {
+  //   flex: 0 1 calc(25% - 10px);
+  //   min-height: 250px;
+  // }
+}

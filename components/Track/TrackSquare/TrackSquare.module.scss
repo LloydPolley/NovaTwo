@@ -13,7 +13,9 @@
 .label {
   // background-color: rgba(31, 31, 31, 0.415);
   text-align: left;
-  p {
+  margin-bottom: 10px;
+  p,
+  a {
     margin-left: 10px;
     margin-bottom: 10px;
     font-weight: bold;

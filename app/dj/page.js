@@ -31,9 +31,7 @@ export default function Dj() {
         {djList &&
           djList.map((dj) => {
             if (!dj.displayName) return;
-
             const { displayName } = dj;
-
             return (
               <div className={cx("dj-widget")} key={displayName}>
                 <p>{displayName}</p>

@@ -14,7 +14,6 @@ function LoginForm({ signIn }) {
   } = useForm();
 
   const onSubmit = async (data) => {
-    console.log(data);
     const { email, password } = data;
     try {
       await signIn(email, password);

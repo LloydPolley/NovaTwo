@@ -22,8 +22,9 @@ function UploadTrackForm() {
 
   const onSubmit = async (data) => {
     const { name, audioFile, artworkFile } = data;
-    console.log(data);
-    const { displayName } = userData;
+    console.log("submit data", data);
+    const { displayName, uid } = userData;
+    console.log("submit data", data);
 
     const audioUrl = `gs://novatwo-f3f41.appspot.com/${displayName}/tracks/${name}/audio/${audioFile[0].name}`;
     const artworkUrl = `gs://novatwo-f3f41.appspot.com/${displayName}/tracks/${name}/artwork/${artworkFile[0].name}`;
@@ -58,6 +59,7 @@ function UploadTrackForm() {
       trackName: audioFile[0].name,
       audioFileLocation: audioAccess,
       artworkFileLocation: artworkAccess,
+      uid,
     });
   };
 

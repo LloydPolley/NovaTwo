@@ -18,6 +18,7 @@ export default function useAddTrack() {
     trackName,
     audioFileLocation,
     artworkFileLocation,
+    uid,
   }) => {
     console.log("audio src", audioSrc);
     try {
@@ -30,6 +31,7 @@ export default function useAddTrack() {
         audioFileLocation,
         artworkFileLocation,
         date,
+        uid,
       });
       console.log("doc written", docRef);
     } catch (e) {

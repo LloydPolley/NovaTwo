@@ -5,24 +5,24 @@ import styles from "./Tracks.module.scss";
 import useGetTracks from "../hooks/useGetTracks";
 import { useEffect } from "react";
 import TrackSquare from "../components/Track/TrackSquare";
+import { useQuery } from "@tanstack/react-query";
+import SwiperHero from "../components/Swiper/SwiperHero";
 
 const cx = classNames.bind(styles);
 
 export default function Tracks() {
-  const { getTracks, trackList } = useGetTracks();
-
-  useEffect(() => {
-    getTracks();
-  }, []);
+  const { getAllTracks, trackList } = useGetTracks();
+  const { data, status } = useQuery(["getAllTracks"], getAllTracks);
 
   return (
     <div className={cx("tracks-page")}>
+      <SwiperHero />
       <div className={cx("header")}>
         <h2>Featured</h2>
       </div>
       <div className={cx("track-squares")}>
-        {trackList &&
-          trackList.map((track) => {
+        {data &&
+          data.map((track) => {
             if (!track.artist) return;
 
             const {
@@ -32,7 +32,10 @@ export default function Tracks() {
               date,
               name,
               trackName,
+              uid,
             } = track;
+
+            console.log("track", track);
 
             return (
               <TrackSquare
@@ -43,6 +46,7 @@ export default function Tracks() {
                 audioFileLocation={audioFileLocation}
                 date={date}
                 trackName={trackName}
+                uid={uid}
               />
             );
           })}
