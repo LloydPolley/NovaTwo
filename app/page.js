@@ -22,7 +22,7 @@ export default function Tracks() {
       </div>
       <div className={cx("track-squares")}>
         {data &&
-          data.map((track) => {
+          data.slice(0, 9).map((track) => {
             if (!track.artist) return;
 
             const {
@@ -35,14 +35,12 @@ export default function Tracks() {
               uid,
             } = track;
 
-            console.log("track", track);
-
             return (
               <TrackSquare
                 key={`${artist}-${date}`}
                 name={name}
                 artist={artist}
-                artworkFileLocation={artworkFileLocation}
+                artwork={artworkFileLocation}
                 audioFileLocation={audioFileLocation}
                 date={date}
                 trackName={trackName}

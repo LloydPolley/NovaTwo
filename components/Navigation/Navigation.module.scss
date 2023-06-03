@@ -9,10 +9,17 @@
   background-color: #14110f;
 
   a {
-    color: white;
     margin: 10px 12px;
     text-transform: uppercase;
     font-weight: 700;
+
+    &:hover {
+      border-bottom: 3px solid white;
+    }
+  }
+
+  &__active {
+    border-bottom: 3px solid #1580d2;
   }
 
   svg {

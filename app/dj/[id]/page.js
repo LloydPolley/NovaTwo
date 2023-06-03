@@ -43,7 +43,7 @@ export default function DjProfile({ params }) {
                 key={`${artist}-${date}`}
                 name={name}
                 artist={artist}
-                artworkFileLocation={artworkFileLocation}
+                artwork={artworkFileLocation}
                 audioFileLocation={audioFileLocation}
                 date={date}
                 trackName={trackName}

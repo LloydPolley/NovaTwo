@@ -7,6 +7,8 @@ import styles from "./Dj.module.scss";
 import useDjs from "../../hooks/useDjs";
 import { useEffect, useState } from "react";
 import { useLoginContext } from "../../context/LoginContext";
+import Link from "next/link";
+import TrackSquare from "../../components/Track/TrackSquare";
 
 const cx = classNames.bind(styles);
 
@@ -17,27 +19,30 @@ export default function Dj() {
   const { details, setDetails } = useLoginContext();
 
   useEffect(() => {
-    console.log("details", details);
-  }, [details]);
-
-  useEffect(() => {
     getDjs();
   }, []);
 
   return (
     <div className={cx("dj-page")}>
-      <h1>DJs</h1>
+      {/* <h1>DJs</h1> */}
       <div className={cx("dj-list")}>
-        {djList &&
-          djList.map((dj) => {
-            if (!dj.displayName) return;
-            const { displayName } = dj;
-            return (
-              <div className={cx("dj-widget")} key={displayName}>
-                <p>{displayName}</p>
-              </div>
-            );
-          })}
+        <div className={cx("track-squares")}>
+          {djList &&
+            djList.map((dj) => {
+              if (!dj.displayName) return;
+
+              const { displayName, photoURL, uid } = dj;
+
+              return (
+                <TrackSquare
+                  key={displayName}
+                  artist={displayName}
+                  artwork={photoURL}
+                  uid={uid}
+                />
+              );
+            })}
+        </div>
       </div>
     </div>
   );
