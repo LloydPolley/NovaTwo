@@ -1,12 +1,19 @@
 // @import '../../styles/variables.scss';
 
 .nav {
-  position: sticky;
-  top: 0;
+  position: fixed;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
   width: 100%;
   z-index: 2;
-  padding: 16px 0;
-  background-color: #14110f;
+  padding: 35px 10px 35px 10px;
+  background-color: #1d1d29bb;
+  backdrop-filter: blur(30px);
+  border-radius: 20px;
+  width: 95%;
+  margin: 10px auto;
+  border: 1px solid grey;
 
   a {
     margin: 10px 12px;
@@ -22,11 +29,11 @@
     border-bottom: 3px solid #1580d2;
   }
 
-  svg {
-    color: white;
-    font-size: 16px;
-    margin: 0 12px;
-  }
+  // svg {
+  //   color: white;
+  //   font-size: 16px;
+  //   margin: 0 12px;
+  // }
 
   &__content {
     max-width: 1600px;

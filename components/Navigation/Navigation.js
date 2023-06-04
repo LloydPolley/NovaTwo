@@ -5,6 +5,7 @@ import style from "./Navigation.module.scss";
 import Link from "next/link";
 import { useLoginContext } from "../../context/LoginContext";
 import { useSelectedLayoutSegment } from "next/navigation";
+import AudioPlayerContainer from "../AudioPlayerContainer";
 
 const cx = classNames.bind(style);
 
@@ -44,6 +45,7 @@ const Navigation = () => {
           </span>
         </div>
       </div>
+      <AudioPlayerContainer />
     </div>
   );
 };

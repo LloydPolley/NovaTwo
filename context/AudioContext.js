@@ -17,12 +17,12 @@ const AudioProvider = ({ children }) => {
 
   const play = async (trackUrl) => {
     await setUrl(trackUrl);
-    audioPlayer.current.play();
+    // audioPlayer.current.play();
     setIsPlaying(true);
   };
 
   const pause = async () => {
-    audioPlayer.current.pause();
+    // audioPlayer.current.pause();
     setIsPlaying(false);
   };
 
@@ -35,7 +35,7 @@ const AudioProvider = ({ children }) => {
         url,
       }}
     >
-      <audio ref={audioPlayer} src={url || null} />
+      {/* <audio ref={audioPlayer} src={url || null} /> */}
       {children}
     </AudioContext.Provider>
   );

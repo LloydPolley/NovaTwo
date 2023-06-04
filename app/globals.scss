@@ -46,3 +46,23 @@ label {
     background: #0f0f0f;
   }
 }
+
+$rhap_theme-color: green;
+
+.rhap_container {
+  background-color: #1d1d2900;
+  border: none;
+  // border: 1px solid grey;
+}
+
+.rhap_main-controls-button {
+  color: white;
+}
+
+.rhap_time {
+  color: white;
+}
+
+.rhap_progress-bar-show-download {
+  background: white;
+}
