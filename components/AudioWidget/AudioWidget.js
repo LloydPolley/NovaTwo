@@ -1,34 +1,30 @@
 "use client";
 
 import classNames from "classnames/bind";
-import style from "./AudioPlayerContainer.module.scss";
-import { useState, useRef, useEffect } from "react";
-import AudioProvider from "../../context/AudioContext";
+import style from "./AudioWidget.module.scss";
+import Link from "next/link";
+import { useLoginContext } from "../../context/LoginContext";
+import { useSelectedLayoutSegment } from "next/navigation";
 import { useAudioContext } from "../../context/AudioContext";
+
 import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/src/styles.scss";
 
 const cx = classNames.bind(style);
 
-const AudioPlayerContainer = () => {
+const links = [
+  { label: "Nova", path: "/", segement: null },
+  { label: "Discover", path: "/dj", segement: "dj" },
+];
+
+const AudioWidget = () => {
+  const { userData } = useLoginContext();
+  const activeSegment = useSelectedLayoutSegment();
+  console.log("active", activeSegment);
   const { isPlaying, audioToggle, url } = useAudioContext();
 
-  // useEffect(() => {
-  //   console.log("------------------");
-  //   if (!isPlaying) {
-  //     current?.play();
-  //     setIsPlaying(!isPlaying);
-  //   }
-  // }, [isPlaying]);
-
   return (
-    <div
-      className={cx(
-        "audio-player-container",
-        isPlaying && "audio-player-container__active"
-      )}
-    >
-      {/* <button onClick={audioToggle}>{isPlaying ? "Pause" : "►"}</button> */}
+    <div className={cx("audio-widget")}>
       <AudioPlayer
         style={{ borderRadius: "20px", color: "white", padding: "20px" }}
         autoPlay
@@ -49,4 +45,4 @@ const AudioPlayerContainer = () => {
   );
 };
 
-export default AudioPlayerContainer;
+export default AudioWidget;

@@ -1,15 +1,18 @@
 // @import '../../styles/variables.scss';
 
-.nav {
-  position: sticky;
-  top: 0;
-  width: 100%;
+.audio-widget {
+  position: fixed;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 2;
-  padding: 35px 10px 35px 10px;
-  // backdrop-filter: blur(30px);
-  background-color: black;
-  width: 100%;
+  padding: 10px 10px;
+  background-color: #0000001e;
+  backdrop-filter: blur(30px);
+  border-radius: 20px;
+  width: 800px;
   margin: 10px auto;
+  border: 1px solid rgba(128, 128, 128, 0.211);
 
   a {
     margin: 10px 12px;

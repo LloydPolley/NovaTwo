@@ -1,7 +1,7 @@
 "use client"
 
 import Navigation from "../components/Navigation";
-import AudioPlayerContainer from "../components/AudioPlayerContainer/AudioPlayerContainer";
+import AudioWidget from "../components/AudioWidget/AudioWidget";
 import LoginProvider from '../context/LoginContext';
 import AudioProvider from "../context/AudioContext";
 
@@ -33,6 +33,7 @@ export default function RootLayout({ children }) {
             <div className="main-content">
               {children}
             </div>
+            <AudioWidget />
           </AudioProvider>
           </QueryClientProvider>
         </LoginProvider>

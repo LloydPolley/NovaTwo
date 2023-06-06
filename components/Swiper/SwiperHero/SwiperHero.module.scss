@@ -6,7 +6,19 @@
   // margin: 10px 0;
   box-sizing: border-box;
   height: 500px;
-  background: linear-gradient(#9198e5, #0f0f0f);
+  display: flex;
+  margin: auto;
+  justify-content: space-around;
+  flex-direction: column;
+  text-align: center;
+  width: 100%;
+  // background: linear-gradient(#9198e5, #0f0f0f);
+  background-color: black;
+
+  h1 {
+    width: 100%;
+    // height: 50px;
+  }
 }
 
 @media (min-width: 500px) {
