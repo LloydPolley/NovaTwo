@@ -27,7 +27,7 @@ const TrackSquare = ({
         {name && <p>{`${name}`}</p>}
         <Link href={`/dj/${uid}`}>{artist}</Link>
       </div>
-      {audioFileLocation && <Play trackUrl={audioFileLocation} />}
+      {audioFileLocation && <Play trackUrl={audioFileLocation} abso />}
     </div>
   );
 };

@@ -1,23 +1,22 @@
 "use client";
 
 import classNames from "classnames/bind";
-import styles from "./Tracks.module.scss";
+import styles from "./Home.module.scss";
 import useGetTracks from "../hooks/useGetTracks";
-import { useEffect } from "react";
 import TrackSquare from "../components/Track/TrackSquare";
 import { useQuery } from "@tanstack/react-query";
 import SwiperHero from "../components/Swiper/SwiperHero";
 
 const cx = classNames.bind(styles);
 
-export default function Tracks() {
+export default function Home() {
   const { getAllTracks, trackList } = useGetTracks();
   const { data, status } = useQuery(["getAllTracks"], getAllTracks);
 
   return (
-    <div className={cx("tracks-page")}>
+    <div className={cx("home")}>
       <SwiperHero />
-      <div className={cx("header")}>
+      <div className={cx("home__header")}>
         <h2>Featured</h2>
       </div>
       <div className={cx("track-squares")}>
@@ -48,9 +47,6 @@ export default function Tracks() {
               />
             );
           })}
-      </div>
-      <div className={cx("header")}>
-        <h2>Recent releases</h2>
       </div>
     </div>
   );

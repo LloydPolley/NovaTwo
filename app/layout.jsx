@@ -1,6 +1,7 @@
 "use client"
 
 import Navigation from "../components/Navigation";
+import Footer from '../components/Footer'
 import AudioWidget from "../components/AudioWidget/AudioWidget";
 import LoginProvider from '../context/LoginContext';
 import AudioProvider from "../context/AudioContext";
@@ -33,6 +34,7 @@ export default function RootLayout({ children }) {
             <div className="main-content">
               {children}
             </div>
+            {/* <Footer/> */}
             <AudioWidget />
           </AudioProvider>
           </QueryClientProvider>

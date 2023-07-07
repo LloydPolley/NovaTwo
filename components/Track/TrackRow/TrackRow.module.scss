@@ -1,7 +1,33 @@
-.page-wrapper {
-  max-width: 1600px;
+.track-row {
+  display: flex;
+  flex-direction: row;
   width: 100%;
-  margin: auto;
-  padding: 32px;
-  box-sizing: border-box;
+  justify-content: space-between;
+  padding: 5px;
+  margin: 5px 0;
+  border-radius: 5px;
+
+  &__buttons {
+    display: flex;
+    button {
+      height: 100%;
+      margin: 0 10px;
+    }
+  }
+
+  &__naming {
+    display: flex;
+    img {
+      margin-right: 10px;
+    }
+  }
+
+  &__artwork {
+    width: 50px;
+    height: 50px;
+  }
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
 }

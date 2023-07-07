@@ -1,0 +1,39 @@
+@import "../styles/mixins.scss";
+
+.home {
+  margin: 10px;
+
+  &__header {
+    text-align: left;
+    margin-top: 50px;
+
+    h2 {
+      margin-bottom: 1px solid white;
+    }
+  }
+}
+
+.track-squares {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 30px;
+  column-gap: 30px;
+  flex-wrap: wrap;
+  grid-auto-rows: 300px;
+
+  @include large {
+    grid-auto-rows: 515px;
+  }
+}
+
+@media (min-width: 500px) {
+  .track-squares {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1000px) {
+  .track-squares {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}

@@ -2,17 +2,16 @@
 
 .audio-widget {
   position: fixed;
-  bottom: 5px;
+  bottom: -60px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
-  padding: 10px 10px;
-  background-color: #0000001e;
   backdrop-filter: blur(30px);
   border-radius: 20px;
   width: 800px;
-  margin: 10px auto;
-  border: 1px solid rgba(128, 128, 128, 0.211);
+  margin: auto;
+  max-width: 90%;
+  transition: 0.2s all;
 
   a {
     margin: 10px 12px;
@@ -24,15 +23,13 @@
     }
   }
 
-  &__active {
-    border-bottom: 3px solid #1580d2;
+  &:hover {
+    bottom: 20px;
   }
 
-  // svg {
-  //   color: white;
-  //   font-size: 16px;
-  //   margin: 0 12px;
-  // }
+  &__active {
+    bottom: 20px;
+  }
 
   &__content {
     max-width: 1600px;
@@ -40,8 +37,4 @@
     display: flex;
     justify-content: space-between;
   }
-}
-
-.dice:hover {
-  color: green;
 }

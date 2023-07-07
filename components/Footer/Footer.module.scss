@@ -1,0 +1,24 @@
+.footer {
+  max-width: 1600px;
+  margin: auto;
+  padding: 15px;
+  width: 100%;
+  min-height: 150px;
+  margin-top: 50px;
+  background: rgba(255, 255, 255, 0.017);
+
+  display: flex;
+  justify-content: space-between;
+
+  &__left {
+    p {
+      margin-top: 0;
+    }
+  }
+
+  &__date {
+    font-size: 14px;
+    color: rgb(174, 174, 174);
+    margin-bottom: 0;
+  }
+}

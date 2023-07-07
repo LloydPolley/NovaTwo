@@ -24,7 +24,7 @@ const AudioWidget = () => {
   const { isPlaying, audioToggle, url } = useAudioContext();
 
   return (
-    <div className={cx("audio-widget")}>
+    <div className={cx("audio-widget", isPlaying && "audio-widget__active")}>
       <AudioPlayer
         style={{ borderRadius: "20px", color: "white", padding: "20px" }}
         autoPlay
@@ -36,7 +36,7 @@ const AudioWidget = () => {
         showFilledVolume
         showDownloadProgress
         // header={`Now playing:`}
-        layout="horizontal"
+        layout="vertical"
         // onClickPrevious={handleClickPrevious}
         // onClickNext={handleClickNext}
         // onEnded={handleClickNext}

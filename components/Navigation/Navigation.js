@@ -5,45 +5,41 @@ import style from "./Navigation.module.scss";
 import Link from "next/link";
 import { useLoginContext } from "../../context/LoginContext";
 import { useSelectedLayoutSegment } from "next/navigation";
+import { useEffect, useState } from "react";
+import Burger from "../Icons/Burger";
+import Close from "../Icons/Close";
+import NavigationOverlay from "./NavigationOverlay";
 
 const cx = classNames.bind(style);
 
-const links = [
-  { label: "Nova", path: "/", segement: null },
-  { label: "Discover", path: "/dj", segement: "dj" },
-];
-
 const Navigation = () => {
-  const { userData } = useLoginContext();
-  const activeSegment = useSelectedLayoutSegment();
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    open
+      ? (document.body.style.overflow = "hidden")
+      : (document.body.style.overflow = "auto");
+  }, [open]);
 
   return (
-    <div className={cx("nav")}>
-      <div className={cx("nav__content")}>
-        <div className={cx("nav__music")}>
-          {links.map((link) => (
-            <Link
-              className={cx(activeSegment === link.segement && "nav__active")}
-              href={link.path}
-            >
-              {link.label}
-            </Link>
-          ))}
-        </div>
-        <div className={cx("nav__profile")}>
-          <span>
-            {!userData?.email ? (
-              <Link href="/profile">Log In</Link>
-            ) : (
-              <>
-                <Link href="/profile">{userData?.displayName || "user"}</Link>
-                <Link href="/upload">UPLOAD</Link>
-              </>
-            )}
-          </span>
+    <>
+      <NavigationOverlay open={open} setOpen={setOpen} />
+      <div className={cx("nav", open && "nav__open")}>
+        <div className={cx("nav__bar")}>
+          <Link className={cx("nav__home-mobile")} href={"/"}>
+            Nova
+          </Link>
+          <p
+            className={cx("nav__burger")}
+            onClick={() => {
+              setOpen(!open);
+            }}
+          >
+            {open ? <Close /> : <Burger />}
+          </p>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

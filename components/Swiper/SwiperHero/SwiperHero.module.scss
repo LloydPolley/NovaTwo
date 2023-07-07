@@ -1,19 +1,28 @@
+@import "../../../styles/mixins.scss";
+
 .swiper-carousel {
-  width: 100%;
+  @include large {
+    border-radius: 10px;
+  }
 }
 
 .hero {
   // margin: 10px 0;
   box-sizing: border-box;
-  height: 500px;
+  height: 650px;
   display: flex;
   margin: auto;
   justify-content: space-around;
   flex-direction: column;
   text-align: center;
   width: 100%;
-  // background: linear-gradient(#9198e5, #0f0f0f);
   background-color: black;
+
+  @include large {
+    border-radius: 10px;
+  }
+
+  // border-radius: 10px;
 
   h1 {
     width: 100%;

@@ -8,6 +8,7 @@ import useDjs from "../../../hooks/useDjs";
 import { useQuery } from "@tanstack/react-query";
 import useGetTracks from "../../../hooks/useGetTracks";
 import TrackSquare from "../../../components/Track/TrackSquare";
+import TrackRow from "../../../components/Track/TrackRow/TrackRow";
 
 const cx = classNames.bind(styles);
 
@@ -24,34 +25,59 @@ export default function DjProfile({ params }) {
 
   console.log("data", data, tracks);
   return (
-    <div className={cx("artist-page")}>
-      <h1>{loadingArist ? "Loading" : data?.displayName}</h1>
-      <div className={cx("artist-header")}>
-        {tracks &&
-          tracks.map((track) => {
-            const {
-              artist,
-              artworkFileLocation,
-              audioFileLocation,
-              date,
-              name,
-              trackName,
-              uid,
-            } = track;
-            return (
-              <TrackSquare
-                key={`${artist}-${date}`}
-                name={name}
-                artist={artist}
-                artwork={artworkFileLocation}
-                audioFileLocation={audioFileLocation}
-                date={date}
-                trackName={trackName}
-                uid={uid}
-              />
-            );
-          })}
+    <div className={cx("artist")}>
+      <div
+        className={cx("artist__hero")}
+        style={{
+          backgroundImage: `url(${data?.photoURL})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <h1>{loadingArist ? "Loading" : data?.displayName}</h1>
+      </div>
+      <div className={cx("artist__tracks")}>
+        <h2>Recent</h2>
+        <div className={cx("track-list")}>
+          {tracks?.map((track) => (
+            <TrackRow
+              key={track.name}
+              name={track.name}
+              audio={track.audioFileLocation}
+              artwork={track.artworkFileLocation}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
+}
+
+{
+  /* <div className={cx("artist-header")}>
+  {tracks &&
+    tracks.map((track) => {
+      const {
+        artist,
+        artworkFileLocation,
+        audioFileLocation,
+        date,
+        name,
+        trackName,
+        uid,
+      } = track;
+      return (
+        <TrackSquare
+          key={`${artist}-${date}`}
+          name={name}
+          artist={artist}
+          artwork={artworkFileLocation}
+          audioFileLocation={audioFileLocation}
+          date={date}
+          trackName={trackName}
+          uid={uid}
+        />
+      );
+    })}
+</div>; */
 }
