@@ -23,6 +23,12 @@ const Navigation = ({ open, setOpen }) => {
     }
   }, [open]);
 
+  const handleNavigation = () => {
+    setTimeout(() => {
+      setOpen(false);
+    }, 1000);
+  };
+
   return (
     <div className={cx("nav-overlay", open && "nav-overlay__open")}>
       <div className={cx("nav-overlay__content-wrapper")}>
@@ -38,21 +44,29 @@ const Navigation = ({ open, setOpen }) => {
           <Link
             className={cx(activeSegment === "dj" && "nav__active")}
             href={"/"}
+            onClick={handleNavigation}
           >
             Nova
           </Link>
           <Link
             className={cx(activeSegment === "dj" && "nav__active")}
             href={"/dj"}
+            onClick={handleNavigation}
           >
             Discover
           </Link>
           {!userData?.email ? (
-            <Link href="/profile">Log In</Link>
+            <Link href="/profile" onClick={handleNavigation}>
+              Log In
+            </Link>
           ) : (
             <>
-              <Link href="/profile">{userData?.displayName || "user"}</Link>
-              <Link href="/upload">Upload</Link>
+              <Link href="/profile" onClick={handleNavigation}>
+                {userData?.displayName || "user"}
+              </Link>
+              <Link href="/upload" onClick={handleNavigation}>
+                Upload
+              </Link>
             </>
           )}
         </div>

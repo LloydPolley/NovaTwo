@@ -51,13 +51,18 @@
   width: 100vw;
   height: 100vh;
   background-color: black;
-  // background-image: url("https://img.freepik.com/free-vector/abstract-vector-colorful-mesh-dark-background-futuristic-style-card-elegant-background-business-presentations-corrupted-point-sphere-chaos-aesthetics_1217-5361.jpg?w=1800&t=st=1688813273~exp=1688813873~hmac=f5ee62e7665132fed7399f50c7fe8f20e2f4106e7d334ba106b0a090f6ae33aa");
   background-size: cover;
   background-size: 50%;
   background-repeat: no-repeat;
   background-position: center;
   z-index: 6;
   font-size: 25px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  opacity: 0;
+  z-index: -10;
+  transition: 0.2s all;
 
   svg {
     position: absolute;
@@ -76,9 +81,8 @@
   }
 
   &__open {
-    display: flex;
-    justify-content: space-around;
-    flex-direction: column;
+    opacity: 1;
+    z-index: 10;
   }
 
   &__active {
@@ -95,8 +99,8 @@
     a {
       margin-bottom: 100px;
       text-transform: uppercase;
-      border-bottom: 3px solid rgb(47, 47, 47);
-      border-top: 3px solid rgb(47, 47, 47);
+      border-bottom: 2px solid rgb(47, 47, 47);
+      border-top: 2px solid rgb(47, 47, 47);
       padding: 50px 10px;
       font-size: 35px;
       background-color: rgba(255, 255, 255, 0.001);

@@ -1,3 +1,5 @@
+"use client";
+
 import { createContext, useContext, useState, useEffect, useRef } from "react";
 import { auth, db } from "../utils/firebase";
 import { ref, getDownloadURL, getStorage } from "firebase/storage";
@@ -5,7 +7,7 @@ import { ref, getDownloadURL, getStorage } from "firebase/storage";
 export const AudioContext = createContext({
   isPlaying: false,
   url: "",
-  play: () => {},
+  playTrack: () => {},
   pause: () => {},
 });
 
@@ -14,7 +16,11 @@ const AudioProvider = ({ children }) => {
   const [url, setUrl] = useState(null);
   const audioPlayer = useRef();
 
-  const play = async (trackUrl) => {
+  useEffect(() => {
+    console.log("is playing updated", isPlaying);
+  }, [isPlaying]);
+
+  const playTrack = async (trackUrl) => {
     await setUrl(trackUrl);
     // audioPlayer.current.play();
     setIsPlaying(true);
@@ -28,13 +34,12 @@ const AudioProvider = ({ children }) => {
   return (
     <AudioContext.Provider
       value={{
-        play,
+        playTrack,
         pause,
         isPlaying,
         url,
       }}
     >
-      {/* <audio ref={audioPlayer} src={url || null} /> */}
       {children}
     </AudioContext.Provider>
   );

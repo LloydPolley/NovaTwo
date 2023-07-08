@@ -1,20 +1,13 @@
 const Burger = () => (
-  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
-    <g
-      id="SVGRepo_tracerCarrier"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    ></g>
-    <g id="SVGRepo_iconCarrier">
-      {" "}
-      <path
-        d="M4 17H8M12 17H20M4 12H20M4 7H12M16 7H20"
-        stroke="#fff"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      ></path>{" "}
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="-1 0 8 8">
+    <g>
+      <g fill="none" fillRule="evenodd" stroke="none" strokeWidth="1">
+        <g fill="#fff" transform="translate(-227 -3765)">
+          <g transform="translate(56 160)">
+            <path d="M172 3605a1 1 0 00-1 1v6a1 1 0 002 0v-6a1 1 0 00-1-1m5 1v6a1 1 0 01-2 0v-6a1 1 0 012 0"></path>
+          </g>
+        </g>
+      </g>
     </g>
   </svg>
 );

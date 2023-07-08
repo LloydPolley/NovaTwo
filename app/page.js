@@ -1,17 +1,17 @@
 import classNames from "classnames/bind";
 import styles from "./Home.module.scss";
-import TrackSquare from "../components/Track/TrackSquare";
-import { getLabelTracks } from "../api/getTracks";
+import { getTracksWhere, getAllTracks } from "../api/getTracks";
 import SwiperCarousel from "../components/Swiper/SwiperCarousel/SwiperCarousel";
+import TrackSquare from "../components/Track/TrackSquare";
 
 const cx = classNames.bind(styles);
 
 export default async function Home() {
-  const data = await getLabelTracks("afterlife");
+  const data = await getTracksWhere("label", "afterlife");
+  const tracks = await getAllTracks();
 
   return (
     <div className={cx("home")}>
-      {/* <SwiperHero /> */}
       <div className={cx("home__hero")}>
         <div className={cx("home__hero-box")}>
           <h1>DISCOVER</h1>
@@ -24,6 +24,35 @@ export default async function Home() {
         <h3>AFTERLIFE</h3>
         <div className={cx("label-carousel__box")}>
           {data && <SwiperCarousel data={data} />}
+        </div>
+      </div>
+      <div className={cx("tracks")}>
+        <h3>RECENT</h3>
+        <div className={cx("tracks__squares")}>
+          {tracks &&
+            tracks.slice(0, 6).map((track) => {
+              const {
+                artist,
+                artworkFileLocation,
+                audioFileLocation,
+                date,
+                name,
+                trackName,
+                uid,
+              } = track;
+              return (
+                <TrackSquare
+                  key={`${artist}-${date}`}
+                  name={name}
+                  artist={artist}
+                  artwork={artworkFileLocation}
+                  audioFileLocation={audioFileLocation}
+                  date={date}
+                  trackName={trackName}
+                  uid={uid}
+                />
+              );
+            })}
         </div>
       </div>
     </div>

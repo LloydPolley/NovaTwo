@@ -1,7 +1,10 @@
+"use client";
+
 import classNames from "classnames/bind";
 import style from "./TrackSquare.module.scss";
 import Play from "../../Buttons/Play";
 import Link from "next/link";
+import { useAudioContext } from "../../../context/AudioContext";
 
 const cx = classNames.bind(style);
 
@@ -14,6 +17,9 @@ const TrackSquare = ({
   trackName,
   uid,
 }) => {
+  const { playTrack, pause, isPlaying, url } = useAudioContext();
+  const isPlayingLocal = isPlaying && url === audioFileLocation;
+
   return (
     <div
       className={cx("dj-square")}
@@ -22,12 +28,23 @@ const TrackSquare = ({
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
+      onClick={() => {
+        !isPlayingLocal ? playTrack(audioFileLocation) : pause();
+      }}
     >
       <div className={cx("label")}>
         {name && <p>{`${name}`}</p>}
-        <Link href={`/dj/${uid}`}>{artist}</Link>
+        <Link onClick={(e) => e.stopPropagation()} href={`/dj/${uid}`}>
+          {artist}
+        </Link>
       </div>
-      {audioFileLocation && <Play trackUrl={audioFileLocation} abso />}
+      {audioFileLocation && (
+        <Play
+          trackUrl={audioFileLocation}
+          isPlayingAudio={isPlayingLocal}
+          abso
+        />
+      )}
     </div>
   );
 };

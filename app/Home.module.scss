@@ -56,8 +56,7 @@
     @include large {
       position: absolute;
       transform: rotate(-90deg);
-      bottom: 90px;
-      left: -65px;
+
       bottom: 95px;
       left: -85px;
       font-size: 50px;
@@ -65,39 +64,52 @@
   }
   &__box {
     @include large {
-      margin-left: 80px;
       margin-left: 100px;
     }
   }
 }
 
-.track-squares {
-  display: grid;
-  grid-template-columns: 1fr;
-  row-gap: 30px;
-  column-gap: 30px;
-  flex-wrap: wrap;
-  grid-auto-rows: 300px;
-
-  @include large {
-    grid-auto-rows: 515px;
-  }
+.featured {
+  aspect-ratio: 16/9;
+  width: 100%;
+  margin-top: 100px;
 }
 
-@media (min-width: 500px) {
-  .track-squares {
-    grid-template-columns: 1fr 1fr;
-  }
-}
+.tracks {
+  // padding: 10px;
+  margin-top: 100px;
+  position: relative;
 
-@media (min-width: 800px) {
-  .track-squares {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-}
+  h3 {
+    font-size: 30px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    // margin: 0;
 
-@media (min-width: 1000px) {
-  .track-squares {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    @include large {
+      position: absolute;
+      transform: rotate(-90deg);
+      top: 25px;
+      left: -50px;
+      font-size: 50px;
+    }
+  }
+
+  &__squares {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 10px;
+    column-gap: 10px;
+    flex-wrap: wrap;
+    grid-auto-rows: 500px;
+    padding: 10px;
+
+    @include medium {
+      grid-template-columns: 1fr 1fr;
+    }
+    @include large {
+      grid-template-columns: 1fr 1fr 1fr;
+      margin-left: 100px;
+    }
   }
 }

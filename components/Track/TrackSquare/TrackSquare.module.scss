@@ -1,7 +1,7 @@
 .dj-square {
   position: relative;
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   height: 100%;
   border-radius: 10px;
 
@@ -15,7 +15,7 @@
 .label {
   // background-color: rgba(31, 31, 31, 0.415);
   text-align: left;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   p,
   a {
     font-family: "Lato";

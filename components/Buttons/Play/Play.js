@@ -5,29 +5,16 @@ import classNames from "classnames/bind";
 import styles from "./Play.module.scss";
 import { useAudioContext } from "../../../context/AudioContext";
 import PlayIcon from "../../Icons/PlayIcon";
+import PauseIcon from "../../Icons/PauseIcon";
 
 const cx = classNames.bind(styles);
 
-function Play({ trackUrl, abso }) {
-  const { play, pause, isPlaying, url } = useAudioContext();
-  const [localPlaying, setLocalPlaying] = useState();
-
-  useEffect(() => {
-    if (isPlaying && url === trackUrl) {
-      setLocalPlaying(true);
-      return;
-    }
-    setLocalPlaying(false);
-  }, [isPlaying, url, trackUrl]);
+function Play({ trackUrl, abso, isPlayingAudio }) {
+  const { playTrack, pause, isPlaying, url } = useAudioContext();
 
   return (
-    <button
-      className={cx("play", abso && "play__abso")}
-      onClick={() => {
-        !localPlaying ? play(trackUrl) : pause();
-      }}
-    >
-      {!localPlaying ? <PlayIcon /> : "⏸︎"}
+    <button className={cx("play", abso && "play__abso")}>
+      {!isPlayingAudio ? <PlayIcon /> : <PauseIcon />}
     </button>
   );
 }

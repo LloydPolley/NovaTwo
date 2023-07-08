@@ -34,23 +34,13 @@ export default function DjProfile({ params }) {
         <h1>{loadingArist ? "Loading" : data?.displayName}</h1>
       </div>
       <div className={cx("artist__tracks")}>
-        <div className={cx("track-list")}>
-          <h2>Tracks</h2>
+        <h2>TRACKS</h2>
+        <div className={cx("artist__track-list")}>
           {tracks?.map((track) => (
             <TrackRow
               key={track.name}
               name={track.name}
-              audio={track.audioFileLocation}
-              artwork={track.artworkFileLocation}
-            />
-          ))}
-        </div>
-        <div className={cx("track-list")}>
-          <h2>Sets</h2>
-          {tracks?.map((track) => (
-            <TrackRow
-              key={track.name}
-              name={track.name}
+              artist={track.artist}
               audio={track.audioFileLocation}
               artwork={track.artworkFileLocation}
             />
@@ -59,33 +49,4 @@ export default function DjProfile({ params }) {
       </div>
     </div>
   );
-}
-
-{
-  /* <div className={cx("artist-header")}>
-  {tracks &&
-    tracks.map((track) => {
-      const {
-        artist,
-        artworkFileLocation,
-        audioFileLocation,
-        date,
-        name,
-        trackName,
-        uid,
-      } = track;
-      return (
-        <TrackSquare
-          key={`${artist}-${date}`}
-          name={name}
-          artist={artist}
-          artwork={artworkFileLocation}
-          audioFileLocation={audioFileLocation}
-          date={date}
-          trackName={trackName}
-          uid={uid}
-        />
-      );
-    })}
-</div>; */
 }

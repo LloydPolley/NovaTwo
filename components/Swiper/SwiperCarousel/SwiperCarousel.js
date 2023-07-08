@@ -17,21 +17,13 @@ const SwiperCarousel = ({ data }) => {
         breakpoints={{
           320: {
             slidesPerView: 1,
-            centeredSlides: true,
-          },
-          500: {
-            centeredSlides: true,
-          },
-          768: {
-            width: 768,
-            slidesPerView: 2.2,
           },
           1000: {
-            width: 1000,
-            slidesPerView: 2.2,
+            width: 420,
           },
         }}
-        spaceBetween={30}
+        // width={480}
+        spaceBetween={10}
         pagination={{
           clickable: true,
         }}

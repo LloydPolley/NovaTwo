@@ -20,8 +20,7 @@ const links = [
 const AudioWidget = () => {
   const { userData } = useLoginContext();
   const activeSegment = useSelectedLayoutSegment();
-  console.log("active", activeSegment);
-  const { isPlaying, audioToggle, url } = useAudioContext();
+  const { isPlaying, playTrack, pause, audioToggle, url } = useAudioContext();
 
   return (
     <div className={cx("audio-widget", isPlaying && "audio-widget__active")}>
@@ -29,7 +28,10 @@ const AudioWidget = () => {
         style={{ borderRadius: "20px", color: "white", padding: "20px" }}
         autoPlay
         src={url}
-        onPlay={(e) => console.log("onPlay")}
+        onPlay={(e) => playTrack(url)}
+        onPause={() => {
+          pause();
+        }}
         showSkipControls={true}
         showJumpControls
         showFilledProgress

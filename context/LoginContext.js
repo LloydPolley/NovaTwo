@@ -111,7 +111,6 @@ const LoginProvider = ({ children }) => {
 
   const watchUserStatus = () => {
     return onAuthStateChanged(auth, (user) => {
-      console.log("changed status");
       if (user && user.uid) {
         setIsLoggedIn(true);
         setUserInfo(user);

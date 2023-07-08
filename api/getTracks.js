@@ -10,9 +10,9 @@ const getAllTracks = async () => {
   return arr;
 };
 
-const getLabelTracks = async (input) => {
+const getTracksWhere = async (type, input) => {
   const arr = [];
-  const q = query(collection(db, "tracks"), where("label", "==", input));
+  const q = query(collection(db, "tracks"), where(type, "==", input));
   const querySnapshot = await getDocs(q);
   await querySnapshot.forEach((doc) => {
     arr.push(doc.data());
@@ -34,4 +34,4 @@ const getArtistTracks = async (input) => {
   return arr;
 };
 
-export { getAllTracks, getArtistTracks, getLabelTracks };
+export { getAllTracks, getArtistTracks, getTracksWhere };
