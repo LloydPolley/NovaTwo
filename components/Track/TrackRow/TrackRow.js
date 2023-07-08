@@ -9,29 +9,17 @@ const TrackRow = ({ artist, name, artwork, play, audio }) => {
   console.log("audio", audio);
 
   return (
-    <>
-      <div className={cx("track-row")} key={`${artist} - ${name}`}>
-        <div className={cx("track-row__naming")}>
-          <img className={cx("track-row__artwork")} src={artwork} />
-          {artist && <p>{artist}</p>}
-          <p>{name}</p>
-        </div>
-        <div className={cx("track-row__buttons")}>
-          <Like />
-          <Play />
-        </div>
+    <div className={cx("track-row")} key={`${artist} - ${name}`}>
+      <div className={cx("track-row__naming")}>
+        <img className={cx("track-row__artwork")} src={artwork} />
+        {artist && <p>{artist}</p>}
+        <p>{name}</p>
       </div>
-      <div
-        style={{
-          width: 300,
-          background: "white",
-          borderRadius: "10px",
-          padding: "0rem 1rem",
-          margin: "0 auto",
-        }}
-      >
+      <div className={cx("track-row__buttons")}>
+        <Like />
+        <Play />
       </div>
-    </>
+    </div>
   );
 };
 

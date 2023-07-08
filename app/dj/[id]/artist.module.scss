@@ -6,10 +6,9 @@
     display: flex;
     flex-direction: column-reverse;
     height: 100%;
-
-    @include large {
-      min-height: 600px;
-    }
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: "center";
 
     h1 {
       margin-left: 10px;
@@ -19,6 +18,15 @@
   &__tracks {
     h2 {
       text-decoration: underline;
+    }
+
+    @include large {
+      display: flex;
+      justify-content: space-between;
+
+      > div {
+        width: 48%;
+      }
     }
     margin: 10px;
   }

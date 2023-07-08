@@ -6,7 +6,7 @@ import classNames from "classnames/bind";
 import styles from "./artist.module.scss";
 import useDjs from "../../../hooks/useDjs";
 import { useQuery } from "@tanstack/react-query";
-import useGetTracks from "../../../hooks/useGetTracks";
+import { getArtistTracks } from "../../../api/getTracks";
 import TrackSquare from "../../../components/Track/TrackSquare";
 import TrackRow from "../../../components/Track/TrackRow/TrackRow";
 
@@ -14,7 +14,6 @@ const cx = classNames.bind(styles);
 
 export default function DjProfile({ params }) {
   const { getDj } = useDjs();
-  const { getArtistTracks } = useGetTracks();
   const { data, status } = useQuery(["getDj", params?.id], getDj);
   const { data: tracks, status: trackLoading } = useQuery(
     ["getArtistTracks", params?.id],
@@ -30,15 +29,24 @@ export default function DjProfile({ params }) {
         className={cx("artist__hero")}
         style={{
           backgroundImage: `url(${data?.photoURL})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
         }}
       >
         <h1>{loadingArist ? "Loading" : data?.displayName}</h1>
       </div>
       <div className={cx("artist__tracks")}>
-        <h2>Recent</h2>
         <div className={cx("track-list")}>
+          <h2>Tracks</h2>
+          {tracks?.map((track) => (
+            <TrackRow
+              key={track.name}
+              name={track.name}
+              audio={track.audioFileLocation}
+              artwork={track.artworkFileLocation}
+            />
+          ))}
+        </div>
+        <div className={cx("track-list")}>
+          <h2>Sets</h2>
           {tracks?.map((track) => (
             <TrackRow
               key={track.name}

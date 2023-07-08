@@ -1,8 +1,8 @@
 .dj-square {
   position: relative;
   display: flex;
-  flex-direction: column-reverse;
-  // border-radius: 10px;
+  flex-direction: column;
+  height: 100%;
   border-radius: 10px;
 
   &:hover {
@@ -18,7 +18,8 @@
   margin-bottom: 10px;
   p,
   a {
-    margin-left: 10px;
+    font-family: "Lato";
+    margin-left: 20px;
     margin-bottom: 10px;
     font-weight: bold;
   }

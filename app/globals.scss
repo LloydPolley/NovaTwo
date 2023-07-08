@@ -1,11 +1,17 @@
 @import "./../styles/form.scss";
 
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&family=Quicksand:wght@300;400;700&display=swap");
+
 html,
 body {
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+h1 {
+  font-family: "Lato";
 }
 
 a {
@@ -19,7 +25,7 @@ form {
 }
 
 body {
-  // background-color: black;
+  background-color: black;
   margin: auto;
 }
 
@@ -50,19 +56,19 @@ label {
 $rhap_theme-color: green;
 
 .rhap_container {
-  background-color: #1d1d2900;
+  background-color: #1d1d2900 !important;
   border: none;
   // border: 1px solid grey;
 }
 
 .rhap_main-controls-button {
-  color: white;
+  color: white !important;
 }
 
 .rhap_time {
-  color: white;
+  color: white !important;
 }
 
 .rhap_progress-bar-show-download {
-  background: white;
+  background: white !important;
 }

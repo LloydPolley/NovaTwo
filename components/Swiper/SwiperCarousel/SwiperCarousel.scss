@@ -1,0 +1,15 @@
+@import "../../../styles/mixins.scss";
+
+.swiper {
+  height: 500px;
+  padding: 0 10px !important;
+
+  @include large {
+    padding: 0 !important;
+  }
+}
+
+.swiper-slide {
+  width: 50vw;
+  height: 500px;
+}

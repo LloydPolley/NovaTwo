@@ -25,35 +25,37 @@ const Navigation = ({ open, setOpen }) => {
 
   return (
     <div className={cx("nav-overlay", open && "nav-overlay__open")}>
-      <p
-        className={cx("nav__burger")}
-        onClick={() => {
-          setOpen(!open);
-        }}
-      >
-        <Close />
-      </p>
-      <div className={cx("nav-overlay__content")}>
-        <Link
-          className={cx(activeSegment === "dj" && "nav__active")}
-          href={"/"}
-        >
-          Nova
-        </Link>
-        <Link
-          className={cx(activeSegment === "dj" && "nav__active")}
-          href={"/dj"}
-        >
-          Discover
-        </Link>
-        {!userData?.email ? (
-          <Link href="/profile">Log In</Link>
-        ) : (
-          <>
-            <Link href="/profile">{userData?.displayName || "user"}</Link>
-            <Link href="/upload">Upload</Link>
-          </>
-        )}
+      <div className={cx("nav-overlay__content-wrapper")}>
+        <div className={cx("nav-overlay__content")}>
+          <p
+            className={cx("nav__burger")}
+            onClick={() => {
+              setOpen(!open);
+            }}
+          >
+            <Close />
+          </p>
+          <Link
+            className={cx(activeSegment === "dj" && "nav__active")}
+            href={"/"}
+          >
+            Nova
+          </Link>
+          <Link
+            className={cx(activeSegment === "dj" && "nav__active")}
+            href={"/dj"}
+          >
+            Discover
+          </Link>
+          {!userData?.email ? (
+            <Link href="/profile">Log In</Link>
+          ) : (
+            <>
+              <Link href="/profile">{userData?.displayName || "user"}</Link>
+              <Link href="/upload">Upload</Link>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -34,7 +34,7 @@ export default function RootLayout({ children }) {
             <div className="main-content">
               {children}
             </div>
-            {/* <Footer/> */}
+            <Footer/>
             <AudioWidget />
           </AudioProvider>
           </QueryClientProvider>

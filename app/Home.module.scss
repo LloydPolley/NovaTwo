@@ -1,7 +1,7 @@
 @import "../styles/mixins.scss";
 
 .home {
-  margin: 10px;
+  // margin: 10px;
 
   &__header {
     text-align: left;
@@ -9,6 +9,64 @@
 
     h2 {
       margin-bottom: 1px solid white;
+    }
+  }
+
+  &__hero {
+    text-align: center;
+    // border: 1px solid white;
+    height: 80vh;
+    display: flex;
+    flex-direction: row;
+    background-image: url("https://img.freepik.com/free-vector/abstract-vector-colorful-mesh-dark-background-futuristic-style-card-elegant-background-business-presentations-corrupted-point-sphere-chaos-aesthetics_1217-5361.jpg?w=1800&t=st=1688813273~exp=1688813873~hmac=f5ee62e7665132fed7399f50c7fe8f20e2f4106e7d334ba106b0a090f6ae33aa");
+    background-size: 75%;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    &--white {
+      // background-color: rgb(255, 255, 255);
+    }
+    &--black {
+      background-color: black;
+    }
+
+    > div {
+      height: 100%;
+      width: 50%;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      // border: 1px solid white;
+    }
+  }
+}
+
+.label-carousel {
+  // display: flex;
+  position: relative;
+  margin-top: 100px;
+
+  h3 {
+    font-size: 30px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    // margin: 0;
+
+    @include large {
+      position: absolute;
+      transform: rotate(-90deg);
+      bottom: 90px;
+      left: -65px;
+      bottom: 95px;
+      left: -85px;
+      font-size: 50px;
+    }
+  }
+  &__box {
+    @include large {
+      margin-left: 80px;
+      margin-left: 100px;
     }
   }
 }
@@ -32,8 +90,14 @@
   }
 }
 
-@media (min-width: 1000px) {
+@media (min-width: 800px) {
   .track-squares {
     grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media (min-width: 1000px) {
+  .track-squares {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }

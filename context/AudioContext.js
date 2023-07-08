@@ -1,6 +1,5 @@
 import { createContext, useContext, useState, useEffect, useRef } from "react";
 import { auth, db } from "../utils/firebase";
-import useGetTracks from "../hooks/useGetTracks";
 import { ref, getDownloadURL, getStorage } from "firebase/storage";
 
 export const AudioContext = createContext({
