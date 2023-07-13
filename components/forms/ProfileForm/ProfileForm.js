@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import useAddTrack from "../../../hooks/useAddTrack";
@@ -8,7 +10,7 @@ import { useLoginContext } from "../../../context/LoginContext";
 const cx = classNames.bind(styles);
 
 function ProfileForm() {
-  const { signOutUser, setAndUpdateUserDoc, userInfo, userData } =
+  const { isLoggedIn, signOutUser, setAndUpdateUserDoc, userInfo, userData } =
     useLoginContext();
 
   const {
@@ -40,6 +42,10 @@ function ProfileForm() {
     setValue("photoURL", photoURL);
     setValue("name", name);
   }, [userInfo, userData]);
+
+  if (isLoggedIn) {
+    return null;
+  }
 
   return (
     <div className={cx("form-container")}>

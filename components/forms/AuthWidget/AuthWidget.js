@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import classNames from "classnames/bind";
 import styles from "./AuthWidget.module.scss";
@@ -9,7 +11,11 @@ const cx = classNames.bind(styles);
 
 function SignInScreen() {
   const [showLogin, setShowLogin] = useState(true);
-  const { signIn, userInfo } = useLoginContext();
+  const { signIn, userInfo, isLoggedIn } = useLoginContext();
+
+  if (isLoggedIn) {
+    return null;
+  }
 
   return (
     <div className={cx("auth-widget")}>

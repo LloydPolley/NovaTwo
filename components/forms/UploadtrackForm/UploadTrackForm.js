@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import useAddTrack from "../../../hooks/useAddTrack";
@@ -17,20 +19,24 @@ function UploadTrackForm() {
     formState: { errors },
   } = useForm();
 
-  const { userData } = useLoginContext();
+  const { userData, isLoggedIn } = useLoginContext();
   const { addTrack, uploadFile, fetchAudio } = useAddTrack();
+
+  const [image, setImage] = useState();
+  const [audio, setAudio] = useState();
+  const [loading, setLoading] = useState(false);
 
   const onSubmit = async (data) => {
     const { name, audioFile, artworkFile } = data;
-    console.log("submit data", data);
     const { displayName, uid } = userData;
-    console.log("submit data", data);
 
     const audioUrl = `gs://novatwo-f3f41.appspot.com/${displayName}/tracks/${name}/audio/${audioFile[0].name}`;
     const artworkUrl = `gs://novatwo-f3f41.appspot.com/${displayName}/tracks/${name}/artwork/${artworkFile[0].name}`;
 
     let audioAccess;
     let artworkAccess;
+
+    setLoading(true);
 
     if (artworkFile) {
       await uploadFile({
@@ -61,37 +67,56 @@ function UploadTrackForm() {
       artworkFileLocation: artworkAccess,
       uid,
     });
+
+    setLoading(false);
   };
+
+  if (!isLoggedIn) {
+    console.log("is log", isLoggedIn);
+    return null;
+  }
 
   return (
     <div className={cx("form-container")}>
+      {loading && (
+        <div className={cx("loading")}>
+          <p>UPLOADING</p>
+        </div>
+      )}
       <form className={cx("auth-form")} onSubmit={handleSubmit(onSubmit)}>
         <input placeholder={"Track name"} {...register("name")} required />
-
         <label htmlFor="audio-upload" className={cx("upload-element")}>
-          Upload audio
+          {audio ? audio : "Upload audio"}
         </label>
         <input
           className={cx("upload-button")}
           id="audio-upload"
           type="file"
+          accept=".mp3,audio/*"
+          required
           {...register("audioFile")}
+          onChange={(e) => {
+            console.log("change", e.target.files);
+            setAudio(e.target.files[0]?.name);
+          }}
         />
-
         <label htmlFor="artwork-upload" className={cx("upload-element")}>
-          Upload artwork
+          {image ? image : "Upload artwork"}
         </label>
         <input
           className={cx("upload-button")}
           id="artwork-upload"
           type="file"
+          accept="image/*"
+          required
           {...register("artworkFile")}
           onChange={(e) => {
-            console.log("change", e.target.value);
+            console.log("change", e.target.files);
+            setImage(e.target.files[0]?.name);
           }}
         />
 
-        <input type="submit" />
+        <input type="submit" disabled={loading} />
       </form>
     </div>
   );

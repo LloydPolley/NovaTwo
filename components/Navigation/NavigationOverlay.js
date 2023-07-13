@@ -15,6 +15,8 @@ const Navigation = ({ open, setOpen }) => {
   const { userData } = useLoginContext();
   const activeSegment = useSelectedLayoutSegment();
 
+  console.log("user", userData);
+
   useEffect(() => {
     if (open) {
       document.body.style.overflow = "hidden";
@@ -50,7 +52,7 @@ const Navigation = ({ open, setOpen }) => {
           </Link>
           <Link
             className={cx(activeSegment === "dj" && "nav__active")}
-            href={"/dj"}
+            href={"/discover"}
             onClick={handleNavigation}
           >
             Discover
@@ -61,7 +63,10 @@ const Navigation = ({ open, setOpen }) => {
             </Link>
           ) : (
             <>
-              <Link href="/profile" onClick={handleNavigation}>
+              <Link
+                href={`/discover/${userData?.uid}`}
+                onClick={handleNavigation}
+              >
                 {userData?.displayName || "user"}
               </Link>
               <Link href="/upload" onClick={handleNavigation}>

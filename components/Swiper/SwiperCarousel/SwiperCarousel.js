@@ -49,9 +49,8 @@ const SwiperCarousel = ({ data }) => {
             } = track;
 
             return (
-              <SwiperSlide>
+              <SwiperSlide key={`${artist}-${date}`}>
                 <TrackSquare
-                  key={`${artist}-${date}`}
                   name={name}
                   artist={artist}
                   artwork={artworkFileLocation}

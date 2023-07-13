@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import Burger from "../Icons/Burger";
 import Close from "../Icons/Close";
 import NavigationOverlay from "./NavigationOverlay";
+import NavigationBar from "./NavigationBar";
 
 const cx = classNames.bind(style);
 
@@ -29,6 +30,7 @@ const Navigation = () => {
           <Link className={cx("nav__home-mobile")} href={"/"}>
             Nova
           </Link>
+          <NavigationBar />
           <p
             className={cx("nav__burger")}
             onClick={() => {

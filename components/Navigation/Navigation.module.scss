@@ -13,6 +13,15 @@
   width: 100%;
   overflow: hidden;
 
+  &__burger {
+    @include medium {
+      display: none;
+    }
+    @include large {
+      display: none;
+    }
+  }
+
   &__bar {
     display: flex;
     justify-content: space-between;
@@ -36,10 +45,13 @@
     @include large {
       margin: 10px 12px;
     }
+  }
+}
 
-    // &:hover {
-    //   border-bottom: 3px solid white;
-    // }
+.nav-bar {
+  margin: 10px 12px;
+  @include small {
+    display: none;
   }
 }
 
@@ -92,16 +104,13 @@
   &__content {
     display: flex;
     flex-direction: column;
-    margin-left: 150px;
-    width: 80%;
-    margin: auto;
+    margin-top: 20%;
+    margin-left: 15%;
 
     a {
-      margin-bottom: 100px;
+      margin-bottom: 50px;
       text-transform: uppercase;
-      border-bottom: 2px solid rgb(47, 47, 47);
-      border-top: 2px solid rgb(47, 47, 47);
-      padding: 50px 10px;
+      padding: 25px 10px;
       font-size: 35px;
       background-color: rgba(255, 255, 255, 0.001);
     }
