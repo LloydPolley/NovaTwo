@@ -9,20 +9,17 @@ import { useAudioContext } from "../../../context/AudioContext";
 
 const cx = classNames.bind(style);
 
-const TrackRow = ({ artist, name, artwork, play, audio, uid }) => {
+const TrackRow = ({ artist, name, artwork, play, audioFileLocation, uid }) => {
   const { playTrack, pause, isPlaying, url } = useAudioContext();
-  const isPlayingLocal = isPlaying && url === audio;
+  const isPlayingLocal = isPlaying && url === audioFileLocation;
 
-  console.log("------------------------------");
-  console.log("name", name);
-  console.log("isPlaying", isPlaying);
-  console.log("url === audio", url === audio);
   return (
     <div
       className={cx("track-row")}
       key={`${artist} - ${name}`}
       onClick={() => {
-        !isPlayingLocal ? playTrack(audio) : pause();
+        console.log("audio,", audioFileLocation);
+        !isPlayingLocal ? playTrack(audioFileLocation) : pause();
       }}
     >
       <div className={cx("track-row__naming")}>

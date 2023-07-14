@@ -31,7 +31,7 @@ export default function DjProfile({ params }) {
   const loadingArist = status === "loading";
 
   useEffect(() => {
-    if (userData.uid === pathname.split("/")[2]) {
+    if (userData?.uid === pathname.split("/")[2]) {
       setIsProfile(true);
     }
   }, [userData]);
@@ -56,7 +56,7 @@ export default function DjProfile({ params }) {
               key={track.name}
               name={track.name}
               artist={track.artist}
-              audio={track.audioFileLocation}
+              audioFileLocation={track.audioFileLocation}
               artwork={track.artworkFileLocation}
             />
           ))}

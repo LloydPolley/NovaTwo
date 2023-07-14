@@ -13,31 +13,62 @@ export default async function Dj() {
   return (
     <div className={cx("dj-page")}>
       <h1>Releases</h1>
-      <div className={cx("dj-list")}>
-        <div className={cx("track-squares")}>
-          {data &&
-            data?.map((track) => {
-              if (!track.artist) return;
+      <div className={cx("tracks")}>
+        <div className={cx("tracks__promo")}>
+          <h2>Top</h2>
+          <div className={cx("tracks__row-promo")}>
+            {data &&
+              data.slice(0, 2).map((track) => {
+                if (!track.artist) return;
 
-              const {
-                artist,
-                artworkFileLocation,
-                audioFileLocation,
-                uid,
-                name,
-              } = track;
+                const {
+                  artist,
+                  artworkFileLocation,
+                  audioFileLocation,
+                  uid,
+                  name,
+                } = track;
 
-              return (
-                <TrackRow
-                  key={name}
-                  name={name}
-                  artist={artist}
-                  artwork={artworkFileLocation}
-                  audioFileLocation={audioFileLocation}
-                  uid={uid}
-                />
-              );
-            })}
+                return (
+                  <TrackRow
+                    key={name}
+                    name={name}
+                    artist={artist}
+                    artwork={artworkFileLocation}
+                    audioFileLocation={audioFileLocation}
+                    uid={uid}
+                  />
+                );
+              })}
+          </div>
+        </div>
+        <div className={cx("tracks__promo")}>
+          <h2>Recent</h2>
+          <div className={cx("tracks__row")}>
+            {data &&
+              data.slice(2).map((track) => {
+                if (!track.artist) return;
+
+                const {
+                  artist,
+                  artworkFileLocation,
+                  audioFileLocation,
+                  uid,
+                  name,
+                } = track;
+
+                return (
+                  <TrackRow
+                    key={name}
+                    name={name}
+                    artist={artist}
+                    artwork={artworkFileLocation}
+                    audioFileLocation={audioFileLocation}
+                    uid={uid}
+                  />
+                );
+              })}
+          </div>
         </div>
       </div>
     </div>
