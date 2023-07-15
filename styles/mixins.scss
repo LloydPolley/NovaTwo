@@ -1,3 +1,15 @@
+//element styling
+$borderRaidus: 10px;
+
+//margin spacing
+$betweenElementsM: 50px;
+$betweenElementsD: 50px;
+
+//Track square
+$squareHeightS: 350px;
+$squareHeightM: 500px;
+$squareHeightL: 550px;
+
 @mixin small {
   @media (max-width: 599px) {
     @content;

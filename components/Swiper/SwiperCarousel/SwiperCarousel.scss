@@ -1,7 +1,6 @@
 @import "../../../styles/mixins.scss";
 
 .swiper {
-  height: 500px;
   padding: 0 10px !important;
 
   @include large {

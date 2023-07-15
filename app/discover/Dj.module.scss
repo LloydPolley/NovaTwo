@@ -28,15 +28,12 @@
     align-items: flex-start;
     justify-content: space-between;
 
-    // grid-template-columns: 1fr 1fr;
-    // grid-auto-rows: 500px;
-  }
+    &__promo {
+      width: 70%;
 
-  &__promo {
-    width: 70%;
-
-    &:first-child {
-      width: 30%;
+      &:first-child {
+        width: 30%;
+      }
     }
   }
 
