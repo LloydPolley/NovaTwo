@@ -34,5 +34,5 @@ export default function useDjs() {
     }
   };
 
-  return { getDjs, getDj, djList };
+  return { getDjs, getDj };
 }

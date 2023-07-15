@@ -21,12 +21,8 @@ const getTracksWhere = async (type, input) => {
 };
 
 const getArtistTracks = async (input) => {
-  const { queryKey } = input;
   const arr = [];
-  const q = query(
-    collection(db, "tracks"),
-    where("uid", "==", queryKey[1].toString())
-  );
+  const q = query(collection(db, "tracks"), where("uid", "==", input));
   const querySnapshot = await getDocs(q);
   await querySnapshot.forEach((doc) => {
     arr.push(doc.data());
