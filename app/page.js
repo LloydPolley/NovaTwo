@@ -12,6 +12,8 @@ export default async function Home() {
   const data = await getTracksWhere("label", "afterlife");
   const tracks = await getAllTracks();
 
+  console.log("tracks", tracks);
+
   return (
     <div className={cx("home")}>
       <div className={cx("home__hero")}>
