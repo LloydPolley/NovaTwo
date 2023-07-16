@@ -1,3 +1,5 @@
+"use client";
+
 import classNames from "classnames/bind";
 import styles from "./Home.module.scss";
 import { getTracksWhere, getAllTracks } from "../api/getTracks";

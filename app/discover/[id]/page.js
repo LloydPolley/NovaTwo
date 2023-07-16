@@ -1,5 +1,3 @@
-"use client";
-
 import Head from "next/head";
 import Image from "next/image";
 import classNames from "classnames/bind";
@@ -26,7 +24,6 @@ export default async function DjProfile({ params }) {
   //   }
   // }, [userData]);
 
-  console.log("data", data);
   return (
     <div className={cx("artist")}>
       <div
