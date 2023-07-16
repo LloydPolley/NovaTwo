@@ -20,6 +20,8 @@ const TrackSquare = ({
   const { playTrack, pause, isPlaying, url } = useAudioContext();
   const isPlayingLocal = isPlaying && url === audioFileLocation;
 
+  console.log("uid - ", name, uid);
+
   return (
     <div
       className={cx("dj-square")}
