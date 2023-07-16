@@ -1,5 +1,5 @@
 import classNames from "classnames/bind";
-import styles from "./Dj.module.scss";
+import styles from "./discover.module.scss";
 import TrackSquare from "../../components/Track/TrackSquare";
 import TrackRow from "../../components/Track/TrackRow";
 

@@ -1,5 +1,3 @@
-"use client";
-
 import Head from "next/head";
 import Image from "next/image";
 import classNames from "classnames/bind";
@@ -12,18 +10,7 @@ import Edit from "../../../components/Icons/Edit";
 
 const cx = classNames.bind(styles);
 
-export async function generateStaticParams() {
-  const djs = await getDjs();
-
-  return djs.map((dj) => ({
-    slug: dj.uid,
-  }));
-}
-
 export default async function DjProfile({ params }) {
-  const { id } = params;
-
-  console.log("slug", id);
   const data = await getDj(params?.id);
   // const tracks = await getArtistTracks(params?.id);
 
