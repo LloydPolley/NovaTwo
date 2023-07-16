@@ -15,8 +15,6 @@ const Navigation = ({ open, setOpen }) => {
   const { userData } = useLoginContext();
   const activeSegment = useSelectedLayoutSegment();
 
-  console.log("user", userData);
-
   useEffect(() => {
     if (open) {
       document.body.style.overflow = "hidden";
