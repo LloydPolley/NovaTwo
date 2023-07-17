@@ -40,17 +40,19 @@
   &__row-promo {
     flex-wrap: wrap;
     padding: 10px;
-    background-color: rgb(61, 61, 61);
-    border-radius: 10px;
+    background-color: rgb(20, 20, 20);
+    // border-radius: 10px;
   }
 
   &__row {
     display: grid;
     grid-template-columns: 1fr;
+    background-color: rgb(21, 21, 21);
+
     // grid-auto-rows: 515px;
-    row-gap: 15px;
-    column-gap: 15px;
-    margin: 10px;
+    // row-gap: 5px;
+    // column-gap: 5px;
+    // margin: 5px;
     flex-wrap: wrap;
 
     @include medium {

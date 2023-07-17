@@ -7,8 +7,8 @@ $betweenElementsD: 50px;
 
 //Track square
 $squareHeightS: 350px;
-$squareHeightM: 500px;
-$squareHeightL: 550px;
+$squareHeightM: 425px;
+$squareHeightL: 500px;
 
 @mixin small {
   @media (max-width: 599px) {
@@ -16,7 +16,7 @@ $squareHeightL: 550px;
   }
 }
 @mixin medium {
-  @media (max-width: 999px) and (min-width: 600px) {
+  @media (min-width: 600px) {
     @content;
   }
 }

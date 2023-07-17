@@ -7,10 +7,10 @@
   transform: translateX(-50%);
   z-index: 2;
   backdrop-filter: blur(30px);
-  border-radius: 20px;
-  width: 800px;
+  border-radius: 10px;
+  width: 98%;
+  max-width: 800px;
   margin: auto;
-  max-width: 90%;
   transition: 0.2s all;
 
   a {
@@ -24,11 +24,11 @@
   }
 
   &:hover {
-    bottom: 20px;
+    bottom: 5px;
   }
 
   &__active {
-    bottom: 20px;
+    bottom: 5px;
   }
 
   &__content {

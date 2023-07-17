@@ -12,7 +12,7 @@ const cx = classNames.bind(styles);
 
 export default async function DjProfile({ params }) {
   const data = await getDj(params?.id);
-  // const tracks = await getArtistTracks(params?.id);
+  const tracks = await getArtistTracks(params?.id);
 
   // const pathname = usePathname();
   // const [isProfile, setIsProfile] = useState();
@@ -36,7 +36,7 @@ export default async function DjProfile({ params }) {
       </div>
       {/* {isProfile && <Edit />} */}
 
-      {/* <div className={cx("artist__tracks")}>
+      <div className={cx("artist__tracks")}>
         <h2>TRACKS</h2>
         <div className={cx("artist__track-list")}>
           {tracks?.map((track) => (
@@ -49,7 +49,7 @@ export default async function DjProfile({ params }) {
             />
           ))}
         </div>
-      </div> */}
+      </div>
     </div>
   );
 }
