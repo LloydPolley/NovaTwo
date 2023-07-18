@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import classNames from "classnames/bind";
 import styles from "./LoginForm.module.scss";
+import Form from "../Form/Form";
 
 const cx = classNames.bind(styles);
 
@@ -23,8 +24,7 @@ function LoginForm({ signIn }) {
   };
 
   return (
-    <div className={cx("form-container")}>
-      <h1>LOG IN</h1>
+    <Form title={"Sign in"}>
       <form className={cx("auth-form")} onSubmit={handleSubmit(onSubmit)}>
         <input placeholder="Email" {...register("email")} />
         <input
@@ -35,7 +35,7 @@ function LoginForm({ signIn }) {
         />
         <input type="submit" />
       </form>
-    </div>
+    </Form>
   );
 }
 

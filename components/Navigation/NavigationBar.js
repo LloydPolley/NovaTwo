@@ -12,7 +12,7 @@ import Close from "../Icons/Close";
 const cx = classNames.bind(style);
 
 const NavigationBar = () => {
-  const { userData } = useLoginContext();
+  const { userData, signOutUser } = useLoginContext();
   const activeSegment = useSelectedLayoutSegment();
 
   return (
@@ -31,6 +31,7 @@ const NavigationBar = () => {
             {userData?.displayName || "user"}
           </Link>
           <Link href="/upload">Upload</Link>
+          <button onClick={signOutUser}>Sign out</button>
         </>
       )}
     </div>

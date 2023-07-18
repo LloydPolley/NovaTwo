@@ -1,8 +1,6 @@
 @import "../../styles/mixins.scss";
 
 .dj-page {
-  min-height: 100vh;
-
   h1 {
     margin-left: 10px;
     z-index: 5;
@@ -25,14 +23,33 @@
   @include large {
     display: flex;
     flex-direction: row-reverse;
-    align-items: flex-start;
     justify-content: space-between;
 
     &__promo {
       width: 70%;
 
       &:first-child {
-        width: 30%;
+        width: 29%;
+      }
+    }
+  }
+
+  &__promo {
+    border: 1px solid rgb(21, 21, 21);
+    background-color: $widget;
+    border-radius: 10px;
+
+    h2 {
+      margin-left: 10px;
+      text-align: left;
+      text-transform: uppercase;
+    }
+
+    @include large {
+      width: 70%;
+
+      &:first-child {
+        width: 29%;
       }
     }
   }
@@ -40,14 +57,16 @@
   &__row-promo {
     flex-wrap: wrap;
     padding: 10px;
-    background-color: rgb(20, 20, 20);
+    // background-color: rgb(20, 20, 20);
     // border-radius: 10px;
   }
 
   &__row {
     display: grid;
     grid-template-columns: 1fr;
-    background-color: rgb(21, 21, 21);
+
+    padding: 5px;
+    border-radius: 5px;
 
     // grid-auto-rows: 515px;
     // row-gap: 5px;

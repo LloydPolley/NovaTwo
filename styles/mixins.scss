@@ -10,6 +10,9 @@ $squareHeightS: 350px;
 $squareHeightM: 425px;
 $squareHeightL: 500px;
 
+//colour square
+$widget: rgb(7, 7, 7);
+
 @mixin small {
   @media (max-width: 599px) {
     @content;
@@ -17,6 +20,11 @@ $squareHeightL: 500px;
 }
 @mixin medium {
   @media (min-width: 600px) {
+    @content;
+  }
+}
+@mixin underLarge {
+  @media (max-width: 999px) {
     @content;
   }
 }

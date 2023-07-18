@@ -6,12 +6,12 @@ import useAddTrack from "../../../hooks/useAddTrack";
 import classNames from "classnames/bind";
 import styles from "./UploadTrackForm.module.scss";
 import { useLoginContext } from "../../../context/LoginContext";
-import { AggregateField } from "firebase/firestore";
+import Form from "../Form/Form";
+import Loading from "../../Loading";
 
 const cx = classNames.bind(styles);
 
 function UploadTrackForm() {
-  // const [file, setFile] = useState();
   const {
     register,
     handleSubmit,
@@ -27,7 +27,7 @@ function UploadTrackForm() {
   const [loading, setLoading] = useState(false);
 
   const onSubmit = async (data) => {
-    const { name, audioFile, artworkFile } = data;
+    const { name, audioFile, artworkFile, label } = data;
     const { displayName, uid } = userData;
 
     const audioUrl = `gs://novatwo-f3f41.appspot.com/${displayName}/tracks/${name}/audio/${audioFile[0].name}`;
@@ -65,6 +65,7 @@ function UploadTrackForm() {
       trackName: audioFile[0].name,
       audioFileLocation: audioAccess,
       artworkFileLocation: artworkAccess,
+      label,
       uid,
     });
 
@@ -72,19 +73,15 @@ function UploadTrackForm() {
   };
 
   if (!isLoggedIn) {
-    console.log("is log", isLoggedIn);
     return null;
   }
 
   return (
-    <div className={cx("form-container")}>
-      {loading && (
-        <div className={cx("loading")}>
-          <p>UPLOADING</p>
-        </div>
-      )}
+    <Form title={"Upload"}>
+      <Loading isLoading={loading} />
       <form className={cx("auth-form")} onSubmit={handleSubmit(onSubmit)}>
         <input placeholder={"Track name"} {...register("name")} required />
+        <input placeholder={"Label"} {...register("label")} required />
         <label htmlFor="audio-upload" className={cx("upload-element")}>
           {audio ? audio : "Upload audio"}
         </label>
@@ -118,7 +115,7 @@ function UploadTrackForm() {
 
         <input type="submit" disabled={loading} />
       </form>
-    </div>
+    </Form>
   );
 }
 

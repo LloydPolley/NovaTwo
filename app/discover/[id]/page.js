@@ -7,6 +7,7 @@ import { getArtistTracks } from "../../../api/getTracks";
 import TrackRow from "../../../components/Track/TrackRow/TrackRow";
 import { usePathname } from "next/navigation";
 import Edit from "../../../components/Icons/Edit";
+import PlayIcon from "../../../components/Icons/PlayIcon";
 
 const cx = classNames.bind(styles);
 
@@ -29,10 +30,27 @@ export default async function DjProfile({ params }) {
       <div
         className={cx("artist__hero")}
         style={{
-          backgroundImage: `url(${data?.photoURL})`,
+          backgroundImage: `url(${data?.background})`,
         }}
       >
-        <h1>{data?.displayName}</h1>
+        <div className={cx("artist__hero-overlay")} />
+        <div className={cx("artist__profile")}>
+          <Image
+            className={cx("artist__profile-img")}
+            src={data?.profile}
+            width={200}
+            height={200}
+            alt="Picture of the author"
+          />
+          <div className={cx("artist__profile-info")}>
+            <div>
+              <h1>{data?.displayName}</h1>
+              <button className={cx("cta")}>
+                <PlayIcon />
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
       {/* {isProfile && <Edit />} */}
 

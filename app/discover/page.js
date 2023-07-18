@@ -12,10 +12,10 @@ export default async function Dj() {
 
   return (
     <div className={cx("dj-page")}>
-      <h1>Releases</h1>
+      {/* <h1>Releases</h1> */}
       <div className={cx("tracks")}>
         <div className={cx("tracks__promo")}>
-          <h2>Top</h2>
+          <h2>Popular</h2>
           <div className={cx("tracks__row-promo")}>
             {data &&
               data.slice(0, 2).map((track) => {

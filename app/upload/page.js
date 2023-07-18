@@ -8,7 +8,7 @@ const cx = classNames.bind(styles);
 function UploadPage() {
   return (
     <div className={cx("upload-page")}>
-      <h1>Upload your track</h1>
+      {/* <h1>Upload your track</h1> */}
       <UploadTrackForm />
       <AuthWidget />
     </div>

@@ -43,9 +43,9 @@ function ProfileForm() {
     setValue("name", name);
   }, [userInfo, userData]);
 
-  if (isLoggedIn) {
-    return null;
-  }
+  // if (isLoggedIn) {
+  //   return null;
+  // }
 
   return (
     <div className={cx("form-container")}>
@@ -54,8 +54,6 @@ function ProfileForm() {
           {userInfo?.displayName || userInfo?.email}
         </p>
         <label>Name</label>
-        <input placeholder={"Name"} {...register("name")} />
-        <label>Display Name</label>
         <input placeholder={"Display name"} {...register("displayName")} />
         <label>Profile picture</label>
         <input
