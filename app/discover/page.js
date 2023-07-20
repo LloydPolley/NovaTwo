@@ -3,12 +3,13 @@ import styles from "./discover.module.scss";
 import TrackSquare from "../../components/Track/TrackSquare";
 import TrackRow from "../../components/Track/TrackRow";
 
-import { getAllTracks } from "../../api/getTracks";
+import { getAllTracks, getTracksWhere } from "../../api/getTracks";
 
 const cx = classNames.bind(styles);
 
 export default async function Dj() {
   const data = await getAllTracks();
+  const tracks = await getTracksWhere("featured", true);
 
   return (
     <div className={cx("dj-page")}>
@@ -17,8 +18,8 @@ export default async function Dj() {
         <div className={cx("tracks__promo")}>
           <h2>Popular</h2>
           <div className={cx("tracks__row-promo")}>
-            {data &&
-              data.slice(0, 2).map((track) => {
+            {tracks &&
+              tracks.map((track) => {
                 if (!track.artist) return;
 
                 const {
@@ -46,7 +47,7 @@ export default async function Dj() {
           <h2>Recent</h2>
           <div className={cx("tracks__row")}>
             {data &&
-              data.slice(2).map((track) => {
+              data.map((track) => {
                 if (!track.artist) return;
 
                 const {

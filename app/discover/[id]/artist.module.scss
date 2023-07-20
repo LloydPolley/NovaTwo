@@ -45,6 +45,12 @@
     }
   }
 
+  &__profile-container-img {
+    position: relative;
+    width: 200px;
+    height: 200px;
+  }
+
   &__hero-overlay {
     position: absolute;
     left: 0;
@@ -76,8 +82,12 @@
     border: 1px solid rgb(21, 21, 21);
     background-color: rgb(7, 7, 7);
     border-radius: 10px;
-    margin: 5px;
-    min-height: 700px;
+    padding: 10px 15px;
+    // min-height: 700px;
+
+    @include large {
+      padding: 20px 35px;
+    }
 
     h2 {
       margin-left: 10px;
@@ -85,8 +95,6 @@
   }
 
   &__track-list {
-    margin: 10px;
-
     @include large {
       display: flex;
       flex-wrap: wrap;

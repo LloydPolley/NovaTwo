@@ -10,7 +10,7 @@ function SignInScreen() {
     <div className={cx("profile-page")}>
       <h1>Edit Profile</h1>
       <ProfileForm />
-      {/* <AuthWidget /> */}
+      <AuthWidget />
     </div>
   );
 }

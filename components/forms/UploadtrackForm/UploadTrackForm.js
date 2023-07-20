@@ -20,7 +20,7 @@ function UploadTrackForm() {
   } = useForm();
 
   const { userData, isLoggedIn } = useLoginContext();
-  const { addTrack, uploadFile, fetchAudio } = useAddTrack();
+  const { addTrack, uploadFile, fetchFile } = useAddTrack();
 
   const [image, setImage] = useState();
   const [audio, setAudio] = useState();
@@ -45,7 +45,7 @@ function UploadTrackForm() {
         file: artworkFile[0],
         type: "artwork",
       });
-      artworkAccess = await fetchAudio(artworkUrl);
+      artworkAccess = await fetchFile(artworkUrl);
     }
 
     if (audioFile) {
@@ -56,7 +56,7 @@ function UploadTrackForm() {
         type: "audio",
       });
 
-      audioAccess = await fetchAudio(audioUrl);
+      audioAccess = await fetchFile(audioUrl);
     }
 
     await addTrack({

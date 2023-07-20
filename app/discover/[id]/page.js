@@ -1,4 +1,3 @@
-import Head from "next/head";
 import Image from "next/image";
 import classNames from "classnames/bind";
 import styles from "./artist.module.scss";
@@ -35,13 +34,18 @@ export default async function DjProfile({ params }) {
       >
         <div className={cx("artist__hero-overlay")} />
         <div className={cx("artist__profile")}>
-          <Image
-            className={cx("artist__profile-img")}
-            src={data?.profile}
-            width={200}
-            height={200}
-            alt="Picture of the author"
-          />
+          <div className={cx("artist__profile-container-img")}>
+            <Image
+              className={cx("artist__profile-img")}
+              src={data?.profile}
+              // width={200}
+              // height={200}
+              fill={true}
+              // objectFit={"contain"}
+              alt="Picture of the author"
+            />
+          </div>
+
           <div className={cx("artist__profile-info")}>
             <div>
               <h1>{data?.displayName}</h1>

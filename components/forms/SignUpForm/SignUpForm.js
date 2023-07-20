@@ -11,7 +11,6 @@ function SignInForm() {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
 
@@ -19,15 +18,20 @@ function SignInForm() {
 
   const onSubmit = (data) => {
     console.log(data);
-    const { email, password } = data;
-    registerUser(email, password);
+    const { email, password, displayName } = data;
+    registerUser({ email, password, displayName });
   };
 
   return (
     <Form title="Sign up">
       <form className={cx("auth-form")} onSubmit={handleSubmit(onSubmit)}>
-        <input placeholder="email" {...register("email")} />
-        <input placeholder="password" {...register("password")} />
+        <input placeholder="email" {...register("email")} required />
+        <input placeholder="password" {...register("password")} required />
+        <input
+          placeholder="Display Name"
+          {...register("displayName")}
+          required
+        />
         <input type="submit" />
       </form>
     </Form>

@@ -37,25 +37,26 @@ const LoginProvider = ({ children }) => {
   const [userInfo, setUserInfo] = useState(undefined);
   const [userData, setUserData] = useState(undefined);
 
-  const setUserDoc = async ({ name, displayName, photoURL }) => {
-    const { uid, email } = userInfo;
-    console.log("set user", userInfo?.uid);
+  const setUserDoc = async ({ displayName, uid, email }) => {
     try {
-      const d = await setDoc(doc(db, "users", userInfo?.uid), {
+      await setDoc(doc(db, "users", uid), {
         uid,
         email,
         ...(displayName ? { displayName } : {}),
-        ...(photoURL ? { photoURL } : {}),
-        ...(name ? { name } : {}),
       });
     } catch (e) {
       return { ...e };
     }
   };
 
-  const registerUser = async (email, password) => {
+  const registerUser = async ({ email, password, displayName }) => {
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      const createdUser = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      await setUserDoc({ uid: createdUser?.user?.uid, email, displayName });
     } catch (e) {
       return { ...e };
     }
@@ -78,15 +79,32 @@ const LoginProvider = ({ children }) => {
     }
   };
 
-  const updateUserDoc = async ({ displayName, photoURL, name }) => {
+  const updateUserDoc = async ({
+    displayName,
+    photoURL,
+    name,
+    background,
+    profile,
+  }) => {
+    console.log(
+      "update user",
+      displayName,
+      photoURL,
+      name,
+      background,
+      profile
+    );
     try {
+      console.log("trying");
       updateDoc(doc(db, "users", userInfo?.uid), {
         ...(displayName ? { displayName } : {}),
-        ...(photoURL ? { photoURL } : {}),
+        ...(background ? { background } : {}),
+        ...(profile ? { profile } : {}),
         ...(name ? { name } : {}),
         email: userInfo.email,
       });
     } catch (e) {
+      console.log("error");
       return { ...e };
     }
   };
@@ -103,7 +121,8 @@ const LoginProvider = ({ children }) => {
   };
 
   const setAndUpdateUserDoc = (props) => {
-    console.log("set and update", userData);
+    console.log("set and update", userData, props);
+
     if (!userData) {
       setUserDoc({ ...props });
     } else {
@@ -113,6 +132,7 @@ const LoginProvider = ({ children }) => {
 
   const watchUserStatus = () => {
     return onAuthStateChanged(auth, (user) => {
+      console.log("user", user);
       if (user && user.uid) {
         setIsLoggedIn(true);
         setUserInfo(user);

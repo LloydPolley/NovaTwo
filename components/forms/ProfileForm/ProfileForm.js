@@ -2,78 +2,126 @@
 
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import useAddTrack from "../../../hooks/useAddTrack";
+import { uploadImg, fetchFile } from "../../../api/addTracks";
 import classNames from "classnames/bind";
 import styles from "./ProfileForm.module.scss";
 import { useLoginContext } from "../../../context/LoginContext";
+import Form from "../Form/Form";
+import Loading from "../../Loading";
 
 const cx = classNames.bind(styles);
 
 function ProfileForm() {
-  const { isLoggedIn, signOutUser, setAndUpdateUserDoc, userInfo, userData } =
-    useLoginContext();
-
   const {
     register,
     handleSubmit,
     watch,
-    formState: { errors },
     setValue,
-  } = useForm({
-    defaultValues: {
-      displayName: "",
-      name: "",
-      photoURL: "",
-    },
-  });
+    formState: { errors },
+  } = useForm();
 
-  const { addUser, readUser } = useAddTrack();
+  const { userData, isLoggedIn, setAndUpdateUserDoc } = useLoginContext();
 
-  const onSubmit = (data) => {
-    const { displayName, photoURL, name } = data;
-    console.log("submnit");
-    setAndUpdateUserDoc({ displayName, photoURL, name });
-  };
+  const [backgroundImg, setBackgroundImg] = useState();
+  const [profileImg, setProfileImg] = useState();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const { displayName, photoURL, name } = userData || {};
+    console.log("user", userData);
+    if (userData) {
+      setValue("name", userData?.displayName);
+    }
+  }, [userData]);
 
-    setValue("displayName", displayName);
-    setValue("photoURL", photoURL);
-    setValue("name", name);
-  }, [userInfo, userData]);
+  const onSubmit = async (data) => {
+    const { name, profileImgForm, backgroundImgForm } = data;
+    const { displayName, uid } = userData;
 
-  // if (isLoggedIn) {
-  //   return null;
-  // }
+    const profileImgUrl =
+      profileImgForm &&
+      `gs://novatwo-f3f41.appspot.com/${displayName}/profile/${profileImgForm[0]?.name}`;
+    const backgroundImgUrl =
+      backgroundImgForm &&
+      `gs://novatwo-f3f41.appspot.com/${displayName}/profile/${backgroundImgForm[0]?.name}`;
+
+    let profileImgAccess;
+    let backgroundImgAccess;
+
+    setLoading(true);
+
+    if (profileImgForm) {
+      await uploadImg({
+        artist: displayName,
+        file: profileImgForm[0],
+        uid,
+      });
+      profileImgAccess = await fetchFile(profileImgUrl);
+    }
+
+    if (backgroundImgForm) {
+      await uploadImg({
+        artist: displayName,
+        file: backgroundImgForm[0],
+        uid,
+      });
+
+      backgroundImgAccess = await fetchFile(backgroundImgUrl);
+    }
+    console.log("background", backgroundImg);
+    console.log("profile", profileImg);
+
+    await setAndUpdateUserDoc({
+      background: backgroundImgAccess,
+      profile: profileImgAccess,
+      uid,
+    });
+
+    setLoading(false);
+  };
+
+  console.log("isLoggedIn", isLoggedIn);
+
+  if (!isLoggedIn) {
+    return null;
+  }
 
   return (
-    <div className={cx("form-container")}>
+    <Form title={"Profile"}>
+      <Loading isLoading={loading} />
       <form className={cx("auth-form")} onSubmit={handleSubmit(onSubmit)}>
-        <p className={cx("display-name")}>
-          {userInfo?.displayName || userInfo?.email}
-        </p>
-        <label>Name</label>
-        <input placeholder={"Display name"} {...register("displayName")} />
-        <label>Profile picture</label>
+        <input placeholder={"Display Name"} {...register("name")} required />
+        <label htmlFor="profile-upload" className={cx("upload-element")}>
+          {profileImg ? profileImg : "Upload Profile Image"}
+        </label>
         <input
-          placeholder={"photoURL"}
-          type={"text"}
-          name="photoURL"
-          {...register("photoURL")}
+          className={cx("upload-button")}
+          id="profile-upload"
+          type="file"
+          accept="image/*"
+          {...register("profileImgForm")}
+          onChange={(e) => {
+            console.log("change", e.target.files);
+            setProfileImg(e.target.files[0]?.name);
+          }}
         />
-        <input type="submit" />
+        <label htmlFor="background-upload" className={cx("upload-element")}>
+          {backgroundImg ? backgroundImg : "Upload Background image"}
+        </label>
+        <input
+          className={cx("upload-button")}
+          id="background-upload"
+          type="file"
+          accept="image/*"
+          {...register("backgroundImgForm")}
+          onChange={(e) => {
+            console.log("change", e.target.files);
+            setBackgroundImg(e.target.files[0]?.name);
+          }}
+        />
+
+        <input type="submit" disabled={loading} />
       </form>
-      <button
-        className={cx("logout-button")}
-        onClick={() => {
-          console.log("sign out");
-          signOutUser();
-        }}
-      >
-        Log out
-      </button>
-    </div>
+    </Form>
   );
 }
 

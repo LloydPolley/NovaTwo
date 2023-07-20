@@ -46,10 +46,10 @@
     }
 
     @include large {
-      width: 70%;
+      width: 65%;
 
       &:first-child {
-        width: 29%;
+        width: 34%;
       }
     }
   }
@@ -69,16 +69,9 @@
     border-radius: 5px;
 
     // grid-auto-rows: 515px;
-    // row-gap: 5px;
+    row-gap: 10px;
     // column-gap: 5px;
-    // margin: 5px;
+    margin: 5px;
     flex-wrap: wrap;
-
-    @include medium {
-      grid-template-columns: 1fr 1fr;
-    }
-    @include large {
-      grid-template-columns: 1fr 1fr;
-    }
   }
 }

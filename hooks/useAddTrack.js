@@ -18,6 +18,7 @@ export default function useAddTrack() {
     trackName,
     audioFileLocation,
     artworkFileLocation,
+    label,
     uid,
   }) => {
     console.log("audio src", audioSrc);
@@ -32,8 +33,8 @@ export default function useAddTrack() {
         artworkFileLocation,
         date,
         uid,
+        label,
       });
-      console.log("doc written", docRef);
     } catch (e) {
       console.log("e", e);
       return { ...e };
@@ -53,7 +54,17 @@ export default function useAddTrack() {
     console.log("snap", snapShot);
   };
 
-  const fetchAudio = async (audioUrl) => {
+  const uploadImg = async ({ artist, file }) => {
+    console.log(`upload -----`, artist, file);
+
+    const { name } = file;
+    const storageRef = ref(storage, `${artist}/profile/${name}`);
+
+    const snapShot = await uploadBytes(storageRef, file);
+    console.log("snap____------_____---", snapShot);
+  };
+
+  const fetchFile = async (audioUrl) => {
     try {
       console.log("passed in ", audioUrl);
       const storage = await getStorage();
@@ -74,5 +85,5 @@ export default function useAddTrack() {
     return arr;
   };
 
-  return { addTrack, readTracks, uploadFile, fetchAudio };
+  return { addTrack, readTracks, uploadFile, fetchFile, uploadImg };
 }

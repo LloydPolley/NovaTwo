@@ -12,7 +12,7 @@ const cx = classNames.bind(styles);
 
 export default async function Home() {
   const data = await getTracksWhere("label", "afterlife");
-  const tracks = await getAllTracks();
+  const tracks = await getTracksWhere("featured", true);
 
   console.log("tracks", tracks);
 
