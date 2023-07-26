@@ -27,7 +27,6 @@ function ProfileForm() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    console.log("user", userData);
     if (userData) {
       setValue("name", userData?.displayName);
     }

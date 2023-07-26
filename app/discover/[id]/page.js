@@ -1,8 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import classNames from "classnames/bind";
 import styles from "./artist.module.scss";
 import { getDj } from "../../../api/getDjs";
-import { getArtistTracks } from "../../../api/getTracks";
+import { getArtistTracks, getAllLikedTracks } from "../../../api/getTracks";
 import TrackRow from "../../../components/Track/TrackRow/TrackRow";
 import { usePathname } from "next/navigation";
 import Edit from "../../../components/Icons/Edit";
@@ -11,25 +13,16 @@ import PlayIcon from "../../../components/Icons/PlayIcon";
 const cx = classNames.bind(styles);
 
 export default async function DjProfile({ params }) {
-  const data = await getDj(params?.id);
+  const user = await getDj(params?.id);
+  const likes = await getAllLikedTracks(params?.id);
   const tracks = await getArtistTracks(params?.id);
-
-  // const pathname = usePathname();
-  // const [isProfile, setIsProfile] = useState();
-  // const { data, status } = useQuery(["getDj", params?.id], getDj);
-
-  // useEffect(() => {
-  //   if (userData?.uid === pathname.split("/")[2]) {
-  //     setIsProfile(true);
-  //   }
-  // }, [userData]);
 
   return (
     <div className={cx("artist")}>
       <div
         className={cx("artist__hero")}
         style={{
-          backgroundImage: `url(${data?.background})`,
+          backgroundImage: `url(${user?.background})`,
         }}
       >
         <div className={cx("artist__hero-overlay")} />
@@ -37,7 +30,7 @@ export default async function DjProfile({ params }) {
           <div className={cx("artist__profile-container-img")}>
             <Image
               className={cx("artist__profile-img")}
-              src={data?.profile}
+              src={user?.profile}
               // width={200}
               // height={200}
               fill={true}
@@ -48,7 +41,7 @@ export default async function DjProfile({ params }) {
 
           <div className={cx("artist__profile-info")}>
             <div>
-              <h1>{data?.displayName}</h1>
+              <h1>{user?.displayName}</h1>
               <button className={cx("cta")}>
                 <PlayIcon />
               </button>
@@ -68,6 +61,22 @@ export default async function DjProfile({ params }) {
               artist={track.artist}
               audioFileLocation={track.audioFileLocation}
               artwork={track.artworkFileLocation}
+              uid={track.uid}
+              trackId={track.trackId}
+            />
+          ))}
+        </div>
+        <h2>Likes</h2>
+        <div className={cx("artist__track-list")}>
+          {likes?.map((track) => (
+            <TrackRow
+              key={track.name}
+              name={track.name}
+              artist={track.artist}
+              audioFileLocation={track.audioFileLocation}
+              artwork={track.artwork}
+              uid={track.uid}
+              trackId={track.trackId}
             />
           ))}
         </div>

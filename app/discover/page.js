@@ -11,6 +11,8 @@ export default async function Dj() {
   const data = await getAllTracks();
   const tracks = await getTracksWhere("featured", true);
 
+  console.log("tracks", tracks);
+
   return (
     <div className={cx("dj-page")}>
       {/* <h1>Releases</h1> */}
@@ -28,6 +30,7 @@ export default async function Dj() {
                   audioFileLocation,
                   uid,
                   name,
+                  trackId,
                 } = track;
 
                 return (
@@ -38,6 +41,7 @@ export default async function Dj() {
                     artwork={artworkFileLocation}
                     audioFileLocation={audioFileLocation}
                     uid={uid}
+                    trackId={trackId}
                   />
                 );
               })}
@@ -56,6 +60,7 @@ export default async function Dj() {
                   audioFileLocation,
                   uid,
                   name,
+                  trackId,
                 } = track;
 
                 return (
@@ -66,6 +71,7 @@ export default async function Dj() {
                     artwork={artworkFileLocation}
                     audioFileLocation={audioFileLocation}
                     uid={uid}
+                    trackId={trackId}
                   />
                 );
               })}

@@ -10,6 +10,18 @@ const getDjs = async () => {
   setDjList(arr);
 };
 
+const getDjLikes = async (input) => {
+  const docRef = doc(db, "users", input);
+  const snapshot = await getDocs(collection(docRef, "Likes"));
+  const arr = [];
+
+  await snapshot.forEach((doc) => {
+    arr.push(doc.data());
+  });
+
+  return arr;
+};
+
 const getDj = async (input) => {
   const docRef = doc(db, "users", input);
   try {
@@ -20,4 +32,4 @@ const getDj = async (input) => {
   }
 };
 
-export { getDjs, getDj };
+export { getDjs, getDj, getDjLikes };

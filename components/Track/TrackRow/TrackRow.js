@@ -6,10 +6,18 @@ import Play from "../../Buttons/Play";
 import Like from "../../Buttons/Like";
 import Link from "next/link";
 import { useAudioContext } from "../../../context/AudioContext";
+import { useLoginContext } from "../../../context/LoginContext";
 
 const cx = classNames.bind(style);
 
-const TrackRow = ({ artist, name, artwork, play, audioFileLocation, uid }) => {
+const TrackRow = ({
+  artist,
+  name,
+  artwork,
+  audioFileLocation,
+  uid,
+  trackId,
+}) => {
   const { playTrack, pause, isPlaying, url } = useAudioContext();
   const isPlayingLocal = isPlaying && url === audioFileLocation;
 
@@ -38,7 +46,12 @@ const TrackRow = ({ artist, name, artwork, play, audioFileLocation, uid }) => {
         </div>
       </div>
       <div className={cx("track-row__buttons")}>
-        <Like />
+        <Like
+          uid={uid}
+          currentUser={""}
+          trackId={trackId}
+          track={{ artist, name, artwork, audioFileLocation, uid, trackId }}
+        />
         <Play isPlayingAudio={isPlayingLocal} />
       </div>
     </div>

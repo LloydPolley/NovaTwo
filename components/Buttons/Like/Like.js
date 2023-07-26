@@ -3,27 +3,47 @@
 import { useEffect, useState } from "react";
 import classNames from "classnames/bind";
 import styles from "./Like.module.scss";
-import { useAudioContext } from "../../../context/AudioContext";
 import Favourite from "../../Icons/Favourite";
+import FavouriteFilled from "../../Icons/FavouriteFilled";
+import { addLike, deleteLike, isLikedByUser } from "../../../api/addLike";
+import { useLoginContext } from "../../../context/LoginContext";
+import { toast } from "react-toastify";
 
 const cx = classNames.bind(styles);
 
-function Like({ trackUrl, abso }) {
-  // const { play, pause, isPlaying, url } = useAudioContext();
-  // const [localPlaying, setLocalPlaying] = useState();
+function Like({ uid, trackId, track }) {
+  const [isLiked, setIsLiked] = useState(false);
+  const { userData } = useLoginContext();
 
-  // useEffect(() => {
-  //   if (isPlaying && url === trackUrl) {
-  //     setLocalPlaying(true);
-  //     return;
-  //   }
-  //   setLocalPlaying(false);
-  // }, [isPlaying, url, trackUrl]);
+  // const notify = () => toast("Wow so easy!");
+
+  const fetchLike = async () => {
+    const f = await isLikedByUser({ uid, trackId });
+    await setIsLiked(f);
+  };
+
+  const clickHandler = async () => {
+    // notify();
+    isLiked
+      ? setIsLiked(await deleteLike({ uid, trackId }))
+      : setIsLiked(
+          await addLike({ uid, trackId, track, userLikedUid: userData?.uid })
+        );
+  };
+
+  useEffect(() => {
+    fetchLike();
+  }, [isLiked]);
 
   return (
-    <button className={cx("play", abso && "play__abso")}>
-      {/* {!localPlaying ? <Favourite /> : "⏸︎"} */}
-      <Favourite />
+    <button
+      className={cx("play")}
+      onClick={async (e) => {
+        e.stopPropagation();
+        clickHandler();
+      }}
+    >
+      {!isLiked ? <Favourite /> : <FavouriteFilled />}
     </button>
   );
 }
