@@ -16,9 +16,9 @@ const AudioProvider = ({ children }) => {
   const [url, setUrl] = useState(null);
   const audioPlayer = useRef();
 
-  useEffect(() => {
-    console.log("is playing updated", isPlaying);
-  }, [isPlaying]);
+  // useEffect(() => {
+  //   console.log("is playing updated", isPlaying);
+  // }, [isPlaying]);
 
   const playTrack = async (trackUrl) => {
     await setUrl(trackUrl);

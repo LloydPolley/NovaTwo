@@ -12,10 +12,10 @@ const getAllTracks = async () => {
 
 const getAllLikedTracks = async (uid) => {
   const arr = [];
-  const q = query(collection(db, "likes"), where("userLikedUid", "==", uid));
+  const q = query(collection(db, "likes"), where("currentUser", "==", uid));
   const querySnapshot = await getDocs(q);
   await querySnapshot.forEach((doc) => {
-    arr.push({ ...doc.data(), trackId: doc.id });
+    arr.push({ ...doc.data() });
   });
   return arr;
 };

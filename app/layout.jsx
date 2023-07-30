@@ -28,8 +28,8 @@ export default function RootLayout({ children }) {
           <AudioProvider>
             <Navigation />
             <ToastContainer
-              position="top-center"
-              autoClose={5000}
+              position="top-right"
+              autoClose={500}
               hideProgressBar={false}
               pauseOnFocusLoss={false}
               newestOnTop

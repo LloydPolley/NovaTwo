@@ -20,6 +20,7 @@ const TrackRow = ({
 }) => {
   const { playTrack, pause, isPlaying, url } = useAudioContext();
   const isPlayingLocal = isPlaying && url === audioFileLocation;
+  const { userData } = useLoginContext();
 
   return (
     <div
@@ -46,12 +47,14 @@ const TrackRow = ({
         </div>
       </div>
       <div className={cx("track-row__buttons")}>
-        <Like
-          uid={uid}
-          currentUser={""}
-          trackId={trackId}
-          track={{ artist, name, artwork, audioFileLocation, uid, trackId }}
-        />
+        {userData?.uid && (
+          <Like
+            uid={uid}
+            currentUser={userData?.uid}
+            trackId={trackId}
+            track={{ artist, name, artwork, audioFileLocation, uid, trackId }}
+          />
+        )}
         <Play isPlayingAudio={isPlayingLocal} />
       </div>
     </div>

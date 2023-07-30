@@ -11,7 +11,7 @@ const cx = classNames.bind(styles);
 
 function SignInScreen() {
   const [showLogin, setShowLogin] = useState(true);
-  const { signIn, userInfo, isLoggedIn } = useLoginContext();
+  const { signIn, isLoggedIn } = useLoginContext();
 
   if (isLoggedIn) {
     return null;
