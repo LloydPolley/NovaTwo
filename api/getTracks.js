@@ -1,5 +1,6 @@
 import { db } from "../utils/firebase";
 import { collection, getDocs, query, where } from "firebase/firestore";
+import nookies from "nookies";
 
 const getAllTracks = async () => {
   const snapshot = await getDocs(collection(db, "tracks"));
@@ -11,6 +12,7 @@ const getAllTracks = async () => {
 };
 
 const getAllLikedTracks = async (uid) => {
+  console.log("likes");
   const arr = [];
   const q = query(collection(db, "likes"), where("currentUser", "==", uid));
   const querySnapshot = await getDocs(q);

@@ -21,7 +21,14 @@
       rgba(0, 0, 0, 1) 41%,
       rgba(22, 19, 82, 1) 100%
     );
-    border-radius: 10px;
+    margin-bottom: 0px;
+
+    @include large {
+      flex-direction: column-reverse;
+      margin-bottom: $betweenElementsM;
+      border: 1px solid rgb(21, 21, 21);
+      border-radius: 10px;
+    }
 
     h1 {
       @include underLarge {
@@ -30,14 +37,7 @@
 
       @include large {
         text-align: center;
-        margin-bottom: 25px;
       }
-    }
-
-    @include large {
-      flex-direction: column-reverse;
-      margin-bottom: $betweenElementsM;
-      border: 1px solid rgb(21, 21, 21);
     }
   }
   &__img {
@@ -46,40 +46,6 @@
     top: 50%;
     transform: translate(-50%, -50%);
     border-radius: 50%;
-  }
-
-  &__tracks {
-    border: 1px solid rgb(21, 21, 21);
-    background-color: rgb(7, 7, 7);
-    border-radius: 10px;
-    padding: 10px 15px;
-    // min-height: 700px;
-    background: rgb(0, 0, 0);
-    background: linear-gradient(
-      191deg,
-      rgba(0, 0, 0, 1) 41%,
-      rgba(22, 19, 82, 1) 100%
-    );
-
-    @include large {
-      padding: 20px 35px;
-    }
-
-    h2 {
-      margin-left: 10px;
-    }
-  }
-
-  &__track-list {
-    @include large {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-
-      > div {
-        width: 48%;
-      }
-    }
   }
 }
 

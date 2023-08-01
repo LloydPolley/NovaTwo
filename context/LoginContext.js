@@ -9,6 +9,7 @@ import {
   signOut,
   onAuthStateChanged,
   updateProfile,
+  onIdTokenChanged,
 } from "firebase/auth";
 
 import {
@@ -21,6 +22,7 @@ import {
   updateDoc,
   setDoc,
 } from "firebase/firestore";
+import nookies from "nookies";
 
 export const LoginContext = createContext({
   registerUser: () => {},
@@ -37,11 +39,7 @@ const LoginProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userInfo, setUserInfo] = useState(undefined);
   const [userData, setUserData] = useState(undefined);
-
-  const [user] = useAuthState(auth);
-  const [userName, setUserName] = useState(undefined);
-
-  // console.log("user", user);
+  const [user, setUser] = useState(undefined);
 
   const registerUser = async ({ email, password, displayName }) => {
     try {
@@ -121,15 +119,27 @@ const LoginProvider = ({ children }) => {
 
   const watchUserStatus = () => {
     return onAuthStateChanged(auth, (user) => {
-      console.log("user", user);
       if (user && user.uid) {
         setIsLoggedIn(true);
         setUserInfo(user);
         readUser(user);
+        nookies.set(undefined, "uid", user.uid, { path: "/" });
       } else {
         setIsLoggedIn(false);
         setUserInfo(null);
         setUserData(null);
+        nookies.set(undefined, "uid", "", { path: "/" });
+      }
+    });
+  };
+
+  const watchUserStatusToken = () => {
+    return onIdTokenChanged(auth, async (user) => {
+      if (!user) {
+        setUser(null);
+      } else {
+        const token = await user.getIdToken();
+        setUser(user);
       }
     });
   };
@@ -137,6 +147,11 @@ const LoginProvider = ({ children }) => {
   useEffect(() => {
     const unsub = watchUserStatus();
     return unsub;
+  }, []);
+
+  useEffect(() => {
+    const un = watchUserStatusToken();
+    return un;
   }, []);
 
   return (

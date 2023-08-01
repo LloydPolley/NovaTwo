@@ -1,0 +1,32 @@
+@import "../../styles/mixins.scss";
+
+.track-list-container {
+  border: 1px solid rgb(21, 21, 21);
+  background-color: rgb(7, 7, 7);
+  border-radius: 10px;
+  padding: 10px 15px;
+  background-color: black;
+  //   background: linear-gradient(
+  //     330deg,
+  //     rgba(0, 0, 0, 1) 50%,
+  //     rgba(22, 19, 82, 1) 100%
+  //   );
+
+  @include large {
+    padding: 20px 35px;
+  }
+
+  h2 {
+    margin-left: 10px;
+  }
+
+  &__toggles {
+    button {
+      background-color: rgba(0, 0, 0, 0);
+      border: none;
+      font-size: 24px;
+      margin: 30px 50px 30px 0px;
+      font-weight: 700;
+    }
+  }
+}

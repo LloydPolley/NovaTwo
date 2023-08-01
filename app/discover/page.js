@@ -11,7 +11,7 @@ export default async function Dj() {
   const data = await getAllTracks();
   const tracks = await getTracksWhere("featured", true);
 
-  console.log("tracks", tracks);
+  // console.log("tracks", tracks);
 
   return (
     <div className={cx("dj-page")}>
