@@ -1,5 +1,3 @@
-"use client";
-
 import classNames from "classnames/bind";
 import styles from "./Home.module.scss";
 import { getTracksWhere, getAllTracks } from "../api/getTracks";
@@ -13,8 +11,6 @@ const cx = classNames.bind(styles);
 export default async function Home() {
   const data = await getTracksWhere("label", "afterlife");
   const tracks = await getTracksWhere("featured", true);
-
-  console.log("tracks", tracks);
 
   return (
     <div className={cx("home")}>

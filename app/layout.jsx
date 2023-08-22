@@ -4,7 +4,8 @@ import AudioWidget from "../components/AudioWidget/AudioWidget";
 import LoginProvider from "../context/LoginContext";
 import AudioProvider from "../context/AudioContext";
 import { Lato } from "next/font/google";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, Fade } from "react-toastify";
+
 import "react-toastify/dist/ReactToastify.css";
 
 const font = Lato({
@@ -14,7 +15,8 @@ const font = Lato({
 
 import "./globals.scss";
 
-export default function RootLayout({ children }) {
+export default function RootLayout(props) {
+  const { children } = props;
   return (
     <html className={font.className}>
       <head>
@@ -28,9 +30,9 @@ export default function RootLayout({ children }) {
           <AudioProvider>
             <Navigation />
             <ToastContainer
-              position="top-right"
+              position="top-center"
               autoClose={500}
-              hideProgressBar={false}
+              hideProgressBar={true}
               pauseOnFocusLoss={false}
               newestOnTop
               closeOnClick
@@ -38,6 +40,7 @@ export default function RootLayout({ children }) {
               draggable
               pauseOnHover
               theme="dark"
+              transition={Fade}
             />
             <div className="main-content">{children}</div>
             <Footer />

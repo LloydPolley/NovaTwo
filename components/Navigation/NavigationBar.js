@@ -24,7 +24,7 @@ const NavigationBar = () => {
         Discover
       </Link>
       {!userData?.email ? (
-        <Link href="/profile">Log In</Link>
+        <Link href="/login">Log In</Link>
       ) : (
         <>
           <Link href={`/discover/${userData?.uid}`}>

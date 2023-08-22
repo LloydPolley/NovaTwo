@@ -51,7 +51,7 @@ export default async function Dj() {
           <h2>Recent</h2>
           <div className={cx("tracks__row")}>
             {data &&
-              data.map((track) => {
+              data.slice(0, 10).map((track) => {
                 if (!track.artist) return;
 
                 const {

@@ -12,7 +12,7 @@ function UploadPage() {
       {/* <h1>Upload your track</h1> */}
       <UploadTrackForm />
       <ProfileForm />
-      <AuthWidget />
+      {/* <AuthWidget /> */}
     </div>
   );
 }

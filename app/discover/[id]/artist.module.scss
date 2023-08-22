@@ -2,6 +2,7 @@
 
 .artist {
   min-height: 80vh;
+  position: relative;
 
   svg {
     width: 50px;
@@ -43,9 +44,19 @@
   &__img {
     position: absolute;
     left: 50%;
-    top: 50%;
+    top: 45%;
     transform: translate(-50%, -50%);
     border-radius: 50%;
+  }
+  &__edit {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+
+    svg {
+      width: 40px;
+      height: 40px;
+    }
   }
 }
 

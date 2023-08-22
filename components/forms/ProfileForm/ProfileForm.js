@@ -8,6 +8,7 @@ import styles from "./ProfileForm.module.scss";
 import { useLoginContext } from "../../../context/LoginContext";
 import Form from "../Form/Form";
 import Loading from "../../Loading";
+import Link from "next/link";
 
 const cx = classNames.bind(styles);
 
@@ -25,10 +26,11 @@ function ProfileForm() {
   const [backgroundImg, setBackgroundImg] = useState();
   const [profileImg, setProfileImg] = useState();
   const [loading, setLoading] = useState(false);
+  const [nameExists, setNameExists] = useState(null);
 
   useEffect(() => {
     if (userData) {
-      setValue("name", userData?.displayName);
+      setNameExists(userData?.displayName);
     }
   }, [userData]);
 
@@ -36,19 +38,13 @@ function ProfileForm() {
     const { name, profileImgForm, backgroundImgForm } = data;
     const { displayName, uid } = userData;
 
-    const profileImgUrl =
-      profileImgForm &&
-      `gs://novatwo-f3f41.appspot.com/${displayName}/profile/${profileImgForm[0]?.name}`;
-    const backgroundImgUrl =
-      backgroundImgForm &&
-      `gs://novatwo-f3f41.appspot.com/${displayName}/profile/${backgroundImgForm[0]?.name}`;
-
-    let profileImgAccess;
-    let backgroundImgAccess;
+    let profileImgUrl, backgroundImgUrl, profileImgAccess, backgroundImgAccess;
 
     setLoading(true);
 
-    if (profileImgForm) {
+    if (profileImgForm.length > 0) {
+      profileImgUrl = `gs://novatwo-f3f41.appspot.com/${displayName}/profile/${profileImgForm[0]?.name}`;
+
       await uploadImg({
         artist: displayName,
         file: profileImgForm[0],
@@ -57,7 +53,9 @@ function ProfileForm() {
       profileImgAccess = await fetchFile(profileImgUrl);
     }
 
-    if (backgroundImgForm) {
+    if (backgroundImgForm.length > 0) {
+      backgroundImgUrl = `gs://novatwo-f3f41.appspot.com/${displayName}/profile/${backgroundImgForm[0]?.name}`;
+
       await uploadImg({
         artist: displayName,
         file: backgroundImgForm[0],
@@ -73,6 +71,7 @@ function ProfileForm() {
       background: backgroundImgAccess,
       profile: profileImgAccess,
       uid,
+      displayName: name,
     });
 
     setLoading(false);
@@ -86,9 +85,20 @@ function ProfileForm() {
 
   return (
     <Form title={"Profile"}>
+      <Link className={cx("")} href={`?edit=false`}>
+        X
+      </Link>
       <Loading isLoading={loading} />
       <form className={cx("auth-form")} onSubmit={handleSubmit(onSubmit)}>
-        <input placeholder={"Display Name"} {...register("name")} required />
+        {!nameExists && (
+          <>
+            <input
+              placeholder={"Display Name"}
+              {...register("name")}
+              required
+            />
+          </>
+        )}
         <label htmlFor="profile-upload" className={cx("upload-element")}>
           {profileImg ? profileImg : "Upload Profile Image"}
         </label>

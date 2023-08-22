@@ -56,7 +56,7 @@ const Navigation = ({ open, setOpen }) => {
             Discover
           </Link>
           {!userData?.email ? (
-            <Link href="/profile" onClick={handleNavigation}>
+            <Link href="/login" onClick={handleNavigation}>
               Log In
             </Link>
           ) : (

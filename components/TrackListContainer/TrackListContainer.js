@@ -15,26 +15,28 @@ export default function TrackListContainer({ tracks, likes, uid, params }) {
     <div className={cx("track-list-container")}>
       <div className={cx("track-list-container__toggles")}>
         <button
+          className={cx(showTracks && "track-list-container__active")}
           onClick={() => {
             setShowTracks(true);
           }}
         >
-          RECENT
+          Posts
         </button>
         {isUserProfile && (
           <button
+            className={cx(!showTracks && "track-list-container__active")}
             onClick={() => {
               setShowTracks(false);
             }}
           >
-            LIKES
+            Likes
           </button>
         )}
       </div>
       {showTracks ? (
-        <TrackList tracks={tracks} />
+        <TrackList tracks={tracks} empty={"No posts"} />
       ) : (
-        <> {isUserProfile && <TrackList tracks={likes} />}</>
+        <>{isUserProfile && <TrackList tracks={likes} empty={"No likes"} />}</>
       )}
     </div>
   );

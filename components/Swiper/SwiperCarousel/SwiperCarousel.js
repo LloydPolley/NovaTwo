@@ -16,7 +16,7 @@ const SwiperCarousel = ({ data }) => {
       <Swiper
         breakpoints={{
           320: {
-            width: 420,
+            width: 350,
           },
         }}
         // width={480}
