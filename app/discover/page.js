@@ -15,67 +15,66 @@ export default async function Dj() {
 
   return (
     <div className={cx("dj-page")}>
-      {/* <h1>Releases</h1> */}
+      <div className={cx("hero")}>
+        <h1>DISCOVER</h1>
+      </div>
       <div className={cx("tracks")}>
-        <div className={cx("tracks__promo")}>
-          <h2>Popular</h2>
-          <div className={cx("tracks__row-promo")}>
-            {tracks &&
-              tracks.map((track) => {
-                if (!track.artist) return;
-
-                const {
-                  artist,
-                  artworkFileLocation,
-                  audioFileLocation,
-                  uid,
-                  name,
-                  trackId,
-                } = track;
-
-                return (
-                  <TrackRow
-                    key={name}
-                    name={name}
-                    artist={artist}
-                    artwork={artworkFileLocation}
-                    audioFileLocation={audioFileLocation}
-                    uid={uid}
-                    trackId={trackId}
-                  />
-                );
-              })}
-          </div>
+        <h3 className={cx("tracks__featured")}>FEATURED</h3>
+        <div className={cx("tracks__squares", "tracks__squares-featured")}>
+          {tracks &&
+            tracks.slice(0, 4).map((track) => {
+              const {
+                artist,
+                artworkFileLocation,
+                audioFileLocation,
+                date,
+                name,
+                trackName,
+                uid,
+              } = track;
+              return (
+                <TrackSquare
+                  key={`${artist}-${date}`}
+                  name={name}
+                  artist={artist}
+                  artwork={artworkFileLocation}
+                  audioFileLocation={audioFileLocation}
+                  date={date}
+                  trackName={trackName}
+                  uid={uid}
+                />
+              );
+            })}
         </div>
-        <div className={cx("tracks__promo")}>
-          <h2>Recent</h2>
-          <div className={cx("tracks__row")}>
-            {data &&
-              data.slice(0, 10).map((track) => {
-                if (!track.artist) return;
+      </div>
+      <div className={cx("tracks")}>
+        <h3 className={cx("tracks__releases")}>RELEASES</h3>
+        <div className={cx("tracks__squares", "tracks__squares-releases")}>
+          {data &&
+            data.slice(0, 10).map((track) => {
+              if (!track.artist) return;
 
-                const {
-                  artist,
-                  artworkFileLocation,
-                  audioFileLocation,
-                  uid,
-                  name,
-                  trackId,
-                } = track;
+              const {
+                artist,
+                artworkFileLocation,
+                audioFileLocation,
+                uid,
+                name,
+                trackId,
+              } = track;
 
-                return (
-                  <TrackRow
-                    key={name}
-                    name={name}
-                    artist={artist}
-                    artwork={artworkFileLocation}
-                    audioFileLocation={audioFileLocation}
-                    uid={uid}
-                    trackId={trackId}
-                  />
-                );
-              })}
-          </div>
+              return (
+                <TrackRow
+                  key={name}
+                  name={name}
+                  artist={artist}
+                  artwork={artworkFileLocation}
+                  audioFileLocation={audioFileLocation}
+                  uid={uid}
+                  trackId={trackId}
+                />
+              );
+            })}
         </div>
       </div>
     </div>

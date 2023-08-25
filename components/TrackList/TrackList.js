@@ -10,22 +10,35 @@ export default function TrackList({ tracks, empty }) {
   }
 
   return (
-    <div className={cx("track-list")}>
-      {tracks.length > 0 ? (
-        tracks?.map((track) => (
-          <TrackRow
-            key={track.name}
-            name={track.name}
-            artist={track.artist}
-            audioFileLocation={track.audioFileLocation}
-            artwork={track.artwork || track?.artworkFileLocation}
-            uid={track.uid}
-            trackId={track.trackId}
-          />
-        ))
-      ) : (
-        <p>{empty}</p>
-      )}
+    <div className={cx("tracks")}>
+      <div className={cx("tracks__squares")}>
+        {tracks &&
+          tracks.map((track) => {
+            if (!track.artist) return;
+
+            const {
+              artist,
+              artworkFileLocation,
+              audioFileLocation,
+              uid,
+              name,
+              trackId,
+              artwork,
+            } = track;
+
+            return (
+              <TrackRow
+                key={name}
+                name={name}
+                artist={artist}
+                artwork={artworkFileLocation || artwork}
+                audioFileLocation={audioFileLocation}
+                uid={uid}
+                trackId={trackId}
+              />
+            );
+          })}
+      </div>
     </div>
   );
 }

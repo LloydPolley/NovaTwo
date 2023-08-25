@@ -18,6 +18,9 @@ const SwiperCarousel = ({ data }) => {
           320: {
             width: 350,
           },
+          420: {
+            width: 420,
+          },
         }}
         // width={480}
         spaceBetween={10}

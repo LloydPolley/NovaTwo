@@ -7,6 +7,8 @@
   height: 100%;
   border-radius: 10px;
   height: $squareHeightS;
+  // aspect-ratio: 19/5;
+  // aspect-ratio: 12 / 19;
 
   @include medium {
     height: $squareHeightM;

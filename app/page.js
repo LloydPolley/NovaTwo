@@ -33,36 +33,12 @@ export default async function Home() {
           {data && <SwiperCarousel data={data} />}
         </div>
       </div>
-      <div className={cx("tracks")}>
+      <div className={cx("label-carousel")}>
         <h3>FEATURED</h3>
-        <div className={cx("tracks__squares")}>
-          {tracks &&
-            tracks.slice(0, 6).map((track) => {
-              const {
-                artist,
-                artworkFileLocation,
-                audioFileLocation,
-                date,
-                name,
-                trackName,
-                uid,
-              } = track;
-              return (
-                <TrackSquare
-                  key={`${artist}-${date}`}
-                  name={name}
-                  artist={artist}
-                  artwork={artworkFileLocation}
-                  audioFileLocation={audioFileLocation}
-                  date={date}
-                  trackName={trackName}
-                  uid={uid}
-                />
-              );
-            })}
+        <div className={cx("label-carousel__box")}>
+          {data && <SwiperCarousel data={tracks} />}
         </div>
       </div>
-
       <div className={cx("promo")}>
         <Link className={cx("")} href={`/discover`}>
           CREATE <RightArrow />

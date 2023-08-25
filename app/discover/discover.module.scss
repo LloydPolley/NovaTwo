@@ -15,64 +15,80 @@
   margin-bottom: 50px;
 }
 
-.tracks {
-  margin: 10px;
-  h2 {
-    margin-left: 10px;
-  }
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 450px;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    27deg,
+    rgba(0, 0, 0, 1) 41%,
+    rgba(22, 19, 82, 1) 100%
+  );
+  margin-bottom: 0px;
+
   @include large {
-    display: flex;
-    // flex-direction: row-reverse;
-    justify-content: space-between;
-
-    &__promo {
-      width: 70%;
-
-      &:first-child {
-        width: 29%;
-      }
-    }
-  }
-
-  &__promo {
-    border: 1px solid rgb(21, 21, 21);
-    background-color: $widget;
+    flex-direction: column-reverse;
+    margin-bottom: $betweenElementsM;
+    // border: 1px solid rgb(21, 21, 21);
     border-radius: 10px;
+  }
 
-    h2 {
-      margin-left: 10px;
-      text-align: left;
-      text-transform: uppercase;
-    }
+  h1 {
+    color: #828282;
+    margin: 0;
+    font-size: 70px;
+  }
+}
 
+.tracks {
+  position: relative;
+  margin-bottom: 100px;
+
+  h3 {
+    margin-bottom: 10px;
+    font-size: 30px;
+    margin-left: 10px;
     @include large {
-      width: 65%;
-      padding: 15px;
-
-      &:first-child {
-        width: 34%;
-      }
+      font-size: 40px;
     }
   }
 
-  &__row-promo {
+  &__squares {
+    display: grid;
+    row-gap: 10px;
+    column-gap: 10px;
     flex-wrap: wrap;
     padding: 10px;
-    // background-color: rgb(20, 20, 20);
-    // border-radius: 10px;
+
+    @include medium {
+    }
+    @include large {
+      padding: 0;
+    }
   }
 
-  &__row {
-    display: grid;
+  &__squares-featured {
     grid-template-columns: 1fr;
 
-    padding: 5px;
-    border-radius: 5px;
+    @include medium {
+      grid-template-columns: 1fr 1fr;
+    }
+    @include large {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+  }
 
-    // grid-auto-rows: 515px;
-    row-gap: 10px;
-    // column-gap: 5px;
-    margin: 5px;
-    flex-wrap: wrap;
+  &__squares-releases {
+    grid-template-columns: 1fr;
+
+    @include medium {
+      grid-template-columns: 1fr 1fr;
+    }
+    @include large {
+      grid-template-columns: 1fr 1fr;
+    }
   }
 }
