@@ -30,7 +30,6 @@ const NavigationBar = () => {
           <Link href={`/discover/${userData?.uid}`}>
             {userData?.displayName || "user"}
           </Link>
-          <Link href="/upload">Upload</Link>
           <button onClick={signOutUser}>Sign out</button>
         </>
       )}

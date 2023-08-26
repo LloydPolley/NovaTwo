@@ -67,9 +67,6 @@ const Navigation = ({ open, setOpen }) => {
               >
                 {userData?.displayName || "user"}
               </Link>
-              <Link href="/upload" onClick={handleNavigation}>
-                Upload
-              </Link>
             </>
           )}
         </div>

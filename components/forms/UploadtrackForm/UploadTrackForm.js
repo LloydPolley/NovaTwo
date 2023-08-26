@@ -8,6 +8,7 @@ import styles from "./UploadTrackForm.module.scss";
 import { useLoginContext } from "../../../context/LoginContext";
 import Form from "../Form/Form";
 import Loading from "../../Loading";
+import Link from "next/link";
 
 const cx = classNames.bind(styles);
 
@@ -77,7 +78,10 @@ function UploadTrackForm() {
   }
 
   return (
-    <Form title={"Upload"}>
+    <Form title={"Uploads"}>
+      <Link className={cx("")} href={`?upload=false`}>
+        x
+      </Link>
       <Loading isLoading={loading} />
       <form className={cx("auth-form")} onSubmit={handleSubmit(onSubmit)}>
         <input placeholder={"Track name"} {...register("name")} required />

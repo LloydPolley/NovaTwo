@@ -58,6 +58,16 @@
       height: 40px;
     }
   }
+  &__upload {
+    position: absolute;
+    right: 80px;
+    bottom: 20px;
+
+    svg {
+      width: 40px;
+      height: 40px;
+    }
+  }
 }
 
 .cta {
