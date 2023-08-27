@@ -5,6 +5,7 @@ import TrackRow from "../../components/Track/TrackRow";
 
 import { getAllTracks, getTracksWhere } from "../../api/getTracks";
 import TrackList from "../../components/TrackList/TrackList";
+import SwiperCarousel from "../../components/Swiper/SwiperCarousel/SwiperCarousel";
 
 const cx = classNames.bind(styles);
 
@@ -21,34 +22,10 @@ export default async function Dj() {
       </div>
       <div className={cx("tracks")}>
         <h3 className={cx("tracks__featured")}>FEATURED</h3>
-        <div className={cx("tracks__squares", "tracks__squares-featured")}>
-          {tracks &&
-            tracks.slice(0, 4).map((track) => {
-              const {
-                artist,
-                artworkFileLocation,
-                audioFileLocation,
-                date,
-                name,
-                trackName,
-                uid,
-              } = track;
-              return (
-                <TrackSquare
-                  key={`${artist}-${date}`}
-                  name={name}
-                  artist={artist}
-                  artwork={artworkFileLocation}
-                  audioFileLocation={audioFileLocation}
-                  date={date}
-                  trackName={trackName}
-                  uid={uid}
-                />
-              );
-            })}
-        </div>
+        {tracks && <SwiperCarousel data={tracks} />}
+        <h3 className={cx("tracks__featured")}>RECENT</h3>
+        <TrackList tracks={data} />
       </div>
-      <TrackList tracks={data} />
     </div>
   );
 }

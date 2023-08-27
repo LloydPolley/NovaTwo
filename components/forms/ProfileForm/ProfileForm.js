@@ -23,6 +23,7 @@ function ProfileForm() {
   } = useForm();
 
   const { userData, isLoggedIn, setAndUpdateUserDoc } = useLoginContext();
+  const [profileImg, setProfileImg] = useState();
 
   const [loading, setLoading] = useState(false);
   const [nameExists, setNameExists] = useState(null);
@@ -82,7 +83,7 @@ function ProfileForm() {
           </>
         )}
         <label htmlFor="profile-upload" className={cx("upload-element")}>
-          Upload Profile Image
+          {profileImg ? profileImg : "Upload artwork"}
         </label>
         <input
           className={cx("upload-button")}
@@ -90,6 +91,9 @@ function ProfileForm() {
           type="file"
           accept="image/*"
           {...register("profileImgForm")}
+          onInput={(e) => {
+            setProfileImg(e.target.files[0]?.name);
+          }}
         />
 
         <input type="submit" disabled={loading} />

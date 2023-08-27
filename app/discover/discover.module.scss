@@ -51,8 +51,10 @@
     margin-bottom: 10px;
     font-size: 30px;
     margin-left: 10px;
+
     @include large {
       font-size: 40px;
+      margin-left: 0px;
     }
   }
 
