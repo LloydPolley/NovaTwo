@@ -23,8 +23,11 @@ export default async function DjProfile({ params, searchParams }) {
 
   return (
     <div className={cx("artist")}>
-      <div className={cx("artist__hero")}>
-        <Image
+      <div
+        className={cx("artist__hero")}
+        style={{ backgroundImage: `url(${user?.profile})` }}
+      >
+        {/* <Image
           className={cx("artist__img")}
           src={user?.profile}
           width={250}
@@ -32,7 +35,7 @@ export default async function DjProfile({ params, searchParams }) {
           // fill={true}
           objectFit={"contain"}
           alt="Picture of the author"
-        />
+        /> */}
         <h1>{user?.displayName}</h1>
         {uid === params?.id && (
           <>

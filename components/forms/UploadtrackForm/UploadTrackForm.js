@@ -78,10 +78,7 @@ function UploadTrackForm() {
   }
 
   return (
-    <Form title={"Uploads"}>
-      <Link className={cx("")} href={`?upload=false`}>
-        x
-      </Link>
+    <Form title={"Uploads"} url="?upload=close">
       <Loading isLoading={loading} />
       <form className={cx("auth-form")} onSubmit={handleSubmit(onSubmit)}>
         <input placeholder={"Track name"} {...register("name")} required />

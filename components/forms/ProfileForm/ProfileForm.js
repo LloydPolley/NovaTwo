@@ -9,6 +9,7 @@ import { useLoginContext } from "../../../context/LoginContext";
 import Form from "../Form/Form";
 import Loading from "../../Loading";
 import Link from "next/link";
+import Close from "../../Icons/Close";
 
 const cx = classNames.bind(styles);
 
@@ -68,10 +69,7 @@ function ProfileForm() {
   }
 
   return (
-    <Form title={"Profile"}>
-      <Link className={cx("")} href={`?edit=false`}>
-        X
-      </Link>
+    <Form title={"Profile"} url="?edit=close">
       <Loading isLoading={loading} />
       <form className={cx("auth-form")} onSubmit={handleSubmit(onSubmit)}>
         {!nameExists && (
@@ -84,7 +82,7 @@ function ProfileForm() {
           </>
         )}
         <label htmlFor="profile-upload" className={cx("upload-element")}>
-          {profileImg ? profileImg : "Upload Profile Image"}
+          Upload Profile Image
         </label>
         <input
           className={cx("upload-button")}

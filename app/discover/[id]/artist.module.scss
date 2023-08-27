@@ -10,19 +10,15 @@
   &__hero {
     position: relative;
     display: flex;
-    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
     height: 100%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
     min-height: 450px;
-    background: rgb(0, 0, 0);
-    background: linear-gradient(
-      15deg,
-      rgba(0, 0, 0, 1) 25%,
-      rgba(22, 19, 82, 1) 100%
-    );
     margin-bottom: 0px;
+
+    background-size: cover;
+    background-position: center 30%;
+    object-fit: cover;
 
     @include large {
       flex-direction: column-reverse;
@@ -32,22 +28,28 @@
     }
 
     h1 {
-      @include underLarge {
-        margin-left: 20px;
-      }
+      color: white;
+      margin: 0;
+      font-size: 50px;
+      text-transform: uppercase;
+      z-index: 1;
+      text-shadow: 1px 0px 9px rgba(0, 0, 0, 0.9);
 
       @include large {
-        text-align: center;
+        font-size: 70px;
       }
     }
   }
+
   &__img {
     position: absolute;
     left: 50%;
-    top: 45%;
+    top: 50%;
     transform: translate(-50%, -50%);
     border-radius: 50%;
     object-fit: cover;
+    z-index: 0;
+    filter: blur(5px);
   }
   &__edit {
     position: absolute;

@@ -1,20 +1,24 @@
 "use client";
 
+import Image from "next/image";
 import classNames from "classnames/bind";
 import style from "./Navigation.module.scss";
 import Link from "next/link";
 import { useLoginContext } from "../../context/LoginContext";
 import { useSelectedLayoutSegment } from "next/navigation";
 import { useEffect, useState } from "react";
-import Burger from "../Icons/Burger";
-import Close from "../Icons/Close";
-import NavigationOverlay from "./NavigationOverlay";
-import NavigationBar from "./NavigationBar";
+import DiscoverIcon from "../Icons/DiscoverIcon";
+import ProfileIcon from "../Icons/ProfileIcon";
+import SignOutIcon from "../Icons/SignOutIcon";
 
 const cx = classNames.bind(style);
 
 const Navigation = () => {
   const [open, setOpen] = useState(false);
+  const { userData, signOutUser } = useLoginContext();
+  const activeSegment = useSelectedLayoutSegment();
+
+  console.log("user", userData);
 
   useEffect(() => {
     open
@@ -24,21 +28,44 @@ const Navigation = () => {
 
   return (
     <>
-      <NavigationOverlay open={open} setOpen={setOpen} />
       <div className={cx("nav", open && "nav__open")}>
         <div className={cx("nav__bar")}>
           <Link className={cx("nav__home-mobile")} href={"/"}>
             Nova
           </Link>
-          <NavigationBar />
-          <p
-            className={cx("nav__burger")}
-            onClick={() => {
-              setOpen(!open);
-            }}
-          >
-            {open ? <Close /> : <Burger />}
-          </p>
+          <div className={cx("nav__content")}>
+            <Link
+              className={cx(activeSegment === "dj" && "nav__active")}
+              href={"/discover"}
+            >
+              <DiscoverIcon />
+            </Link>
+            {!userData?.email ? (
+              <Link href="/login">
+                <ProfileIcon />
+              </Link>
+            ) : (
+              <>
+                <Link href={`/discover/${userData?.uid}`}>
+                  {!userData?.profile ? (
+                    <ProfileIcon />
+                  ) : (
+                    <div className={cx("nav__profile-container")}>
+                      <Image
+                        className={cx("nav__profile-photo")}
+                        src={userData?.profile}
+                        layout={"fill"}
+                        alt="Picture of the author"
+                      />
+                    </div>
+                  )}
+                </Link>
+                <button className={cx("nav__sign-out")} onClick={signOutUser}>
+                  <SignOutIcon />
+                </button>
+              </>
+            )}
+          </div>
         </div>
       </div>
     </>
