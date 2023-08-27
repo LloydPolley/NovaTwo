@@ -93,7 +93,9 @@ const LoginProvider = ({ children }) => {
         ...(name ? { name } : {}),
         email: userInfo.email,
       });
+      console.log("complete");
     } catch (e) {
+      console.log("catch", e);
       return { ...e };
     }
   };

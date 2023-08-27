@@ -87,7 +87,7 @@ function UploadTrackForm() {
         <input placeholder={"Track name"} {...register("name")} required />
         <input placeholder={"Label"} {...register("label")} required />
         <label htmlFor="audio-upload" className={cx("upload-element")}>
-          {audio ? audio : "Upload audio"}
+          Upload audio
         </label>
         <input
           className={cx("upload-button")}
@@ -102,7 +102,7 @@ function UploadTrackForm() {
           }}
         />
         <label htmlFor="artwork-upload" className={cx("upload-element")}>
-          {image ? image : "Upload artwork"}
+          Upload artwork
         </label>
         <input
           className={cx("upload-button")}

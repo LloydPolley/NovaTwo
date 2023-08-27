@@ -23,8 +23,6 @@ function ProfileForm() {
 
   const { userData, isLoggedIn, setAndUpdateUserDoc } = useLoginContext();
 
-  const [backgroundImg, setBackgroundImg] = useState();
-  const [profileImg, setProfileImg] = useState();
   const [loading, setLoading] = useState(false);
   const [nameExists, setNameExists] = useState(null);
 
@@ -35,16 +33,18 @@ function ProfileForm() {
   }, [userData]);
 
   const onSubmit = async (data) => {
-    const { name, profileImgForm, backgroundImgForm } = data;
+    const { name, profileImgForm } = data;
     const { displayName, uid } = userData;
 
-    let profileImgUrl, backgroundImgUrl, profileImgAccess, backgroundImgAccess;
+    let profileImgUrl, profileImgAccess, backgroundImgAccess;
 
     setLoading(true);
 
+    console.log("profileImgForm", profileImgForm);
+
     if (profileImgForm.length > 0) {
       profileImgUrl = `gs://novatwo-f3f41.appspot.com/${displayName}/profile/${profileImgForm[0]?.name}`;
-
+      console.log("img upload");
       await uploadImg({
         artist: displayName,
         file: profileImgForm[0],
@@ -52,20 +52,6 @@ function ProfileForm() {
       });
       profileImgAccess = await fetchFile(profileImgUrl);
     }
-
-    if (backgroundImgForm.length > 0) {
-      backgroundImgUrl = `gs://novatwo-f3f41.appspot.com/${displayName}/profile/${backgroundImgForm[0]?.name}`;
-
-      await uploadImg({
-        artist: displayName,
-        file: backgroundImgForm[0],
-        uid,
-      });
-
-      backgroundImgAccess = await fetchFile(backgroundImgUrl);
-    }
-    console.log("background", backgroundImg);
-    console.log("profile", profileImg);
 
     await setAndUpdateUserDoc({
       background: backgroundImgAccess,
@@ -76,8 +62,6 @@ function ProfileForm() {
 
     setLoading(false);
   };
-
-  console.log("isLoggedIn", isLoggedIn);
 
   if (!isLoggedIn) {
     return null;
@@ -108,24 +92,6 @@ function ProfileForm() {
           type="file"
           accept="image/*"
           {...register("profileImgForm")}
-          onChange={(e) => {
-            console.log("change", e.target.files);
-            setProfileImg(e.target.files[0]?.name);
-          }}
-        />
-        <label htmlFor="background-upload" className={cx("upload-element")}>
-          {backgroundImg ? backgroundImg : "Upload Background image"}
-        </label>
-        <input
-          className={cx("upload-button")}
-          id="background-upload"
-          type="file"
-          accept="image/*"
-          {...register("backgroundImgForm")}
-          onChange={(e) => {
-            console.log("change", e.target.files);
-            setBackgroundImg(e.target.files[0]?.name);
-          }}
         />
 
         <input type="submit" disabled={loading} />

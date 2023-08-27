@@ -15,14 +15,11 @@ import UploadIcon from "../../../components/Icons/UploadIcon";
 const cx = classNames.bind(styles);
 
 export default async function DjProfile({ params, searchParams }) {
-  console.log("sear", searchParams);
   const uid = cookies().get("uid")?.value;
   const likes = await getAllLikedTracks(uid);
   const user = await getDj(params?.id);
   const tracks = await getArtistTracks(params?.id);
   const { edit, upload } = searchParams;
-
-  console.log("edit", edit);
 
   return (
     <div className={cx("artist")}>

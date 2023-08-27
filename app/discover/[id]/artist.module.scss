@@ -18,8 +18,8 @@
     min-height: 450px;
     background: rgb(0, 0, 0);
     background: linear-gradient(
-      27deg,
-      rgba(0, 0, 0, 1) 41%,
+      15deg,
+      rgba(0, 0, 0, 1) 25%,
       rgba(22, 19, 82, 1) 100%
     );
     margin-bottom: 0px;
@@ -27,7 +27,7 @@
     @include large {
       flex-direction: column-reverse;
       margin-bottom: $betweenElementsM;
-      border: 1px solid rgb(21, 21, 21);
+      // border: 1px solid rgb(21, 21, 21);
       border-radius: 10px;
     }
 
@@ -47,6 +47,7 @@
     top: 45%;
     transform: translate(-50%, -50%);
     border-radius: 50%;
+    object-fit: cover;
   }
   &__edit {
     position: absolute;

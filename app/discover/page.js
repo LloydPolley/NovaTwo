@@ -4,6 +4,7 @@ import TrackSquare from "../../components/Track/TrackSquare";
 import TrackRow from "../../components/Track/TrackRow";
 
 import { getAllTracks, getTracksWhere } from "../../api/getTracks";
+import TrackList from "../../components/TrackList/TrackList";
 
 const cx = classNames.bind(styles);
 
@@ -47,36 +48,7 @@ export default async function Dj() {
             })}
         </div>
       </div>
-      <div className={cx("tracks")}>
-        <h3 className={cx("tracks__releases")}>RELEASES</h3>
-        <div className={cx("tracks__squares", "tracks__squares-releases")}>
-          {data &&
-            data.slice(0, 10).map((track) => {
-              if (!track.artist) return;
-
-              const {
-                artist,
-                artworkFileLocation,
-                audioFileLocation,
-                uid,
-                name,
-                trackId,
-              } = track;
-
-              return (
-                <TrackRow
-                  key={name}
-                  name={name}
-                  artist={artist}
-                  artwork={artworkFileLocation}
-                  audioFileLocation={audioFileLocation}
-                  uid={uid}
-                  trackId={trackId}
-                />
-              );
-            })}
-        </div>
-      </div>
+      <TrackList tracks={data} />
     </div>
   );
 }
