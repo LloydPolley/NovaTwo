@@ -9,6 +9,7 @@ import { useLoginContext } from "../../../context/LoginContext";
 import Form from "../Form/Form";
 import Loading from "../../Loading";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 const cx = classNames.bind(styles);
 
@@ -71,6 +72,10 @@ function UploadTrackForm() {
     });
 
     setLoading(false);
+    // redirect(
+    //   `${window.location.origin}${window.location.pathname}?upload=false`,
+    //   "push"
+    // );
   };
 
   if (!isLoggedIn) {
@@ -84,7 +89,7 @@ function UploadTrackForm() {
         <input placeholder={"Track name"} {...register("name")} required />
         <input placeholder={"Label"} {...register("label")} required />
         <label htmlFor="audio-upload" className={cx("upload-element")}>
-          Upload audio
+          {audio ? audio : "Upload audio"}
         </label>
         <input
           className={cx("upload-button")}
@@ -93,13 +98,12 @@ function UploadTrackForm() {
           accept=".mp3,audio/*"
           required
           {...register("audioFile")}
-          onChange={(e) => {
-            console.log("change", e.target.files);
+          onInput={(e) => {
             setAudio(e.target.files[0]?.name);
           }}
         />
         <label htmlFor="artwork-upload" className={cx("upload-element")}>
-          Upload artwork
+          {image ? image : "Upload artwork"}
         </label>
         <input
           className={cx("upload-button")}
@@ -108,8 +112,7 @@ function UploadTrackForm() {
           accept="image/*"
           required
           {...register("artworkFile")}
-          onChange={(e) => {
-            console.log("change", e.target.files);
+          onInput={(e) => {
             setImage(e.target.files[0]?.name);
           }}
         />
