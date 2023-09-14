@@ -29,7 +29,9 @@
   },
   "devDependencies": {
     "@netlify/plugin-nextjs": "^4.29.5-appdir.0",
+    "@types/react": "18.2.21",
     "eslint": "8.25.0",
-    "eslint-config-next": "^13.0.3"
+    "eslint-config-next": "^13.0.3",
+    "typescript": "5.2.2"
   }
 }

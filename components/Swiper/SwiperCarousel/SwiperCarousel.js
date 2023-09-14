@@ -3,10 +3,11 @@
 import classNames from "classnames/bind";
 import style from "./SwiperCarousel.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper";
+import { Pagination, Scrollbar } from "swiper";
 import TrackSquare from "../../Track/TrackSquare";
 import "swiper/css";
 import "swiper/css/pagination";
+import "swiper/css/scrollbar";
 
 const cx = classNames.bind(style);
 
@@ -14,16 +15,8 @@ const SwiperCarousel = ({ data }) => {
   return (
     <div className={cx("swiper-carousel")}>
       <Swiper
-        breakpoints={{
-          320: {
-            width: 350,
-          },
-          420: {
-            width: 420,
-          },
-        }}
-        // width={480}
-        spaceBetween={10}
+        slidesPerView={"auto"}
+        spaceBetween={20}
         pagination={{
           clickable: true,
         }}
@@ -31,8 +24,6 @@ const SwiperCarousel = ({ data }) => {
         className="mySwiper"
         navigation
         scrollbar={{ draggable: true }}
-        // onSwiper={(swiper) => console.log(swiper)}
-        // onSlideChange={() => console.log("slide change")}
       >
         {data &&
           data.slice(0, 9).map((track) => {

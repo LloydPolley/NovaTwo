@@ -7,8 +7,7 @@
   height: 100%;
   border-radius: 10px;
   height: $squareHeightS;
-  // aspect-ratio: 19/5;
-  // aspect-ratio: 12 / 19;
+  width: 100%;
 
   @include medium {
     height: $squareHeightM;
@@ -35,6 +34,6 @@
     text-shadow: 1px 0px 9px rgba(0, 0, 0, 0.9);
   }
   a {
-    border-bottom: 2px solid white;
+    // border-bottom: 2px solid white;
   }
 }

@@ -18,14 +18,6 @@ const Navigation = () => {
   const { userData, signOutUser } = useLoginContext();
   const activeSegment = useSelectedLayoutSegment();
 
-  console.log("user", userData);
-
-  useEffect(() => {
-    open
-      ? (document.body.style.overflow = "hidden")
-      : (document.body.style.overflow = "auto");
-  }, [open]);
-
   return (
     <>
       <div className={cx("nav", open && "nav__open")}>

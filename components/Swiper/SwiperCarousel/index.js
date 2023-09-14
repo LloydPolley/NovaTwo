@@ -1,3 +1,3 @@
-import SwiperCarousel from "./SwiperCarousel";
+import Hero from "./Hero";
 
-export default SwiperCarousel;
+export default Hero;

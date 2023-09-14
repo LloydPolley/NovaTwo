@@ -1,0 +1,48 @@
+@import "../../styles/mixins.scss";
+
+.hero {
+  text-align: center;
+  height: 450px;
+  display: flex;
+  flex-direction: row;
+  background-size: cover;
+  // background-position: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // border-bottom: 5px solid rgba(54, 38, 118, 0.502);
+  margin-bottom: 50px;
+  border-radius: 10px;
+
+  @include large {
+    height: 850px;
+    // background-size: 1000px;
+  }
+
+  > div {
+    height: 100%;
+    width: 50%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // border: 1px solid white;
+  }
+
+  &__home {
+    background-image: url("./hero.jpeg");
+  }
+  &__discover {
+    background-image: url("./discover.png");
+  }
+}
+
+.split {
+  background: linear-gradient(to purple, red, blue);
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+}

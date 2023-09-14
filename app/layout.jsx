@@ -42,7 +42,7 @@ export default function RootLayout(props) {
               theme="dark"
               transition={Fade}
             />
-            <div className="main-content">{children}</div>
+            <div className="wrapper">{children}</div>
             <Footer />
             <AudioWidget />
           </AudioProvider>

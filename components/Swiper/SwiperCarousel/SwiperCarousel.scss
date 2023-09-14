@@ -1,14 +1,16 @@
 @import "../../../styles/mixins.scss";
 
-.swiper {
-  padding: 0 10px !important;
-
-  @include large {
-    padding: 0 !important;
-  }
+.swiper-carousel {
+  margin-bottom: 20px;
 }
 
 .swiper-slide {
-  width: 50vw;
-  height: 500px;
+  width: $squareWidthS !important;
+
+  @include medium {
+    width: $squareWidthM !important;
+  }
+  @include large {
+    width: $squareWidthL !important;
+  }
 }

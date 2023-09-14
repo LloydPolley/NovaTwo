@@ -1,61 +1,13 @@
 @import "../styles/mixins.scss";
 
 .home {
-  // margin: 10px;
-
-  &__header {
-    text-align: left;
-    margin-top: 50px;
-
-    h2 {
-      margin-bottom: 1px solid white;
-    }
-  }
-
-  &__hero {
-    text-align: center;
-    // border: 1px solid white;
-    height: 80vh;
-    display: flex;
-    flex-direction: row;
-    background-image: url("./home.png");
-    background-size: 75%;
-    background-repeat: no-repeat;
-    background-position: center;
-
-    &--white {
-      // background-color: rgb(255, 255, 255);
-    }
-    &--black {
-      background-color: black;
-    }
-
-    > div {
-      height: 100%;
-      width: 50%;
-      box-sizing: border-box;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      // border: 1px solid white;
-    }
-  }
 }
 
 .label-carousel {
-  // display: flex;
   position: relative;
-  margin-bottom: $betweenElementsM;
-
-  @include large {
-    margin-bottom: $betweenElementsD;
-  }
 
   h3 {
-    font-size: 30px;
-    margin-bottom: 10px;
-    margin-left: 10px;
-    // margin: 0;
+    // margin-left: 10px;
 
     @include large {
       position: absolute;
@@ -75,8 +27,6 @@
 
 .promo {
   width: 100%;
-  margin-top: 100px;
-  margin-bottom: 30px;
   text-align: left;
   color: grey;
   margin-left: 10px;
