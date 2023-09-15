@@ -4,9 +4,6 @@ import AudioWidget from "../components/AudioWidget/AudioWidget";
 import LoginProvider from "../context/LoginContext";
 import AudioProvider from "../context/AudioContext";
 import { Lato } from "next/font/google";
-import { ToastContainer, Fade } from "react-toastify";
-
-import "react-toastify/dist/ReactToastify.css";
 
 const font = Lato({
   weight: ["400", "700"],
@@ -29,19 +26,6 @@ export default function RootLayout(props) {
         <LoginProvider>
           <AudioProvider>
             <Navigation />
-            <ToastContainer
-              position="top-center"
-              autoClose={500}
-              hideProgressBar={true}
-              pauseOnFocusLoss={false}
-              newestOnTop
-              closeOnClick
-              rtl={false}
-              draggable
-              pauseOnHover
-              theme="dark"
-              transition={Fade}
-            />
             <div className="wrapper">{children}</div>
             <Footer />
             <AudioWidget />

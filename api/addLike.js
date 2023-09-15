@@ -1,6 +1,5 @@
 import { db } from "../utils/firebase";
 import { doc, setDoc, deleteDoc, getDoc } from "firebase/firestore";
-import { toast } from "react-toastify";
 
 const deleteLikeTracksCollection = async ({ trackId, track, currentUser }) => {
   try {
@@ -40,11 +39,8 @@ const addLikeToTracks = async ({ uid, trackId, track, currentUser }) => {
       currentUser,
     });
     await addLikeTracksCollection({ uid, trackId, track, currentUser });
-    toast.success(`Saved - ${track.name}`);
     return true;
-  } catch (e) {
-    toast.error("Error");
-  }
+  } catch (e) {}
 };
 
 const isLikedByUser = async ({ currentUser, trackId }) => {

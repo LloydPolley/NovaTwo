@@ -11,7 +11,6 @@ import {
   isLikedByUser,
 } from "../../../api/addLike";
 import { useLoginContext } from "../../../context/LoginContext";
-import { toast } from "react-toastify";
 
 const cx = classNames.bind(styles);
 
