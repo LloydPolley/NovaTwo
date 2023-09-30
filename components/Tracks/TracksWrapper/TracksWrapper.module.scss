@@ -1,21 +1,15 @@
-@import "../../styles/mixins.scss";
+@import "../../../styles/mixins.scss";
 
-.track-list-container {
+.tracks-wrapper {
   // border: 1px solid rgb(21, 21, 21);
   background-color: rgb(7, 7, 7);
   border-radius: 10px;
-  padding: 10px 15px;
+  // padding: 10px 15px;
   background-color: black;
 
-  //   background: linear-gradient(
-  //     330deg,
-  //     rgba(0, 0, 0, 1) 50%,
-  //     rgba(22, 19, 82, 1) 100%
-  //   );
-
-  @include large {
-    padding: 20px 35px;
-  }
+  // @include large {
+  //   padding: 20px 35px;
+  // }
 
   h2 {
     margin-left: 10px;
@@ -23,12 +17,13 @@
 
   &__active {
     color: white !important;
-    border-bottom: 2px solid rgb(29, 29, 81) !important;
+    // border-bottom: 4px solid rgb(1, 1, 106) !important;
   }
 
   &__toggles {
     padding: 20px 5px;
     button {
+      text-transform: uppercase;
       background-color: rgba(0, 0, 0, 0);
       border: none;
       font-size: 24px;

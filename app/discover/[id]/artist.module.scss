@@ -4,42 +4,8 @@
   min-height: 80vh;
   position: relative;
 
-  svg {
-    width: 50px;
-  }
   &__hero {
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    min-height: 450px;
-    margin-bottom: 0px;
-
-    background-size: cover;
-    background-position: center 50%;
-    object-fit: cover;
-
-    @include large {
-      flex-direction: column-reverse;
-      margin-bottom: $betweenElementsM;
-      // border: 1px solid rgb(21, 21, 21);
-      border-radius: 10px;
-      min-height: 850px;
-    }
-
-    h1 {
-      color: white;
-      margin: 0;
-      font-size: 50px;
-      text-transform: uppercase;
-      z-index: 1;
-      text-shadow: 1px 0px 9px rgba(0, 0, 0, 0.9);
-
-      @include large {
-        font-size: 70px;
-      }
-    }
   }
 
   &__img {

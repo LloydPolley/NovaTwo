@@ -15,7 +15,7 @@ body {
   margin: auto 10px;
   max-width: 1600px;
 
-  @include large {
+  @include xl {
     margin: 10px auto;
   }
 }
@@ -26,7 +26,7 @@ a {
 }
 
 body {
-  background-color: rgb(15, 15, 17);
+  background-color: black;
   margin: auto;
 }
 
@@ -72,4 +72,8 @@ $rhap_theme-color: green;
 
 .rhap_progress-bar-show-download {
   background: white !important;
+}
+
+.rhap_header {
+  // text-align: center;
 }

@@ -1,10 +1,10 @@
 .play {
   border-radius: 50%;
-  height: 40px;
-  width: 40px;
+  height: 50px;
+  width: 50px;
   border: none;
   transition: 0.2s all;
-  background-color: rgba(31, 31, 44, 0);
+  background-color: rgba(0, 0, 0, 0.95);
 
   svg {
     width: 20px;
@@ -14,7 +14,8 @@
 
   &__abso {
     position: absolute;
-    bottom: 2%;
-    right: 2%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 }

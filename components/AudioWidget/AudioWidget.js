@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState, useRef } from "react";
 import classNames from "classnames/bind";
 import style from "./AudioWidget.module.scss";
 import Link from "next/link";
@@ -12,36 +13,48 @@ import "react-h5-audio-player/src/styles.scss";
 
 const cx = classNames.bind(style);
 
-const links = [
-  { label: "Nova", path: "/", segement: null },
-  { label: "Discover", path: "/dj", segement: "dj" },
-];
-
 const AudioWidget = () => {
-  const { userData } = useLoginContext();
-  const activeSegment = useSelectedLayoutSegment();
-  const { isPlaying, playTrack, pause, audioToggle, url } = useAudioContext();
+  const { isPlaying, playTrack, pause, url, name } = useAudioContext();
+  const [layout, setLayout] = useState("horizontal-reverse");
+  const player = useRef();
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const width = window.innerWidth < 700 ? "stacked" : "horizontal-reverse";
+      setLayout(width);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      console.log("addevenb");
+      window.addEventListener("pausePlayer", (event) => {
+        console.log("I'm listening on a custom event");
+        player.current.audio.current.pause();
+      });
+      window.addEventListener("playPlayer", (event) => {
+        console.log("I'm listening on a custom event");
+        player.current.audio.current.play();
+      });
+    }
+  }, []);
 
   return (
-    <div className={cx("audio-widget", isPlaying && "audio-widget__active")}>
+    <div className={cx("audio-widget")}>
       <AudioPlayer
         style={{ borderRadius: "20px", color: "white", padding: "20px" }}
-        autoPlay
+        // autoPlay
         src={url}
-        onPlay={(e) => playTrack(url)}
+        onPlay={(e) => playTrack({ url, name })}
         onPause={() => {
           pause();
         }}
-        showSkipControls={true}
-        showJumpControls
         showFilledProgress
         showFilledVolume
         showDownloadProgress
-        // header={`Now playing:`}
-        layout="vertical"
-        // onClickPrevious={handleClickPrevious}
-        // onClickNext={handleClickNext}
-        // onEnded={handleClickNext}
+        header={name}
+        layout={layout}
+        ref={player}
       />
     </div>
   );

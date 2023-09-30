@@ -15,9 +15,14 @@
   // border-bottom: 5px solid rgba(54, 38, 118, 0.502);
   margin-bottom: 50px;
   border-radius: 10px;
+  text-transform: uppercase;
+
+  h1 {
+    text-shadow: 1px 0px 9px rgba(0, 0, 0, 0.9);
+  }
 
   @include large {
-    height: 850px;
+    height: 650px;
     // background-size: 1000px;
   }
 
@@ -32,9 +37,9 @@
   }
 
   &__home {
-    background-image: url("../../imgs/heroImg.jpeg");
+    background-image: url("../../imgs/heroImg.jpeg") !important;
   }
   &__discover {
-    background-image: url("../../imgs/discover.png");
+    background-image: url("../../imgs/discover.png") !important;
   }
 }

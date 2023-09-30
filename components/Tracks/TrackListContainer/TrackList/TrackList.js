@@ -1,12 +1,12 @@
 "use client";
 
 import classNames from "classnames/bind";
-import style from "./TrackRow.module.scss";
-import Play from "../../Buttons/Play";
-import Like from "../../Buttons/Like";
+import style from "./TrackList.module.scss";
+import Play from "../../../Buttons/Play";
+import Like from "../../../Buttons/Like";
 import Link from "next/link";
-import { useAudioContext } from "../../../context/AudioContext";
-import { useLoginContext } from "../../../context/LoginContext";
+import { useAudioContext } from "../../../../context/AudioContext";
+import { useLoginContext } from "../../../../context/LoginContext";
 
 const cx = classNames.bind(style);
 
@@ -28,7 +28,7 @@ const TrackRow = ({
       key={`${artist} - ${name}`}
       onClick={() => {
         console.log("audio,", audioFileLocation);
-        !isPlayingLocal ? playTrack(audioFileLocation) : pause();
+        !isPlayingLocal ? playTrack({ url: audioFileLocation }) : pause();
       }}
     >
       <div className={cx("track-row__naming")}>

@@ -6,13 +6,17 @@ import style from "./Hero.module.scss";
 type HeroProps = {
   title: string;
   imgClass?: string;
+  img?: string;
 };
 
 const cx = classNames.bind(style);
 
-const Hero = ({ title, imgClass }: HeroProps) => {
+const Hero = ({ title, imgClass, img }: HeroProps) => {
   return (
-    <div className={cx("hero", imgClass)}>
+    <div
+      className={cx("hero", imgClass)}
+      style={{ backgroundImage: `url(${img})` }}
+    >
       <h1>{title}</h1>
     </div>
   );

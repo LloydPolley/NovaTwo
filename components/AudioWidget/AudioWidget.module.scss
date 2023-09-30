@@ -2,33 +2,27 @@
 
 .audio-widget {
   position: fixed;
-  bottom: -60px;
+  bottom: 0px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
   backdrop-filter: blur(30px);
   border-radius: 10px;
-  width: 98%;
-  max-width: 800px;
+  width: 100%;
+  // max-width: 800px;
   margin: auto;
   transition: 0.2s all;
+  background-color: black;
+
+  & > div {
+    max-width: 1600px;
+    margin: auto;
+  }
 
   a {
     margin: 10px 12px;
     text-transform: uppercase;
     font-weight: 700;
-
-    &:hover {
-      border-bottom: 3px solid white;
-    }
-  }
-
-  &:hover {
-    bottom: 5px;
-  }
-
-  &__active {
-    bottom: 5px;
   }
 
   &__content {

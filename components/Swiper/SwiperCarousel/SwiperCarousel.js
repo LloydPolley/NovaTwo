@@ -4,7 +4,7 @@ import classNames from "classnames/bind";
 import style from "./SwiperCarousel.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Scrollbar } from "swiper";
-import TrackSquare from "../../Track/TrackSquare";
+import TrackSquare from "../../Tracks/TrackSquare";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";

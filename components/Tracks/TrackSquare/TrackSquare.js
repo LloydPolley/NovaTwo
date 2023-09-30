@@ -29,7 +29,7 @@ const TrackSquare = ({
         backgroundPosition: "center",
       }}
       onClick={() => {
-        !isPlayingLocal ? playTrack(audioFileLocation) : pause();
+        !isPlayingLocal ? playTrack({ url: audioFileLocation, name }) : pause();
       }}
     >
       <div className={cx("label")}>

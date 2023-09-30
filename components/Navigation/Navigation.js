@@ -30,7 +30,7 @@ const Navigation = () => {
               className={cx(activeSegment === "dj" && "nav__active")}
               href={"/discover"}
             >
-              <DiscoverIcon />
+              Discover
             </Link>
             {!userData?.email ? (
               <Link href="/login">
@@ -42,18 +42,19 @@ const Navigation = () => {
                   {!userData?.profile ? (
                     <ProfileIcon />
                   ) : (
-                    <div className={cx("nav__profile-container")}>
-                      <Image
-                        className={cx("nav__profile-photo")}
-                        src={userData?.profile}
-                        layout={"fill"}
-                        alt="Picture of the author"
-                      />
-                    </div>
+                    "Profile"
+                    // <div className={cx("nav__profile-container")}>
+                    //   {/* <Image
+                    //     className={cx("nav__profile-photo")}
+                    //     src={userData?.profile}
+                    //     layout={"fill"}
+                    //     alt="Picture of the author"
+                    //   /> */}
+                    // </div>
                   )}
                 </Link>
                 <button className={cx("nav__sign-out")} onClick={signOutUser}>
-                  <SignOutIcon />
+                  LOG
                 </button>
               </>
             )}

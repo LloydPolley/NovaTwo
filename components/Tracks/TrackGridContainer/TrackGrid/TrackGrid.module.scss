@@ -1,0 +1,98 @@
+@import "../../../../styles/mixins.scss";
+
+.track {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow: hidden;
+
+  &__head {
+    position: relative;
+  }
+
+  img {
+    width: 100%;
+    margin-bottom: 0;
+    display: inline-block;
+    border-radius: 5px;
+  }
+
+  &__text {
+    margin: 0;
+    padding: 10px;
+
+    a {
+      color: rgb(204, 204, 204);
+    }
+
+    p {
+      margin-top: 0;
+      margin-bottom: 8px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  }
+
+  &__playing {
+    .track__play {
+      opacity: 1;
+    }
+  }
+
+  &__play {
+    opacity: 0;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: 0.2s all;
+  }
+
+  &:hover {
+    .track__play {
+      opacity: 1;
+    }
+  }
+
+  // &__text {
+  //   display: flex;
+  //   flex-direction: column;
+
+  //   p,
+  //   a {
+  //     margin: 5px;
+  //   }
+  // }
+
+  // &__artist {
+  //   color: rgb(192, 192, 192);
+  // }
+
+  // &__buttons {
+  //   display: flex;
+  //   button {
+  //     height: 100%;
+  //     margin: 0 10px;
+  //   }
+  // }
+
+  // &__naming {
+  //   display: flex;
+  //   align-items: center;
+  //   img {
+  //     margin-right: 10px;
+  //     border-radius: 10px;
+  //   }
+  // }
+
+  // &__artwork {
+  //   width: 100px;
+  //   height: 100px;
+
+  //   @include medium {
+  //     width: 100px;
+  //     height: 100px;
+  //   }
+  // }
+}

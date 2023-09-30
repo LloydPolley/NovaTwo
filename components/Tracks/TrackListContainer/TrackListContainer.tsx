@@ -1,10 +1,27 @@
 import classNames from "classnames/bind";
-import style from "./TrackList.module.scss";
-import TrackRow from "../Track/TrackRow";
+import style from "./TrackListContainer.module.scss";
+import TrackRow from "./TrackList";
+
+type TrackListProps = {
+  tracks: track[];
+  empty?: string;
+};
+
+type track = {
+  featured?: boolean;
+  date: string;
+  artist: string;
+  trackName: string;
+  uid: string;
+  name: string;
+  artworkFileLocation: string;
+  audioFileLocation: string;
+  trackId: string;
+};
 
 const cx = classNames.bind(style);
 
-export default function TrackList({ tracks, empty }) {
+export default function TrackList({ tracks }: TrackListProps) {
   if (tracks?.length < 0) {
     return null;
   }

@@ -11,24 +11,40 @@ export const AudioContext = createContext({
   pause: () => {},
 });
 
-const AudioProvider = ({ children }) => {
+const AudioProvider = ({ children, player }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [url, setUrl] = useState(null);
+  const [name, setName] = useState("");
   const audioPlayer = useRef();
 
-  // useEffect(() => {
-  //   console.log("is playing updated", isPlaying);
-  // }, [isPlaying]);
-
-  const playTrack = async (trackUrl) => {
-    await setUrl(trackUrl);
-    // audioPlayer.current.play();
-    setIsPlaying(true);
+  const playTrack = async ({ url, name }) => {
+    console.log("playing");
+    await setUrl(url);
+    await setIsPlaying(true);
+    await setName(name);
+    const myEvent = new CustomEvent("playPlayer", {
+      detail: {},
+      bubbles: true,
+      cancelable: true,
+      composed: false,
+    });
+    document.dispatchEvent(myEvent);
   };
 
   const pause = async () => {
-    // audioPlayer.current.pause();
-    setIsPlaying(false);
+    await setIsPlaying(false);
+    const myEvent = new CustomEvent("pausePlayer", {
+      detail: {},
+      bubbles: true,
+      cancelable: true,
+      composed: false,
+    });
+    document.dispatchEvent(myEvent);
+    console.log("my event", myEvent);
+  };
+
+  const pauseFunc = (player) => {
+    player.current.audio.current.pause();
   };
 
   return (
@@ -38,6 +54,8 @@ const AudioProvider = ({ children }) => {
         pause,
         isPlaying,
         url,
+        name,
+        pauseFunc,
       }}
     >
       {children}
@@ -45,6 +63,6 @@ const AudioProvider = ({ children }) => {
   );
 };
 
-export const useAudioContext = () => useContext(AudioContext);
+export const useAudioContext = (test) => useContext(AudioContext);
 
 export default AudioProvider;

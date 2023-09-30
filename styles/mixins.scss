@@ -38,3 +38,8 @@ $widget: rgb(15, 15, 41);
     @content;
   }
 }
+@mixin xl {
+  @media (min-width: 1600px) {
+    @content;
+  }
+}
