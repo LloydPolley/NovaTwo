@@ -11,8 +11,8 @@ type FiltersProps = {
 
 const cx = classNames.bind(style);
 
-const FilterBar = ({ filters, searchParams }: FiltersProps) => {
-  const { t } = searchParams;
+const FilterBar = ({ filters }: FiltersProps) => {
+  // const { t } = searchParams;
 
   return (
     <div className={cx("filters")}>
