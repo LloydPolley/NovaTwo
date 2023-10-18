@@ -26,7 +26,8 @@
     "**/*.tsx",
     "app/page.tsx",
     "app/loading.js",
-    "app/discover/page.js"
+    "app/discover/page.js",
+    "app/layout.js"
   ],
   "exclude": ["node_modules"]
 }
