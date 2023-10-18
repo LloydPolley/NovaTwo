@@ -16,7 +16,7 @@ const FilterBar = ({ filters, searchParams }: FiltersProps) => {
 
   return (
     <div className={cx("filters")}>
-      {filters?.map((filter) => {
+      {/* {filters?.map((filter) => {
         return (
           <Link
             className={cx(
@@ -28,7 +28,7 @@ const FilterBar = ({ filters, searchParams }: FiltersProps) => {
             {filter}
           </Link>
         );
-      })}
+      })} */}
     </div>
   );
 };
