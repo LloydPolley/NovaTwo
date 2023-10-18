@@ -18,8 +18,6 @@ export default function TracksWrapper({ tracks, likes, uid, params }) {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      console.log("running", window.width);
-
       setWidth(window.innerWidth);
     }
   }, []);

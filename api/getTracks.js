@@ -23,6 +23,9 @@ const getAllLikedTracks = async (uid) => {
 };
 
 const getTracksWhere = async (type, input) => {
+  if (input === "recent" || undefined) {
+    return getAllTracks();
+  }
   const arr = [];
   const q = query(collection(db, "tracks"), where(type, "==", input));
   const querySnapshot = await getDocs(q);

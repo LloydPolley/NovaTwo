@@ -33,14 +33,6 @@ const TrackGrid = ({
       <div className={cx("track__head")}>
         <img className={cx("track__artwork")} src={artwork} />
         <div className={cx("track__play")}>
-          {/* {userData?.uid && (
-          <Like
-            uid={uid}
-            currentUser={userData?.uid}
-            trackId={trackId}
-            track={{ artist, name, artwork, audioFileLocation, uid, trackId }}
-          />
-        )} */}
           <Play isPlayingAudio={isPlayingLocal} />
         </div>
       </div>
@@ -55,6 +47,16 @@ const TrackGrid = ({
             {artist}
           </Link>
         )}
+        <div className={cx("track__like-container")}>
+          {userData?.uid && (
+            <Like
+              uid={uid}
+              currentUser={userData?.uid}
+              trackId={trackId}
+              track={{ artist, name, artwork, audioFileLocation, uid, trackId }}
+            />
+          )}
+        </div>
       </div>
     </div>
   );

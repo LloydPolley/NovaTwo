@@ -23,7 +23,7 @@ const cx = classNames.bind(style);
 
 export default function TrackList({ tracks }: TrackListProps) {
   if (tracks?.length < 0) {
-    return null;
+    return <p>Nothing here</p>;
   }
 
   return (

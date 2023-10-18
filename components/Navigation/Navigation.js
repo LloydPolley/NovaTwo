@@ -18,6 +18,8 @@ const Navigation = () => {
   const { userData, signOutUser } = useLoginContext();
   const activeSegment = useSelectedLayoutSegment();
 
+  console.log("userdata", userData);
+
   return (
     <>
       <div className={cx("nav", open && "nav__open")}>
@@ -39,19 +41,7 @@ const Navigation = () => {
             ) : (
               <>
                 <Link href={`/discover/${userData?.uid}`}>
-                  {!userData?.profile ? (
-                    <ProfileIcon />
-                  ) : (
-                    "Profile"
-                    // <div className={cx("nav__profile-container")}>
-                    //   {/* <Image
-                    //     className={cx("nav__profile-photo")}
-                    //     src={userData?.profile}
-                    //     layout={"fill"}
-                    //     alt="Picture of the author"
-                    //   /> */}
-                    // </div>
-                  )}
+                  {!userData?.profile ? "LOGIN" : userData?.displayName}
                 </Link>
                 <button className={cx("nav__sign-out")} onClick={signOutUser}>
                   LOG

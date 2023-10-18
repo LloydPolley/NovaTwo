@@ -6,6 +6,7 @@ import Hero from "../components/Hero";
 import TrackSquare from "../components/Tracks/TrackSquare";
 import Link from "next/link";
 import RightArrow from "../components/Icons/RightArrow";
+import discover from "../imgs/discover.png";
 
 const cx = classNames.bind(styles);
 

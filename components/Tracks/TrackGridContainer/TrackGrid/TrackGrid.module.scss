@@ -3,6 +3,7 @@
 .track {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   width: 100%;
   overflow: hidden;
 
@@ -49,50 +50,26 @@
     transition: 0.2s all;
   }
 
+  &__text {
+    position: relative;
+  }
+  &__like-container {
+    position: absolute;
+    right: 0;
+    bottom: 5%;
+    // transform: translatey(-50%);
+    // background: rgb(255, 255, 255);
+    // background: linear-gradient(
+    //   90deg,
+    //   rgba(255, 255, 255, 0) 0%,
+    //   rgba(0, 0, 0, 1) 35%,
+    //   rgba(0, 0, 0, 1) 100%
+    // );
+  }
+
   &:hover {
     .track__play {
       opacity: 1;
     }
   }
-
-  // &__text {
-  //   display: flex;
-  //   flex-direction: column;
-
-  //   p,
-  //   a {
-  //     margin: 5px;
-  //   }
-  // }
-
-  // &__artist {
-  //   color: rgb(192, 192, 192);
-  // }
-
-  // &__buttons {
-  //   display: flex;
-  //   button {
-  //     height: 100%;
-  //     margin: 0 10px;
-  //   }
-  // }
-
-  // &__naming {
-  //   display: flex;
-  //   align-items: center;
-  //   img {
-  //     margin-right: 10px;
-  //     border-radius: 10px;
-  //   }
-  // }
-
-  // &__artwork {
-  //   width: 100px;
-  //   height: 100px;
-
-  //   @include medium {
-  //     width: 100px;
-  //     height: 100px;
-  //   }
-  // }
 }
