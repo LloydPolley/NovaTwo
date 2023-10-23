@@ -1,5 +1,11 @@
 import { db } from "../utils/firebase";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  query,
+  where,
+  onSnapshot,
+} from "firebase/firestore";
 import nookies from "nookies";
 
 const getAllTracks = async () => {

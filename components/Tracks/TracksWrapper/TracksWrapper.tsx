@@ -1,28 +1,34 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { getAllLikedTracks } from "../../../api/getTracks";
 import classNames from "classnames/bind";
 import style from "./TracksWrapper.module.scss";
-import TrackListContainer from "../TrackListContainer";
 import TrackGridContainer from "../TrackGridContainer";
+import { TrackWrapperProps } from "../../../types/tracks";
 
 const cx = classNames.bind(style);
 
-export default function TracksWrapper({ tracks, likes, uid, params }) {
+export default function TracksWrapper({
+  tracks,
+  uid,
+  params,
+}: TrackWrapperProps) {
   const [showTracks, setShowTracks] = useState(true);
-  const [width, setWidth] = useState(0);
+  const [likes, setLikes] = useState([]);
   const isUserProfile = uid === params?.id;
-  const trackType = showTracks ? tracks : likes;
 
-  console.log("likes", likes);
+  const getLikes = async () => {
+    setLikes(await getAllLikedTracks(uid));
+  };
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      setWidth(window.innerWidth);
+    if (!showTracks) {
+      getLikes();
     }
-  }, []);
+  }, [showTracks]);
 
-  useEffect(() => {}, []);
+  const trackType = showTracks ? tracks : likes;
 
   return (
     <div className={cx("tracks-wrapper")}>
@@ -48,11 +54,7 @@ export default function TracksWrapper({ tracks, likes, uid, params }) {
           )}
         </div>
       )}
-      {width < 700 ? (
-        <TrackListContainer tracks={trackType} empty={"No posts"} />
-      ) : (
-        <TrackGridContainer tracks={trackType} empty={"No posts"} />
-      )}
+      <TrackGridContainer tracks={trackType} empty={"No posts"} />
     </div>
   );
 }

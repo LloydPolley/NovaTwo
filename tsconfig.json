@@ -26,8 +26,11 @@
     "**/*.tsx",
     "app/page.tsx",
     "app/loading.js",
-    "app/discover/page.js",
-    "app/layout.js"
+    "app/discover/page.tsx",
+    "app/layout.js",
+    "components/Tracks/TrackListContainer/TrackListContainer.js",
+    "components/Tracks/TrackGridContainer/TrackGrid/TrackGrid.js",
+    "components/Navigation/Navigation.js"
   ],
   "exclude": ["node_modules"]
 }

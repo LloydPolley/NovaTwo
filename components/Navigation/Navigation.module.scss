@@ -1,7 +1,6 @@
 @import "../../styles/mixins.scss";
 
 .nav {
-  position: sticky;
   width: 100%;
   top: 0;
   padding: 15px 10px;
@@ -17,36 +16,15 @@
     all: unset;
   }
 
-  &__burger {
-    @include medium {
-      display: none;
-    }
-    @include large {
-      display: none;
-    }
-  }
-
   &__content {
-    & > * {
-      margin: 0px 10px;
+    margin-left: 15px;
+    display: flex;
+    overflow: scroll;
+    gap: 15px;
+
+    @include small {
+      width: 200px;
     }
-  }
-
-  &__profile-container {
-    position: relative;
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-
-    @include large {
-      width: 35px;
-      height: 35px;
-    }
-  }
-
-  &__profile-photo {
-    border-radius: 50%;
-    border: 2px solid rgba(255, 255, 255, 0.855);
   }
 
   &__bar {
@@ -54,25 +32,18 @@
     justify-content: space-between;
     line-height: 30px;
 
-    svg {
-      width: 20px;
-      height: 20px;
-      color: white;
-
-      @include large {
-        width: 35px;
-        height: 35px;
-      }
-    }
-
     p {
       margin: 0;
     }
   }
 
-  a {
+  a,
+  button {
     text-transform: uppercase;
     font-weight: 700;
     line-height: 35px;
+    // border-bottom: 1px solid white;
+    // border-radius: 10px;
+    // padding: 3px;
   }
 }

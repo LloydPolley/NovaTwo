@@ -15,3 +15,9 @@ export type Track = {
   audioFileLocation: string;
   trackId: string;
 };
+
+export type TrackWrapperProps = {
+  tracks: Track[];
+  uid?: string;
+  params?: { id: string };
+};

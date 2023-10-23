@@ -22,7 +22,7 @@ const Navigation = () => {
 
   return (
     <>
-      <div className={cx("nav", open && "nav__open")}>
+      <div className={cx("nav")}>
         <div className={cx("nav__bar")}>
           <Link className={cx("nav__home-mobile")} href={"/"}>
             Nova
@@ -35,9 +35,7 @@ const Navigation = () => {
               Discover
             </Link>
             {!userData?.email ? (
-              <Link href="/login">
-                <ProfileIcon />
-              </Link>
+              <Link href="/login">Sign In</Link>
             ) : (
               <>
                 <Link href={`/discover/${userData?.uid}`}>

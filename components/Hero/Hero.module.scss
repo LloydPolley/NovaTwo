@@ -2,7 +2,7 @@
 
 .hero {
   text-align: center;
-  height: 450px;
+  height: 300px;
   display: flex;
   flex-direction: row;
   background-size: cover;
@@ -13,7 +13,7 @@
   align-items: center;
   justify-content: center;
   // border-bottom: 5px solid rgba(54, 38, 118, 0.502);
-  margin-bottom: 50px;
+  margin-bottom: 35px;
   border-radius: 10px;
   text-transform: uppercase;
 
@@ -22,7 +22,7 @@
   }
 
   @include large {
-    height: 650px;
+    height: 450px;
     // background-size: 1000px;
   }
 

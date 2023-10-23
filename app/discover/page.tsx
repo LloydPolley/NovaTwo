@@ -19,10 +19,10 @@ export default async function Dj({ searchParams }) {
   return (
     <div className={cx("dj-page")}>
       <div className={cx("tracks")}>
-        <FilterBar
+        {/* <FilterBar
           filters={["recent", "afterlife", "upperground"]}
           searchParams={searchParams}
-        />
+        /> */}
         <TracksWrapper tracks={data} />
       </div>
     </div>

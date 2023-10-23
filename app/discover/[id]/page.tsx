@@ -12,12 +12,12 @@ import Modal from "../../../components/Modal/Modal";
 import Edit from "../../../components/Icons/Edit";
 import UploadIcon from "../../../components/Icons/UploadIcon";
 import Hero from "../../../components/Hero";
+import { Suspense } from "react";
 
 const cx = classNames.bind(styles);
 
 export default async function DjProfile({ params, searchParams }) {
   const uid = cookies().get("uid")?.value;
-  const likes = await getAllLikedTracks(uid);
   const user = await getDj(params?.id);
   const tracks = await getArtistTracks(params?.id);
   const { edit, upload } = searchParams;
@@ -38,7 +38,9 @@ export default async function DjProfile({ params, searchParams }) {
         )}
       </div>
 
-      <TracksWrapper uid={uid} tracks={tracks} likes={likes} params={params} />
+      <Suspense fallback={<p>Loading feed...</p>}>
+        <TracksWrapper uid={uid} tracks={tracks} params={params} />
+      </Suspense>
 
       {edit === "true" && (
         <Modal>
