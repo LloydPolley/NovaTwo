@@ -11,7 +11,7 @@ type TrackListProps = {
   height: number;
 };
 
-const TrackList = forwardRef<HTMLDivElement, TrackListProps>(
+const TrackGridContainer = forwardRef<HTMLDivElement, TrackListProps>(
   ({ tracks, height }, ref) => {
     if (!tracks || tracks.length === 0) {
       return null;
@@ -53,4 +53,6 @@ const TrackList = forwardRef<HTMLDivElement, TrackListProps>(
   }
 );
 
-export default TrackList;
+TrackGridContainer.displayName = "TrackGridContainer";
+
+export default TrackGridContainer;
