@@ -2,31 +2,32 @@
 
 .hero {
   text-align: center;
-  height: 350px;
+  height: 300px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   background-size: cover;
-  // background-position: 100%;
   background-repeat: no-repeat;
   background-position: center;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  // border-bottom: 5px solid rgba(54, 38, 118, 0.502);
+  justify-content: flex-end;
   margin-bottom: 35px;
-  text-transform: uppercase;
 
-  box-shadow: $boxShadow;
-  border: 1px solid #28282a;
+  @include large {
+    border-radius: 10px;
+  }
 
   h1 {
     text-shadow: 1px 0px 9px rgba(0, 0, 0, 0.9);
+    font-size: 50px;
+
+    @include large {
+      text-align: left;
+      margin-left: 25px;
+    }
   }
 
   @include large {
-    height: 500px;
-    border-radius: 10px;
-    margin: 0px 10px 35px;
+    height: 450px;
     // background-size: 1000px;
   }
 

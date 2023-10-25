@@ -13,6 +13,7 @@ import Edit from "../../../components/Icons/Edit";
 import UploadIcon from "../../../components/Icons/UploadIcon";
 import Hero from "../../../components/Hero";
 import { Suspense } from "react";
+import Wrapper from "../../../components/Wrapper";
 
 const cx = classNames.bind(styles);
 
@@ -28,30 +29,21 @@ export default async function DjProfile({ params, searchParams }) {
         <Hero title={user?.displayName} img={user?.profile} />
         {uid === params?.id && (
           <>
-            <Link className={cx("artist__edit")} href={`?edit=true`}>
+            <Link className={cx("artist__edit")} href={`/edit`}>
               <Edit />
             </Link>
-            <Link className={cx("artist__upload")} href={`?upload=true`}>
+            <Link className={cx("artist__upload")} href={`/upload`}>
               <UploadIcon />
             </Link>
           </>
         )}
       </div>
 
-      <Suspense fallback={<p>Loading feed...</p>}>
-        <TracksWrapper uid={uid} tracks={tracks} params={params} />
-      </Suspense>
-
-      {edit === "true" && (
-        <Modal>
-          <ProfileForm />
-        </Modal>
-      )}
-      {upload === "true" && (
-        <Modal>
-          <UploadTrackForm />
-        </Modal>
-      )}
+      <Wrapper>
+        <Suspense fallback={<p>Loading feed...</p>}>
+          <TracksWrapper uid={uid} tracks={tracks} params={params} />
+        </Suspense>
+      </Wrapper>
     </div>
   );
 }

@@ -7,6 +7,7 @@ import TrackSquare from "../components/Tracks/TrackSquare";
 import Link from "next/link";
 import RightArrow from "../components/Icons/RightArrow";
 import discover from "../imgs/discover.png";
+import Wrapper from "../components/Wrapper";
 
 const cx = classNames.bind(styles);
 
@@ -15,20 +16,22 @@ export default async function Home() {
   const tracks = await getTracksWhere("featured", true);
 
   return (
-    <div className={cx("home")}>
+    <>
       <Hero title="GENESYS" imgClass="hero__home" />
-      <div className={cx("label-carousel")}>
-        <h3>AFTERLIFE</h3>
-        <div className={cx("label-carousel__box")}>
-          {data && <SwiperCarousel data={data} />}
+      <Wrapper>
+        <div className={cx("label-carousel")}>
+          <h3>AFTERLIFE</h3>
+          <div className={cx("label-carousel__box")}>
+            {data && <SwiperCarousel data={data} />}
+          </div>
         </div>
-      </div>
-      <div className={cx("label-carousel")}>
-        <h3>FEATURED</h3>
-        <div className={cx("label-carousel__box")}>
-          {data && <SwiperCarousel data={tracks} />}
+        <div className={cx("label-carousel")}>
+          <h3>FEATURED</h3>
+          <div className={cx("label-carousel__box")}>
+            {data && <SwiperCarousel data={tracks} />}
+          </div>
         </div>
-      </div>
-    </div>
+      </Wrapper>
+    </>
   );
 }

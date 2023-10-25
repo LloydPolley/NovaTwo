@@ -1,5 +1,14 @@
 @import "../../../styles/mixins.scss";
 
+#body {
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(13, 30, 60, 1) 60%
+  );
+}
+
 .artist {
   min-height: 80vh;
   position: relative;
@@ -21,7 +30,7 @@
   &__edit {
     position: absolute;
     right: 20px;
-    bottom: 20px;
+    top: 20px;
 
     svg {
       width: 40px;
@@ -31,7 +40,7 @@
   &__upload {
     position: absolute;
     right: 80px;
-    bottom: 20px;
+    top: 20px;
 
     svg {
       width: 40px;

@@ -2,10 +2,8 @@
 
 .tracks-wrapper {
   // border: 1px solid rgb(21, 21, 21);
-  background-color: rgb(7, 7, 7);
   border-radius: 10px;
   // padding: 10px 15px;
-  background-color: black;
 
   // @include large {
   //   padding: 20px 35px;
@@ -16,21 +14,27 @@
   }
 
   &__active {
-    color: white !important;
+    color: black !important;
+    background-color: white !important;
+
     // border-bottom: 4px solid rgb(1, 1, 106) !important;
   }
 
   &__toggles {
     padding: 20px 5px;
+    display: flex;
+    // justify-content: space-;
+    gap: 15px;
+
     button {
-      text-transform: uppercase;
-      background-color: rgba(0, 0, 0, 0);
       border: none;
-      font-size: 24px;
-      margin-right: 30px;
-      font-weight: 700;
-      color: grey;
-      padding: 0;
+      font-size: 18px;
+      font-weight: 400;
+      color: white;
+      padding: 10px;
+      border-radius: $borderRaidus;
+      background-color: $widgetColor;
+      border: $borderOne;
     }
   }
 }

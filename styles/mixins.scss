@@ -6,7 +6,7 @@ $betweenElementsM: 50px;
 $betweenElementsD: 75px;
 
 //Track square
-$squareHeightS: 450px;
+$squareHeightS: 400px;
 $squareHeightM: 525px;
 $squareHeightL: 600px;
 
@@ -16,7 +16,13 @@ $squareWidthM: 375px;
 $squareWidthL: 450px;
 
 //colour square
-$widget: rgb(15, 15, 41);
+$widgetColor: #0d0d0e;
+
+$boxShadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.75);
+$borderRaidus: 10px;
+$borderOne: 1px solid #28282a;
+
+$cta: #163e84;
 
 @mixin small {
   @media (max-width: 599px) {

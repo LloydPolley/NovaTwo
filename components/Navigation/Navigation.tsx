@@ -18,8 +18,6 @@ const Navigation = () => {
   const { userData, signOutUser } = useLoginContext();
   const activeSegment = useSelectedLayoutSegment();
 
-  console.log("userdata", userData);
-
   return (
     <>
       <div className={cx("nav")}>

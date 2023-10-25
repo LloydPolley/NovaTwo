@@ -22,12 +22,11 @@ export default function RootLayout(props) {
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
         />
       </head>
-      <body>
+      <body id="body">
         <LoginProvider>
           <AudioProvider>
             <Navigation />
             <div className="wrapper">{children}</div>
-            <Footer />
             <AudioWidget />
           </AudioProvider>
         </LoginProvider>

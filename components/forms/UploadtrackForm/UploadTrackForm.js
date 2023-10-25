@@ -72,10 +72,10 @@ function UploadTrackForm() {
     });
 
     setLoading(false);
-    // redirect(
-    //   `${window.location.origin}${window.location.pathname}?upload=false`,
-    //   "push"
-    // );
+    redirect(
+      `${window.location.origin}${window.location.pathname}?upload=false`,
+      "push"
+    );
   };
 
   if (!isLoggedIn) {

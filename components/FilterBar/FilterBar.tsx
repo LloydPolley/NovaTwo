@@ -6,15 +6,15 @@ import style from "./FilterBar.module.scss";
 import Link from "next/link";
 
 type FiltersProps = {
-  filters: string[];
+  name: string;
 };
 
 const cx = classNames.bind(style);
 
-const FilterBar = ({ filters }: FiltersProps) => {
+const FilterBar = ({ name }: FiltersProps) => {
   // const { t } = searchParams;
 
-  return <div className={cx("filters")}>Discover</div>;
+  return <div className={cx("filters")}>{name}</div>;
 };
 
 export default FilterBar;

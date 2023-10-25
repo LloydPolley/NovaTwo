@@ -24,12 +24,12 @@ function LoginForm({ signIn }) {
   };
 
   return (
-    <Form title={"Sign in"}>
+    <Form title={"Get Signed in"} para={"Return to your previous songs"}>
       <form className={cx("auth-form")} onSubmit={handleSubmit(onSubmit)}>
         <input placeholder="Email" {...register("email")} />
         <input
           placeholder="Password"
-          type={"text"}
+          type={"password"}
           name="password"
           {...register("password")}
         />

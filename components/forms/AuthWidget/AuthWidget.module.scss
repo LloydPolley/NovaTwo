@@ -1,12 +1,23 @@
+@import "../../../styles/mixins.scss";
+
 .auth-widget {
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  max-width: 800px;
+  margin: 0 auto;
 
   button {
+    all: unset;
+    border-radius: 10px;
     padding: 10px;
-    width: 280px;
-    margin: 50px auto 20px;
+    border: $borderOne;
+    background-color: black;
+    margin-bottom: 15px;
+
+    background-color: rgb(22, 62, 132);
+    text-align: center;
+    margin: 20px;
   }
 }

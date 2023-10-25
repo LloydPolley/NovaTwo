@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getAllLikedTracks } from "../../../api/getTracks";
 import classNames from "classnames/bind";
 import style from "./TracksWrapper.module.scss";
@@ -15,12 +15,21 @@ export default function TracksWrapper({
   params,
 }: TrackWrapperProps) {
   const [showTracks, setShowTracks] = useState(true);
+  const [height, setHeight] = useState(0);
   const [likes, setLikes] = useState([]);
   const isUserProfile = uid === params?.id;
+  const tracksContainerRef = useRef();
 
   const getLikes = async () => {
     setLikes(await getAllLikedTracks(uid));
   };
+
+  useEffect(() => {
+    console.log("tracksContainerRef");
+    if (tracksContainerRef) {
+      setHeight(tracksContainerRef?.current?.offsetHeight || 100);
+    }
+  }, [tracksContainerRef]);
 
   useEffect(() => {
     if (!showTracks) {
@@ -40,7 +49,7 @@ export default function TracksWrapper({
               setShowTracks(true);
             }}
           >
-            TRACKS
+            Releases
           </button>
           {isUserProfile && (
             <button
@@ -54,7 +63,12 @@ export default function TracksWrapper({
           )}
         </div>
       )}
-      <TrackGridContainer tracks={trackType} empty={"No posts"} />
+      <TrackGridContainer
+        tracks={trackType}
+        empty={"No posts"}
+        height={height}
+        ref={tracksContainerRef}
+      />
     </div>
   );
 }

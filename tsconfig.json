@@ -29,7 +29,7 @@
     "app/discover/page.tsx",
     "app/layout.js",
     "components/Tracks/TrackListContainer/TrackListContainer.js",
-    "components/Tracks/TrackGridContainer/TrackGrid/TrackGrid.js",
+    "components/Tracks/TrackGridContainer/TrackGrid/TrackGrid.tsx",
     "components/Navigation/Navigation.js"
   ],
   "exclude": ["node_modules"]
