@@ -1,25 +1,30 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, Ref } from "react";
 import classNames from "classnames/bind";
 import style from "./TrackGridContainer.module.scss";
 import TrackGrid from "./TrackGrid";
-import { TrackListProps } from "../../../types/tracks";
+import { Track } from "../../../types/tracks";
 
 const cx = classNames.bind(style);
 
-const TrackList = forwardRef(({ tracks, height }, ref) => {
-  if (tracks?.length < 0) {
-    return null;
-  }
+type TrackListProps = {
+  tracks: Track[];
+  height: number;
+};
 
-  return (
-    <div
-      className={cx("track-grid")}
-      style={{ minHeight: `${height}px` }}
-      ref={ref}
-    >
-      {tracks &&
-        tracks.map((track) => {
-          if (!track.artist) return;
+const TrackList = forwardRef<HTMLDivElement, TrackListProps>(
+  ({ tracks, height }, ref) => {
+    if (!tracks || tracks.length === 0) {
+      return null;
+    }
+
+    return (
+      <div
+        className={cx("track-grid")}
+        style={{ minHeight: `${height}px` }}
+        ref={ref}
+      >
+        {tracks.map((track) => {
+          if (!track.artist) return null;
 
           const {
             artist,
@@ -43,8 +48,9 @@ const TrackList = forwardRef(({ tracks, height }, ref) => {
             />
           );
         })}
-    </div>
-  );
-});
+      </div>
+    );
+  }
+);
 
 export default TrackList;

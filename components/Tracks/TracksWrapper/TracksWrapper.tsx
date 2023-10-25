@@ -18,7 +18,7 @@ export default function TracksWrapper({
   const [height, setHeight] = useState(0);
   const [likes, setLikes] = useState([]);
   const isUserProfile = uid === params?.id;
-  const tracksContainerRef = useRef();
+  const tracksContainerRef = useRef<HTMLInputElement>();
 
   const getLikes = async () => {
     setLikes(await getAllLikedTracks(uid));
@@ -65,7 +65,6 @@ export default function TracksWrapper({
       )}
       <TrackGridContainer
         tracks={trackType}
-        empty={"No posts"}
         height={height}
         ref={tracksContainerRef}
       />

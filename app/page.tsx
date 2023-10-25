@@ -1,12 +1,8 @@
 import classNames from "classnames/bind";
 import styles from "./Home.module.scss";
-import { getTracksWhere, getAllTracks } from "../api/getTracks";
+import { getTracksWhere } from "../api/getTracks";
 import SwiperCarousel from "../components/Swiper/SwiperCarousel/SwiperCarousel";
 import Hero from "../components/Hero";
-import TrackSquare from "../components/Tracks/TrackSquare";
-import Link from "next/link";
-import RightArrow from "../components/Icons/RightArrow";
-import discover from "../imgs/discover.png";
 import Wrapper from "../components/Wrapper";
 
 const cx = classNames.bind(styles);
