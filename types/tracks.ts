@@ -20,4 +20,5 @@ export type TrackWrapperProps = {
   tracks: Track[];
   uid?: string;
   params?: { id: string };
+  isArtist?: boolean;
 };

@@ -8,18 +8,19 @@ const cx = classNames.bind(style);
 
 type TrackListProps = {
   tracks: Track[];
-  height: number;
+  height?: number;
+  isArtist?: boolean;
 };
 
 const TrackGridContainer = forwardRef<HTMLDivElement, TrackListProps>(
-  ({ tracks, height }, ref) => {
+  ({ tracks, height, isArtist }, ref) => {
     if (!tracks || tracks.length === 0) {
       return null;
     }
 
     return (
       <div
-        className={cx("track-grid")}
+        className={cx("track-grid", isArtist && "track-grid-artist")}
         style={{ minHeight: `${height}px` }}
         ref={ref}
       >

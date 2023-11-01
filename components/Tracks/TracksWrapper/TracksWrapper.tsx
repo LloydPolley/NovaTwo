@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { getAllLikedTracks } from "../../../api/getTracks";
 import classNames from "classnames/bind";
 import style from "./TracksWrapper.module.scss";
@@ -13,6 +13,7 @@ export default function TracksWrapper({
   tracks,
   uid,
   params,
+  isArtist,
 }: TrackWrapperProps) {
   const [showTracks, setShowTracks] = useState(true);
   const [height, setHeight] = useState(0);
@@ -21,11 +22,13 @@ export default function TracksWrapper({
   const tracksContainerRef = useRef<HTMLInputElement>();
 
   const getLikes = async () => {
-    setLikes(await getAllLikedTracks(uid));
+    let timeout = await setTimeout(() => console.log("loading"), 5000);
+    const getLike = await getAllLikedTracks(uid);
+    console.log("set");
+    setLikes(getLike);
   };
 
   useEffect(() => {
-    console.log("tracksContainerRef");
     if (tracksContainerRef) {
       setHeight(tracksContainerRef?.current?.offsetHeight || 100);
     }
@@ -33,6 +36,7 @@ export default function TracksWrapper({
 
   useEffect(() => {
     if (!showTracks) {
+      console.log("get likes");
       getLikes();
     }
   }, [showTracks]);
@@ -63,11 +67,16 @@ export default function TracksWrapper({
           )}
         </div>
       )}
-      <TrackGridContainer
-        tracks={trackType}
-        height={height}
-        ref={tracksContainerRef}
-      />
+      <Suspense
+        key={showTracks ? "showTracks" : "likes"}
+        fallback={<div className={cx("loading")}></div>}
+      >
+        <TrackGridContainer
+          tracks={trackType}
+          ref={tracksContainerRef}
+          isArtist={isArtist}
+        />
+      </Suspense>
     </div>
   );
 }

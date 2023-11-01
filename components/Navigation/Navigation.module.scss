@@ -20,12 +20,7 @@
   &__content {
     margin-left: 15px;
     display: flex;
-    overflow: scroll;
     gap: 15px;
-
-    @include small {
-      width: 200px;
-    }
   }
 
   &__bar {

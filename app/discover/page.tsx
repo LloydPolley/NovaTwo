@@ -18,7 +18,7 @@ export default async function Dj({ searchParams }) {
 
   return (
     <>
-      <Hero title={"Discover"} img={"/discovery.jpg"} />
+      <Hero title={"Discover"} gradient />
       <Wrapper>
         <TracksWrapper tracks={data} />
       </Wrapper>

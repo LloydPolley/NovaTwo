@@ -12,7 +12,6 @@ import Modal from "../../../components/Modal/Modal";
 import Edit from "../../../components/Icons/Edit";
 import UploadIcon from "../../../components/Icons/UploadIcon";
 import Hero from "../../../components/Hero";
-import { Suspense } from "react";
 import Wrapper from "../../../components/Wrapper";
 
 const cx = classNames.bind(styles);
@@ -22,6 +21,8 @@ export default async function DjProfile({ params, searchParams }) {
   const user = await getDj(params?.id);
   const tracks = await getArtistTracks(params?.id);
   const { edit, upload } = searchParams;
+
+  console.log("tracks", tracks);
 
   return (
     <div className={cx("artist")}>
@@ -40,9 +41,7 @@ export default async function DjProfile({ params, searchParams }) {
       </div>
 
       <Wrapper>
-        <Suspense fallback={<p>Loading feed...</p>}>
-          <TracksWrapper uid={uid} tracks={tracks} params={params} />
-        </Suspense>
+        <TracksWrapper uid={uid} tracks={tracks} params={params} isArtist />
       </Wrapper>
     </div>
   );
