@@ -8,11 +8,12 @@ type HeroProps = {
   img?: string;
   imgClass?: string;
   gradient?: boolean;
+  childNode?: React.ReactNode;
 };
 
 const cx = classNames.bind(style);
 
-const Hero = ({ title, gradient, img, imgClass }: HeroProps) => {
+const Hero = ({ title, gradient, img, imgClass, childNode }: HeroProps) => {
   const styleObject: React.CSSProperties = {
     textAlign: "center",
   };
@@ -27,6 +28,7 @@ const Hero = ({ title, gradient, img, imgClass }: HeroProps) => {
       style={styleObject}
     >
       <h1>{title}</h1>
+      {childNode}
     </div>
   );
 };

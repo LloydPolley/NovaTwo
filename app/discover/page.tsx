@@ -1,26 +1,21 @@
 import classNames from "classnames/bind";
 import styles from "./discover.module.scss";
-import TrackSquare from "../../components/Tracks/TrackSquare";
-import TrackRow from "../../components/Tracks/TrackListContainer/TrackList";
-
-import { getAllTracks, getTracksWhere } from "../../api/getTracks";
-import SwiperCarousel from "../../components/Swiper/SwiperCarousel/SwiperCarousel";
-import TracksWrapper from "../../components/Tracks/TracksWrapper";
-import FilterBar from "../../components/FilterBar";
+import { getTracksWhere } from "../../api/getTracks";
 import Wrapper from "../../components/Wrapper";
 import Hero from "../../components/Hero";
+import TrackGridContainer from "../../components/Tracks/TrackGridContainer";
 
 const cx = classNames.bind(styles);
 
 export default async function Dj({ searchParams }) {
   const { t } = searchParams;
-  const data = await getTracksWhere("label", t || "recent");
+  const tracks = await getTracksWhere("label", t || "recent");
 
   return (
     <>
       <Hero title={"Discover"} gradient />
       <Wrapper>
-        <TracksWrapper tracks={data} />
+        <TrackGridContainer tracks={tracks} />
       </Wrapper>
     </>
   );

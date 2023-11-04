@@ -1,15 +1,11 @@
 "use client";
 
-import Image from "next/image";
 import classNames from "classnames/bind";
 import style from "./Navigation.module.scss";
 import Link from "next/link";
 import { useLoginContext } from "../../context/LoginContext";
 import { useSelectedLayoutSegment } from "next/navigation";
-import { useEffect, useState } from "react";
-import DiscoverIcon from "../Icons/DiscoverIcon";
-import ProfileIcon from "../Icons/ProfileIcon";
-import SignOutIcon from "../Icons/SignOutIcon";
+import { useState } from "react";
 
 const cx = classNames.bind(style);
 
@@ -36,7 +32,7 @@ const Navigation = () => {
               <Link href="/login">Sign In</Link>
             ) : (
               <>
-                <Link href={`/discover/${userData?.uid}`}>
+                <Link href={`/discover/${userData?.uid}/releases`}>
                   {!userData?.profile ? "LOGIN" : userData?.displayName}
                 </Link>
                 <button className={cx("nav__sign-out")} onClick={signOutUser}>

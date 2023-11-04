@@ -5,14 +5,12 @@ import style from "./Loading.module.scss";
 
 const cx = classNames.bind(style);
 
-const Loading = ({ isLoading }) => {
+const Loading = () => {
   return (
     <>
-      {isLoading && (
-        <div className={cx("loading")}>
-          <p>LOADING</p>
-        </div>
-      )}
+      <div className={cx("loading")}>
+        <p>LOADING</p>
+      </div>
     </>
   );
 };

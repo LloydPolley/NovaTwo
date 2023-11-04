@@ -43,6 +43,8 @@ const getTracksWhere = async (type, input) => {
 
 const getArtistTracks = async (input) => {
   const arr = [];
+  // await new Promise((resolve) => setTimeout(resolve, 5000));
+
   const q = query(collection(db, "tracks"), where("uid", "==", input));
   const querySnapshot = await getDocs(q);
   await querySnapshot.forEach((doc) => {

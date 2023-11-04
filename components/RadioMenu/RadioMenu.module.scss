@@ -1,0 +1,35 @@
+@import "../../styles/mixins.scss";
+
+.radio {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  padding: 20px;
+  // background: rgba(6, 6, 6, 0.8);
+  flex: 1 1 0px;
+  width: 100%;
+
+  @include large {
+    width: initial;
+    border-top-right-radius: 10px;
+  }
+
+  &__toggle {
+    width: 150px; // Adjust the width to match the larger buttons
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    font-size: 18px;
+    font-weight: 400;
+    color: white;
+    padding: 10px;
+    border-radius: $borderRaidus;
+  }
+
+  &__active {
+    color: black !important;
+    background-color: white !important;
+  }
+}

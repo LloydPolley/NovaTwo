@@ -42,7 +42,7 @@ const TrackGrid = ({
           <Link
             className={cx("track__artist")}
             onClick={(e) => e.stopPropagation()}
-            href={`/discover/${uid}`}
+            href={`/discover/${uid}/releases`}
           >
             {artist}
           </Link>

@@ -1,6 +1,7 @@
 @import "../../styles/mixins.scss";
 
 .hero {
+  position: relative;
   text-align: center;
   height: 70vh;
   display: flex;
@@ -33,16 +34,6 @@
     // background-size: 1000px;
   }
 
-  > div {
-    height: 100%;
-    width: 50%;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    // border: 1px solid white;
-  }
-
   &__home {
     background-image: url("../../imgs/heroImg.jpeg") !important;
   }
@@ -51,22 +42,50 @@
   }
 }
 
+// .hero-gradient {
+//   // background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+//   animation: gradient 20s ease infinite;
+// }
+
 .hero-gradient {
-  // background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   background: linear-gradient(-45deg, #5b3b6d, #7f3968, #5b3b6d, #090923);
   background-size: 500% 500%;
-  animation: gradient 20s ease infinite;
+
+  -webkit-animation: Hero 27s ease infinite;
+  -moz-animation: Hero 27s ease infinite;
+  animation: Hero 27s ease infinite;
 }
 
-@keyframes gradient {
+@-webkit-keyframes Hero {
   0% {
-    background-position: 0% 50%;
+    background-position: 66% 0%;
   }
   50% {
-    background-position: 100% 50%;
+    background-position: 35% 100%;
   }
-
   100% {
-    background-position: 0% 50%;
+    background-position: 66% 0%;
+  }
+}
+@-moz-keyframes Hero {
+  0% {
+    background-position: 66% 0%;
+  }
+  50% {
+    background-position: 35% 100%;
+  }
+  100% {
+    background-position: 66% 0%;
+  }
+}
+@keyframes Hero {
+  0% {
+    background-position: 66% 0%;
+  }
+  50% {
+    background-position: 35% 100%;
+  }
+  100% {
+    background-position: 66% 0%;
   }
 }
