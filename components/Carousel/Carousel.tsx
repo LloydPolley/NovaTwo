@@ -23,6 +23,7 @@ const Carousel = ({ data }) => {
 
           return (
             <TrackSquare
+              key={name}
               name={name}
               artist={artist}
               artwork={artworkFileLocation}
