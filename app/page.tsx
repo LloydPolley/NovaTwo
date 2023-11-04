@@ -4,6 +4,7 @@ import { getTracksWhere } from "../api/getTracks";
 import SwiperCarousel from "../components/Swiper/SwiperCarousel/SwiperCarousel";
 import Hero from "../components/Hero";
 import Wrapper from "../components/Wrapper";
+import Carousel from "../components/Carousel";
 
 const cx = classNames.bind(styles);
 
@@ -15,17 +16,13 @@ export default async function Home() {
     <>
       <Hero title="GENESYS" imgClass="hero__home" />
       <Wrapper>
-        <div className={cx("label-carousel")}>
+        <div className={cx("carousel-block")}>
           <h3>AFTERLIFE</h3>
-          <div className={cx("label-carousel__box")}>
-            {data && <SwiperCarousel data={data} />}
-          </div>
+          <Carousel data={data} />
         </div>
-        <div className={cx("label-carousel")}>
+        <div className={cx("carousel-block")}>
           <h3>FEATURED</h3>
-          <div className={cx("label-carousel__box")}>
-            {data && <SwiperCarousel data={tracks} />}
-          </div>
+          <Carousel data={tracks} />
         </div>
       </Wrapper>
     </>

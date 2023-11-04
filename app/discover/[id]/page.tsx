@@ -39,7 +39,6 @@ export default async function DjProfile({ params, searchParams }) {
           </>
         )}
       </div>
-
       <Wrapper>
         <TracksWrapper uid={uid} tracks={tracks} params={params} isArtist />
       </Wrapper>

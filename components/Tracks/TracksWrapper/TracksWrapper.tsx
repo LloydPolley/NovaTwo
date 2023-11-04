@@ -22,7 +22,7 @@ export default function TracksWrapper({
   const tracksContainerRef = useRef<HTMLInputElement>();
 
   const getLikes = async () => {
-    let timeout = await setTimeout(() => console.log("loading"), 5000);
+    await new Promise((resolve) => setTimeout(resolve, 10000));
     const getLike = await getAllLikedTracks(uid);
     console.log("set");
     setLikes(getLike);
@@ -69,7 +69,7 @@ export default function TracksWrapper({
       )}
       <Suspense
         key={showTracks ? "showTracks" : "likes"}
-        fallback={<div className={cx("loading")}></div>}
+        fallback={<div className={cx("loading")}>loading</div>}
       >
         <TrackGridContainer
           tracks={trackType}

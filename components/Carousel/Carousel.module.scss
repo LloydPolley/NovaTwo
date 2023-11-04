@@ -1,0 +1,24 @@
+@import "../../styles/mixins.scss";
+
+.carousel {
+  width: 100%;
+  display: inline-flex;
+  overflow-x: auto; /* Use "auto" for scrollbars when needed */
+  justify-content: space-between;
+  gap: 15px;
+  scroll-snap-type: x mandatory;
+
+  > div {
+    scroll-snap-align: start;
+
+    @include small {
+      min-width: 70vw;
+    }
+    @include medium {
+      min-width: 50vw;
+    }
+    @include large {
+      min-width: 500px;
+    }
+  }
+}

@@ -30,12 +30,7 @@ $cta: #163e84;
   }
 }
 @mixin medium {
-  @media (min-width: 600px) {
-    @content;
-  }
-}
-@mixin underLarge {
-  @media (max-width: 999px) {
+  @media (max-width: 999px) and (min-width: 599px) {
     @content;
   }
 }

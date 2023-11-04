@@ -2,7 +2,7 @@
 
 .hero {
   text-align: center;
-  height: 350px;
+  height: 70vh;
   display: flex;
   flex-direction: row;
   background-size: cover;
@@ -17,15 +17,18 @@
   text-transform: uppercase;
 
   box-shadow: $boxShadow;
-  border: 1px solid #28282a;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  // border: 1px solid #28282a;
 
   h1 {
     text-shadow: 1px 0px 9px rgba(0, 0, 0, 0.9);
   }
 
   @include large {
-    height: 500px;
-    border-radius: 10px;
+    height: 60vh;
+    // border-radius: 10px;
+
     margin: 0px 10px 35px;
     // background-size: 1000px;
   }
