@@ -7,13 +7,11 @@
   display: flex;
   flex-direction: row;
   background-size: cover;
-  // background-position: 100%;
   background-repeat: no-repeat;
   background-position: center;
   display: flex;
   align-items: center;
   justify-content: center;
-  // border-bottom: 5px solid rgba(54, 38, 118, 0.502);
   margin-bottom: 35px;
   text-transform: uppercase;
 
@@ -47,8 +45,22 @@
 //   animation: gradient 20s ease infinite;
 // }
 
+.banner {
+  height: 500px !important;
+
+  @include large {
+    border-radius: 10px;
+  }
+}
+
+.anim {
+  -webkit-animation: Hero 200s ease infinite;
+  -moz-animation: Hero 200s ease infinite;
+  animation: Hero 200s ease infinite;
+}
+
 .hero-gradient {
-  background: linear-gradient(-45deg, #5b3b6d, #7f3968, #5b3b6d, #090923);
+  background: linear-gradient(-45deg, #171437, #1b174d, #09062a, #0e056a);
   background-size: 500% 500%;
 
   -webkit-animation: Hero 27s ease infinite;

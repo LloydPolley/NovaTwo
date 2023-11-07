@@ -2,37 +2,55 @@
 
 import { createContext, useContext, useState, useEffect } from "react";
 import { auth, db } from "../utils/firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
-  updateProfile,
   onIdTokenChanged,
 } from "firebase/auth";
 
-import {
-  collection,
-  addDoc,
-  getDocs,
-  getDownloadURL,
-  doc,
-  getDoc,
-  updateDoc,
-  setDoc,
-} from "firebase/firestore";
+import { doc, getDoc, updateDoc, setDoc } from "firebase/firestore";
 import nookies from "nookies";
 
-export const LoginContext = createContext({
-  registerUser: () => {},
-  signIn: () => {},
+type User = {
+  uid: string;
+  email: string;
+};
+
+type UserData = {
+  displayName?: string;
+  background?: string;
+  profile?: string;
+  name?: string;
+  email: string;
+  uid: string;
+};
+
+type LoginContextProps = {
+  registerUser: (credentials: {
+    email: string;
+    password: string;
+    displayName: string;
+  }) => Promise<void>;
+  signIn: (email: string, password: string) => Promise<void>;
+  signOutUser: () => void;
+  setAndUpdateUserDoc: (props: UserData) => void;
+  readUser: (user: User | null) => Promise<void>;
+  isLoggedIn: boolean;
+  userInfo: User | null;
+  userData: UserData | null;
+};
+
+export const LoginContext = createContext<LoginContextProps>({
+  registerUser: async () => {},
+  signIn: async () => {},
   signOutUser: () => {},
   setAndUpdateUserDoc: () => {},
-  readUser: () => {},
+  readUser: async () => {},
   isLoggedIn: false,
-  userInfo: undefined,
-  userData: undefined,
+  userInfo: null,
+  userData: null,
 });
 
 const LoginProvider = ({ children }) => {
@@ -70,7 +88,7 @@ const LoginProvider = ({ children }) => {
     try {
       return signInWithEmailAndPassword(auth, email, password);
     } catch (e) {
-      console.log("catch");
+      console.log("sign in", e);
       return { ...e };
     }
   };
@@ -166,6 +184,7 @@ const LoginProvider = ({ children }) => {
         isLoggedIn,
         userInfo,
         userData,
+        readUser,
       }}
     >
       {children}

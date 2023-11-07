@@ -9,9 +9,7 @@ import { usePathname } from "next/navigation";
 
 const cx = classNames.bind(style);
 
-export default function RadioMenu({ uid, params }: TrackWrapperProps) {
-  const [showTracks, setShowTracks] = useState(true);
-  const isUserProfile = uid === params?.id;
+export default function RadioMenu() {
   const url = usePathname();
   const isReleases = url.includes("releases");
   const lastSlashIndex = url.lastIndexOf("/");
@@ -25,14 +23,12 @@ export default function RadioMenu({ uid, params }: TrackWrapperProps) {
       >
         Releases
       </Link>
-      {isUserProfile && (
-        <Link
-          className={cx("radio__toggle", !isReleases && "radio__active")}
-          href={`${updatedUrl}/likes`}
-        >
-          Likes
-        </Link>
-      )}
+      <Link
+        className={cx("radio__toggle", !isReleases && "radio__active")}
+        href={`${updatedUrl}/likes`}
+      >
+        Likes
+      </Link>
     </div>
   );
 }

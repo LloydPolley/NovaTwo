@@ -7,6 +7,7 @@ import Like from "../../../Buttons/Like";
 import Link from "next/link";
 import { useAudioContext } from "../../../../context/AudioContext";
 import { useLoginContext } from "../../../../context/LoginContext";
+import Image from "next/image";
 
 const cx = classNames.bind(style);
 
@@ -31,7 +32,16 @@ const TrackGrid = ({
       }}
     >
       <div className={cx("track__head")}>
-        <img className={cx("track__artwork")} src={artwork} />
+        <Image
+          src={artwork}
+          placeholder="blur"
+          blurDataURL={artwork}
+          alt={name}
+          fill
+          onLoad={() => {
+            console.log("loaded image", artwork);
+          }}
+        />
         <div className={cx("track__play")}>
           <Play isPlayingAudio={isPlayingLocal} />
         </div>

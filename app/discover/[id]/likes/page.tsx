@@ -8,7 +8,7 @@ import TrackGridContainer from "../../../../components/Tracks/TrackGridContainer
 
 const cx = classNames.bind(styles);
 
-export default async function DjProfile({ params, searchParams }) {
+export default async function DjProfile({ params }) {
   const user = await getDj(params?.id);
   const tracks = await getAllLikedTracks(user?.uid);
 

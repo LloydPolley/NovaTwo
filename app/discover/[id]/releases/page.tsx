@@ -16,10 +16,11 @@ import { Suspense } from "react";
 import LoadingGrid from "../../../../components/LoadingGrid";
 import TrackGridContainer from "../../../../components/Tracks/TrackGridContainer";
 import RadioMenu from "../../../../components/RadioMenu";
+import TrackListContainer from "../../../../components/Tracks/TrackListContainer/TrackListContainer";
 
 const cx = classNames.bind(styles);
 
-export default async function DjProfile({ params, searchParams }) {
+export default async function DjProfile({ params }) {
   const user = await getDj(params?.id);
   const tracks = await getArtistTracks(user?.uid);
 

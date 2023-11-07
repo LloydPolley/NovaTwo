@@ -2,8 +2,7 @@
 
 .track {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  flex-direction: row;
   width: 100%;
   overflow: hidden;
   background-color: $widgetColor;
@@ -15,6 +14,10 @@
   height: fit-content;
 
   @include large {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 25px;
     padding: 25px;
   }
 
@@ -24,6 +27,12 @@
     aspect-ratio: 1/1;
     background-color: rgb(56, 56, 56);
     border-radius: 10px;
+    width: 30%;
+    // transform: skew(30deg, 20deg);
+
+    @include large {
+      width: 100%;
+    }
   }
 
   img {
@@ -36,8 +45,19 @@
   }
 
   &__text {
+    position: relative;
     margin: 0;
-    padding: 25px 10px 10px;
+    width: 100%;
+    margin-left: 20px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    @include large {
+      padding: 25px 10px 10px;
+      margin-left: 0;
+    }
 
     a {
       color: rgb(181, 181, 181);
@@ -68,14 +88,11 @@
     transition: 0.2s all;
   }
 
-  &__text {
-    position: relative;
-  }
   &__like-container {
     position: absolute;
     right: 0;
-    bottom: 5%;
-    // transform: translatey(-50%);
+    bottom: 50%;
+    transform: translatey(50%);
     // background: rgb(255, 255, 255);
     // background: linear-gradient(
     //   90deg,

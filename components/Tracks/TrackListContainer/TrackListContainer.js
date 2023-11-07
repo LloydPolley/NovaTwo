@@ -21,7 +21,7 @@ import TrackRow from "./TrackList";
 
 const cx = classNames.bind(style);
 
-export default function TrackList({ tracks }) {
+export default function TrackListContainer({ tracks }) {
   if (tracks?.length < 0) {
     return <p>Nothing here</p>;
   }

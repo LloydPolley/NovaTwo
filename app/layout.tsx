@@ -1,10 +1,8 @@
 import Navigation from "../components/Navigation";
-import Footer from "../components/Footer";
 import AudioWidget from "../components/AudioWidget/AudioWidget";
 import LoginProvider from "../context/LoginContext";
 import AudioProvider from "../context/AudioContext";
 import { Lato } from "next/font/google";
-import Loading from "../components/Loading";
 
 const font = Lato({
   weight: ["400", "700"],
@@ -12,7 +10,6 @@ const font = Lato({
 });
 
 import "./globals.scss";
-import { Suspense } from "react";
 
 export default function RootLayout(props) {
   const { children } = props;

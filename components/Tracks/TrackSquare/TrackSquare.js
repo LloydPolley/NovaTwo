@@ -34,7 +34,10 @@ const TrackSquare = ({
     >
       <div className={cx("label")}>
         {name && <p>{`${name}`}</p>}
-        <Link onClick={(e) => e.stopPropagation()} href={`/discover/${uid}`}>
+        <Link
+          onClick={(e) => e.stopPropagation()}
+          href={`/discover/${uid}/releases`}
+        >
           {artist}
         </Link>
       </div>

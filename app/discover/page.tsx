@@ -13,7 +13,7 @@ export default async function Dj({ searchParams }) {
 
   return (
     <>
-      <Hero title={"Discover"} gradient />
+      <Hero title={"Discover"} img="/discover-bg.webp" anim banner />
       <Wrapper>
         <TrackGridContainer tracks={tracks} />
       </Wrapper>

@@ -1,17 +1,14 @@
 @import "../../../styles/mixins.scss";
 
 .track-grid {
-  min-height: 250px;
-
   display: grid;
   row-gap: 10px;
   column-gap: 10px;
   flex-wrap: wrap;
 
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   grid-auto-rows: 1fr;
 
-  // border: $borderOne;
   border-radius: 10px;
 
   @include medium {

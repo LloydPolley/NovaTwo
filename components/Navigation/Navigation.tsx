@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useLoginContext } from "../../context/LoginContext";
 import { useSelectedLayoutSegment } from "next/navigation";
 import { useState } from "react";
+import NavContent from "./NavContent";
 
 const cx = classNames.bind(style);
 
@@ -14,33 +15,27 @@ const Navigation = () => {
   const { userData, signOutUser } = useLoginContext();
   const activeSegment = useSelectedLayoutSegment();
 
+  console.log("active", activeSegment, userData);
+
+  const closeNav = () => {
+    setOpen(false);
+  };
+
   return (
     <>
       <div className={cx("nav")}>
         <div className={cx("nav__bar")}>
-          <Link className={cx("nav__home-mobile")} href={"/"}>
+          <Link className={cx("nav__home")} href={"/"}>
             Nova
           </Link>
-          <div className={cx("nav__content")}>
-            <Link
-              className={cx(activeSegment === "dj" && "nav__active")}
-              href={"/discover"}
-            >
-              Discover
-            </Link>
-            {!userData?.email ? (
-              <Link href="/login">Sign In</Link>
-            ) : (
-              <>
-                <Link href={`/discover/${userData?.uid}/releases`}>
-                  {!userData?.profile ? "LOGIN" : userData?.displayName}
-                </Link>
-                <button className={cx("nav__sign-out")} onClick={signOutUser}>
-                  LOG
-                </button>
-              </>
-            )}
-          </div>
+          <NavContent open={open} closeNav={closeNav} />
+          <button
+            onClick={() => {
+              setOpen(!open);
+            }}
+          >
+            menu
+          </button>
         </div>
       </div>
     </>

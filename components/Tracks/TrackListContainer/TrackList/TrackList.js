@@ -39,7 +39,7 @@ const TrackRow = ({
             <Link
               className={cx("track-row__artist")}
               onClick={(e) => e.stopPropagation()}
-              href={`/discover/${uid}`}
+              href={`/discover/${uid}/releases`}
             >
               {artist}
             </Link>

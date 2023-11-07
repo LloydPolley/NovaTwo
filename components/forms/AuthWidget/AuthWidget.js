@@ -17,7 +17,7 @@ function SignInScreen() {
   console.log("userfda", userInfo, isLoggedIn);
 
   if (isLoggedIn) {
-    redirect(`/discover/${userInfo?.uid}`, "push");
+    redirect(`/discover/${userInfo?.uid}/releases`, "push");
   }
 
   return (
