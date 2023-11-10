@@ -6,7 +6,7 @@
   // transform: translatex(-50%);
   top: 0px;
   padding: 4px 2px;
-  background: rgb(0, 0, 0);
+  // background: rgb(0, 0, 0);
   width: 100%;
   max-width: 1600px;
   margin: auto;
@@ -19,6 +19,14 @@
 
   @include large {
     padding: 10px 5px;
+  }
+
+  &__burger {
+    all: unset;
+    svg {
+      width: 30px;
+      height: 30px;
+    }
   }
 
   &__bar {
@@ -49,15 +57,12 @@
   button {
     text-transform: uppercase;
     font-weight: 700;
-    line-height: 35px;
-    // border-bottom: 1px solid white;
-    // border-radius: 10px;
-    // padding: 3px;
+    // line-height: 35px;
   }
 }
 
 .nav-content {
-  background-color: rgba(0, 0, 0, 0.95);
+  background-color: rgba(6, 6, 6, 0.95);
   gap: 15px;
   height: calc(100vh - 55px);
 

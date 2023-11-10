@@ -4,7 +4,7 @@ import { getDj } from "../../../../api/getDjs";
 import { getAllLikedTracks } from "../../../../api/getTracks";
 import { Suspense } from "react";
 import LoadingGrid from "../../../../components/LoadingGrid";
-import TrackGridContainer from "../../../../components/Tracks/TrackGridContainer";
+import TrackContainer from "../../../../components/Tracks/TrackContainer";
 
 const cx = classNames.bind(styles);
 
@@ -14,7 +14,7 @@ export default async function DjProfile({ params }) {
 
   return (
     <Suspense fallback={<LoadingGrid />}>
-      <TrackGridContainer tracks={tracks} />
+      <TrackContainer tracks={tracks} />
     </Suspense>
   );
 }

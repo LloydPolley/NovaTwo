@@ -1,9 +1,7 @@
 "use client";
 
-import { useState } from "react";
 import classNames from "classnames/bind";
 import style from "./RadioMenu.module.scss";
-import { TrackWrapperProps } from "../../types/tracks";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 

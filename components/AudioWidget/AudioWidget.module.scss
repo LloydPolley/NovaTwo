@@ -1,6 +1,7 @@
 // @import '../../styles/variables.scss';
 
 .audio-widget {
+  text-align: center;
   position: fixed;
   bottom: 0px;
   left: 50%;
@@ -31,4 +32,18 @@
     display: flex;
     justify-content: space-between;
   }
+}
+.controls {
+  display: flex;
+  justify-content: space-between;
+  width: 60%;
+
+  input {
+    width: 80%;
+  }
+}
+
+.control-play {
+  margin: auto;
+  text-align: center;
 }

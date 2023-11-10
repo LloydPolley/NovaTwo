@@ -3,59 +3,86 @@
 import { useEffect, useState, useRef } from "react";
 import classNames from "classnames/bind";
 import style from "./AudioWidget.module.scss";
-import Link from "next/link";
-import { useLoginContext } from "../../context/LoginContext";
-import { useSelectedLayoutSegment } from "next/navigation";
 import { useAudioContext } from "../../context/AudioContext";
-
-import AudioPlayer from "react-h5-audio-player";
-import "react-h5-audio-player/src/styles.scss";
 
 const cx = classNames.bind(style);
 
 const AudioWidget = () => {
-  const { isPlaying, playTrack, pause, url, name } = useAudioContext();
-  const [layout, setLayout] = useState("horizontal-reverse");
-  const player = useRef();
+  const { isPlaying, playContext, pauseContext, track, setIsPlaying } =
+    useAudioContext();
+  const audioRef = useRef();
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const width = window.innerWidth < 700 ? "stacked" : "horizontal-reverse";
-      setLayout(width);
-    }
-  }, []);
+  const [duration, setDuration] = useState(0);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       console.log("addevenb");
       window.addEventListener("pausePlayer", (event) => {
         console.log("I'm listening on a custom event");
-        player.current.audio.current.pause();
+        audioRef.current.pause();
       });
       window.addEventListener("playPlayer", (event) => {
         console.log("I'm listening on a custom event");
-        player.current.audio.current.play();
+        audioRef.current.play();
       });
     }
   }, []);
 
+  const play = () => {
+    audioRef.current.play();
+    setIsPlaying(true);
+  };
+
+  const pause = () => {
+    audioRef.current.play();
+    setIsPlaying(true);
+  };
+
+  const formatTime = (secs) => {
+    const minutes = Math.floor(secs / 60);
+    const seconds = Math.floor(secs % 60);
+
+    const returnMins = minutes < 10 ? `0${minutes}` : minutes;
+    const returnSecs = seconds < 10 ? `0${seconds}` : seconds;
+
+    return `${returnMins} : ${returnSecs}`;
+  };
+
+  const loaded = () => {
+    const seconds = Math.floor(audioRef?.current?.duration);
+    const time = formatTime(seconds);
+    setDuration(time);
+  };
+
   return (
     <div className={cx("audio-widget")}>
-      <AudioPlayer
-        style={{ borderRadius: "20px", color: "white", padding: "20px" }}
-        // autoPlay
-        src={url}
-        onPlay={(e) => playTrack({ url, name })}
-        onPause={() => {
-          pause();
+      <audio
+        ref={audioRef}
+        src={track?.audioFileLocation}
+        onLoadedMetadata={loaded}
+        onTimeUpdate={() => {
+          if (audioRef.current.currentTime < 1) return;
+          var currentTimePercentage =
+            (audioRef.current.currentTime / audioRef?.current?.duration) * 100;
+          setProgress(currentTimePercentage);
+          setCurrentTime(Math.floor(audioRef.current.currentTime));
         }}
-        showFilledProgress
-        showFilledVolume
-        showDownloadProgress
-        header={name}
-        layout={layout}
-        ref={player}
       />
+      <div className={cx("controls")}>
+        <p>{currentTime}</p> <input type="range" value={progress} />
+        <p>{duration}</p>
+      </div>
+
+      <button
+        className={cx("control-play")}
+        onClick={() => {
+          isPlaying ? audioRef.current.pause() : audioRef.current.play();
+        }}
+      >
+        {isPlaying ? "Pause" : "Play"}
+      </button>
     </div>
   );
 };

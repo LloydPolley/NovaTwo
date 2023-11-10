@@ -7,6 +7,7 @@ import { useLoginContext } from "../../context/LoginContext";
 import { useSelectedLayoutSegment } from "next/navigation";
 import { useState } from "react";
 import NavContent from "./NavContent";
+import Burger from "../Icons/Burger";
 
 const cx = classNames.bind(style);
 
@@ -14,8 +15,6 @@ const Navigation = () => {
   const [open, setOpen] = useState(false);
   const { userData, signOutUser } = useLoginContext();
   const activeSegment = useSelectedLayoutSegment();
-
-  console.log("active", activeSegment, userData);
 
   const closeNav = () => {
     setOpen(false);
@@ -30,11 +29,12 @@ const Navigation = () => {
           </Link>
           <NavContent open={open} closeNav={closeNav} />
           <button
+            className={cx("nav__burger")}
             onClick={() => {
               setOpen(!open);
             }}
           >
-            menu
+            <Burger />
           </button>
         </div>
       </div>

@@ -3,7 +3,7 @@ import styles from "./discover.module.scss";
 import { getTracksWhere } from "../../api/getTracks";
 import Wrapper from "../../components/Wrapper";
 import Hero from "../../components/Hero";
-import TrackGridContainer from "../../components/Tracks/TrackGridContainer";
+import TrackContainer from "../../components/Tracks/TrackContainer";
 
 const cx = classNames.bind(styles);
 
@@ -15,7 +15,7 @@ export default async function Dj({ searchParams }) {
     <>
       <Hero title={"Discover"} img="/discover-bg.webp" anim banner />
       <Wrapper>
-        <TrackGridContainer tracks={tracks} />
+        <TrackContainer tracks={tracks} />
       </Wrapper>
     </>
   );

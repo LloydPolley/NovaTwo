@@ -8,28 +8,32 @@ import { useAudioContext } from "../../../context/AudioContext";
 
 const cx = classNames.bind(style);
 
-const TrackSquare = ({
-  artist,
-  artwork,
-  audioFileLocation,
-  date,
-  name,
-  trackName,
-  uid,
-}) => {
-  const { playTrack, pause, isPlaying, url } = useAudioContext();
+const TrackSquare = ({ track }) => {
+  const {
+    artist,
+    artworkFileLocation,
+    audioFileLocation,
+    artwork,
+    date,
+    name,
+    trackName,
+    uid,
+  } = track;
+  const { playContext, pauseContext, isPlaying, url } = useAudioContext();
   const isPlayingLocal = isPlaying && url === audioFileLocation;
 
   return (
     <div
       className={cx("dj-square")}
       style={{
-        backgroundImage: `url(${artwork})`,
+        backgroundImage: `url(${artwork || artworkFileLocation})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
       onClick={() => {
-        !isPlayingLocal ? playTrack({ url: audioFileLocation, name }) : pause();
+        !isPlayingLocal
+          ? playContext({ url: audioFileLocation, name })
+          : pauseContext();
       }}
     >
       <div className={cx("label")}>

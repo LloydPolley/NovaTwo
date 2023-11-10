@@ -4,21 +4,21 @@ import { createContext, useContext, useState, useEffect, useRef } from "react";
 
 export const AudioContext = createContext({
   isPlaying: false,
-  url: "",
-  name: "",
-  playTrack: ({ url, name }) => {},
-  pause: () => {},
+  setIsPlaying: () => {},
+  track: {},
+  playContext: (track) => {},
+  pauseContext: () => {},
 });
 
 const AudioProvider = ({ children }) => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [url, setUrl] = useState(null);
-  const [name, setName] = useState("");
+  const [track, setTrack] = useState();
 
-  const playTrack = async ({ url, name }) => {
-    await setUrl(url);
+  const playContext = async (track) => {
+    console.log("playing");
+    await setTrack(track);
     await setIsPlaying(true);
-    await setName(name);
+
     const myEvent = new CustomEvent("playPlayer", {
       bubbles: true,
       cancelable: true,
@@ -27,7 +27,7 @@ const AudioProvider = ({ children }) => {
     document.dispatchEvent(myEvent);
   };
 
-  const pause = async () => {
+  const pauseContext = async () => {
     await setIsPlaying(false);
     const myEvent = new CustomEvent("pausePlayer", {
       bubbles: true,
@@ -40,11 +40,11 @@ const AudioProvider = ({ children }) => {
   return (
     <AudioContext.Provider
       value={{
-        playTrack,
-        pause,
+        playContext,
+        pauseContext,
         isPlaying,
-        url,
-        name,
+        track,
+        setIsPlaying,
       }}
     >
       {children}

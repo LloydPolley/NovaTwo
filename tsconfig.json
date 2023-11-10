@@ -29,7 +29,7 @@
     "app/discover/page.tsx",
     "app/layout.tsx",
     "components/Tracks/TrackListContainer/TrackListContainer.js",
-    "components/Tracks/TrackGridContainer/TrackGrid/TrackGrid.tsx",
+    "components/Tracks/Track/Track.tsx",
     "components/Navigation/Navigation.js",
     "components/Tracks/TrackSquare/TrackSquare.js",
     "api/getDjs.js"

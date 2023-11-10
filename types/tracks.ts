@@ -1,9 +1,9 @@
 export type TrackListProps = {
-  tracks: Track[];
+  tracks: TrackType[];
   empty?: string;
 };
 
-export type Track = {
+export type TrackType = {
   featured?: boolean;
   date: string;
   artist: string;
@@ -17,7 +17,7 @@ export type Track = {
 };
 
 export type TrackWrapperProps = {
-  tracks: Track[];
+  tracks: TrackType[];
   uid?: string;
   params?: { id: string };
   isArtist?: boolean;
