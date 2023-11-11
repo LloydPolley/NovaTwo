@@ -82,6 +82,13 @@ const AudioWidget = () => {
         onLoadedMetadata={loaded}
         onTimeUpdate={animateProgressBar}
       />
+      <input
+        type="range"
+        onChange={changeRange}
+        step={0.01}
+        ref={progressBarRef}
+        value={progress}
+      />
       <div className={cx("controls")}>
         <button
           className={cx("controls__play")}
@@ -91,25 +98,20 @@ const AudioWidget = () => {
         >
           {isPlaying ? <PauseIcon /> : <PlayIcon />}
         </button>
-        <div className={cx("controls__times")}>
+        {/* <div className={cx("controls__times")}>
           <div className={cx("controls__time")}>
             <p>{currentTime}</p>
           </div>
-          <input
-            type="range"
-            onChange={changeRange}
-            step={0.01}
-            ref={progressBarRef}
-            value={progress}
-          />
           <div className={cx("controls__time")}>
             <p>{duration}</p>
           </div>
-        </div>
-
-        <div className={cx("controls__details")}>
-          <p>{trackContext?.artist || "Artist"}</p>
-          <p>{trackContext?.name || "Name"}</p>
+        </div> */}
+        <div className={cx("controls__track")}>
+          <img src={trackContext?.artworkFileLocation} />
+          <div className={cx("controls__details")}>
+            <p>{trackContext?.artist || "Artist"}</p>
+            <p>{trackContext?.name || "Track"}</p>
+          </div>
         </div>
       </div>
     </div>
