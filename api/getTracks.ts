@@ -25,7 +25,7 @@ const getAllLikedTracks = async (uid: string): Promise<TrackType[]> => {
 
 const getTracksWhere = async (
   type: string,
-  input: string
+  input: string | boolean
 ): Promise<TrackType[]> => {
   if (input === "recent" || input === undefined) {
     return getAllTracks();

@@ -40,6 +40,18 @@
 
   input {
     width: 80%;
+    &::before {
+      content: "";
+      height: 11px;
+      width: 5%;
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 2;
+      cursor: pointer;
+    }
   }
 }
 

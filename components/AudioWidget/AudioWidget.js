@@ -11,6 +11,7 @@ const AudioWidget = () => {
   const { isPlaying, playContext, pauseContext, track, setIsPlaying } =
     useAudioContext();
   const audioRef = useRef();
+  const progressBarRef = useRef();
 
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
@@ -28,6 +29,8 @@ const AudioWidget = () => {
         audioRef.current.play();
       });
     }
+
+    console.log("pro", progressBarRef);
   }, []);
 
   const play = () => {
@@ -36,8 +39,8 @@ const AudioWidget = () => {
   };
 
   const pause = () => {
-    audioRef.current.play();
-    setIsPlaying(true);
+    audioRef.current.pause();
+    setIsPlaying(false);
   };
 
   const formatTime = (secs) => {
@@ -50,10 +53,25 @@ const AudioWidget = () => {
     return `${returnMins} : ${returnSecs}`;
   };
 
+  const changeRange = () => {
+    const percentage = progressBarRef.current.value;
+    const targetTime = (percentage / 100) * audioRef.current.duration;
+    audioRef.current.currentTime = targetTime;
+    setCurrentTime(formatTime(Math.floor(targetTime)));
+  };
+
   const loaded = () => {
     const seconds = Math.floor(audioRef?.current?.duration);
     const time = formatTime(seconds);
     setDuration(time);
+  };
+
+  const onTimeUpdate = () => {
+    if (audioRef.current.currentTime < 1) return;
+    var currentTimePercentage =
+      (audioRef.current.currentTime / audioRef?.current?.duration) * 100;
+    setProgress(currentTimePercentage);
+    setCurrentTime(formatTime(Math.floor(audioRef.current.currentTime)));
   };
 
   return (
@@ -62,23 +80,24 @@ const AudioWidget = () => {
         ref={audioRef}
         src={track?.audioFileLocation}
         onLoadedMetadata={loaded}
-        onTimeUpdate={() => {
-          if (audioRef.current.currentTime < 1) return;
-          var currentTimePercentage =
-            (audioRef.current.currentTime / audioRef?.current?.duration) * 100;
-          setProgress(currentTimePercentage);
-          setCurrentTime(Math.floor(audioRef.current.currentTime));
-        }}
+        onTimeUpdate={onTimeUpdate}
       />
       <div className={cx("controls")}>
-        <p>{currentTime}</p> <input type="range" value={progress} />
+        <p>{currentTime}</p>
+        <input
+          type="range"
+          defaultValue={0}
+          onChange={changeRange}
+          step={0.01}
+          ref={progressBarRef}
+        />
         <p>{duration}</p>
       </div>
 
       <button
         className={cx("control-play")}
         onClick={() => {
-          isPlaying ? audioRef.current.pause() : audioRef.current.play();
+          isPlaying ? pause() : play();
         }}
       >
         {isPlaying ? "Pause" : "Play"}
