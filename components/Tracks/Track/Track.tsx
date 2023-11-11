@@ -22,8 +22,19 @@ const Track = ({ track }) => {
     artwork,
   } = track;
 
-  const { playContext, pauseContext, isPlaying, url } = useAudioContext();
-  const isPlayingLocal = isPlaying && url === audioFileLocation;
+  console.log("track", track);
+
+  const { playContext, pauseContext, isPlaying, trackContext } =
+    useAudioContext();
+  const isPlayingLocal =
+    isPlaying && trackContext?.audioFileLocation === audioFileLocation;
+  console.log("context", trackContext);
+  console.log("isPlaying", isPlaying);
+  console.log(
+    "isPlaying && trackContext?.url === audioFileLocation",
+    trackContext?.url,
+    audioFileLocation
+  );
   const { userData } = useLoginContext();
 
   return (

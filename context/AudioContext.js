@@ -5,18 +5,18 @@ import { createContext, useContext, useState, useEffect, useRef } from "react";
 export const AudioContext = createContext({
   isPlaying: false,
   setIsPlaying: () => {},
-  track: {},
+  trackContext: { url: "", audioFileLocation: "" },
   playContext: (track) => {},
   pauseContext: () => {},
 });
 
 const AudioProvider = ({ children }) => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [track, setTrack] = useState();
+  const [trackContext, setTrackContext] = useState();
 
   const playContext = async (track) => {
     console.log("playing");
-    await setTrack(track);
+    await setTrackContext(track);
     await setIsPlaying(true);
 
     const myEvent = new CustomEvent("playPlayer", {
@@ -43,7 +43,7 @@ const AudioProvider = ({ children }) => {
         playContext,
         pauseContext,
         isPlaying,
-        track,
+        trackContext,
         setIsPlaying,
       }}
     >
