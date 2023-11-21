@@ -25,9 +25,6 @@ const NavContent = ({ open, closeNav }) => {
   return (
     <div className={cx("nav-content", open && "nav-content__open")}>
       <div className={cx("nav-content__inner")}>
-        <Link className={cx("nav__home")} href={"/"}>
-          Nova
-        </Link>
         <Link
           className={cx(activeSegment === "discover" && "nav-content__active")}
           href={"/discover"}
@@ -48,7 +45,7 @@ const NavContent = ({ open, closeNav }) => {
               className={cx("nav-content__sign-out")}
               onClick={signOutUser}
             >
-              LOG
+              Sign out
             </button>
           </>
         )}

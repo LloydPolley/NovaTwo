@@ -22,19 +22,12 @@ const Track = ({ track }) => {
     artwork,
   } = track;
 
-  console.log("track", track);
+  // console.log("track", track);
 
   const { playContext, pauseContext, isPlaying, trackContext } =
     useAudioContext();
   const isPlayingLocal =
     isPlaying && trackContext?.audioFileLocation === audioFileLocation;
-  console.log("context", trackContext);
-  console.log("isPlaying", isPlaying);
-  console.log(
-    "isPlaying && trackContext?.url === audioFileLocation",
-    trackContext?.url,
-    audioFileLocation
-  );
   const { userData } = useLoginContext();
 
   return (
@@ -79,7 +72,14 @@ const Track = ({ track }) => {
               uid={uid}
               currentUser={userData?.uid}
               trackId={trackId}
-              track={{ artist, name, artwork, audioFileLocation, uid, trackId }}
+              track={{
+                artist,
+                name,
+                artwork: artwork || artworkFileLocation,
+                audioFileLocation,
+                uid,
+                trackId,
+              }}
             />
           )}
         </div>

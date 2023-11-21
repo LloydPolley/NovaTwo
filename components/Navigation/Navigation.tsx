@@ -22,12 +22,12 @@ const Navigation = () => {
 
   return (
     <>
+      <NavContent open={open} closeNav={closeNav} />
       <div className={cx("nav")}>
         <div className={cx("nav__bar")}>
           <Link className={cx("nav__home")} href={"/"}>
             Nova
           </Link>
-          <NavContent open={open} closeNav={closeNav} />
           <button
             className={cx("nav__burger")}
             onClick={() => {

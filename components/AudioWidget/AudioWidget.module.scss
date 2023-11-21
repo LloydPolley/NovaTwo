@@ -1,20 +1,37 @@
-// @import '../../styles/variables.scss';
+@import "../../styles/mixins.scss";
 
 .audio-widget {
   text-align: center;
   position: fixed;
-  bottom: 0px;
+  bottom: 1%;
   left: 50%;
   // padding: 10px;
   transform: translateX(-50%);
   z-index: 2;
-  backdrop-filter: blur(30px);
+  backdrop-filter: blur(50px);
   // border-radius: 10px;
-  width: 99%;
+  max-width: 1200px;
+  border-radius: 10px;
+  width: 100%;
   // max-width: 800px;
   margin: auto;
   transition: 0.2s all;
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px 0;
+
+  @include large {
+    width: 60%;
+  }
+
+  &__inner {
+    max-width: 1600px;
+    margin: auto;
+    width: 95%;
+
+    @include large {
+      width: 90%;
+    }
+  }
 
   & > div {
     max-width: 1600px;
@@ -37,10 +54,10 @@
 
 .controls {
   display: flex;
-  // justify-content: space-between;
+  justify-content: space-between;
   flex-direction: row-reverse;
-  width: 90%;
-  padding: 10px 0;
+  // padding: 10px 0;
+  padding-top: 10px;
 
   &__times {
     display: flex;
@@ -67,6 +84,8 @@
       object-fit: contain;
       aspect-ratio: 1/1;
       margin-right: 10px;
+      border: none;
+      border-radius: 10px;
     }
   }
 
@@ -89,58 +108,44 @@
   }
 }
 
-.audio-widget {
-  input[type="range"] {
-    /* removing default appearance */
+.progress-bar {
+  --bar-bg: rgb(153, 153, 153);
+  --seek-before-width: 0;
+  --seek-before-color: white;
+  --knobby: rgb(255, 255, 255);
+  --selectedKnobby: purple;
+  --height: 8px;
+
+  appearance: none;
+  background: var(--bar-bg);
+  border-radius: 10px;
+  position: relative;
+  width: 100%;
+  height: var(--height);
+  outline: none;
+
+  &::before {
+    content: "";
+    height: var(--height);
+    width: var(--seek-before-width);
+    background-color: var(--seek-before-color);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    border-radius: 10px;
+  }
+  &::-webkit-slider-thumb {
     -webkit-appearance: none;
-    appearance: none;
-    /* creating a custom design */
-    width: 100%;
-    cursor: pointer;
-    outline: none;
-    /*  slider progress trick  */
-    overflow: hidden;
-    // border-radius: 16px;
-  }
+    height: 12px;
+    width: 12px;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--knobby);
+    position: relative;
+    // margin: -2px 0 0 0;
 
-  /* Track: webkit browsers */
-  input[type="range"]::-webkit-slider-runnable-track {
-    height: 6px;
-    background: rgba(255, 255, 255, 0.05);
-    // border-radius: 16px;
-  }
-
-  /* Track: Mozilla Firefox */
-  input[type="range"]::-moz-range-track {
-    height: 5px;
-    background: #ffffff;
-    // border-radius: 16px;
-  }
-
-  /* Thumb: webkit */
-  input[type="range"]::-webkit-slider-thumb {
-    /* removing default appearance */
-    -webkit-appearance: none;
-    appearance: none;
-    /* creating a custom design */
-    height: 0;
-    width: 0;
-    background-color: #fff;
-    // border-radius: 50%;
-    border: 0 solid #fff;
-    /*  slider progress trick  */
-    box-shadow: -407px 0 0 405px #fff;
-  }
-
-  /* Thumb: Firefox */
-  input[type="range"]::-moz-range-thumb {
-    display: none;
-    height: 0;
-    width: 0;
-    background-color: #fff;
-    border-radius: 50%;
-    border: 1px solid #fff;
-    /*  slider progress trick  */
-    box-shadow: -407px 0 0 400px #fff;
+    z-index: 3;
+    box-sizing: border-box;
   }
 }

@@ -19,8 +19,10 @@ const TrackSquare = ({ track }) => {
     trackName,
     uid,
   } = track;
-  const { playContext, pauseContext, isPlaying, url } = useAudioContext();
-  const isPlayingLocal = isPlaying && url === audioFileLocation;
+  const { playContext, pauseContext, isPlaying, trackContext } =
+    useAudioContext();
+  const isPlayingLocal =
+    isPlaying && trackContext?.audioFileLocation === audioFileLocation;
 
   return (
     <div
@@ -31,9 +33,7 @@ const TrackSquare = ({ track }) => {
         backgroundPosition: "center",
       }}
       onClick={() => {
-        !isPlayingLocal
-          ? playContext({ url: audioFileLocation, name })
-          : pauseContext();
+        !isPlayingLocal ? playContext(track) : pauseContext();
       }}
     >
       <div className={cx("label")}>

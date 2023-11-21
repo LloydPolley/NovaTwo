@@ -26,6 +26,7 @@ function Like({ uid, trackId, track, currentUser }) {
   const clickHandler = async () => {
     console.log("click handler", isLiked ? "delete" : "add");
     const obj = { uid, trackId, track, currentUser: userData?.uid };
+    console.log("liel", obj);
     setIsLiked(
       isLiked ? await deleteLikeFromTracks(obj) : await addLikeToTracks(obj)
     );

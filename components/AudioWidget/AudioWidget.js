@@ -18,6 +18,8 @@ const AudioWidget = () => {
   const [currentTime, setCurrentTime] = useState("00:00");
   const [progress, setProgress] = useState(0);
 
+  let animationFrameId;
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       window.addEventListener("pausePlayer", pause);
@@ -42,13 +44,13 @@ const AudioWidget = () => {
       const currentTimePercentage =
         (audioRef.current.currentTime / audioRef?.current?.duration) * 100;
       setProgress(currentTimePercentage);
+      progressBarRef.current.style.setProperty(
+        "--seek-before-width",
+        `${currentTimePercentage}%`
+      );
       setCurrentTime(formatTime(Math.floor(audioRef.current.currentTime)));
-      if (isPlaying) {
-        requestAnimationFrame(updateProgressBar);
-      }
     };
-
-    requestAnimationFrame(updateProgressBar);
+    animationFrameId = requestAnimationFrame(updateProgressBar);
   };
 
   const formatTime = (secs) => {
@@ -82,23 +84,34 @@ const AudioWidget = () => {
         onLoadedMetadata={loaded}
         onTimeUpdate={animateProgressBar}
       />
-      <input
-        type="range"
-        onChange={changeRange}
-        step={0.01}
-        ref={progressBarRef}
-        value={progress}
-      />
-      <div className={cx("controls")}>
-        <button
-          className={cx("controls__play")}
-          onClick={() => {
-            isPlaying ? pause() : play();
-          }}
-        >
-          {isPlaying ? <PauseIcon /> : <PlayIcon />}
-        </button>
-        {/* <div className={cx("controls__times")}>
+      <div className={cx("audio-widget__inner")}>
+        <input
+          className={cx("progress-bar")}
+          type="range"
+          onChange={changeRange}
+          step={0.01}
+          ref={progressBarRef}
+          value={progress}
+        />
+        <div className={cx("controls")}>
+          <button
+            className={cx("controls__play")}
+            onClick={() => {
+              isPlaying ? pause() : play();
+            }}
+          >
+            {isPlaying ? <PauseIcon /> : <PlayIcon />}
+          </button>
+          <div className={cx("controls__track")}>
+            <img
+              src={trackContext?.artworkFileLocation || trackContext?.artwork}
+            />
+            <div className={cx("controls__details")}>
+              <p>{trackContext?.artist || "Artist"}</p>
+              <p>{trackContext?.name || "Track"}</p>
+            </div>
+          </div>
+          {/* <div className={cx("controls__times")}>
           <div className={cx("controls__time")}>
             <p>{currentTime}</p>
           </div>
@@ -106,12 +119,6 @@ const AudioWidget = () => {
             <p>{duration}</p>
           </div>
         </div> */}
-        <div className={cx("controls__track")}>
-          <img src={trackContext?.artworkFileLocation} />
-          <div className={cx("controls__details")}>
-            <p>{trackContext?.artist || "Artist"}</p>
-            <p>{trackContext?.name || "Track"}</p>
-          </div>
         </div>
       </div>
     </div>

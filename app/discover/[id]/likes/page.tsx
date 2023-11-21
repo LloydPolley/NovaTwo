@@ -8,6 +8,8 @@ import TrackContainer from "../../../../components/Tracks/TrackContainer";
 
 const cx = classNames.bind(styles);
 
+export const revalidate = 0;
+
 export default async function DjProfile({ params }) {
   const user = await getDj(params?.id);
   const tracks = await getAllLikedTracks(user?.uid);
