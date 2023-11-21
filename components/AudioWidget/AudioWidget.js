@@ -17,6 +17,7 @@ const AudioWidget = () => {
   const [duration, setDuration] = useState("00:00");
   const [currentTime, setCurrentTime] = useState("00:00");
   const [progress, setProgress] = useState(0);
+  const [expanded, setExpanded] = useState(false);
 
   let animationFrameId;
 
@@ -77,7 +78,15 @@ const AudioWidget = () => {
   };
 
   return (
-    <div className={cx("audio-widget")}>
+    <div className={cx("audio-widget", expanded && "audio-expanded")}>
+      <div
+        className={cx("audio-widget__expand-button")}
+        onClick={() => {
+          setExpanded(!expanded);
+        }}
+      >
+        +
+      </div>
       <audio
         ref={audioRef}
         src={trackContext?.audioFileLocation}

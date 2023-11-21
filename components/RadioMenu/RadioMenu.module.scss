@@ -8,11 +8,12 @@
   flex: 1 1 0px;
   width: 100%;
   justify-content: space-around;
+  padding: 5px;
 
   @include large {
     bottom: 1%;
     left: 1%;
-    border: 1px solid rgb(131, 131, 131);
+    // border: 1px solid rgb(131, 131, 131);
     border-radius: 10px;
     justify-content: initial;
     width: initial;

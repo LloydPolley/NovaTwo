@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import useAddTrack from "../../../hooks/useAddTrack";
+import { addTrack, uploadFile, fetchFile } from "../../../api/addTracks";
 import classNames from "classnames/bind";
 import styles from "./UploadTrackForm.module.scss";
 import { useLoginContext } from "../../../context/LoginContext";
@@ -22,7 +22,6 @@ function UploadTrackForm() {
   } = useForm();
 
   const { userData, isLoggedIn } = useLoginContext();
-  const { addTrack, uploadFile, fetchFile } = useAddTrack();
 
   const [image, setImage] = useState();
   const [audio, setAudio] = useState();
