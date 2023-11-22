@@ -1,10 +1,15 @@
+@import "../../styles/mixins.scss";
+
 .footer {
+  background-color: $widgetColor;
   max-width: 1600px;
   margin: auto;
   padding: 15px;
   width: 100%;
+  border-radius: 10px;
   min-height: 100px;
   margin-top: 50px;
+  padding-bottom: 50px;
   display: flex;
   justify-content: space-between;
 

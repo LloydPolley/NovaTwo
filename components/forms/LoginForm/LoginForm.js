@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import classNames from "classnames/bind";
@@ -6,26 +8,38 @@ import Form from "../Form/Form";
 
 const cx = classNames.bind(styles);
 
-function LoginForm({ signIn }) {
+function LoginForm({ signIn, Switcher }) {
   const {
     register,
     handleSubmit,
+    setError,
+    clearErrors,
     watch,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = async (data) => {
-    const { email, password } = data;
-    try {
-      await signIn(email, password);
-    } catch (e) {
-      console.log("e", e);
+  const onSubmit = async ({ email, password }) => {
+    const signInDetails = await signIn(email, password);
+
+    if (signInDetails) {
+      setError("login", {
+        type: signInDetails.code,
+      });
     }
+  };
+
+  const onChange = () => {
+    clearErrors("login");
   };
 
   return (
     <Form title={"Get Signed in"} para={"Return to your previous songs"}>
-      <form className={cx("auth-form")} onSubmit={handleSubmit(onSubmit)}>
+      <form
+        className={cx("auth-form")}
+        onChange={onChange}
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <Switcher />
         <input placeholder="Email" {...register("email")} />
         <input
           placeholder="Password"
@@ -33,6 +47,7 @@ function LoginForm({ signIn }) {
           name="password"
           {...register("password")}
         />
+        {errors.login && <p>{errors.login.type}</p>}
         <input type="submit" />
       </form>
     </Form>

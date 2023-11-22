@@ -34,6 +34,8 @@ function ProfileForm() {
     }
   }, [userData]);
 
+  console.log("error", errors);
+
   const onSubmit = async (data) => {
     const { name, profileImgForm } = data;
     const { displayName, uid } = userData;

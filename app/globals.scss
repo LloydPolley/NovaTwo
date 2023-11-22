@@ -7,8 +7,9 @@ body {
   // font-family: "Roboto", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
   //   Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   max-width: 100%;
+  background-color: black;
   // background: rgb(4, 13, 29);
-  background: rgb(6 6 6);
+  // background: rgb(6 6 6);
   // background: rgb(6 6 6);
   // background: linear-gradient(
   //   0deg,
@@ -55,30 +56,5 @@ label {
   }
   body {
     color: white;
-    // background: #0f0f0f;
   }
-}
-
-$rhap_theme-color: green;
-
-.rhap_container {
-  background-color: #1d1d2900 !important;
-  border: none;
-  // border: 1px solid grey;
-}
-
-.rhap_main-controls-button {
-  color: white !important;
-}
-
-.rhap_time {
-  color: white !important;
-}
-
-.rhap_progress-bar-show-download {
-  background: white !important;
-}
-
-.rhap_header {
-  // text-align: center;
 }

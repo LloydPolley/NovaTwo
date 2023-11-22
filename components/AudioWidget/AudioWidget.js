@@ -18,8 +18,7 @@ const AudioWidget = () => {
   const [currentTime, setCurrentTime] = useState("00:00");
   const [progress, setProgress] = useState(0);
   const [expanded, setExpanded] = useState(false);
-
-  let animationFrameId;
+  const [loadedTrack, setLoadedTrack] = useState(false);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -32,6 +31,7 @@ const AudioWidget = () => {
     audioRef.current.play();
     setIsPlaying(true);
     animateProgressBar();
+    setLoadedTrack(true);
   };
 
   const pause = () => {
@@ -51,7 +51,7 @@ const AudioWidget = () => {
       );
       setCurrentTime(formatTime(Math.floor(audioRef.current.currentTime)));
     };
-    animationFrameId = requestAnimationFrame(updateProgressBar);
+    requestAnimationFrame(updateProgressBar);
   };
 
   const formatTime = (secs) => {
@@ -78,15 +78,21 @@ const AudioWidget = () => {
   };
 
   return (
-    <div className={cx("audio-widget", expanded && "audio-expanded")}>
-      <div
+    <div
+      className={cx(
+        "audio-widget",
+        expanded && "audio-expanded",
+        !loadedTrack && "audio-unloaded"
+      )}
+    >
+      {/* <div
         className={cx("audio-widget__expand-button")}
         onClick={() => {
           setExpanded(!expanded);
         }}
       >
         +
-      </div>
+      </div> */}
       <audio
         ref={audioRef}
         src={trackContext?.audioFileLocation}

@@ -84,11 +84,10 @@ const LoginProvider = ({ children }) => {
     }
   };
 
-  const signIn = (email, password) => {
+  const signIn = async (email, password) => {
     try {
-      return signInWithEmailAndPassword(auth, email, password);
+      await signInWithEmailAndPassword(auth, email, password);
     } catch (e) {
-      console.log("sign in", e);
       return { ...e };
     }
   };

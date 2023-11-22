@@ -7,24 +7,40 @@ import Form from "../Form/Form";
 
 const cx = classNames.bind(styles);
 
-function SignInForm() {
+function SignInForm({ Switcher }) {
   const {
     register,
     handleSubmit,
+    setError,
+    clearErrors,
     formState: { errors },
   } = useForm();
 
   const { registerUser } = useLoginContext();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
     const { email, password, displayName } = data;
-    registerUser({ email, password, displayName });
+    const details = await registerUser({ email, password, displayName });
+
+    if (details) {
+      setError("login", {
+        type: details.code,
+      });
+    }
+  };
+
+  const onChange = () => {
+    clearErrors("login");
   };
 
   return (
     <Form title="Sign up">
-      <form className={cx("auth-form")} onSubmit={handleSubmit(onSubmit)}>
+      <form
+        className={cx("auth-form")}
+        onChange={onChange}
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <Switcher />
         <input placeholder="email" {...register("email")} required />
         <input placeholder="password" {...register("password")} required />
         <input
@@ -32,6 +48,7 @@ function SignInForm() {
           {...register("displayName")}
           required
         />
+        {errors.login && <p>{errors.login.type}</p>}
         <input type="submit" />
       </form>
     </Form>

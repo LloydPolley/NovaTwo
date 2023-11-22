@@ -2,6 +2,7 @@ import Navigation from "../components/Navigation";
 import AudioWidget from "../components/AudioWidget/AudioWidget";
 import LoginProvider from "../context/LoginContext";
 import AudioProvider from "../context/AudioContext";
+import Footer from "../components/Footer";
 import { Lato } from "next/font/google";
 
 const font = Lato({
@@ -26,6 +27,7 @@ export default function RootLayout(props) {
           <AudioProvider>
             <Navigation />
             <div className="wrapper">{children}</div>
+            {/* <Footer /> */}
             <AudioWidget />
           </AudioProvider>
         </LoginProvider>

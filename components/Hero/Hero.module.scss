@@ -46,7 +46,18 @@
 // }
 
 .banner {
-  height: 500px !important;
+  height: 300px !important;
+  background-color: black;
+  border: 1px solid rgb(31, 31, 31);
+  font-size: 60px;
+
+  h1 {
+    transform: skew(0.321rad);
+    color: #807070;
+    letter-spacing: 0.15em;
+    text-shadow: -1px -1px 1px rgba(255, 255, 255, 0.1),
+      1px 1px 1px rgba(0, 0, 0, 0.5);
+  }
 
   @include large {
     border-radius: 10px;

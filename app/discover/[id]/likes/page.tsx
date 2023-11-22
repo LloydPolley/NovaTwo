@@ -1,3 +1,5 @@
+"use client";
+
 import classNames from "classnames/bind";
 import styles from "./artist.module.scss";
 import { getDj } from "../../../../api/getDjs";
@@ -8,13 +10,13 @@ import TrackContainer from "../../../../components/Tracks/TrackContainer";
 
 const cx = classNames.bind(styles);
 
-export const revalidate = 0;
+// Opt out of caching for all data requests in the route segment
+export const dynamic = "force-dynamic";
 
 export default async function DjProfile({ params }) {
   const user = await getDj(params?.id);
   const tracks = await getAllLikedTracks(user?.uid);
 
-  console.log("user", user);
   console.log("tracks", tracks);
 
   return (

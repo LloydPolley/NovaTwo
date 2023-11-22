@@ -13,7 +13,7 @@ export default async function Dj({ searchParams }) {
 
   return (
     <>
-      <Hero title={"Discover"} img="/discover-bg.webp" anim banner />
+      <Hero title={"Releases"} anim banner />
       <Wrapper>
         <TrackContainer tracks={tracks} />
       </Wrapper>

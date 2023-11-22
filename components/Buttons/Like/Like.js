@@ -33,6 +33,7 @@ function Like({ uid, trackId, track, currentUser }) {
   };
 
   useEffect(() => {
+    console.log("fetching like");
     fetchLike();
   }, []);
 

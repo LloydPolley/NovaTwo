@@ -20,12 +20,19 @@ function SignInScreen() {
     redirect(`/discover/${userInfo?.uid}/releases`, "push");
   }
 
+  const switcher = () => (
+    <button className={cx("switch")} onClick={() => setShowLogin(!showLogin)}>
+      {showLogin ? "Reg" : "Log"}
+    </button>
+  );
+
   return (
     <div className={cx("auth-widget")}>
-      {showLogin ? <LoginForm signIn={signIn} /> : <SignUpForm />}
-      <button onClick={() => setShowLogin(!showLogin)}>
-        {showLogin ? "Register" : "Log in"}
-      </button>
+      {showLogin ? (
+        <LoginForm signIn={signIn} Switcher={switcher} />
+      ) : (
+        <SignUpForm Switcher={switcher} />
+      )}
     </div>
   );
 }

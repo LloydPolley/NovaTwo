@@ -9,13 +9,13 @@ const cx = classNames.bind(style);
 const AudioWidget = () => {
   return (
     <div className={cx("footer")}>
-      <div className={cx("footer__left")}>
+      {/* <div className={cx("footer__left")}>
         <p className={cx("footer__date")}>2023</p>
         <p>Nova Sounds</p>
       </div>
       <div className={cx("footer__right")}>
         <p>Sign up</p>
-      </div>
+      </div> */}
     </div>
   );
 };
