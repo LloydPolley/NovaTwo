@@ -5,6 +5,7 @@ import {
   query,
   where,
   DocumentData,
+  orderBy,
 } from "firebase/firestore";
 import { TrackType } from "../types/tracks"; // Replace with the appropriate type definition for your Track
 
@@ -17,7 +18,11 @@ const getAllTracks = async (): Promise<TrackType[]> => {
 };
 
 const getAllLikedTracks = async (uid: string): Promise<TrackType[]> => {
-  const q = query(collection(db, "likes"), where("currentUser", "==", uid));
+  const q = query(
+    collection(db, "likes"),
+    where("currentUser", "==", uid),
+    orderBy("date", "desc")
+  );
   const querySnapshot = await getDocs(q);
   const arr = querySnapshot.docs.map((doc) => doc.data() as TrackType);
   return arr;

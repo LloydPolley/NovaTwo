@@ -10,6 +10,7 @@ import Form from "../Form/Form";
 import Loading from "../../Loading";
 import Link from "next/link";
 import Close from "../../Icons/Close";
+import { redirect } from "next/navigation";
 
 const cx = classNames.bind(styles);
 
@@ -22,10 +23,12 @@ function ProfileForm() {
     formState: { errors },
   } = useForm();
 
-  const { userData, isLoggedIn, setAndUpdateUserDoc } = useLoginContext();
+  const { userData, userInfo, isLoggedIn, setAndUpdateUserDoc } =
+    useLoginContext();
   const [profileImg, setProfileImg] = useState();
 
   const [loading, setLoading] = useState(false);
+  const [finished, setFinished] = useState(false);
   const [nameExists, setNameExists] = useState(null);
 
   useEffect(() => {
@@ -34,7 +37,11 @@ function ProfileForm() {
     }
   }, [userData]);
 
-  console.log("error", errors);
+  useEffect(() => {
+    if (finished) {
+      redirect(`/discover/${userInfo?.uid}/releases`, "push");
+    }
+  }, [finished]);
 
   const onSubmit = async (data) => {
     const { name, profileImgForm } = data;
@@ -43,8 +50,6 @@ function ProfileForm() {
     let profileImgUrl, profileImgAccess, backgroundImgAccess;
 
     setLoading(true);
-
-    console.log("profileImgForm", profileImgForm);
 
     if (profileImgForm.length > 0) {
       profileImgUrl = `gs://novatwo-f3f41.appspot.com/${displayName}/profile/${profileImgForm[0]?.name}`;
@@ -65,6 +70,7 @@ function ProfileForm() {
     });
 
     setLoading(false);
+    setFinished(true);
   };
 
   if (!isLoggedIn) {
@@ -73,7 +79,7 @@ function ProfileForm() {
 
   return (
     <Form title={"Profile"} url="?edit=close">
-      <Loading isLoading={loading} />
+      {/* <Loading isLoading={loading} /> */}
       <form className={cx("auth-form")} onSubmit={handleSubmit(onSubmit)}>
         {!nameExists && (
           <>

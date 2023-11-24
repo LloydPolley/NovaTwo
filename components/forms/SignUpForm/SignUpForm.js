@@ -34,15 +34,14 @@ function SignInForm({ Switcher }) {
   };
 
   return (
-    <Form title="Sign up">
+    <Form title="Create An Account">
       <form
         className={cx("auth-form")}
         onChange={onChange}
         onSubmit={handleSubmit(onSubmit)}
       >
-        <Switcher />
-        <input placeholder="email" {...register("email")} required />
-        <input placeholder="password" {...register("password")} required />
+        <input placeholder="Email" {...register("email")} required />
+        <input placeholder="Password" {...register("password")} required />
         <input
           placeholder="Display Name"
           {...register("displayName")}
@@ -50,6 +49,7 @@ function SignInForm({ Switcher }) {
         />
         {errors.login && <p>{errors.login.type}</p>}
         <input type="submit" />
+        <Switcher />
       </form>
     </Form>
   );

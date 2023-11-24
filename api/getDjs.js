@@ -9,7 +9,6 @@ const getDjLikes = async (input) => {
 };
 
 const getDj = async (input) => {
-  console.log("get Dj");
   const docRef = doc(db, "users", input);
   try {
     const docSnap = await getDoc(docRef);

@@ -14,16 +14,23 @@ function SignInScreen() {
   const [showLogin, setShowLogin] = useState(true);
   const { signIn, isLoggedIn, userInfo } = useLoginContext();
 
-  console.log("userfda", userInfo, isLoggedIn);
-
-  if (isLoggedIn) {
+  if (isLoggedIn && showLogin) {
     redirect(`/discover/${userInfo?.uid}/releases`, "push");
+  } else if (isLoggedIn && !showLogin) {
+    redirect(`/edit`, "push");
   }
 
   const switcher = () => (
-    <button className={cx("switch")} onClick={() => setShowLogin(!showLogin)}>
-      {showLogin ? "Reg" : "Log"}
-    </button>
+    <>
+      {showLogin ? (
+        <p>Need an account? Create one here</p>
+      ) : (
+        <p>Already have an account? Sign in</p>
+      )}
+      <button className={cx("switch")} onClick={() => setShowLogin(!showLogin)}>
+        {showLogin ? "Create Account" : "Sign in"}
+      </button>
+    </>
   );
 
   return (

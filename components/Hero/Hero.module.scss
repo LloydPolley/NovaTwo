@@ -48,15 +48,15 @@
 .banner {
   height: 300px !important;
   background-color: black;
-  border: 1px solid rgb(31, 31, 31);
+  // border: 1px solid rgb(31, 31, 31);
   font-size: 60px;
 
   h1 {
-    transform: skew(0.321rad);
-    color: #807070;
-    letter-spacing: 0.15em;
-    text-shadow: -1px -1px 1px rgba(255, 255, 255, 0.1),
-      1px 1px 1px rgba(0, 0, 0, 0.5);
+    // transform: skew(0.1rad);
+    // color: #807070;
+    // letter-spacing: 0.15em;
+    // text-shadow: -10px 10px 0px #00e6e6, -20px 20px 0px #01cccc,
+    //   -30px 30px 0px #00bdbd;
   }
 
   @include large {

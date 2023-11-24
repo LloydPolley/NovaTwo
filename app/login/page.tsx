@@ -8,7 +8,7 @@ const cx = classNames.bind(styles);
 function SignInScreen() {
   return (
     <div className={cx("page")}>
-      <ProfileForm />
+      {/* <ProfileForm /> */}
       <AuthWidget />
     </div>
   );

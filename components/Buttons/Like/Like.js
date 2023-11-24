@@ -8,6 +8,7 @@ import FavouriteFilled from "../../Icons/FavouriteFilled";
 import {
   addLikeToTracks,
   deleteLikeFromTracks,
+  addLikeToCollection,
   isLikedByUser,
 } from "../../../api/addLike";
 import { useLoginContext } from "../../../context/LoginContext";
@@ -24,17 +25,16 @@ function Like({ uid, trackId, track, currentUser }) {
   };
 
   const clickHandler = async () => {
-    console.log("click handler", isLiked ? "delete" : "add");
     const obj = { uid, trackId, track, currentUser: userData?.uid };
     console.log("liel", obj);
     setIsLiked(
-      isLiked ? await deleteLikeFromTracks(obj) : await addLikeToTracks(obj)
+      isLiked ? await deleteLikeFromTracks(obj) : await addLikeToCollection(obj)
     );
   };
 
   useEffect(() => {
     console.log("fetching like");
-    fetchLike();
+    // fetchLike();
   }, []);
 
   return (

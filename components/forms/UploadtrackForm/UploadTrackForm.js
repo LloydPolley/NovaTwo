@@ -71,10 +71,10 @@ function UploadTrackForm() {
     });
 
     setLoading(false);
-    redirect(
-      `${window.location.origin}${window.location.pathname}?upload=false`,
-      "push"
-    );
+    // redirect(
+    //   `${window.location.origin}${window.location.pathname}?upload=false`,
+    //   "push"
+    // );
   };
 
   if (!isLoggedIn) {
@@ -82,8 +82,8 @@ function UploadTrackForm() {
   }
 
   return (
-    <Form title={"Uploads"} url="?upload=close">
-      <Loading isLoading={loading} />
+    <Form title={"Uploads"} url="?upload=close" loading={loading}>
+      {/* <Loading isLoading={loading} /> */}
       <form className={cx("auth-form")} onSubmit={handleSubmit(onSubmit)}>
         <input placeholder={"Track name"} {...register("name")} required />
         <input placeholder={"Label"} {...register("label")} required />

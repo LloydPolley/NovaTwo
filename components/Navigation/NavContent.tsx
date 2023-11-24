@@ -18,6 +18,8 @@ const NavContent = ({ open, closeNav }) => {
   const activeSegment = useSelectedLayoutSegment();
   const pathname = usePathname();
 
+  console.log("active", activeSegment);
+
   useEffect(() => {
     closeNav();
   }, [pathname]);
@@ -25,6 +27,12 @@ const NavContent = ({ open, closeNav }) => {
   return (
     <div className={cx("nav-content", open && "nav-content__open")}>
       <div className={cx("nav-content__inner")}>
+        <Link
+          className={cx(activeSegment === null && "nav-content__active")}
+          href={"/"}
+        >
+          Home
+        </Link>
         <Link
           className={cx(activeSegment === "discover" && "nav-content__active")}
           href={"/discover"}
@@ -40,6 +48,12 @@ const NavContent = ({ open, closeNav }) => {
               onClick={closeNav}
             >
               {!userData?.profile ? "LOGIN" : userData?.displayName}
+            </Link>
+            <Link href={`/edit`} onClick={closeNav}>
+              Edit
+            </Link>
+            <Link href={`/upload`} onClick={closeNav}>
+              Upload
             </Link>
             <button
               className={cx("nav-content__sign-out")}

@@ -11,9 +11,9 @@ const addTrack = async ({
   label,
   uid,
 }) => {
-  console.log("audio src", audioSrc);
   try {
     const date = new Date().toLocaleString();
+    const timestamp = Date.now();
     const docRef = await addDoc(collection(db, "tracks"), {
       name,
       artist,
@@ -21,6 +21,7 @@ const addTrack = async ({
       audioFileLocation,
       artworkFileLocation,
       date,
+      timestamp,
       uid,
       label,
     });

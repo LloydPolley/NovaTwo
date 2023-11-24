@@ -39,7 +39,6 @@ function LoginForm({ signIn, Switcher }) {
         onChange={onChange}
         onSubmit={handleSubmit(onSubmit)}
       >
-        <Switcher />
         <input placeholder="Email" {...register("email")} />
         <input
           placeholder="Password"
@@ -49,6 +48,7 @@ function LoginForm({ signIn, Switcher }) {
         />
         {errors.login && <p>{errors.login.type}</p>}
         <input type="submit" />
+        <Switcher />
       </form>
     </Form>
   );

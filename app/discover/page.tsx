@@ -13,8 +13,9 @@ export default async function Dj({ searchParams }) {
 
   return (
     <>
-      <Hero title={"Releases"} anim banner />
+      {/* <Hero title={"Releases"} anim banner /> */}
       <Wrapper>
+        <h1 className={cx("title")}>Releases.</h1>
         <TrackContainer tracks={tracks} />
       </Wrapper>
     </>

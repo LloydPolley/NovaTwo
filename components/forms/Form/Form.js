@@ -7,9 +7,12 @@ import Close from "../../Icons/Close";
 
 const cx = classNames.bind(styles);
 
-function Form({ title, para, children, classForm, url }) {
+function Form({ title, para, children, classForm, url, loading }) {
   return (
     <div className={cx("form", classForm)}>
+      <div className={cx("form__load", loading && "form__show-load")}>
+        Loading
+      </div>
       <div className={cx("form__container")}>
         <div className={cx("form__header")}>
           <h1>{title}</h1>

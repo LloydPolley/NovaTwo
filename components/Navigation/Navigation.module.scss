@@ -15,7 +15,6 @@
   }
 
   &__burger {
-    all: unset;
     svg {
       width: 30px;
       height: 30px;
@@ -37,12 +36,10 @@
 
   &__home {
     padding: 10px 20px;
-    // border: $borderOne;
   }
 
   &__active {
     border: none;
-    // border-radius: $borderRaidus;
     border-bottom: 2px solid white;
   }
 
@@ -50,48 +47,61 @@
   button {
     text-transform: uppercase;
     font-weight: 700;
-    // line-height: 35px;
   }
 }
 
 .nav-content {
-  background-color: rgba(0, 0, 0, 0.931);
+  background-color: rgba(0, 0, 0, 1);
   gap: 15px;
-  width: 101%;
   max-width: 1600px;
   position: fixed;
-  top: 0;
-  left: 50%;
-  transform: translatex(-50%);
-  z-index: 2;
-  transition: 0.75s ease-in-out all;
-  max-height: 0;
+  top: 0.5%;
+  left: 1%;
+  min-width: 0;
+  width: 300px;
+  z-index: 6;
+  transition: 0.5s ease-in-out all;
+  height: 99vh;
   overflow: hidden;
   backdrop-filter: blur(10px);
+  border-radius: 10px;
+  border: $borderOne;
+  opacity: 0;
+  font-family: var(--font-raleway);
 
   &__inner {
-    // padding: 60px;
-    max-width: 1600px;
-    margin-top: 20%;
-    margin-bottom: 15%;
+    margin-top: 35%;
     display: flex;
     flex-direction: column;
-    // border: 2px solid white;
+    text-transform: uppercase;
     height: 100%;
     font-size: 30px;
-    // border-radius: $borderRaidus;
     text-align: left;
     z-index: 1;
     overflow: hidden;
-    // width: 100vw;
     opacity: 0;
     transition: 0.5s ease all;
-    padding: 10px 20px;
-    text-align: center;
+    padding: 10px 40px;
+    font-weight: 600;
+    color: rgb(124, 124, 124);
 
-    a {
+    a,
+    button {
+      transition: 0.2s all;
       margin-bottom: 50px;
+
+      &:hover {
+        color: white;
+      }
     }
+  }
+
+  &__active {
+    &::before {
+      content: "";
+    }
+    color: white;
+    // margin-left: 10px;
   }
 
   &__sign-out {
@@ -99,11 +109,10 @@
   }
 
   &__open {
-    // transform: translatey(0%);
-    max-height: 100vh;
-
+    opacity: 1;
+    min-width: 300px;
     .nav-content__inner {
-      transition-delay: 0.5s;
+      transition-delay: 0.2s;
       opacity: 1;
     }
   }

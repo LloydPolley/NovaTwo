@@ -15,11 +15,13 @@ const TrackContainer = async ({ tracks }: TrackListProps) => {
   return (
     <Suspense fallback={<LoadingGrid />}>
       <div className={cx("track-grid")}>
-        {tracks.map((track) => {
-          if (!track.artist) return null;
+        {tracks?.length
+          ? tracks.map((track) => {
+              if (!track.artist) return null;
 
-          return <Track key={track.name} track={track} />;
-        })}
+              return <Track key={track.name} track={track} />;
+            })
+          : "No Tracks"}
       </div>
     </Suspense>
   );
