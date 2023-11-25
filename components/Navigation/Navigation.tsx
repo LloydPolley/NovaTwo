@@ -2,7 +2,6 @@
 
 import classNames from "classnames/bind";
 import style from "./Navigation.module.scss";
-import Link from "next/link";
 import { useLoginContext } from "../../context/LoginContext";
 import { useSelectedLayoutSegment } from "next/navigation";
 import { useState } from "react";
@@ -25,9 +24,6 @@ const Navigation = () => {
       <NavContent open={open} closeNav={closeNav} />
       <div className={cx("nav")}>
         <div className={cx("nav__bar")}>
-          <Link className={cx("nav__home")} href={"/"}>
-            Nova
-          </Link>
           <button
             className={cx("nav__burger")}
             onClick={() => {
@@ -36,6 +32,9 @@ const Navigation = () => {
           >
             <Burger />
           </button>
+          {/* <Link className={cx("nav__home")} href={"/"}>
+            Nova
+          </Link> */}
         </div>
       </div>
     </>

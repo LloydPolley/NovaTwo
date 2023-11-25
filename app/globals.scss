@@ -18,6 +18,10 @@ body {
   //   rgba(255, 255, 255, 0) 100%
   // );
   min-height: 100vh;
+
+  @include small {
+    margin-bottom: 100px;
+  }
 }
 
 h1 {

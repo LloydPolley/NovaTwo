@@ -2,7 +2,6 @@
 
 .form {
   position: relative;
-  margin: 20px auto 0;
   text-align: left;
   background-color: $widgetColor;
   border-radius: $borderRaidus;
@@ -13,10 +12,16 @@
   width: 80%;
   padding: 20px;
   border: $borderOne;
-  max-width: 400px;
+  width: 80%;
+  max-width: 375px;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
   @include large {
-    margin: 100px auto 0;
+    // margin: 100px auto 0;
   }
 
   &__load {
@@ -57,7 +62,7 @@
 
   input,
   label {
-    all: unset;
+    // all: unset;
     border-radius: 10px;
     padding: 20px;
     border: $borderOne;

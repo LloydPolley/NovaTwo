@@ -2,8 +2,17 @@
 
 .upload-element {
   cursor: pointer;
+
+  input[type="checkbox"] {
+    all: unset;
+  }
 }
 
+.mix-toggle {
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+}
 .upload-button[type="file"] {
   opacity: 0;
   height: 0;

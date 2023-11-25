@@ -14,6 +14,8 @@ export type TrackType = {
   artwork?: string;
   audioFileLocation: string;
   trackId: string;
+  // timestamp: number;
+  mix: boolean;
 };
 
 export type TrackWrapperProps = {

@@ -1,17 +1,20 @@
 @import "../../styles/mixins.scss";
 
 .nav {
-  position: sticky;
-  background-color: black;
-  top: 0px;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.863);
+  top: 1%;
+  left: 1.5%;
   padding: 4px 2px;
-  width: 100%;
-  max-width: 1600px;
+  // width: 100%;
+  // max-width: 1600px;
+  border-radius: 10px;
+  padding: 10px;
   margin: auto;
-  z-index: 5;
+  z-index: 7;
 
   @include large {
-    padding: 10px 5px;
+    padding: 10px;
   }
 
   &__burger {
@@ -22,20 +25,24 @@
   }
 
   &__bar {
+    height: 30px;
     position: relative;
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
     line-height: 30px;
     overflow: visible;
     width: 99%;
 
+    button {
+      all: unset;
+    }
     p {
       margin: 0;
     }
   }
 
   &__home {
-    padding: 10px 20px;
+    margin-left: 20px;
   }
 
   &__active {
@@ -68,6 +75,7 @@
   border: $borderOne;
   opacity: 0;
   font-family: var(--font-raleway);
+  pointer-events: none;
 
   &__inner {
     margin-top: 35%;
@@ -75,20 +83,21 @@
     flex-direction: column;
     text-transform: uppercase;
     height: 100%;
-    font-size: 30px;
     text-align: left;
     z-index: 1;
     overflow: hidden;
     opacity: 0;
     transition: 0.5s ease all;
     padding: 10px 40px;
-    font-weight: 600;
+
     color: rgb(124, 124, 124);
 
     a,
     button {
       transition: 0.2s all;
       margin-bottom: 50px;
+      font-weight: 600;
+      font-size: 30px;
 
       &:hover {
         color: white;
@@ -109,6 +118,7 @@
   }
 
   &__open {
+    pointer-events: all;
     opacity: 1;
     min-width: 300px;
     .nav-content__inner {

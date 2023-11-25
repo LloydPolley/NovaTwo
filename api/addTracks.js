@@ -1,5 +1,5 @@
 import { db, storage } from "../utils/firebase";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { ref, getDownloadURL, getStorage, uploadBytes } from "firebase/storage";
 
 const addTrack = async ({
@@ -10,10 +10,10 @@ const addTrack = async ({
   artworkFileLocation,
   label,
   uid,
+  mix,
 }) => {
   try {
     const date = new Date().toLocaleString();
-    const timestamp = Date.now();
     const docRef = await addDoc(collection(db, "tracks"), {
       name,
       artist,
@@ -21,9 +21,10 @@ const addTrack = async ({
       audioFileLocation,
       artworkFileLocation,
       date,
-      timestamp,
+      timestamp: serverTimestamp(),
       uid,
       label,
+      mix,
     });
   } catch (e) {
     console.log("e", e);

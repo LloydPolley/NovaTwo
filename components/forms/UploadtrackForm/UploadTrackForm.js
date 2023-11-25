@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { addTrack, uploadFile, fetchFile } from "../../../api/addTracks";
 import classNames from "classnames/bind";
@@ -21,14 +21,21 @@ function UploadTrackForm() {
     formState: { errors },
   } = useForm();
 
-  const { userData, isLoggedIn } = useLoginContext();
+  const { userData, userInfo, isLoggedIn } = useLoginContext();
 
   const [image, setImage] = useState();
   const [audio, setAudio] = useState();
   const [loading, setLoading] = useState(false);
+  const [complete, setComplete] = useState(false);
+
+  useEffect(() => {
+    if (complete) {
+      redirect(`/discover/${userInfo?.uid}/releases`, "push");
+    }
+  }, [complete]);
 
   const onSubmit = async (data) => {
-    const { name, audioFile, artworkFile, label } = data;
+    const { name, audioFile, artworkFile, label, mix } = data;
     const { displayName, uid } = userData;
 
     const audioUrl = `gs://novatwo-f3f41.appspot.com/${displayName}/tracks/${name}/audio/${audioFile[0].name}`;
@@ -68,9 +75,11 @@ function UploadTrackForm() {
       artworkFileLocation: artworkAccess,
       label,
       uid,
+      mix,
     });
 
     setLoading(false);
+    setComplete(true);
     // redirect(
     //   `${window.location.origin}${window.location.pathname}?upload=false`,
     //   "push"
@@ -82,8 +91,7 @@ function UploadTrackForm() {
   }
 
   return (
-    <Form title={"Uploads"} url="?upload=close" loading={loading}>
-      {/* <Loading isLoading={loading} /> */}
+    <Form title={"Uploads"} loading={loading}>
       <form className={cx("auth-form")} onSubmit={handleSubmit(onSubmit)}>
         <input placeholder={"Track name"} {...register("name")} required />
         <input placeholder={"Label"} {...register("label")} required />
@@ -104,6 +112,16 @@ function UploadTrackForm() {
         <label htmlFor="artwork-upload" className={cx("upload-element")}>
           {image ? image : "Upload artwork"}
         </label>
+        <div className={cx("mix-toggle")}>
+          <p>Is Mix</p>
+          <input
+            type="checkbox"
+            id="mix"
+            placeholder={"Mix"}
+            {...register("mix")}
+          />
+        </div>
+
         <input
           className={cx("upload-button")}
           id="artwork-upload"

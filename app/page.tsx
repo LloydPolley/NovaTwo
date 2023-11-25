@@ -9,12 +9,14 @@ import Carousel from "../components/Carousel";
 const cx = classNames.bind(styles);
 
 export default async function Home() {
-  const data = await getTracksWhere("label", "afterlife");
+  const data = await getTracksWhere("label", "Afterlife");
   const tracks = await getTracksWhere("featured", true);
+
+  console.log("get", data);
 
   return (
     <>
-      <Hero title="GENESYS" imgClass="hero__home" />
+      <Hero title="Higher Power" imgClass="hero__home" />
       <Wrapper>
         <div className={cx("carousel-block")}>
           <h3>AFTERLIFE</h3>

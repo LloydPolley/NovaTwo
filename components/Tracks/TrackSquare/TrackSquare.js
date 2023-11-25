@@ -28,7 +28,7 @@ const TrackSquare = ({ track }) => {
     <div
       className={cx("dj-square")}
       style={{
-        backgroundImage: `url(${artwork || artworkFileLocation})`,
+        backgroundImage: `url("${artworkFileLocation}")`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}

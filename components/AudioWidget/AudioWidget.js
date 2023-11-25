@@ -69,6 +69,7 @@ const AudioWidget = () => {
     const targetTime = (percentage / 100) * audioRef.current.duration;
     audioRef.current.currentTime = targetTime;
     setCurrentTime(formatTime(Math.floor(targetTime)));
+    console.log("change range");
   };
 
   const loaded = () => {

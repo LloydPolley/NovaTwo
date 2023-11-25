@@ -49,10 +49,20 @@ const NavContent = ({ open, closeNav }) => {
             >
               {!userData?.profile ? "LOGIN" : userData?.displayName}
             </Link>
-            <Link href={`/edit`} onClick={closeNav}>
+            <Link
+              className={cx(activeSegment === "edit" && "nav-content__active")}
+              href={`/edit`}
+              onClick={closeNav}
+            >
               Edit
             </Link>
-            <Link href={`/upload`} onClick={closeNav}>
+            <Link
+              className={cx(
+                activeSegment === "upload" && "nav-content__active"
+              )}
+              href={`/upload`}
+              onClick={closeNav}
+            >
               Upload
             </Link>
             <button
