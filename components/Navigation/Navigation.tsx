@@ -12,7 +12,6 @@ const cx = classNames.bind(style);
 
 const Navigation = () => {
   const [open, setOpen] = useState(false);
-  const { userData, signOutUser } = useLoginContext();
   const activeSegment = useSelectedLayoutSegment();
 
   const closeNav = () => {

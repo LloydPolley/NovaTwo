@@ -12,17 +12,32 @@ type TrackListProps = {
 };
 
 const TrackContainer = async ({ tracks }: TrackListProps) => {
+  console.log("tracks", tracks.length);
+
   return (
     <Suspense fallback={<LoadingGrid />}>
-      <div className={cx("track-grid")}>
-        {tracks?.length
-          ? tracks.map((track) => {
-              if (!track.artist) return null;
+      {tracks?.length > 0 ? (
+        <div className={cx("track-grid")}>
+          {console.log("runnings", tracks?.length, tracks)}
+          {tracks.map((track) => {
+            if (!track.artist) return null;
+            return <Track key={track.name} track={track} />;
+          })}
+        </div>
+      ) : (
+        <LoadingGrid />
+      )}
 
-              return <Track key={track.name} track={track} />;
-            })
-          : "No Tracks"}
-      </div>
+      {/* <div className={cx("track-grid")}>
+        {tracks?.length > 0 ? (
+          tracks.map((track) => {
+            if (!track.artist) return null;
+            return <Track key={track.name} track={track} />;
+          })
+        ) : (
+          <LoadingGrid />
+        )}
+      </div> */}
     </Suspense>
   );
 };

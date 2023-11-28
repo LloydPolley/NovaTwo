@@ -36,9 +36,9 @@ const getAllTracksOrdered = async (ascending: string): Promise<TrackType[]> => {
 
 const getAllLikedTracks = async (uid: string): Promise<TrackType[]> => {
   const q = query(
-    collection(db, "likes"),
-    where("currentUser", "==", uid),
-    orderBy("timestamp", "asc")
+    collection(db, "likes")
+    // where("currentUser", "==", uid),
+    // orderBy("timestamp", "asc")
   );
   const querySnapshot = await getDocs(q);
   const arr = querySnapshot.docs.map((doc) => doc.data() as TrackType);

@@ -7,15 +7,17 @@ import LoginForm from "../LoginForm/LoginForm";
 import SignUpForm from "../SignUpForm/SignUpForm";
 import { useLoginContext } from "../../../context/LoginContext";
 import { redirect } from "next/navigation";
+import { signIn } from "../../../api/login";
 
 const cx = classNames.bind(styles);
 
 function SignInScreen() {
   const [showLogin, setShowLogin] = useState(true);
-  const { signIn, isLoggedIn, userInfo } = useLoginContext();
+  const { isLoggedIn, userData } = useLoginContext();
 
   if (isLoggedIn && showLogin) {
-    redirect(`/discover/${userInfo?.uid}/releases`, "push");
+    console.log("userdata --------------", userData);
+    redirect(`/discover/${userData?.uid}/releases`, "push");
   } else if (isLoggedIn && !showLogin) {
     redirect(`/edit`, "push");
   }

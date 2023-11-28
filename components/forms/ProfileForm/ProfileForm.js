@@ -11,6 +11,7 @@ import Loading from "../../Loading";
 import Link from "next/link";
 import Close from "../../Icons/Close";
 import { redirect } from "next/navigation";
+import { updateUserDoc } from "../../../api/signUp";
 
 const cx = classNames.bind(styles);
 
@@ -23,8 +24,7 @@ function ProfileForm() {
     formState: { errors },
   } = useForm();
 
-  const { userData, userInfo, isLoggedIn, setAndUpdateUserDoc } =
-    useLoginContext();
+  const { userData, isLoggedIn } = useLoginContext();
   const [profileImg, setProfileImg] = useState();
 
   const [loading, setLoading] = useState(false);
@@ -39,7 +39,7 @@ function ProfileForm() {
 
   useEffect(() => {
     if (finished) {
-      redirect(`/discover/${userInfo?.uid}/releases`, "push");
+      redirect(`/discover/${userData?.uid}/releases`, "push");
     }
   }, [finished]);
 
@@ -61,11 +61,9 @@ function ProfileForm() {
       });
       profileImgAccess = await fetchFile(profileImgUrl);
     }
-
-    await setAndUpdateUserDoc({
-      background: backgroundImgAccess,
+    console.log("user info");
+    await updateUserDoc(userData?.uid, {
       profile: profileImgAccess,
-      uid,
       displayName: name,
     });
 

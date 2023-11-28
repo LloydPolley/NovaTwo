@@ -7,18 +7,18 @@ import Link from "next/link";
 import { useLoginContext } from "../../context/LoginContext";
 import {
   useSelectedLayoutSegment,
+  useSelectedLayoutSegments,
   useRouter,
   usePathname,
 } from "next/navigation";
+import { signOutUser } from "../../api/login";
 
 const cx = classNames.bind(style);
 
 const NavContent = ({ open, closeNav }) => {
-  const { userData, signOutUser } = useLoginContext();
-  const activeSegment = useSelectedLayoutSegment();
+  const { userData } = useLoginContext();
+  const activeSegments = useSelectedLayoutSegments();
   const pathname = usePathname();
-
-  console.log("active", activeSegment);
 
   useEffect(() => {
     closeNav();
@@ -28,13 +28,17 @@ const NavContent = ({ open, closeNav }) => {
     <div className={cx("nav-content", open && "nav-content__open")}>
       <div className={cx("nav-content__inner")}>
         <Link
-          className={cx(activeSegment === null && "nav-content__active")}
+          className={cx(activeSegments === null && "nav-content__active")}
           href={"/"}
         >
           Home
         </Link>
         <Link
-          className={cx(activeSegment === "discover" && "nav-content__active")}
+          className={cx(
+            activeSegments[0] === "discover" &&
+              activeSegments.length === 1 &&
+              "nav-content__active"
+          )}
           href={"/discover"}
         >
           Discover
@@ -44,13 +48,18 @@ const NavContent = ({ open, closeNav }) => {
         ) : (
           <>
             <Link
+              className={cx(
+                activeSegments[1] === userData.uid && "nav-content__active"
+              )}
               href={`/discover/${userData?.uid}/releases`}
               onClick={closeNav}
             >
               {!userData?.profile ? "LOGIN" : userData?.displayName}
             </Link>
             <Link
-              className={cx(activeSegment === "edit" && "nav-content__active")}
+              className={cx(
+                activeSegments[0] === "edit" && "nav-content__active"
+              )}
               href={`/edit`}
               onClick={closeNav}
             >
@@ -58,7 +67,7 @@ const NavContent = ({ open, closeNav }) => {
             </Link>
             <Link
               className={cx(
-                activeSegment === "upload" && "nav-content__active"
+                activeSegments[0] === "upload" && "nav-content__active"
               )}
               href={`/upload`}
               onClick={closeNav}

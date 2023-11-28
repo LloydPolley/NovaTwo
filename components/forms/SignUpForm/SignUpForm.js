@@ -4,6 +4,7 @@ import classNames from "classnames/bind";
 import styles from "./SignUpForm.module.scss";
 import { useLoginContext } from "../../../context/LoginContext";
 import Form from "../Form/Form";
+import { registerUser } from "../../../api/signUp";
 
 const cx = classNames.bind(styles);
 
@@ -15,8 +16,6 @@ function SignInForm({ Switcher }) {
     clearErrors,
     formState: { errors },
   } = useForm();
-
-  const { registerUser } = useLoginContext();
 
   const onSubmit = async (data) => {
     const { email, password, displayName } = data;

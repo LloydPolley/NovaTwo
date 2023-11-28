@@ -12,6 +12,7 @@ const getDj = async (input) => {
   const docRef = doc(db, "users", input);
   try {
     const docSnap = await getDoc(docRef);
+    console.log("running ", docSnap.data());
     return docSnap.data();
   } catch (e) {
     console.log("error", e);

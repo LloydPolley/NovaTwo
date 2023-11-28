@@ -21,7 +21,7 @@ function UploadTrackForm() {
     formState: { errors },
   } = useForm();
 
-  const { userData, userInfo, isLoggedIn } = useLoginContext();
+  const { userData, isLoggedIn } = useLoginContext();
 
   const [image, setImage] = useState();
   const [audio, setAudio] = useState();
@@ -30,7 +30,7 @@ function UploadTrackForm() {
 
   useEffect(() => {
     if (complete) {
-      redirect(`/discover/${userInfo?.uid}/releases`, "push");
+      redirect(`/discover/${userData?.uid}/releases`, "push");
     }
   }, [complete]);
 
