@@ -5,7 +5,7 @@ import style from "./LoadingGrid.module.scss";
 const cx = classNames.bind(style);
 
 const LoadingGrid = () => {
-  const elements = Array.from({ length: 8 }, (_, index) => (
+  const elements = Array.from({ length: 4 }, (_, index) => (
     <div key={index} className={cx("track-grid__element")}></div>
   ));
 

@@ -33,7 +33,8 @@
     "components/Navigation/Navigation.js",
     "components/Tracks/TrackSquare/TrackSquare.js",
     "api/getDjs.js",
-    "context/AudioContext.js"
+    "context/AudioContext.js",
+    "context/LikesContext.js"
   ],
   "exclude": ["node_modules"]
 }

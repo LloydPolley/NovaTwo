@@ -18,6 +18,7 @@ const raleway = Raleway({
 });
 
 import "./globals.scss";
+import LikesProvider from "../context/LikesContext";
 
 export default function RootLayout(props) {
   const { children } = props;
@@ -31,12 +32,14 @@ export default function RootLayout(props) {
       </head>
       <body id="body">
         <LoginProvider>
-          <AudioProvider>
-            <Navigation />
-            <div className="wrapper">{children}</div>
-            {/* <Footer /> */}
-            <AudioWidget />
-          </AudioProvider>
+          <LikesProvider>
+            <AudioProvider>
+              <Navigation />
+              <div className="wrapper">{children}</div>
+              {/* <Footer /> */}
+              <AudioWidget />
+            </AudioProvider>
+          </LikesProvider>
         </LoginProvider>
       </body>
     </html>

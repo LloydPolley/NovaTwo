@@ -10,7 +10,7 @@ const cx = classNames.bind(styles);
 
 export default async function Home() {
   const data = await getTracksWhere("label", "Afterlife");
-  const tracks = await getTracksWhere("featured", true);
+  const tracks = await getTracksWhere("mix", true);
 
   console.log("get", data);
 
@@ -19,12 +19,12 @@ export default async function Home() {
       <Hero title="Higher Power" imgClass="hero__home" />
       <Wrapper>
         <div className={cx("carousel-block")}>
-          <h3>AFTERLIFE</h3>
-          <Carousel data={data} />
+          <h3>DJ SET</h3>
+          <Carousel data={tracks} />
         </div>
         <div className={cx("carousel-block")}>
-          <h3>FEATURED</h3>
-          <Carousel data={tracks} />
+          <h3>AFTERLIFE</h3>
+          <Carousel data={data} />
         </div>
       </Wrapper>
     </>

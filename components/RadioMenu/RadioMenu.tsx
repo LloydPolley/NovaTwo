@@ -12,7 +12,6 @@ export default function RadioMenu() {
   const isReleases = url.includes("releases");
   const lastSlashIndex = url.lastIndexOf("/");
   const updatedUrl = url.substring(0, lastSlashIndex);
-  console.log("updated", updatedUrl);
 
   return (
     <div className={cx("radio")}>

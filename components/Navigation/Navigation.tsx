@@ -12,7 +12,6 @@ const cx = classNames.bind(style);
 
 const Navigation = () => {
   const [open, setOpen] = useState(false);
-  const activeSegment = useSelectedLayoutSegment();
 
   const closeNav = () => {
     setOpen(false);
@@ -22,19 +21,23 @@ const Navigation = () => {
     <>
       <NavContent open={open} closeNav={closeNav} />
       <div className={cx("nav")}>
-        <div className={cx("nav__bar")}>
-          <button
-            className={cx("nav__burger")}
-            onClick={() => {
-              setOpen(!open);
-            }}
-          >
-            <Burger />
-          </button>
-          {/* <Link className={cx("nav__home")} href={"/"}>
-            Nova
-          </Link> */}
-        </div>
+        <button
+          className={cx("nav__burger")}
+          onClick={() => {
+            setOpen(!open);
+          }}
+        >
+          <div
+            className={cx("line", "line__1", open && "line__1--active")}
+          ></div>
+          <div
+            className={cx("line", "line__2", open && "line__2--active")}
+          ></div>
+          <div
+            className={cx("line", "line__3", open && "line__3--active")}
+          ></div>
+          {/* <Burger /> */}
+        </button>
       </div>
     </>
   );

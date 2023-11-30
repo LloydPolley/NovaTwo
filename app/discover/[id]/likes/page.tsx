@@ -16,10 +16,7 @@ export const dynamic = "force-dynamic";
 export const revalidate = 1;
 
 export default async function DjProfile({ params }) {
-  console.log("params", params);
-  const user = await getDj(params?.id);
-  const tracks = await getAllLikedTracks(user?.uid);
-  // const likes = await getUserLikes(user.uid);
+  const tracks = await getUserLikes(params?.id);
 
   return (
     <Suspense fallback={<LoadingGrid />}>

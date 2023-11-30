@@ -2,15 +2,8 @@
 
 .nav {
   position: fixed;
-  background-color: rgba(0, 0, 0, 0.863);
   top: 1%;
-  left: 1.5%;
-  padding: 4px 2px;
-  // width: 100%;
-  // max-width: 1600px;
-  border-radius: 10px;
-  padding: 10px;
-  margin: auto;
+  left: 1%;
   z-index: 7;
 
   @include large {
@@ -18,59 +11,78 @@
   }
 
   &__burger {
-    svg {
-      width: 30px;
-      height: 30px;
-    }
-  }
-
-  &__bar {
+    all: unset;
+    border-radius: 50%;
     height: 30px;
+    width: 30px;
     position: relative;
-    display: flex;
-    // justify-content: space-between;
-    line-height: 30px;
-    overflow: visible;
-    width: 99%;
+    display: block;
+    transition: 0.2s all;
 
-    button {
-      all: unset;
+    .line {
+      height: 2px;
+      width: 100%;
+      background-color: white;
+      position: absolute;
+      transition: 0.2s all;
+      transform-origin: 15%;
+
+      &__1 {
+        top: 25%;
+        &--active {
+          transform: rotate(45deg);
+        }
+      }
+
+      &__2 {
+        top: 50%;
+        &--active {
+          opacity: 0;
+        }
+      }
+
+      &__3 {
+        top: 75%;
+        &--active {
+          transform: rotate(-45deg);
+        }
+      }
     }
-    p {
-      margin: 0;
-    }
   }
+}
 
-  &__home {
-    margin-left: 20px;
-  }
+.nav-overlay {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: black;
+  opacity: 0;
+  transition: 0.1s ease-in-out all;
+  z-index: 4;
+  pointer-events: none;
 
-  &__active {
-    border: none;
-    border-bottom: 2px solid white;
-  }
-
-  a,
-  button {
-    text-transform: uppercase;
-    font-weight: 700;
+  &__open {
+    pointer-events: visible;
+    opacity: 0.7;
   }
 }
 
 .nav-content {
-  background-color: rgba(0, 0, 0, 1);
+  background-color: rgba(0, 0, 0, 0.5);
   gap: 15px;
   max-width: 1600px;
   position: fixed;
-  top: 0.5%;
-  left: 1%;
+  top: 0.3%;
+  left: 0.3%;
   min-width: 0;
   width: 300px;
   z-index: 6;
-  transition: 0.5s ease-in-out all;
+  transition: 0.2s ease-in-out all;
   height: 99vh;
   overflow: hidden;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(50px);
   border-radius: 10px;
   border: $borderOne;
   opacity: 0;
@@ -89,8 +101,7 @@
     opacity: 0;
     transition: 0.5s ease all;
     padding: 10px 40px;
-
-    color: rgb(124, 124, 124);
+    color: rgb(152, 152, 152);
 
     a,
     button {
@@ -101,6 +112,7 @@
 
       &:hover {
         color: white;
+        // display: list-item;
       }
     }
   }
@@ -110,6 +122,8 @@
       content: "";
     }
     color: white;
+    margin-left: 26px;
+    display: list-item;
     // margin-left: 10px;
   }
 

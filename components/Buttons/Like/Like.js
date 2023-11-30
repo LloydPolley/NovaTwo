@@ -9,33 +9,32 @@ import {
   addLikeToTracks,
   deleteLikeFromTracks,
   addLikeToCollection,
+  deleteLikeTracksCollection,
   isLikedByUser,
 } from "../../../api/addLike";
 import { useLoginContext } from "../../../context/LoginContext";
 
 const cx = classNames.bind(styles);
 
-function Like({ uid, trackId, track, currentUser }) {
+function Like({ track, isLikedContext }) {
   const [isLiked, setIsLiked] = useState(false);
   const { userData } = useLoginContext();
 
-  const fetchLike = async () => {
-    const f = await isLikedByUser({ currentUser, trackId });
-    await setIsLiked(f);
-  };
-
   const clickHandler = async () => {
-    const obj = { uid, trackId, track, currentUser: userData?.uid };
+    const obj = { track, currentUser: userData?.uid };
     console.log("liel", obj);
     setIsLiked(
-      isLiked ? await deleteLikeFromTracks(obj) : await addLikeToCollection(obj)
+      !isLiked
+        ? await addLikeToCollection(obj)
+        : await deleteLikeTracksCollection(obj)
     );
   };
 
   useEffect(() => {
-    console.log("fetching like");
+    console.log("fetching like", isLikedContext);
+    setIsLiked(isLikedContext);
     // fetchLike();
-  }, []);
+  }, [isLikedContext, isLiked]);
 
   return (
     <button

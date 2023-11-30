@@ -7,7 +7,10 @@ import Like from "../../Buttons/Like";
 import Link from "next/link";
 import { useAudioContext } from "../../../context/AudioContext";
 import { useLoginContext } from "../../../context/LoginContext";
+import { useLikesContext } from "../../../context/LikesContext";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import { isLikedByUser } from "../../../api/addLike";
 
 const cx = classNames.bind(style);
 
@@ -22,13 +25,25 @@ const Track = ({ track }) => {
     artwork,
   } = track;
 
-  // console.log("track", track);
+  const [isLiked, setIsLiked] = useState(false);
 
+  const { likes } = useLikesContext();
   const { playContext, pauseContext, isPlaying, trackContext } =
     useAudioContext();
+  const { userData } = useLoginContext();
+
   const isPlayingLocal =
     isPlaying && trackContext?.audioFileLocation === audioFileLocation;
-  const { userData } = useLoginContext();
+
+  useEffect(() => {
+    console.log();
+    const isLikedByUser = likes.find(
+      (likedTrack) => likedTrack.trackId === trackId
+    );
+
+    setIsLiked(isLikedByUser);
+    console.log("--------------", isLikedByUser);
+  }, [likes]);
 
   return (
     <div
@@ -72,6 +87,7 @@ const Track = ({ track }) => {
               uid={uid}
               currentUser={userData?.uid}
               trackId={trackId}
+              isLikedContext={!!isLiked}
               track={{
                 artist,
                 name,

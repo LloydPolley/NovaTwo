@@ -33,7 +33,7 @@ function LoginForm({ signIn, Switcher }) {
   };
 
   return (
-    <Form title={"Get Signed in"} para={"Return to your previous songs"}>
+    <Form title={"Get Signed in"}>
       <form
         className={cx("auth-form")}
         onChange={onChange}

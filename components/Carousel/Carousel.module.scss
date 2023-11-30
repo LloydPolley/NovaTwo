@@ -7,6 +7,7 @@
   justify-content: space-between;
   gap: 15px;
   scroll-snap-type: x mandatory;
+  border-radius: 10px;
 
   > div {
     scroll-snap-align: start;

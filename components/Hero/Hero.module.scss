@@ -16,27 +16,29 @@
   text-transform: uppercase;
 
   box-shadow: $boxShadow;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-  // border: 1px solid #28282a;
+  border-radius: 10px;
+  margin: 10px;
+  // padding: 20px;
+  // border-bottom-left-radius: 10px;
+  // border-bottom-right-radius: 10px;
+  border: 1px solid #28282a;
 
   h1 {
     text-shadow: 1px 0px 9px rgba(0, 0, 0, 0.9);
   }
 
   @include large {
-    height: 60vh;
-    // border-radius: 10px;
-
-    margin: 0px 10px 35px;
-    // background-size: 1000px;
+    height: 45vh;
+    margin-top: 15px;
+    margin-bottom: 15px;
   }
 
   &__home {
     background-image: url("https://images.squarespace-cdn.com/content/v1/6195288d4315b3125cd7af80/f2e10498-0f06-49d3-8209-8dd163b4ae59/ANYMA-HIGHER-POWER-1x1%281%29.jpg?format=2500w") !important;
-  }
-  &__discover {
-    background-image: url("../../imgs/discover.png") !important;
+
+    @include large {
+      height: 60vh;
+    }
   }
 }
 

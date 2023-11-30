@@ -10,18 +10,19 @@ const cx = classNames.bind(styles);
 
 export default async function Dj({ searchParams }) {
   const { order } = searchParams;
-  // const tracks = await getTracksWhere("label", t || "recent");
   const tracks = await getAllTracksOrdered(order);
-
-  console.log("order", order);
 
   return (
     <>
       {/* <Hero title={"Releases"} anim banner /> */}
       <Wrapper>
-        <h1 className={cx("title")}>Releases.</h1>
-        <Link href={"?order=asc"}>Acs</Link>
-        <Link href={"?order=desc"}>Desc</Link>
+        <div className={cx("header")}>
+          <h1 className={cx("title")}>Releases.</h1>
+          <div className={cx("filters")}>
+            <Link href={"?order=desc"}>Recent</Link>
+            <Link href={"?order=asc"}>Oldest</Link>
+          </div>
+        </div>
         <TrackContainer tracks={tracks} />
       </Wrapper>
     </>

@@ -1,5 +1,13 @@
 import { db, storage } from "../utils/firebase";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  doc,
+  serverTimestamp,
+  getDoc,
+  updateDoc,
+  setDoc,
+} from "firebase/firestore";
 import { ref, getDownloadURL, getStorage, uploadBytes } from "firebase/storage";
 
 const addTrack = async ({
@@ -14,7 +22,18 @@ const addTrack = async ({
 }) => {
   try {
     const date = new Date().toLocaleString();
-    const docRef = await addDoc(collection(db, "tracks"), {
+
+    const trackId = `${name}_${uid}`;
+    const docRef = doc(collection(db, "tracks"), trackId);
+    const docSnapshot = await getDoc(docRef);
+
+    if (docSnapshot.exists()) {
+      console.error("Document with the same custom ID already exists");
+      return { error: "Document with the same custom ID already exists" };
+    }
+
+    // Document doesn't exist, add the new document
+    await setDoc(docRef, {
       name,
       artist,
       trackName,
@@ -25,9 +44,12 @@ const addTrack = async ({
       uid,
       label,
       mix,
+      trackId,
     });
+
+    // console.log("Document added with custom ID: ", customId);
   } catch (e) {
-    console.log("e", e);
+    console.error("Error adding document: ", e);
     return { ...e };
   }
 };

@@ -12,7 +12,7 @@
   border-radius: 10px;
 
   @include medium {
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
   }
   @include large {
     grid-template-columns: repeat(4, 1fr);

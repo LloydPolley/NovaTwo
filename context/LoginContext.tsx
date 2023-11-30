@@ -31,7 +31,6 @@ export const LoginContext = createContext<LoginContextProps>({
 const LoginProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userData, setUserData] = useState(undefined);
-  const [user, setUser] = useState(undefined);
 
   const readUser = async (user) => {
     const docRef = doc(db, "users", user?.uid);
@@ -47,7 +46,6 @@ const LoginProvider = ({ children }) => {
   const watchUserStatus = () => {
     return onAuthStateChanged(auth, (user) => {
       if (user && user.uid) {
-        console.log("updated status");
         setIsLoggedIn(true);
         readUser(user);
         nookies.set(undefined, "uid", user.uid, { path: "/" });
