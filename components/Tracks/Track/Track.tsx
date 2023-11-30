@@ -84,9 +84,6 @@ const Track = ({ track }) => {
         <div className={cx("track__like-container")}>
           {userData?.uid && (
             <Like
-              uid={uid}
-              currentUser={userData?.uid}
-              trackId={trackId}
               isLikedContext={!!isLiked}
               track={{
                 artist,
