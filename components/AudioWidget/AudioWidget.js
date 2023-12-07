@@ -22,15 +22,17 @@ const AudioWidget = () => {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      window.addEventListener("pausePlayer", pause);
       window.addEventListener("playPlayer", play);
+      window.addEventListener("pausePlayer", pause);
+
+      window.addEventListener("play", play);
+      window.addEventListener("pause", pause);
     }
   }, []);
 
   const play = () => {
     audioRef.current.play();
     setIsPlaying(true);
-    animateProgressBar();
     setLoadedTrack(true);
   };
 
@@ -108,16 +110,11 @@ const AudioWidget = () => {
           step={0.01}
           ref={progressBarRef}
           value={progress}
+          onBlur={() => {
+            console.log("blur");
+          }}
         />
         <div className={cx("controls")}>
-          <button
-            className={cx("controls__play")}
-            onClick={() => {
-              isPlaying ? pause() : play();
-            }}
-          >
-            {isPlaying ? <PauseIcon /> : <PlayIcon />}
-          </button>
           <div className={cx("controls__track")}>
             <img
               src={trackContext?.artworkFileLocation || trackContext?.artwork}
@@ -127,14 +124,24 @@ const AudioWidget = () => {
               <p>{trackContext?.name || "Track"}</p>
             </div>
           </div>
-          {/* <div className={cx("controls__times")}>
-          <div className={cx("controls__time")}>
-            <p>{currentTime}</p>
+
+          <div className={cx("controls__times")}>
+            <div className={cx("controls__time")}>
+              <p>{currentTime}</p>
+            </div>
+            <p>/</p>
+            <div className={cx("controls__time")}>
+              <p>{duration}</p>
+            </div>
           </div>
-          <div className={cx("controls__time")}>
-            <p>{duration}</p>
-          </div>
-        </div> */}
+          <button
+            className={cx("controls__play")}
+            onClick={() => {
+              isPlaying ? pause() : play();
+            }}
+          >
+            {isPlaying ? <PauseIcon /> : <PlayIcon />}
+          </button>
         </div>
       </div>
     </div>

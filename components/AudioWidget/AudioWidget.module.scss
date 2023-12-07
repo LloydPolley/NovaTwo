@@ -71,23 +71,18 @@
 .controls {
   display: flex;
   justify-content: space-between;
-  flex-direction: row-reverse;
-  // padding: 10px 0;
   padding-top: 10px;
 
   &__times {
     display: flex;
-    width: 70%;
-    // margin: auto;
     input {
       width: 50%;
     }
   }
 
   &__time {
-    width: 100px;
+    width: 75px;
     text-align: center;
-    // display: none;
   }
 
   &__track {
@@ -117,10 +112,10 @@
 
   &__play {
     all: unset;
-    margin: auto 0;
+    margin: auto 0 auto 10px;
     text-align: center;
-    width: 25px;
-    height: 25px;
+    width: 35px;
+    height: 35px;
   }
 }
 
