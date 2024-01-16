@@ -24,11 +24,25 @@ const AudioWidget = () => {
     if (typeof window !== "undefined") {
       window.addEventListener("playPlayer", play);
       window.addEventListener("pausePlayer", pause);
-
-      window.addEventListener("play", play);
-      window.addEventListener("pause", pause);
     }
   }, []);
+
+  useEffect(() => {
+    if (!audioRef) return;
+    console.log("audio", audioRef);
+    audioRef.current.addEventListener("play", () => {
+      console.log("play");
+    });
+    audioRef.current.addEventListener("pause", () => {
+      console.log("stop");
+    });
+
+    return () => {
+      // Clean up event listeners
+      // audioRef.current.removeEventListener('play', handlePlay);
+      // audioRef.current.removeEventListener('pause', handlePause);
+    };
+  }, [audioRef]);
 
   const play = () => {
     audioRef.current.play();

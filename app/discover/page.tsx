@@ -5,6 +5,8 @@ import Wrapper from "../../components/Wrapper";
 import Hero from "../../components/Hero";
 import TrackContainer from "../../components/Tracks/TrackContainer";
 import Link from "next/link";
+import HeroText from "../../components/HeroText";
+import FilterBar from "../../components/FilterBar";
 
 const cx = classNames.bind(styles);
 
@@ -15,14 +17,9 @@ export default async function Dj({ searchParams }) {
   return (
     <>
       {/* <Hero title={"Releases"} anim banner /> */}
+      <HeroText text={"Releases"} />
       <Wrapper>
-        <div className={cx("header")}>
-          <h1 className={cx("title")}>Releases.</h1>
-          <div className={cx("filters")}>
-            <Link href={"?order=desc"}>Recent</Link>
-            <Link href={"?order=asc"}>Oldest</Link>
-          </div>
-        </div>
+        <FilterBar />
         <TrackContainer tracks={tracks} />
       </Wrapper>
     </>

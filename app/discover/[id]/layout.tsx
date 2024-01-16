@@ -5,6 +5,7 @@ import { cookies } from "next/headers";
 import Hero from "../../../components/Hero";
 import Wrapper from "../../../components/Wrapper";
 import RadioMenu from "../../../components/RadioMenu";
+import FilterBar from "../../../components/FilterBar";
 
 const cx = classNames.bind(styles);
 
@@ -17,9 +18,12 @@ export default async function RootLayout({ children, params }) {
       <Hero
         title={user?.displayName}
         img={user?.profile}
-        childNode={<RadioMenu />}
+        // childNode={<RadioMenu />}
       />
-      <Wrapper>{children}</Wrapper>
+      <Wrapper>
+        <FilterBar />
+        {children}
+      </Wrapper>
     </div>
   );
 }

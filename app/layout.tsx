@@ -35,7 +35,7 @@ export default function RootLayout(props) {
           <LikesProvider>
             <AudioProvider>
               <Navigation />
-              <div className="wrapper">{children}</div>
+              {children}
               {/* <Footer /> */}
               <AudioWidget />
             </AudioProvider>

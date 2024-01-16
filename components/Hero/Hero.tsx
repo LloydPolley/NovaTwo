@@ -42,6 +42,7 @@ const Hero = ({
       style={styleObject}
     >
       <h1>{title}</h1>
+      <div className={cx("hero__fade")} />
       {childNode}
     </div>
   );

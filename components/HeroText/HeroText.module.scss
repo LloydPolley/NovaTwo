@@ -1,4 +1,4 @@
-@import "../styles/mixins.scss";
+@import "../../styles/mixins.scss";
 
 .hero {
   min-height: 350px;
@@ -19,6 +19,7 @@
 
   h1 {
     font-size: 6vw;
+    white-space: pre-line;
 
     @include large {
       font-size: 50px;
@@ -37,23 +38,5 @@
     border-bottom: 1px solid white;
     // border-radius: 50px;
     padding: 20px;
-  }
-}
-
-.carousel-block {
-  margin-bottom: 45px;
-
-  @include large {
-    display: flex;
-  }
-
-  h3 {
-    @include large {
-      writing-mode: vertical-lr;
-      transform: rotate(-180deg);
-      margin: 0 15px 0 0;
-      display: inline-block;
-      font-size: 50px;
-    }
   }
 }

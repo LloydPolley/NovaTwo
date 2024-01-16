@@ -11,10 +11,16 @@ type FiltersProps = {
 
 const cx = classNames.bind(style);
 
-const FilterBar = ({ name }: FiltersProps) => {
+const FilterBar = ({ name }) => {
   // const { t } = searchParams;
 
-  return <div className={cx("filters")}>{name}</div>;
+  return (
+    <div className={cx("filters")}>
+      <Link href={"?type=mix"}>Live Mixes</Link>
+      <Link href={"?type=track"}>Tracks</Link>
+      <Link href={"?type=track"}>Likes</Link>
+    </div>
+  );
 };
 
 export default FilterBar;

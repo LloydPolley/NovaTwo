@@ -5,20 +5,19 @@
   flex-direction: row;
   width: 100%;
   overflow: hidden;
-  background-color: $widgetColor;
+  // background-color: $widgetColor;
   // background-color: rgba(97, 93, 142, 0.1);
-  padding: 10px;
+  // padding: 10px;
   border-radius: 10px;
-  box-shadow: $boxShadow;
-  border: $borderOne;
+  // box-shadow: $boxShadow;
+  // border: $borderOne;
   height: fit-content;
 
   @include large {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 25px;
-    padding: 25px;
+    // padding: 25px;
   }
 
   &__head {
@@ -26,7 +25,7 @@
     width: 100%;
     aspect-ratio: 1/1;
     background-color: rgb(56, 56, 56);
-    border-radius: 10px;
+    // border-radius: 10px;
     width: 30%;
     // transform: skew(30deg, 20deg);
 
@@ -39,8 +38,8 @@
     width: 100%;
     margin-bottom: 0;
     display: inline-block;
-    border-radius: 5px;
-    box-shadow: $boxShadow;
+    // border-radius: 5px;
+    // box-shadow: $boxShadow;
     display: block;
   }
 
