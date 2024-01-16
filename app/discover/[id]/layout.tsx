@@ -21,7 +21,7 @@ export default async function RootLayout({ children, params }) {
         // childNode={<RadioMenu />}
       />
       <Wrapper>
-        <FilterBar />
+        {/* <FilterBar /> */}
         {children}
       </Wrapper>
     </div>

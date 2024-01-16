@@ -3,13 +3,14 @@ import style from "./HeroText.module.scss";
 import Link from "next/link";
 
 type HeroProps = {
-  title: string;
+  title?: string;
   img?: string;
   imgClass?: string;
   gradient?: boolean;
   childNode?: React.ReactNode;
   banner?: boolean;
   anim?: boolean;
+  text?: string;
 };
 
 const cx = classNames.bind(style);

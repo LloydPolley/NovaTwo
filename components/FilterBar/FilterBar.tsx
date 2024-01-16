@@ -6,12 +6,12 @@ import style from "./FilterBar.module.scss";
 import Link from "next/link";
 
 type FiltersProps = {
-  name: string;
+  name?: string;
 };
 
 const cx = classNames.bind(style);
 
-const FilterBar = ({ name }) => {
+const FilterBar = ({ name }: FiltersProps) => {
   // const { t } = searchParams;
 
   return (
