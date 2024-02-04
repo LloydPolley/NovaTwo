@@ -13,9 +13,14 @@ import {
 } from "next/navigation";
 import { signOutUser } from "../../api/login";
 
+type NavTypes = {
+  open?: () => void;
+  closeNav?: () => void;
+};
+
 const cx = classNames.bind(style);
 
-const NavContent = ({ open, closeNav }) => {
+const NavContent = ({ open, closeNav }: NavTypes) => {
   const { userData } = useLoginContext();
   const router = useRouter();
   const activeSegments = useSelectedLayoutSegments();
