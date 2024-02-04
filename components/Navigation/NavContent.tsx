@@ -14,7 +14,7 @@ import {
 import { signOutUser } from "../../api/login";
 
 type NavTypes = {
-  open?: () => void;
+  open?: boolean;
   closeNav?: () => void;
 };
 
