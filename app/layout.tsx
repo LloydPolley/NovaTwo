@@ -1,9 +1,15 @@
+import classNames from "classnames/bind";
+
 import Navigation from "../components/Navigation";
-import AudioWidget from "../components/AudioWidget/AudioWidget";
+import AudioWidget from "../components/AudioWidgetPlugin";
 import LoginProvider from "../context/LoginContext";
 import AudioProvider from "../context/AudioContext";
 import Footer from "../components/Footer";
 import { Lato, Raleway } from "next/font/google";
+import styles from "./Home.module.scss";
+import NavContent from "../components/Navigation/NavContent";
+
+const cx = classNames.bind(styles);
 
 const lato = Lato({
   weight: ["400", "700"],
@@ -35,8 +41,10 @@ export default function RootLayout(props) {
           <LikesProvider>
             <AudioProvider>
               <Navigation />
-              {children}
-              {/* <Footer /> */}
+              <div className={"side-bar"}>
+                <NavContent />
+                <div>{children}</div>
+              </div>
               <AudioWidget />
             </AudioProvider>
           </LikesProvider>

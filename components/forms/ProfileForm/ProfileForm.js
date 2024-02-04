@@ -39,7 +39,7 @@ function ProfileForm() {
 
   useEffect(() => {
     if (finished) {
-      redirect(`/discover/${userData?.uid}/releases`, "push");
+      redirect(`/${userData?.uid}/releases`, "push");
     }
   }, [finished]);
 

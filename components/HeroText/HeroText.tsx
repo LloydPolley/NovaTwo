@@ -28,14 +28,14 @@ const HeroText = ({
   return (
     <div className={cx("hero")}>
       <h1>{text}</h1>
-      <div className={cx("hero__buttons")}>
+      {/* <div className={cx("hero__buttons")}>
         <Link className={cx("hero__button")} href={"/discover?type=sets"}>
           DJ Sets
         </Link>
         <Link className={cx("hero__button")} href={"/discover?type=sets"}>
           Tracks
         </Link>
-      </div>
+      </div> */}
     </div>
   );
 };

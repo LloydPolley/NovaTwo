@@ -8,10 +8,17 @@
   // background-color: $widgetColor;
   // background-color: rgba(97, 93, 142, 0.1);
   // padding: 10px;
-  border-radius: 10px;
+  // border-radius: 10px;
   // box-shadow: $boxShadow;
-  // border: $borderOne;
+  // border: 1px solid rgb(118, 118, 118);
   height: fit-content;
+  // background-color: rgb(6, 6, 6);
+  border-radius: 5px;
+  padding: 15px;
+
+  &:hover {
+    background-color: rgb(23, 23, 23);
+  }
 
   @include large {
     display: flex;
@@ -24,9 +31,11 @@
     position: relative;
     width: 100%;
     aspect-ratio: 1/1;
-    background-color: rgb(56, 56, 56);
+    // background-color: rgb(56, 56, 56);
     // border-radius: 10px;
     width: 30%;
+    border-radius: 10px;
+
     // transform: skew(30deg, 20deg);
 
     @include large {
@@ -41,6 +50,7 @@
     // border-radius: 5px;
     // box-shadow: $boxShadow;
     display: block;
+    // background-color: none;
   }
 
   &__text {

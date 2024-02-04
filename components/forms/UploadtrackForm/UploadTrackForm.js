@@ -30,7 +30,7 @@ function UploadTrackForm() {
 
   useEffect(() => {
     if (complete) {
-      redirect(`/discover/${userData?.uid}/releases`, "push");
+      redirect(`/${userData?.uid}/releases`, "push");
     }
   }, [complete]);
 

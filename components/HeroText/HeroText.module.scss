@@ -3,23 +3,28 @@
 .hero {
   min-height: 350px;
   // display: flex;
-  margin: 50px 10px;
-  text-align: center;
+  // margin: 50px 10px;
+  background-color: rgb(17, 13, 31);
   display: flex;
+  justify-content: flex-end;
   flex-direction: column;
-  justify-content: center;
-
-  // background: rgb(13, 19, 54);
-  // background: radial-gradient(
-  //   circle,
-  //   rgba(13, 19, 54, 1) 14%,
-  //   rgba(0, 0, 0, 1) 100%
-  // );
-  overflow: visible;
+  border-radius: 10px;
+  // background: linear-gradient(to bottom, #7222bc, #4f0a80);
+  background-image: radial-gradient(
+    circle 311px at 8.6% 27.9%,
+    rgba(62, 147, 252, 0.57) 12.9%,
+    rgba(239, 183, 192, 0.44) 91.2%
+  );
+  @include large {
+    margin: 49.5px 20px;
+  }
 
   h1 {
     font-size: 6vw;
     white-space: pre-line;
+    max-width: 1000px;
+    margin: 10px;
+    // margin: 10px auto;
 
     @include large {
       font-size: 50px;

@@ -1,0 +1,162 @@
+@import "../../styles/mixins.scss";
+
+.audio-widget {
+  transition: 0.5s ease-in all;
+  text-align: center;
+  position: fixed;
+  bottom: 0%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  backdrop-filter: blur(50px);
+  max-width: 900px;
+  border-radius: 10px;
+  width: 100%;
+  margin: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px 0;
+  min-height: 100px;
+
+  @include large {
+    bottom: 1%;
+    width: 60%;
+  }
+
+  &__expand-button {
+    position: absolute;
+    top: 0;
+    right: 2%;
+    cursor: pointer;
+    font-size: 20px;
+  }
+
+  &__inner {
+    max-width: 1600px;
+    margin: auto;
+    width: 95%;
+
+    @include large {
+      width: 90%;
+    }
+  }
+
+  & > div {
+    max-width: 1600px;
+    // margin: auto;
+  }
+
+  a {
+    margin: 10px 12px;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  &__content {
+    max-width: 1600px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.audio-unloaded {
+  // opacity: 0;
+  // pointer-events: none;
+}
+
+.audio-expanded {
+  min-height: 500px;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+
+  &__times {
+    display: flex;
+    input {
+      width: 50%;
+    }
+  }
+
+  &__time {
+    width: 75px;
+    text-align: center;
+  }
+
+  &__track {
+    width: 90%;
+    display: flex;
+    img {
+      height: 100%;
+      max-width: 50px;
+      height: 50px;
+      object-fit: contain;
+      aspect-ratio: 1/1;
+      margin-right: 10px;
+      border: none;
+      border-radius: 10px;
+    }
+  }
+
+  &__details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    p {
+      text-align: left;
+      margin: 0;
+    }
+  }
+
+  &__play {
+    all: unset;
+    margin: auto 0 auto 10px;
+    text-align: center;
+    width: 35px;
+    height: 35px;
+  }
+}
+
+.progress-bar {
+  --bar-bg: rgb(153, 153, 153);
+  --seek-before-width: 0;
+  --seek-before-color: white;
+  --knobby: rgb(255, 255, 255);
+  --selectedKnobby: purple;
+  --height: 8px;
+
+  appearance: none;
+  background: var(--bar-bg);
+  border-radius: 10px;
+  position: relative;
+  width: 100%;
+  height: var(--height);
+  outline: none;
+
+  &::before {
+    content: "";
+    height: var(--height);
+    width: var(--seek-before-width);
+    background-color: var(--seek-before-color);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    border-radius: 10px;
+  }
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 12px;
+    width: 12px;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--knobby);
+    position: relative;
+    // margin: -2px 0 0 0;
+
+    z-index: 3;
+    box-sizing: border-box;
+  }
+}

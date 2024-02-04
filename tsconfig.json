@@ -34,7 +34,9 @@
     "components/Tracks/TrackSquare/TrackSquare.js",
     "api/getDjs.js",
     "context/AudioContext.js",
-    "context/LikesContext.js"
+    "context/LikesContext.js",
+    "components/FilterBar/FilterBar.js",
+    "components/AudioWidgetPlugin/AudioWidget.js"
   ],
   "exclude": ["node_modules"]
 }

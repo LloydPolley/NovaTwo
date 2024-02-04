@@ -20,7 +20,9 @@ const Navigation = () => {
 
   return (
     <>
-      <NavContent open={open} closeNav={closeNav} />
+      <div className={cx("nav-content-mobile")}>
+        <NavContent open={open} closeNav={closeNav} />
+      </div>
       <div className={cx("nav")}>
         <Link className={cx("nav__name")} href={"/"}>
           <svg

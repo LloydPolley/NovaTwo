@@ -17,19 +17,21 @@ const cx = classNames.bind(style);
 
 const NavContent = ({ open, closeNav }) => {
   const { userData } = useLoginContext();
+  const router = useRouter();
   const activeSegments = useSelectedLayoutSegments();
   const pathname = usePathname();
 
-  useEffect(() => {
-    closeNav();
-  }, [pathname]);
+  // useEffect(() => {
+  //   closeNav();
+  //   // router.refresh();
+  // }, [pathname]);
 
   return (
     <>
-      <div
+      {/* <div
         className={cx("nav-overlay", open && "nav-overlay__open")}
         onClick={closeNav}
-      />
+      /> */}
       <div className={cx("nav-content", open && "nav-content__open")}>
         <div className={cx("nav-content__inner")}>
           <Link
@@ -37,16 +39,6 @@ const NavContent = ({ open, closeNav }) => {
             href={"/"}
           >
             Home
-          </Link>
-          <Link
-            className={cx(
-              activeSegments[0] === "discover" &&
-                activeSegments.length === 1 &&
-                "nav-content__active"
-            )}
-            href={"/discover"}
-          >
-            Discover
           </Link>
           {!userData?.email ? (
             <Link
@@ -61,21 +53,33 @@ const NavContent = ({ open, closeNav }) => {
             <>
               <Link
                 className={cx(
-                  activeSegments[1] === userData.uid &&
-                    activeSegments[2] === "releases" &&
+                  activeSegments[0] === userData.uid &&
+                    activeSegments[1] === "releases" &&
                     "nav-content__active"
                 )}
-                href={`/discover/${userData?.uid}/releases`}
+                href={`/${userData?.uid}/releases`}
                 onClick={closeNav}
               >
                 {!userData?.profile ? "LOGIN" : userData?.displayName}
               </Link>
-              <Link
+              {/* <a
                 className={cx(
                   activeSegments[2] === "likes" && "nav-content__active"
                 )}
                 href={`/discover/${userData?.uid}/likes`}
                 onClick={closeNav}
+              >
+                Likes
+              </a> */}
+              <Link
+                className={cx(
+                  activeSegments[1] === "likes" && "nav-content__active"
+                )}
+                href={`/${userData?.uid}/likes`}
+                onClick={() => {
+                  router.refresh();
+                  closeNav();
+                }}
               >
                 Likes
               </Link>

@@ -39,10 +39,11 @@ const Hero = ({
         banner && "banner",
         anim && "anim"
       )}
-      style={styleObject}
+      // style={styleObject}
     >
-      <h1>{title}</h1>
-      <div className={cx("hero__fade")} />
+      <div className={cx("hero__img")} style={styleObject} />
+      {/* <h1>{title}</h1> */}
+      {/* <div className={cx("hero__fade")} /> */}
       {childNode}
     </div>
   );

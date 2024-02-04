@@ -17,7 +17,7 @@ function SignInScreen() {
 
   if (isLoggedIn && showLogin) {
     console.log("userdata --------------", userData);
-    redirect(`/discover/${userData?.uid}/releases`, "push");
+    redirect(`/${userData?.uid}/releases`, "push");
   } else if (isLoggedIn && !showLogin) {
     redirect(`/edit`, "push");
   }
