@@ -4,37 +4,23 @@ import { useEffect, useState, useRef } from "react";
 import classNames from "classnames/bind";
 import style from "./AudioWidget.module.scss";
 import { useAudioContext } from "../../context/AudioContext";
-import PlayIcon from "../Icons/PlayIcon";
-import PauseIcon from "../Icons/PauseIcon";
-// import AudioPlayer, {
-//   ActiveUI,
-//   InterfaceGridTemplateArea,
-//   PlayerPlacement,
-//   PlayListPlacement,
-//   ProgressUI,
-//   VolumeSliderPlacement,
-// } from "react-modern-audio-player";
-import dynamic from "next/dynamic";
+
+import AudioPlayer, {
+  ActiveUI,
+  InterfaceGridTemplateArea,
+  PlayerPlacement,
+  PlayListPlacement,
+  ProgressUI,
+  VolumeSliderPlacement,
+} from "react-modern-audio-player";
 
 const cx = classNames.bind(style);
 
-const DynamicPlayer = dynamic(() => import("./widget"), {
-  ssr: false,
-});
-
 const AudioWidget = () => {
   const { isPlaying, setIsPlaying, trackContext } = useAudioContext();
-  const audioRef = useRef();
-  const progressBarRef = useRef();
 
-  const [duration, setDuration] = useState("00:00");
-  const [currentTime, setCurrentTime] = useState("00:00");
-  const [progress, setProgress] = useState(0);
   const [expanded, setExpanded] = useState(false);
   const [loadedTrack, setLoadedTrack] = useState(false);
-
-  const [progressType, setProgressType] = useState("waveform");
-  const [playerPlacement, setPlayerPlacement] = useState("bottom");
   const [interfacePlacement, setInterfacePlacement] = useState({
     artwork: "row1-2",
     playList: "row1-3",
@@ -46,6 +32,9 @@ const AudioWidget = () => {
     repeatType: "row4-1",
     volume: "row4-3",
   });
+
+  const [progressType, setProgressType] = useState("waveform");
+  const [playerPlacement, setPlayerPlacement] = useState("bottom");
   const [playListPlacement, setPlayListPlacement] = useState("top");
   const [volumeSliderPlacement, setVolumeSliderPlacement] = useState();
   const [theme, setTheme] = useState("dark" || "light" || undefined);
@@ -63,15 +52,33 @@ const AudioWidget = () => {
   ];
 
   return (
-    <div
-      className={cx(
-        "audio-widget",
-        expanded && "audio-expanded",
-        !loadedTrack && "audio-unloaded"
-      )}
-    >
-      <DynamicPlayer />
-    </div>
+    <AudioPlayer
+      playList={playList}
+      // audioInitialState={{
+      //   muted: false,
+      //   volume: 1,
+      //   curPlayId: 1,
+      //   isPlaying: false,
+      // }}
+      placement={{
+        player: playerPlacement,
+        interface: {
+          templateArea: interfacePlacement,
+        },
+        playList: playListPlacement,
+        volumeSlider: volumeSliderPlacement,
+      }}
+      activeUI={{
+        playButton: true,
+        playList: false,
+        prevNnext: true,
+        volume: true,
+        volumeSlider: true,
+        repeatType: true,
+        trackTime: true,
+        progress: true,
+      }}
+    />
   );
 };
 
