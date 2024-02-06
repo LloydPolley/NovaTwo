@@ -13,29 +13,30 @@ export const AudioContext = createContext({
 const AudioProvider = ({ children }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [trackContext, setTrackContext] = useState();
+  const [playlist, setPlaylist] = useState([]);
+  const audioRef = useRef();
 
   const playContext = async (track) => {
-    console.log("playing");
     await setTrackContext(track);
     await setIsPlaying(true);
 
-    const myEvent = new CustomEvent("playPlayer", {
-      bubbles: true,
-      cancelable: true,
-      composed: false,
-    });
-    document.dispatchEvent(myEvent);
+    audioRef.current.play();
   };
 
   const pauseContext = async () => {
     await setIsPlaying(false);
-    const myEvent = new CustomEvent("pausePlayer", {
-      bubbles: true,
-      cancelable: true,
-      composed: false,
-    });
-    document.dispatchEvent(myEvent);
+    audioRef.current.pause();
   };
+
+  useEffect(() => {
+    if (!audioRef?.current) return;
+    audioRef.current.addEventListener("play", () => {
+      setIsPlaying(true);
+    });
+    audioRef.current.addEventListener("pause", () => {
+      setIsPlaying(false);
+    });
+  }, [isPlaying]);
 
   return (
     <AudioContext.Provider
@@ -45,6 +46,9 @@ const AudioProvider = ({ children }) => {
         isPlaying,
         trackContext,
         setIsPlaying,
+        audioRef,
+        playlist,
+        setPlaylist,
       }}
     >
       {children}

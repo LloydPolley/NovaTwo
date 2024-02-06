@@ -4696,10 +4696,10 @@ react-modal@^3.16.1:
     react-lifecycles-compat "^3.0.0"
     warning "^4.0.3"
 
-react-modern-audio-player@^1.4.0-rc.2:
-  version "1.4.0-rc.2"
-  resolved "https://registry.yarnpkg.com/react-modern-audio-player/-/react-modern-audio-player-1.4.0-rc.2.tgz#4d2f353004f1fdffa34ad3b09f2c542455ada4c1"
-  integrity sha512-Tj/wyj/Y50ICWVw2UF5ndrUEd3V0gyk/sz7EiyTMv6PM5wmiNiuuVrydEY7kft6o4r3d/9CTV554mr2jPAGr/w==
+react-modern-audio-player@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/react-modern-audio-player/-/react-modern-audio-player-1.3.0.tgz#4b697590c7d8be3fadd00eb071b01fce2ac97922"
+  integrity sha512-eO3T/zvbdCAML7Yc5ePsxs/1rMG1AZGjVuxcJVNNGN8UTBLfuuSro+pVg1npu+DuxEt84QsdDjGfZkieKKBrqA==
   dependencies:
     "@react-spectrum/layout" "^3.3.1"
     "@react-spectrum/provider" "^3.4.1"

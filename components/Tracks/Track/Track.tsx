@@ -76,7 +76,7 @@ const Track = ({ track }) => {
           <Link
             className={cx("track__artist")}
             onClick={(e) => e.stopPropagation()}
-            href={`/${uid}/releases`}
+            href={`/${uid}`}
           >
             {artist}
           </Link>

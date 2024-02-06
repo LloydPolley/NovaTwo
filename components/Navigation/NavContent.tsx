@@ -33,18 +33,41 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
 
   return (
     <>
-      {/* <div
-        className={cx("nav-overlay", open && "nav-overlay__open")}
-        onClick={closeNav}
-      /> */}
       <div className={cx("nav-content", open && "nav-content__open")}>
         <div className={cx("nav-content__inner")}>
           <Link
             className={cx(activeSegments.length === 0 && "nav-content__active")}
             href={"/"}
           >
-            Home
+            <svg
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 275 274"
+              width="1em"
+              height="1em"
+            >
+              <path d="M8 8h258v258h-86v-86H94V94H8V8Z" fill="#fff"></path>
+              <path d="M94 180v86H8v-86h86Z" fill="#fff"></path>
+            </svg>
           </Link>
+          <p className={cx("nav-content__category")}>FEATURED</p>
+          <Link
+            className={cx(
+              activeSegments[0] == "login" && "nav-content__active"
+            )}
+            href="/?type=mixes"
+          >
+            Live Mixes
+          </Link>
+          <Link
+            className={cx(
+              activeSegments[0] == "login" && "nav-content__active"
+            )}
+            href="/?type=releases"
+          >
+            Releases
+          </Link>
+          <p className={cx("nav-content__category")}>MY MUSIC</p>
           {!userData?.email ? (
             <Link
               className={cx(
@@ -62,28 +85,18 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
                     activeSegments[1] === "releases" &&
                     "nav-content__active"
                 )}
-                href={`/${userData?.uid}/releases`}
+                href={`/${userData?.uid}?type=releases`}
                 onClick={closeNav}
               >
                 {!userData?.profile ? "LOGIN" : userData?.displayName}
               </Link>
-              {/* <a
-                className={cx(
-                  activeSegments[2] === "likes" && "nav-content__active"
-                )}
-                href={`/discover/${userData?.uid}/likes`}
-                onClick={closeNav}
-              >
-                Likes
-              </a> */}
               <Link
                 className={cx(
                   activeSegments[1] === "likes" && "nav-content__active"
                 )}
-                href={`/${userData?.uid}/likes`}
+                href={`/${userData?.uid}?type=likes`}
                 onClick={() => {
                   router.refresh();
-                  closeNav();
                 }}
               >
                 Likes
@@ -93,7 +106,6 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
                   activeSegments[0] === "edit" && "nav-content__active"
                 )}
                 href={`/edit`}
-                onClick={closeNav}
               >
                 Edit
               </Link>
@@ -102,19 +114,15 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
                   activeSegments[0] === "upload" && "nav-content__active"
                 )}
                 href={`/upload`}
-                onClick={closeNav}
               >
                 Upload
               </Link>
-              <button
-                className={cx("nav-content__sign-out")}
-                onClick={signOutUser}
-              >
-                Sign out
-              </button>
             </>
           )}
         </div>
+        <button className={cx("nav-content__sign-out")} onClick={signOutUser}>
+          SIGN OUT
+        </button>
       </div>
     </>
   );

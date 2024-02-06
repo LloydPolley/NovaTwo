@@ -73,8 +73,6 @@ const getUserLikes = async (userId) => {
     likesData.push(data);
   });
 
-  console.log("new likes", likesData);
-
   return likesData;
 };
 

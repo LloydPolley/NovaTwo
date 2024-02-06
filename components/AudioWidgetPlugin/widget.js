@@ -16,8 +16,10 @@ import AudioPlayer, {
 
 const cx = classNames.bind(style);
 
-const AudioWidget = () => {
+const AudioWidget = ({ audioRef }) => {
   const { isPlaying, setIsPlaying, trackContext } = useAudioContext();
+
+  console.log("audioRef", audioRef);
 
   const [expanded, setExpanded] = useState(false);
   const [loadedTrack, setLoadedTrack] = useState(false);
@@ -53,13 +55,14 @@ const AudioWidget = () => {
 
   return (
     <AudioPlayer
+      audioRef={audioRef}
       playList={playList}
-      // audioInitialState={{
-      //   muted: false,
-      //   volume: 1,
-      //   curPlayId: 1,
-      //   isPlaying: false,
-      // }}
+      audioInitialState={{
+        muted: false,
+        volume: 1,
+        curPlayId: 1,
+        isPlaying: isPlaying,
+      }}
       placement={{
         player: playerPlacement,
         interface: {
@@ -70,13 +73,16 @@ const AudioWidget = () => {
       }}
       activeUI={{
         playButton: true,
-        playList: false,
         prevNnext: true,
         volume: true,
         volumeSlider: true,
         repeatType: true,
         trackTime: true,
-        progress: true,
+        progress: "bar",
+        artwork: false,
+      }}
+      rootContainerProps={{
+        colorScheme: "dark",
       }}
     />
   );

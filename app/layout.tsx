@@ -5,7 +5,7 @@ import AudioWidget from "../components/AudioWidgetPlugin";
 import LoginProvider from "../context/LoginContext";
 import AudioProvider from "../context/AudioContext";
 import Footer from "../components/Footer";
-import { Lato, Raleway } from "next/font/google";
+import { Lato, Raleway, Poppins } from "next/font/google";
 import styles from "./Home.module.scss";
 import NavContent from "../components/Navigation/NavContent";
 
@@ -23,13 +23,21 @@ const raleway = Raleway({
   variable: "--font-raleway",
 });
 
+const poppins = Poppins({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+  variable: "--font-poppins",
+});
+
 import "./globals.scss";
 import LikesProvider from "../context/LikesContext";
 
 export default function RootLayout(props) {
   const { children } = props;
   return (
-    <html className={`${lato.variable} ${raleway.variable}`}>
+    <html
+      className={`${lato.variable} ${raleway.variable} ${poppins.variable}`}
+    >
       <head>
         <meta
           name="viewport"

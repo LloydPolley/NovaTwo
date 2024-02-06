@@ -23,34 +23,9 @@ const DynamicPlayer = dynamic(() => import("./widget"), {
 });
 
 const AudioWidget = () => {
-  const { isPlaying, setIsPlaying, trackContext } = useAudioContext();
-  const audioRef = useRef();
-  const progressBarRef = useRef();
-
-  const [duration, setDuration] = useState("00:00");
-  const [currentTime, setCurrentTime] = useState("00:00");
-  const [progress, setProgress] = useState(0);
+  const { isPlaying, setIsPlaying, trackContext, audioRef } = useAudioContext();
   const [expanded, setExpanded] = useState(false);
   const [loadedTrack, setLoadedTrack] = useState(false);
-
-  const [progressType, setProgressType] = useState("waveform");
-  const [playerPlacement, setPlayerPlacement] = useState("bottom");
-  const [interfacePlacement, setInterfacePlacement] = useState({
-    artwork: "row1-2",
-    playList: "row1-3",
-    trackInfo: "row2-2",
-    trackTimeCurrent: "row3-1",
-    progress: "row3-2",
-    trackTimeDuration: "row3-3",
-    playButton: "row4-2",
-    repeatType: "row4-1",
-    volume: "row4-3",
-  });
-  const [playListPlacement, setPlayListPlacement] = useState("top");
-  const [volumeSliderPlacement, setVolumeSliderPlacement] = useState();
-  const [theme, setTheme] = useState("dark" || "light" || undefined);
-  const [width, setWidth] = useState("100%");
-  const [activeUI, setActiveUI] = useState({ all: true });
 
   const playList = [
     {
@@ -70,7 +45,18 @@ const AudioWidget = () => {
         !loadedTrack && "audio-unloaded"
       )}
     >
-      <DynamicPlayer />
+      <div className={cx("audio-widget__flex")}>
+        <div className={cx("audio-widget__track")}>
+          <img
+            src={trackContext?.artworkFileLocation || trackContext?.artwork}
+          />
+          <div className={cx("audio-widget__details")}>
+            <p>{trackContext?.name || "Track"}</p>
+            <p>{trackContext?.artist || "Artist"}</p>
+          </div>
+        </div>
+        <DynamicPlayer audioRef={audioRef} />
+      </div>
     </div>
   );
 };
