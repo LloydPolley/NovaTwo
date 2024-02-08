@@ -18,6 +18,7 @@ const FilterBar = ({ filters, searchParams }) => {
     <div className={cx("filters")}>
       {filters?.map((filter) => (
         <Link
+          key={filter?.url}
           className={cx(filter.label.toLowerCase() === f && "filters__active")}
           href={filter?.url}
         >
