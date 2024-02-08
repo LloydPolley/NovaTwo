@@ -9,7 +9,7 @@
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  background-color: black;
+  background-color: #0d0d0d;
 
   // border-bottom: 1px solid rgb(65, 65, 65);
   width: 100%;
@@ -127,7 +127,7 @@
   }
 
   &__inner {
-    margin-top: 35%;
+    margin-top: 50px;
     display: flex;
     flex-direction: column;
     // text-transform: uppercase;

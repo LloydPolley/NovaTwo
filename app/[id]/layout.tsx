@@ -10,8 +10,9 @@ import FilterBar from "../../components/FilterBar";
 const cx = classNames.bind(styles);
 
 export default async function RootLayout({ children, params }) {
-  const uid = cookies().get("uid")?.value;
   const user = await getDj(params?.id);
+
+  console.log("user", user);
 
   return (
     <div className={cx("artist")}>

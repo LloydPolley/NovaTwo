@@ -19,8 +19,6 @@ const cx = classNames.bind(style);
 const AudioWidget = ({ audioRef }) => {
   const { isPlaying, setIsPlaying, trackContext } = useAudioContext();
 
-  console.log("audioRef", audioRef);
-
   const [expanded, setExpanded] = useState(false);
   const [loadedTrack, setLoadedTrack] = useState(false);
   const [interfacePlacement, setInterfacePlacement] = useState({

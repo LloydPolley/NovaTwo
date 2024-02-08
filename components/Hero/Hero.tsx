@@ -26,10 +26,6 @@ const Hero = ({
     textAlign: "center",
   };
 
-  if (!gradient) {
-    styleObject.backgroundImage = `url(${img})`;
-  }
-
   return (
     <div
       className={cx(
@@ -39,11 +35,10 @@ const Hero = ({
         banner && "banner",
         anim && "anim"
       )}
-      // style={styleObject}
+      style={styleObject}
     >
-      <div className={cx("hero__img")} style={styleObject} />
-      {/* <h1>{title}</h1> */}
-      {/* <div className={cx("hero__fade")} /> */}
+      <img src={img} />
+      <h1>{title}</h1>
       {childNode}
     </div>
   );

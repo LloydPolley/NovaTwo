@@ -17,7 +17,7 @@
     grid-template-columns: 1fr 1fr;
   }
   @include large {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     row-gap: 20px;
     column-gap: 20px;
   }

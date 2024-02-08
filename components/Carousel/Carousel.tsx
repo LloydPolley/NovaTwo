@@ -10,18 +10,7 @@ const Carousel = ({ data }) => {
       {data &&
         data.slice(0, 9).map((track) => {
           if (!track.artist) return;
-
-          const {
-            artist,
-            artworkFileLocation,
-            audioFileLocation,
-            date,
-            name,
-            trackName,
-            uid,
-          } = track;
-
-          return <TrackSquare key={name} track={track} />;
+          return <TrackSquare key={track.name} track={track} />;
         })}
     </div>
   );

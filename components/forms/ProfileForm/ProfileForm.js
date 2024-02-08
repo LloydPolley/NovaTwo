@@ -10,12 +10,13 @@ import Form from "../Form/Form";
 import Loading from "../../Loading";
 import Link from "next/link";
 import Close from "../../Icons/Close";
-import { redirect } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { updateUserDoc } from "../../../api/signUp";
 
 const cx = classNames.bind(styles);
 
 function ProfileForm() {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -39,7 +40,7 @@ function ProfileForm() {
 
   useEffect(() => {
     if (finished) {
-      redirect(`/${userData?.uid}/releases`, "push");
+      router.push(`/${userData?.uid}?n=profile`);
     }
   }, [finished]);
 
@@ -53,7 +54,7 @@ function ProfileForm() {
 
     if (profileImgForm.length > 0) {
       profileImgUrl = `gs://novatwo-f3f41.appspot.com/${displayName}/profile/${profileImgForm[0]?.name}`;
-      console.log("img upload");
+      console.log("img upload ------");
       await uploadImg({
         artist: displayName,
         file: profileImgForm[0],
@@ -61,7 +62,6 @@ function ProfileForm() {
       });
       profileImgAccess = await fetchFile(profileImgUrl);
     }
-    console.log("user info");
     await updateUserDoc(userData?.uid, {
       profile: profileImgAccess,
       displayName: name,

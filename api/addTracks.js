@@ -73,7 +73,6 @@ const uploadImg = async ({ artist, file }) => {
 
 const fetchFile = async (audioUrl) => {
   try {
-    console.log("passed in ", audioUrl);
     const storage = await getStorage();
     const url = await getDownloadURL(ref(storage, audioUrl));
     return url;

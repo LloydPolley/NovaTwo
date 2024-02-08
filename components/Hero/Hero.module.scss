@@ -1,38 +1,47 @@
 @import "../../styles/mixins.scss";
 
 .hero {
-  position: relative;
-  text-align: center;
-  height: 35vh;
-  background-size: cover;
-  background-repeat: no-repeat;
   background-position: center;
   display: flex;
-
-  img {
-  }
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+  position: relative;
 
   @include large {
-    height: 350px;
-    margin: 20px;
+    margin-left: 20px;
+    flex-direction: row;
   }
 
-  &__img {
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+  img {
     width: 100%;
     height: 100%;
-    border-radius: 10px;
+    object-fit: cover;
+
+    @include large {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      margin-right: 20px;
+    }
   }
 
   h1 {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
     text-shadow: 1px 0px 9px rgba(0, 0, 0, 0.9);
     // margin: 10px;
     width: auto;
     z-index: 3;
     display: inline-block;
-    text-align: left;
+    font-size: 50px;
+
+    @include large {
+      position: relative;
+      text-align: left;
+    }
   }
 
   &__fade {

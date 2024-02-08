@@ -11,7 +11,7 @@ body {
   // background-color: #121212;
 
   // background: #181818;
-  background-color: black;
+  background-color: #171717;
   // background: linear-gradient(9deg, rgba(0, 0, 0, 1) 0%, rgb(22, 22, 22) 100%);
 
   // background: rgb(4, 13, 29);
@@ -74,7 +74,7 @@ label {
 
   @include large {
     display: grid;
-    grid-template-columns: 1fr 6fr; /* First column takes full height, second fills remaining */
+    grid-template-columns: 235px 6fr;
     grid-template-rows: auto; /* You can adjust row heights as needed */
     grid-gap: 10px; /* Adjust the gap between grid items */
   }

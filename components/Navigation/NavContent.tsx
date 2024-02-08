@@ -55,7 +55,7 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
             className={cx(
               activeSegments[0] == "login" && "nav-content__active"
             )}
-            href="/?type=mixes"
+            href="/?f=mixes"
           >
             Live Mixes
           </Link>
@@ -63,7 +63,7 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
             className={cx(
               activeSegments[0] == "login" && "nav-content__active"
             )}
-            href="/?type=releases"
+            href="/?f=releases"
           >
             Releases
           </Link>
@@ -85,16 +85,16 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
                     activeSegments[1] === "releases" &&
                     "nav-content__active"
                 )}
-                href={`/${userData?.uid}?type=releases`}
+                href={`/${userData?.uid}?f=releases`}
                 onClick={closeNav}
               >
-                {!userData?.profile ? "LOGIN" : userData?.displayName}
+                {userData?.displayName}
               </Link>
               <Link
                 className={cx(
                   activeSegments[1] === "likes" && "nav-content__active"
                 )}
-                href={`/${userData?.uid}?type=likes`}
+                href={`/${userData?.uid}?f=likes`}
                 onClick={() => {
                   router.refresh();
                 }}

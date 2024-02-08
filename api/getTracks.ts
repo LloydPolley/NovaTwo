@@ -47,17 +47,27 @@ const getAllLikedTracks = async (uid: string): Promise<TrackType[]> => {
 
 const getTracksWhere = async (
   type: string,
-  input: string | boolean
+  input: string | boolean,
+  uid?: string
 ): Promise<TrackType[]> => {
   if (input === "recent" || input === undefined) {
     return getAllTracks();
   }
-  const q = query(collection(db, "tracks"), where(type, "==", input));
+  let q;
+  if (uid) {
+    q = query(
+      collection(db, "tracks"),
+      where(type, "==", input),
+      where("uid", "==", uid)
+    );
+  } else {
+    q = query(collection(db, "tracks"), where(type, "==", input));
+  }
   const querySnapshot = await getDocs(q);
   const arr = querySnapshot.docs.map(
     (doc) =>
       ({
-        ...doc.data(),
+        ...(doc.data() as Record<string, unknown>),
         trackId: doc.id,
       } as TrackType)
   );

@@ -11,14 +11,19 @@ type FiltersProps = {
 
 const cx = classNames.bind(style);
 
-const FilterBar = ({ name }: FiltersProps) => {
-  // const { t } = searchParams;
-
+const FilterBar = ({ filters, searchParams }) => {
+  console.log("fitler", searchParams);
+  const { f } = searchParams || {};
   return (
     <div className={cx("filters")}>
-      <Link href={"?type=mix"}>Live Mixes</Link>
-      <Link href={"?type=track"}>Tracks</Link>
-      <Link href={"?type=track"}>Likes</Link>
+      {filters?.map((filter) => (
+        <Link
+          className={cx(filter.label.toLowerCase() === f && "filters__active")}
+          href={filter?.url}
+        >
+          {filter?.label}
+        </Link>
+      ))}
     </div>
   );
 };
