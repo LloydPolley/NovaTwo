@@ -10,6 +10,7 @@ import {
   useSelectedLayoutSegments,
   useRouter,
   usePathname,
+  useSearchParams,
 } from "next/navigation";
 import { signOutUser } from "../../api/login";
 
@@ -25,47 +26,35 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
   const router = useRouter();
   const activeSegments = useSelectedLayoutSegments();
   const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const search = searchParams.get("f");
 
-  // useEffect(() => {
-  //   closeNav();
-  //   // router.refresh();
-  // }, [pathname]);
+  console.log("search", search);
 
   return (
     <>
       <div className={cx("nav-content", open && "nav-content__open")}>
         <div className={cx("nav-content__inner")}>
-          <Link
-            className={cx(activeSegments.length === 0 && "nav-content__active")}
-            href={"/"}
-          >
-            <svg
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 275 274"
-              width="1em"
-              height="1em"
-            >
-              <path d="M8 8h258v258h-86v-86H94V94H8V8Z" fill="#fff"></path>
-              <path d="M94 180v86H8v-86h86Z" fill="#fff"></path>
-            </svg>
-          </Link>
           <p className={cx("nav-content__category")}>FEATURED</p>
           <Link
             className={cx(
-              activeSegments[0] == "login" && "nav-content__active"
+              activeSegments.length === 0 &&
+                search === "mix" &&
+                "nav-content__active"
             )}
-            href="/?f=mixes"
+            href="/?f=mix"
           >
-            Live Mixes
+            Live Mix
           </Link>
           <Link
             className={cx(
-              activeSegments[0] == "login" && "nav-content__active"
+              activeSegments.length === 0 &&
+                search == "tracks" &&
+                "nav-content__active"
             )}
-            href="/?f=releases"
+            href="/?f=tracks"
           >
-            Releases
+            Tracks
           </Link>
           <p className={cx("nav-content__category")}>MY MUSIC</p>
           {!userData?.email ? (
@@ -82,10 +71,10 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
               <Link
                 className={cx(
                   activeSegments[0] === userData.uid &&
-                    activeSegments[1] === "releases" &&
+                    activeSegments[1] === "tracks" &&
                     "nav-content__active"
                 )}
-                href={`/${userData?.uid}?f=releases`}
+                href={`/${userData?.uid}?f=tracks`}
                 onClick={closeNav}
               >
                 {userData?.displayName}

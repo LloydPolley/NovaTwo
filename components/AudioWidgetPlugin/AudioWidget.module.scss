@@ -4,14 +4,14 @@
   transition: 0.5s ease-in all;
   text-align: center;
   position: fixed;
-  bottom: 0%;
+  bottom: 0.5%;
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
   backdrop-filter: blur(50px);
   max-width: 900px;
   border-radius: 10px;
-  width: 100%;
+  width: 98%;
   margin: auto;
   background-color: black;
   padding: 10px;
@@ -24,13 +24,18 @@
   }
 
   &__flex {
-    display: grid;
-    grid-template-columns: 1fr 2.5fr;
+    // display: grid;
+    // grid-template-rows: 1fr 1fr;
+    display: flex;
+    flex-direction: column;
+    // grid-template-columns: 1fr 2.5fr;
+    width: 100%;
   }
 
   &__track {
     display: flex;
     text-align: left;
+    width: 100%;
 
     img {
       width: 75px;
@@ -48,7 +53,7 @@
       margin: 0;
       text-wrap: nowrap;
       overflow: hidden;
-      max-width: 100px;
+      // max-width: 100px;
       &:nth-child(2) {
         color: rgb(181, 181, 181);
       }

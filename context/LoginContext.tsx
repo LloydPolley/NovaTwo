@@ -77,8 +77,6 @@ const LoginProvider = ({ children }) => {
     return un;
   }, []);
 
-  console.log("user data", userData);
-
   return (
     <LoginContext.Provider
       value={{

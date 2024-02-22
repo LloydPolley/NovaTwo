@@ -42,7 +42,6 @@ const Track = ({ track }) => {
     );
 
     setIsLiked(isLikedByUser);
-    console.log("--------------", isLikedByUser);
   }, [likes]);
 
   return (

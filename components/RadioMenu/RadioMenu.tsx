@@ -9,20 +9,20 @@ const cx = classNames.bind(style);
 
 export default function RadioMenu() {
   const url = usePathname();
-  const isReleases = url.includes("releases");
+  const isTracks = url.includes("tracks");
   const lastSlashIndex = url.lastIndexOf("/");
   const updatedUrl = url.substring(0, lastSlashIndex);
 
   return (
     <div className={cx("radio")}>
       <Link
-        className={cx("radio__toggle", isReleases && "radio__active")}
-        href={`${updatedUrl}/releases`}
+        className={cx("radio__toggle", isTracks && "radio__active")}
+        href={`${updatedUrl}/tracks`}
       >
-        Releases
+        Tracks
       </Link>
       <Link
-        className={cx("radio__toggle", !isReleases && "radio__active")}
+        className={cx("radio__toggle", !isTracks && "radio__active")}
         href={`${updatedUrl}/likes`}
       >
         Likes

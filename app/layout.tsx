@@ -34,6 +34,7 @@ import LikesProvider from "../context/LikesContext";
 
 export default function RootLayout(props) {
   const { children } = props;
+  console.log("props", props);
   return (
     <html
       className={`${lato.variable} ${raleway.variable} ${poppins.variable}`}

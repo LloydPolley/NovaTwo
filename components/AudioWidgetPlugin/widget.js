@@ -70,12 +70,12 @@ const AudioWidget = ({ audioRef }) => {
         volumeSlider: volumeSliderPlacement,
       }}
       activeUI={{
-        playButton: true,
-        prevNnext: true,
-        volume: true,
-        volumeSlider: true,
-        repeatType: true,
-        trackTime: true,
+        playButton: false,
+        prevNnext: false,
+        volume: false,
+        volumeSlider: false,
+        repeatType: false,
+        trackTime: false,
         progress: "bar",
         artwork: false,
       }}

@@ -87,13 +87,11 @@ label {
 //   display: none !important;
 // }
 
-// .rm-audio-player,
-// .rm-audio-player-provider,
-// .interface-grid {
-//   background-color: black;
-//   border-radius: 10px;
-//   height: 100%;
-// }
+.rm-audio-player,
+.rm-audio-player-provider,
+.interface-grid {
+  padding: 0 !important;
+}
 
 // :root {
 //   --rm-audio-player-interface-container: red !important;

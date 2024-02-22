@@ -12,7 +12,7 @@ import FilterBar from "../../components/FilterBar";
 const filters = [
   { label: "All", url: "?f=all" },
   { label: "Tracks", url: "?f=tracks" },
-  { label: "Mixes", url: "?f=mixes" },
+  { label: "Mix", url: "?f=mix" },
   { label: "Likes", url: "?f=likes" },
 ];
 
@@ -26,7 +26,7 @@ export default async function DjProfile({ params, searchParams }) {
     case "tracks":
       tracks = await getTracksWhere("mix", false, params.id);
       break;
-    case "mixes":
+    case "mix":
       tracks = await getTracksWhere("mix", true, params.id);
       break;
     default:

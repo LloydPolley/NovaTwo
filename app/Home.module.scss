@@ -32,6 +32,35 @@
   // background-color: $widgetColor;
 }
 
+.hero {
+  margin: 20px 20px 49.5px;
+  min-height: 350px;
+
+  &__widget {
+    border-radius: 10px;
+    height: 350px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    background-image: url("http://localhost:3000/_next/image?url=https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Fnovatwo-f3f41.appspot.com%2Fo%2FMassano%252Ftracks%252FThe%2520Feeling%252Fartwork%252FMassano%2520feeling.webp%3Falt%3Dmedia%26token%3D45561bb4-651e-4fb1-9317-ea0d7ea6782f&w=828&q=75");
+    background-size: cover;
+    background-position: center;
+
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+
+    p {
+      margin: 0;
+    }
+  }
+}
+
 .carousel-block {
   margin-bottom: 45px;
   width: 80%;

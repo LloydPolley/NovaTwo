@@ -14,7 +14,7 @@ const cx = classNames.bind(styles);
 const filters = [
   { label: "All", url: "?f=all" },
   { label: "Tracks", url: "?f=tracks" },
-  { label: "Mixes", url: "?f=mixes" },
+  { label: "Mix", url: "?f=mix" },
 ];
 
 export default async function Dj({ searchParams }) {
@@ -26,7 +26,7 @@ export default async function Dj({ searchParams }) {
     case "tracks":
       tracks = await getTracksWhere("mix", false);
       break;
-    case "mixes":
+    case "mix":
       tracks = await getTracksWhere("mix", true);
       break;
     default:
@@ -38,7 +38,16 @@ export default async function Dj({ searchParams }) {
     <>
       {/* <Hero title={"Releases"} anim banner /> */}
       {/* <Hero title={"Featured"} /> */}
-      <h1>Top Playlists</h1>
+      <div className={cx("hero")}>
+        <a href="/6YcUr8HaITZEw3OBKc220qPpx2E2">
+          <div className={cx("hero__widget")}>
+            <div className={cx("hero__text")}>
+              <p>The Feeling</p>
+              <p>Massano</p>
+            </div>
+          </div>
+        </a>
+      </div>
       <Wrapper>
         <FilterBar searchParams={searchParams} filters={filters} />
         <TrackContainer tracks={tracks} />

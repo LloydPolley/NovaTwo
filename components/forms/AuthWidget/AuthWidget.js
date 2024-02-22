@@ -16,7 +16,6 @@ function SignInScreen() {
   const { isLoggedIn, userData } = useLoginContext();
 
   if (isLoggedIn && showLogin) {
-    console.log("userdata --------------", userData);
     redirect(`/${userData?.uid}`, "push");
   } else if (isLoggedIn && !showLogin) {
     redirect(`/edit`, "push");
