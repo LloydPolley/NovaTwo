@@ -45,6 +45,13 @@
     }
   }
 
+  &__btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: auto;
+  }
+
   &__details {
     display: flex;
     flex-direction: column;
@@ -98,8 +105,8 @@
 }
 
 .audio-unloaded {
-  // opacity: 0;
-  // pointer-events: none;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .audio-expanded {

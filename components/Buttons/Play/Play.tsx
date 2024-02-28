@@ -14,9 +14,9 @@ type PlayProps = {
 
 const cx = classNames.bind(styles);
 
-function Play({ abso, isPlayingAudio }: PlayProps) {
+function Play({ abso, isPlayingAudio, onClick }: PlayProps) {
   return (
-    <button className={cx("play", abso && "play__abso")}>
+    <button className={cx("play", abso && "play__abso")} onClick={onClick}>
       {!isPlayingAudio ? <PlayIcon /> : <PauseIcon />}
     </button>
   );

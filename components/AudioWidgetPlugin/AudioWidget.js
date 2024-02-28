@@ -7,6 +7,7 @@ import { useAudioContext } from "../../context/AudioContext";
 import PlayIcon from "../Icons/PlayIcon";
 import PauseIcon from "../Icons/PauseIcon";
 import dynamic from "next/dynamic";
+import Play from "../Buttons/Play";
 
 const cx = classNames.bind(style);
 
@@ -26,30 +27,6 @@ const AudioWidget = () => {
     }
   }, [isPlaying]);
 
-  useEffect(() => {
-    setTime(audioRef?.current?.currentTime);
-  }, [audioRef]);
-
-  useEffect(() => {
-    if (audioRef && audioRef.current && audioRef.current.duration) {
-      const currentTime = audioRef.current.currentTime;
-      const duration = audioRef.current.duration;
-      const percentage = (currentTime / duration) * 100;
-      console.log(`Current Percentage: ${percentage.toFixed(2)}%`);
-    }
-  }, [audioRef, time]);
-
-  useEffect(() => {
-    console.log("audioRef 0---", audioRef); // Check if audioRef is set
-    if (audioRef && audioRef.current && audioRef.current.duration) {
-      console.log("audioRef.current", audioRef.current); // Check if audioRef.current is set
-      const currentTime = audioRef.current.currentTime;
-      const duration = audioRef.current.duration;
-      const percentage = (currentTime / duration) * 100;
-      console.log(`Current Percentage: ${percentage.toFixed(2)}%`);
-    }
-  }, [audioRef, time]);
-
   return (
     <div
       className={cx(
@@ -66,6 +43,14 @@ const AudioWidget = () => {
           <div className={cx("audio-widget__details")}>
             <p>{trackContext?.name || "Track"}</p>
             <p>{trackContext?.artist || "Artist"}</p>
+          </div>
+          <div className={cx("audio-widget__btn")}>
+            <Play
+              onClick={() => {
+                isPlaying ? audioRef.current.pause() : audioRef.current.play();
+              }}
+              isPlayingAudio={isPlaying}
+            />
           </div>
         </div>
         <DynamicPlayer audioRef={audioRef} />

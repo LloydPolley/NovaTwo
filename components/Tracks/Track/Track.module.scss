@@ -61,7 +61,7 @@
     justify-content: center;
 
     @include large {
-      padding: 15px;
+      padding: 15px 5px;
       margin-left: 0;
     }
 
@@ -97,8 +97,8 @@
   &__like-container {
     position: absolute;
     right: 0;
-    bottom: 50%;
-    transform: translatey(50%);
+    bottom: 20%;
+    // transform: translatey(50%);
     // background: rgb(255, 255, 255);
     // background: linear-gradient(
     //   90deg,
