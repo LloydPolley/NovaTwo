@@ -1,13 +1,8 @@
 "use client";
 
 import { createContext, useContext, useState, useEffect } from "react";
-import { auth, db } from "../utils/firebase";
-import { onAuthStateChanged, onIdTokenChanged } from "firebase/auth";
 
-import { doc, getDoc } from "firebase/firestore";
-import nookies from "nookies";
 import { getUserLikes } from "../api/addLike";
-import { useLoginContext } from "./LoginContext";
 
 export const LikesContext = createContext({
   likes: [],

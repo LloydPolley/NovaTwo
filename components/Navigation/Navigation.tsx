@@ -21,6 +21,7 @@ const Navigation = () => {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const router = useRouter();
 
   const closeNav = () => {
     setOpen(false);
@@ -28,8 +29,7 @@ const Navigation = () => {
 
   useEffect(() => {
     closeNav();
-    console.log("pathname");
-    // router.refresh();
+    router.refresh();
   }, [pathname, searchParams]);
 
   return (

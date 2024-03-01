@@ -29,8 +29,6 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
   const searchParams = useSearchParams();
   const search = searchParams.get("f");
 
-  console.log("search", search);
-
   return (
     <>
       <div className={cx("nav-content", open && "nav-content__open")}>
@@ -98,6 +96,7 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
                 )}
                 href={`/${userData?.uid}?f=likes`}
                 onClick={() => {
+                  console.log("refresh");
                   router.refresh();
                 }}
               >

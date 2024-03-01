@@ -8,7 +8,6 @@ import {
   query,
   where,
   getDocs,
-  collectionGroup,
 } from "firebase/firestore";
 
 const deleteLikeTracksCollection = async ({ track, currentUser }) => {
@@ -81,6 +80,38 @@ const isLikedByUser = async ({ currentUser, trackId }) => {
   const docSnap = await getDoc(docRef);
   // console.log("docsnap", docSnap.data());
   return docSnap.exists() ? true : false;
+};
+
+const addTrack = async ({ uid }) => {
+  try {
+    const date = new Date().toLocaleString();
+
+    const trackId = `${name}_${uid}`;
+    const docRef = doc(collection(db, "tracks"), trackId);
+    const docSnapshot = await getDoc(docRef);
+
+    if (docSnapshot.exists()) {
+      console.error("Document with the same custom ID already exists");
+      return { error: "Document with the same custom ID already exists" };
+    }
+
+    await setDoc(docRef, {
+      name,
+      artist,
+      trackName,
+      audioFileLocation,
+      artworkFileLocation,
+      date,
+      timestamp: serverTimestamp(),
+      uid,
+      label,
+      mix,
+      trackId,
+    });
+  } catch (e) {
+    console.error("Error adding document: ", e);
+    return { ...e };
+  }
 };
 
 export {

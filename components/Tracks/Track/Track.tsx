@@ -36,7 +36,6 @@ const Track = ({ track }) => {
     isPlaying && trackContext?.audioFileLocation === audioFileLocation;
 
   useEffect(() => {
-    console.log();
     const isLikedByUser = likes.find(
       (likedTrack) => likedTrack.trackId === trackId
     );
