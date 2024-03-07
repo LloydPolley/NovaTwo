@@ -7,7 +7,8 @@
   align-items: center;
   // margin-top: 50px;
   position: relative;
-  margin: 20px 20px 49.5px;
+  margin: 20px 20px 20px;
+  height: 300px;
 
   @include large {
     margin-left: 20px;
@@ -16,23 +17,54 @@
 
   img {
     width: 100%;
-    height: 100%;
     object-fit: cover;
     border-radius: 10px;
-    height: 400px;
+    height: 100%;
+
+    @include large {
+      position: absolute;
+      left: 0;
+      padding: 10px;
+      // width: 50%;
+    }
   }
 
-  h1 {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    text-shadow: 1px 0px 9px rgba(0, 0, 0, 0.9);
-    // margin: 10px;
-    width: auto;
-    z-index: 3;
-    display: inline-block;
-    font-size: 50px;
+  &__text {
+    text-align: left;
+    width: 100%;
+    text-align: left;
+    background-color: black;
+    border-radius: 10px;
+    padding: 20px;
+
+    margin-top: -25px;
+
+    @include large {
+      text-align: left;
+      // margin-left: 20px;
+      margin-top: 0px;
+
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+    }
+
+    h1 {
+      text-shadow: 1px 0px 9px rgba(0, 0, 0, 0.9);
+      width: auto;
+      z-index: 3;
+      display: inline-block;
+      font-size: 50px;
+      text-transform: uppercase;
+      margin: 0;
+      // margin-top: -30px;
+    }
+
+    p {
+      margin: 0;
+      z-index: 3;
+    }
   }
 
   &__fade {
