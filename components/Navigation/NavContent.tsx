@@ -97,7 +97,7 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
                 href={`/${userData?.uid}?f=likes`}
                 onClick={() => {
                   console.log("refresh");
-                  router.refresh();
+                  // router.refresh();
                 }}
               >
                 Likes

@@ -17,27 +17,12 @@ const filters = [
 ];
 
 export default async function DjProfile({ params, searchParams }) {
-  let tracks;
-
-  switch (searchParams.f) {
-    case "likes":
-      tracks = await getUserLikes(params?.id);
-      break;
-    case "tracks":
-      tracks = await getTracksWhere("mix", false, params.id);
-      break;
-    case "mix":
-      tracks = await getTracksWhere("mix", true, params.id);
-      break;
-    default:
-      tracks = await getArtistTracks(params?.id);
-      break;
-  }
-
   return (
-    <Suspense fallback={<LoadingGrid />}>
+    <>
       <FilterBar searchParams={searchParams} filters={filters} />
-      <TrackContainer tracks={tracks} />
-    </Suspense>
+      <Suspense fallback={<LoadingGrid />}>
+        <TrackContainer searchParams={searchParams} params={params} />
+      </Suspense>
+    </>
   );
 }
