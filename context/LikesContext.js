@@ -7,26 +7,32 @@ import { useLoginContext } from "./LoginContext";
 
 export const LikesContext = createContext({
   likes: [],
+  setLocalLikes: () => {},
 });
 
 const LikesProvider = ({ children }) => {
   const [likes, setLikes] = useState([]);
+  const [localLikes, setLocalLikes] = useState({});
   const { isLoggedIn, userData } = useLoginContext();
 
   const getLikes = async () => {
     const userLikes = await getUserLikes(userData?.uid);
-    setLikes(userLikes);
+    if (userLikes !== likes) {
+      setLikes(userLikes);
+      return;
+    }
   };
 
   useEffect(() => {
     if (!isLoggedIn) return;
     getLikes();
-  }, [userData]);
+  }, [userData, localLikes]);
 
   return (
     <LikesContext.Provider
       value={{
         likes,
+        setLocalLikes,
       }}
     >
       {children}

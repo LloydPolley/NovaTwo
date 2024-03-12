@@ -7,7 +7,7 @@ import FilterBar from "../components/FilterBar";
 const cx = classNames.bind(styles);
 
 const filters = [
-  { label: "All", url: "?f=all" },
+  { label: "All", url: "/" },
   { label: "Tracks", url: "?f=tracks" },
   { label: "Mix", url: "?f=mix" },
 ];

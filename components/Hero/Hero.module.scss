@@ -8,17 +8,16 @@
   // margin-top: 50px;
   position: relative;
   margin: 20px 20px 20px;
-  height: 300px;
 
   @include large {
     margin-left: 20px;
     flex-direction: row;
+    height: 400px;
   }
 
   img {
     width: 100%;
     object-fit: cover;
-    border-radius: 10px;
     height: 100%;
 
     @include large {
@@ -34,10 +33,7 @@
     width: 100%;
     text-align: left;
     background-color: black;
-    border-radius: 10px;
     padding: 20px;
-
-    margin-top: -25px;
 
     @include large {
       text-align: left;
@@ -65,101 +61,5 @@
       margin: 0;
       z-index: 3;
     }
-  }
-
-  &__fade {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 100%;
-    width: 100%;
-    z-index: 2;
-    background: rgb(0, 0, 0);
-    background: linear-gradient(
-      0deg,
-      rgba(0, 0, 0, 1) 0%,
-      rgba(66, 66, 66, 0) 100%
-    );
-  }
-
-  &__home {
-    background-image: url("https://images.squarespace-cdn.com/content/v1/6195288d4315b3125cd7af80/f2e10498-0f06-49d3-8209-8dd163b4ae59/ANYMA-HIGHER-POWER-1x1%281%29.jpg?format=2500w") !important;
-
-    @include large {
-      height: 60vh;
-    }
-  }
-}
-
-// .hero-gradient {
-//   // background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-//   animation: gradient 20s ease infinite;
-// }
-
-.banner {
-  height: 300px !important;
-  background-color: black;
-  // border: 1px solid rgb(31, 31, 31);
-  font-size: 60px;
-
-  h1 {
-    // transform: skew(0.1rad);
-    // color: #807070;
-    // letter-spacing: 0.15em;
-    // text-shadow: -10px 10px 0px #00e6e6, -20px 20px 0px #01cccc,
-    //   -30px 30px 0px #00bdbd;
-  }
-
-  @include large {
-    border-radius: 10px;
-  }
-}
-
-.anim {
-  -webkit-animation: Hero 200s ease infinite;
-  -moz-animation: Hero 200s ease infinite;
-  animation: Hero 200s ease infinite;
-}
-
-.hero-gradient {
-  background: linear-gradient(-45deg, #171437, #1b174d, #09062a, #0e056a);
-  background-size: 500% 500%;
-
-  -webkit-animation: Hero 27s ease infinite;
-  -moz-animation: Hero 27s ease infinite;
-  animation: Hero 27s ease infinite;
-}
-
-@-webkit-keyframes Hero {
-  0% {
-    background-position: 66% 0%;
-  }
-  50% {
-    background-position: 35% 100%;
-  }
-  100% {
-    background-position: 66% 0%;
-  }
-}
-@-moz-keyframes Hero {
-  0% {
-    background-position: 66% 0%;
-  }
-  50% {
-    background-position: 35% 100%;
-  }
-  100% {
-    background-position: 66% 0%;
-  }
-}
-@keyframes Hero {
-  0% {
-    background-position: 66% 0%;
-  }
-  50% {
-    background-position: 35% 100%;
-  }
-  100% {
-    background-position: 66% 0%;
   }
 }

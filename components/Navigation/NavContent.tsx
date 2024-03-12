@@ -33,7 +33,7 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
     <>
       <div className={cx("nav-content", open && "nav-content__open")}>
         <div className={cx("nav-content__inner")}>
-          <Link className={cx("nav__name")} href={"/"}>
+          <Link className={cx("nav-content__name")} href={"/"}>
             <svg
               fill="none"
               xmlns="http://www.w3.org/2000/svg"

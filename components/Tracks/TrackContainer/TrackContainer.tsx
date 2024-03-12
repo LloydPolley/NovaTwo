@@ -38,15 +38,10 @@ const TrackContainer = ({ searchParams, params }) => {
         setTracks(await getTracksWhere("mix", true, params.id));
         break;
       case "all":
-        setTracks(await getAllTracksOrdered(order));
-        if (params.id) {
-          setTracks(await getArtistTracks(params?.id));
-          break;
-        }
-        setTracks(await getAllTracksOrdered(order));
+        setTracks(await getArtistTracks(params?.id));
         break;
       default:
-        setTracks(await getArtistTracks(params?.id));
+        setTracks(await getAllTracksOrdered(order));
         break;
     }
   };

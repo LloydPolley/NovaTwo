@@ -119,6 +119,14 @@
 
   pointer-events: none;
 
+  &__name {
+    display: none;
+
+    @include large {
+      display: block;
+    }
+  }
+
   @include large {
     position: sticky;
     top: 0;

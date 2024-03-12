@@ -27,16 +27,7 @@ const Hero = ({
   };
 
   return (
-    <div
-      className={cx(
-        "hero",
-        gradient && "hero-gradient",
-        imgClass,
-        banner && "banner",
-        anim && "anim"
-      )}
-      style={styleObject}
-    >
+    <div className={cx("hero")} style={styleObject}>
       <img src={img} />
       <div className={cx("hero__text")}>
         <p>Artist</p>
