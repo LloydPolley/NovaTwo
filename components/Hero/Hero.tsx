@@ -27,18 +27,13 @@ const Hero = ({
   };
 
   return (
-    <div
-      className={cx(
-        "hero",
-        gradient && "hero-gradient",
-        imgClass,
-        banner && "banner",
-        anim && "anim"
-      )}
-      style={styleObject}
-    >
+    <div className={cx("hero")} style={styleObject}>
       <img src={img} />
-      <h1>{title}</h1>
+      <div className={cx("hero__text")}>
+        <p>Artist</p>
+        <h1>{title}</h1>
+        <p>Techno, Melodic Techno</p>
+      </div>
       {childNode}
     </div>
   );

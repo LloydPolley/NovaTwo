@@ -29,7 +29,7 @@ const Navigation = () => {
 
   useEffect(() => {
     closeNav();
-    router.refresh();
+    // router.refresh();
   }, [pathname, searchParams]);
 
   return (

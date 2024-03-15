@@ -27,7 +27,7 @@ const Track = ({ track }) => {
 
   const [isLiked, setIsLiked] = useState(false);
 
-  const { likes } = useLikesContext();
+  const { likes, setLocalLikes } = useLikesContext();
   const { playContext, pauseContext, isPlaying, trackContext } =
     useAudioContext();
   const { userData } = useLoginContext();
@@ -83,6 +83,7 @@ const Track = ({ track }) => {
           {userData?.uid && (
             <Like
               isLikedContext={!!isLiked}
+              setLocalLikes={setLocalLikes}
               track={{
                 artist,
                 name,

@@ -33,7 +33,7 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
     <>
       <div className={cx("nav-content", open && "nav-content__open")}>
         <div className={cx("nav-content__inner")}>
-          <Link className={cx("nav__name")} href={"/"}>
+          <Link className={cx("nav-content__name")} href={"/"}>
             <svg
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -46,7 +46,7 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
               <path d="M94 180v86H8v-86h86Z" fill="#fff"></path>
             </svg>
           </Link>
-          <p className={cx("nav-content__category")}>FEATURED</p>
+          {/* <p className={cx("nav-content__category")}>FEATURED</p>
           <Link
             className={cx(
               activeSegments.length === 0 &&
@@ -66,7 +66,7 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
             href="/?f=mix"
           >
             Mix
-          </Link>
+          </Link> */}
           <p className={cx("nav-content__category")}>MY MUSIC</p>
           {!userData?.email ? (
             <Link
@@ -97,7 +97,7 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
                 href={`/${userData?.uid}?f=likes`}
                 onClick={() => {
                   console.log("refresh");
-                  router.refresh();
+                  // router.refresh();
                 }}
               >
                 Likes

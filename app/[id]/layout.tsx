@@ -12,8 +12,6 @@ const cx = classNames.bind(styles);
 export default async function RootLayout({ children, params }) {
   const user = await getDj(params?.id);
 
-  console.log("user", user);
-
   return (
     <div className={cx("artist")}>
       <Hero title={user?.displayName} img={user?.profile} />
