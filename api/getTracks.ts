@@ -17,6 +17,12 @@ const getAllTracks = async (): Promise<TrackType[]> => {
   return arr;
 };
 
+const getAllArtists = async (): Promise<TrackType[]> => {
+  const snapshot = await getDocs(collection(db, "users"));
+  const arr = snapshot.docs.map((doc) => ({ ...doc.data() } as TrackType));
+  return arr;
+};
+
 const getAllTracksOrdered = async (ascending: string): Promise<TrackType[]> => {
   const orderDirection = ascending === "asc" ? "asc" : "desc";
 
@@ -91,4 +97,5 @@ export {
   getTracksWhere,
   getAllLikedTracks,
   getAllTracksOrdered,
+  getAllArtists,
 };

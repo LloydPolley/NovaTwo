@@ -3,6 +3,7 @@ import styles from "./Home.module.scss";
 import Wrapper from "../components/Wrapper";
 import TrackContainer from "../components/Tracks/TrackContainer";
 import FilterBar from "../components/FilterBar";
+import Carousel from "../components/Carousel";
 
 const cx = classNames.bind(styles);
 
@@ -15,13 +16,11 @@ const filters = [
 export default async function Dj({ searchParams, params }) {
   return (
     <>
-      <div className={cx("hero")}>
-        <div className={cx("hero__widget")}>
-          <video autoPlay muted loop>
-            <source src="/home-short.mp4" type="video/mp4" />
-          </video>
-        </div>
+      <div className={cx("artist-container")}>
+        <h1>Artists</h1>
+        <Carousel data={["", "", "", "", "", "", "", "", ""]} />
       </div>
+
       <Wrapper>
         <FilterBar searchParams={searchParams} filters={filters} />
         <TrackContainer searchParams={searchParams} params={params} />
