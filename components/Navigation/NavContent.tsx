@@ -46,7 +46,7 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
               <path d="M94 180v86H8v-86h86Z" fill="#fff"></path>
             </svg>
           </Link>
-          {/* <p className={cx("nav-content__category")}>FEATURED</p>
+          <p className={cx("nav-content__category")}>FEATURED</p>
           <Link
             className={cx(
               activeSegments.length === 0 &&
@@ -57,7 +57,7 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
           >
             Tracks
           </Link>
-          <Link
+          {/* <Link
             className={cx(
               activeSegments.length === 0 &&
                 search === "mix" &&

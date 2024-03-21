@@ -91,27 +91,19 @@ function UploadTrackForm() {
   }
 
   return (
-    <Form title={"Uploads"} loading={loading}>
-      <form className={cx("auth-form")} onSubmit={handleSubmit(onSubmit)}>
+    <Form title={"Upload your track"} loading={loading}>
+      <form className={cx("upload-form")} onSubmit={handleSubmit(onSubmit)}>
         <input placeholder={"Track name"} {...register("name")} required />
         <input placeholder={"Label"} {...register("label")} required />
-        <label htmlFor="audio-upload" className={cx("upload-element")}>
-          {audio ? audio : "Upload audio"}
-        </label>
-        <input
-          className={cx("upload-button")}
-          id="audio-upload"
-          type="file"
-          accept=".mp3,audio/*"
-          required
-          {...register("audioFile")}
-          onInput={(e) => {
-            setAudio(e.target.files[0]?.name);
-          }}
-        />
-        <label htmlFor="artwork-upload" className={cx("upload-element")}>
-          {image ? image : "Upload artwork"}
-        </label>
+        <div className={cx("upload-form__btns")}>
+          <label htmlFor="audio-upload" className={cx("upload-element")}>
+            {audio ? audio : "Upload audio"}
+          </label>
+          <label htmlFor="artwork-upload" className={cx("upload-element")}>
+            {image ? image : "Upload artwork"}
+          </label>
+        </div>
+
         <div className={cx("mix-toggle")}>
           <p>Is Mix</p>
           <input
@@ -121,7 +113,6 @@ function UploadTrackForm() {
             {...register("mix")}
           />
         </div>
-
         <input
           className={cx("upload-button")}
           id="artwork-upload"
@@ -131,6 +122,17 @@ function UploadTrackForm() {
           {...register("artworkFile")}
           onInput={(e) => {
             setImage(e.target.files[0]?.name);
+          }}
+        />
+        <input
+          className={cx("upload-button")}
+          id="audio-upload"
+          type="file"
+          accept=".mp3,audio/*"
+          required
+          {...register("audioFile")}
+          onInput={(e) => {
+            setAudio(e.target.files[0]?.name);
           }}
         />
 

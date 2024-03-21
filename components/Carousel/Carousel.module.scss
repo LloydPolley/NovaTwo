@@ -10,6 +10,10 @@
   overflow: scroll;
   text-align: center;
   display: flex;
+  height: 256px;
+
+  opacity: 0; /* Start with opacity 0 */
+  animation: fadeIn 0.5s ease-in forwards; /* Animation to fade in */
 
   &::-webkit-scrollbar {
     display: none;
@@ -29,4 +33,17 @@
       border-radius: 50%;
     }
   }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.loading {
+  height: 256px;
 }
