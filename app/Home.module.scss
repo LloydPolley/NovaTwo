@@ -76,6 +76,13 @@
   overflow: hidden;
 }
 
-.artist-container {
-  margin: 50px 20px;
+.artist {
+  margin: 20px;
+
+  &__hero {
+    // background-color: black;
+    // border: 1px solid white;
+    // padding: 20px;
+    // border-radius: 10px;
+  }
 }

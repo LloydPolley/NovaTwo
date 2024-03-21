@@ -16,9 +16,11 @@ const filters = [
 export default async function Dj({ searchParams, params }) {
   return (
     <>
-      <div className={cx("artist-container")}>
-        <h1>Artists</h1>
-        <Carousel data={["", "", "", "", "", "", "", "", ""]} />
+      <div className={cx("artist")}>
+        <div className={cx("artist__hero")}>
+          <h1>Featured Artists</h1>
+          <Carousel data={["", "", "", "", "", "", "", "", ""]} />
+        </div>
       </div>
 
       <Wrapper>
