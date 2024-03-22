@@ -12,6 +12,7 @@ import Link from "next/link";
 import Close from "../../Icons/Close";
 import { redirect, useRouter } from "next/navigation";
 import { updateUserDoc } from "../../../api/signUp";
+import FileIcon from "../../Icons/FileIcon";
 
 const cx = classNames.bind(styles);
 
@@ -40,7 +41,7 @@ function ProfileForm() {
 
   useEffect(() => {
     if (finished) {
-      router.push(`/${userData?.uid}?n=profile`);
+      router.push(`/${userData?.uid}?f=all`);
     }
   }, [finished]);
 
@@ -76,7 +77,7 @@ function ProfileForm() {
   }
 
   return (
-    <Form title={"Profile"} url="?edit=close">
+    <Form title={"Upload Profile Image"} url="?edit=close">
       {/* <Loading isLoading={loading} /> */}
       <form className={cx("auth-form")} onSubmit={handleSubmit(onSubmit)}>
         {!nameExists && (
@@ -89,7 +90,8 @@ function ProfileForm() {
           </>
         )}
         <label htmlFor="profile-upload" className={cx("upload-element")}>
-          {profileImg ? profileImg : "Upload artwork"}
+          <FileIcon />
+          <p>{profileImg ? profileImg : "Upload artwork"}</p>
         </label>
         <input
           className={cx("upload-button")}

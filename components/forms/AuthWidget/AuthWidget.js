@@ -21,17 +21,14 @@ function SignInScreen() {
     redirect(`/edit`, "push");
   }
 
+  const textToggle = showLogin
+    ? "Need an account? Create one here"
+    : "Already have an account? Sign in";
+
   const switcher = () => (
-    <>
-      {showLogin ? (
-        <p>Need an account? Create one here</p>
-      ) : (
-        <p>Already have an account? Sign in</p>
-      )}
-      <button className={cx("switch")} onClick={() => setShowLogin(!showLogin)}>
-        {showLogin ? "Create Account" : "Sign in"}
-      </button>
-    </>
+    <p className={cx("switch")} onClick={() => setShowLogin(!showLogin)}>
+      {textToggle}
+    </p>
   );
 
   return (

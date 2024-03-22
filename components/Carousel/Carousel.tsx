@@ -45,7 +45,7 @@ const Carousel = ({ data }) => {
             <a
               key={user?.uid}
               className={cx("carousel__element")}
-              href={`/${user?.uid}`}
+              href={`/${user?.uid}?f=all`}
               style={inlineStyle}
             >
               {/* <img src={user.profile} /> */}

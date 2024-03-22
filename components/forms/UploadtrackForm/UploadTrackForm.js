@@ -10,6 +10,7 @@ import Form from "../Form/Form";
 import Loading from "../../Loading";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import FileIcon from "../../Icons/FileIcon";
 
 const cx = classNames.bind(styles);
 
@@ -30,7 +31,7 @@ function UploadTrackForm() {
 
   useEffect(() => {
     if (complete) {
-      redirect(`/${userData?.uid}`, "push");
+      redirect(`/${userData?.uid}?f=all`, "push");
     }
   }, [complete]);
 
@@ -95,16 +96,16 @@ function UploadTrackForm() {
       <form className={cx("upload-form")} onSubmit={handleSubmit(onSubmit)}>
         <input placeholder={"Track name"} {...register("name")} required />
         <input placeholder={"Label"} {...register("label")} required />
-        <div className={cx("upload-form__btns")}>
-          <label htmlFor="audio-upload" className={cx("upload-element")}>
-            {audio ? audio : "Upload audio"}
-          </label>
-          <label htmlFor="artwork-upload" className={cx("upload-element")}>
-            {image ? image : "Upload artwork"}
-          </label>
-        </div>
+        <label htmlFor="audio-upload" className={cx("upload-element")}>
+          <FileIcon />
+          <p> {audio ? audio : "Upload Audio"}</p>
+        </label>
+        <label htmlFor="artwork-upload" className={cx("upload-element")}>
+          <FileIcon />
+          <p> {image ? image : "Upload Artwork"}</p>
+        </label>
 
-        <div className={cx("mix-toggle")}>
+        <div className={cx("toggle")}>
           <p>Is Mix</p>
           <input
             type="checkbox"

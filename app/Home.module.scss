@@ -77,7 +77,11 @@
 }
 
 .artist {
-  margin: 20px;
+  margin: 30px 20px;
+
+  @include large {
+    margin: 50px 20px;
+  }
 
   &__hero {
     // background-color: black;

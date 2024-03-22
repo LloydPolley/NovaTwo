@@ -9,10 +9,9 @@
   display: flex;
   flex-direction: column;
 
-  width: 80%;
+  width: 90%;
   padding: 50px;
   border: $borderOne;
-  width: 80%;
   max-width: 500px;
 
   position: absolute;
@@ -96,8 +95,18 @@
   label {
     background-color: rgb(220, 220, 220);
     color: black;
-    display: inline;
-    width: 48%;
-    border-radius: 50px;
+    border-radius: 10px;
+
+    display: flex;
+
+    p {
+      color: black;
+      margin: auto;
+      margin-left: 10px;
+    }
+
+    svg {
+      width: 40px;
+    }
   }
 }

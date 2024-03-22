@@ -1,32 +1,16 @@
 @import "../../../styles/mixins.scss";
 
-.upload-form {
-  &__btns {
-    display: flex;
-    justify-content: space-between;
-    text-align: center;
-  }
-}
-
-.upload-element {
-  cursor: pointer;
-
-  input[type="checkbox"] {
-    all: unset;
-  }
-}
-
-.mix-toggle {
-  display: flex;
-  // justify-content: space-between;
-  vertical-align: middle;
-  p {
-    margin-right: 10px;
-  }
-}
 .upload-button[type="file"] {
   opacity: 0;
   height: 0;
   padding: 0;
   margin: 0;
+}
+
+.toggle {
+  display: flex;
+
+  input {
+    margin: auto;
+  }
 }

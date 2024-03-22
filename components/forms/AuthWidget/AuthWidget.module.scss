@@ -14,16 +14,8 @@
   left: 50%;
   transform: translate(-50%, -50%);
 
-  button {
-    all: unset;
-    border-radius: 10px;
-    padding: 20px;
-    border: $borderOne;
-    background-color: black;
-    margin-bottom: 15px;
-
-    background-color: $cta;
-    border: 1px solid gold;
-    text-align: center;
+  .switch {
+    text-decoration: underline;
+    cursor: pointer;
   }
 }
