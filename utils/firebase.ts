@@ -12,6 +12,7 @@ import { getStorage, ref } from "firebase/storage";
 //   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 //   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 // };
+
 const firebaseConfig = {
   apiKey: "AIzaSyCuFp4gwssSmq3fjqNKTKuaTsjLs6DDx-k",
   authDomain: "novatwo-f3f41.firebaseapp.com",
@@ -21,8 +22,6 @@ const firebaseConfig = {
   appId: "1:251081613120:web:bbe1cff6fe81b5274b24a5",
   measurementId: "G-0K9EJZZ9N9",
 };
-
-// console.log(firebase);
 
 const { getApp, initializeApp } = firebase;
 

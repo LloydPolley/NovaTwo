@@ -8,13 +8,14 @@ export const AudioContext = createContext({
   trackContext: { url: "", audioFileLocation: "" },
   playContext: (track) => {},
   pauseContext: () => {},
+  audioRef: () => {},
 });
 
 const AudioProvider = ({ children }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [trackContext, setTrackContext] = useState();
   const [playlist, setPlaylist] = useState([]);
-  const audioRef = useRef();
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const playContext = async (track) => {
     await setTrackContext(track);

@@ -2,12 +2,18 @@
 
 import classNames from "classnames/bind";
 import styles from "./Form.module.scss";
-import Link from "next/link";
-import Close from "../../Icons/Close";
 
 const cx = classNames.bind(styles);
 
-function Form({ title, para, children, classForm, url, loading }) {
+type FormTypes = {
+  title?: string;
+  para?: string;
+  children: React.ReactNode;
+  classForm?: string;
+  loading?: boolean;
+};
+
+function Form({ title, para, children, classForm, loading }: FormTypes) {
   return (
     <div className={cx("form", classForm)}>
       <div className={cx("form__load", loading && "form__show-load")}>
@@ -25,9 +31,3 @@ function Form({ title, para, children, classForm, url, loading }) {
 }
 
 export default Form;
-
-// {url && (
-//   <Link className={cx("form__close")} href={url}>
-//     <Close />
-//   </Link>
-// )}

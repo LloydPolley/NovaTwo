@@ -46,7 +46,7 @@ function LoginForm({ signIn, Switcher }) {
           name="password"
           {...register("password")}
         />
-        {errors.login && <p>{errors.login.type}</p>}
+        {errors.login && <p>{errors.login.type.toString()}</p>}
         <input type="submit" />
         <Switcher />
       </form>

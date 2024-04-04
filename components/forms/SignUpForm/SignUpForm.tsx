@@ -46,7 +46,7 @@ function SignInForm({ Switcher }) {
           {...register("displayName")}
           required
         />
-        {errors.login && <p>{errors.login.type}</p>}
+        {errors.login && <p>{errors.login.type.toString()}</p>}
         <input type="submit" />
         <Switcher />
       </form>

@@ -7,10 +7,7 @@ import classNames from "classnames/bind";
 import styles from "./ProfileForm.module.scss";
 import { useLoginContext } from "../../../context/LoginContext";
 import Form from "../Form/Form";
-import Loading from "../../Loading";
-import Link from "next/link";
-import Close from "../../Icons/Close";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { updateUserDoc } from "../../../api/signUp";
 import FileIcon from "../../Icons/FileIcon";
 
@@ -18,16 +15,10 @@ const cx = classNames.bind(styles);
 
 function ProfileForm() {
   const router = useRouter();
-  const {
-    register,
-    handleSubmit,
-    watch,
-    setValue,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm();
 
   const { userData, isLoggedIn } = useLoginContext();
-  const [profileImg, setProfileImg] = useState();
+  const [profileImg, setProfileImg] = useState("");
 
   const [loading, setLoading] = useState(false);
   const [finished, setFinished] = useState(false);
@@ -49,7 +40,7 @@ function ProfileForm() {
     const { name, profileImgForm } = data;
     const { displayName, uid } = userData;
 
-    let profileImgUrl, profileImgAccess, backgroundImgAccess;
+    let profileImgUrl, profileImgAccess;
 
     setLoading(true);
 
@@ -59,7 +50,6 @@ function ProfileForm() {
       await uploadImg({
         artist: displayName,
         file: profileImgForm[0],
-        uid,
       });
       profileImgAccess = await fetchFile(profileImgUrl);
     }
@@ -77,8 +67,7 @@ function ProfileForm() {
   }
 
   return (
-    <Form title={"Upload Profile Image"} url="?edit=close">
-      {/* <Loading isLoading={loading} /> */}
+    <Form title={"Upload Profile Image"}>
       <form className={cx("auth-form")} onSubmit={handleSubmit(onSubmit)}>
         {!nameExists && (
           <>
@@ -100,7 +89,8 @@ function ProfileForm() {
           accept="image/*"
           {...register("profileImgForm")}
           onInput={(e) => {
-            setProfileImg(e.target.files[0]?.name);
+            const file = (e.target as HTMLInputElement).files[0];
+            setProfileImg(file?.name);
           }}
         />
 

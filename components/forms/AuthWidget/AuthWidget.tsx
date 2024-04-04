@@ -6,7 +6,7 @@ import styles from "./AuthWidget.module.scss";
 import LoginForm from "../LoginForm/LoginForm";
 import SignUpForm from "../SignUpForm/SignUpForm";
 import { useLoginContext } from "../../../context/LoginContext";
-import { redirect } from "next/navigation";
+import { redirect, RedirectType } from "next/navigation";
 import { signIn } from "../../../api/login";
 
 const cx = classNames.bind(styles);
@@ -16,9 +16,9 @@ function SignInScreen() {
   const { isLoggedIn, userData } = useLoginContext();
 
   if (isLoggedIn && showLogin) {
-    redirect(`/${userData?.uid}`, "push");
+    redirect(`/${userData?.uid}`, RedirectType.push);
   } else if (isLoggedIn && !showLogin) {
-    redirect(`/edit`, "push");
+    redirect(`/edit`, RedirectType.push);
   }
 
   const textToggle = showLogin

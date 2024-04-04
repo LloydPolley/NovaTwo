@@ -1,18 +1,11 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useState } from "react";
 import classNames from "classnames/bind";
 import style from "./AudioWidget.module.scss";
 import { useAudioContext } from "../../context/AudioContext";
 
-import AudioPlayer, {
-  ActiveUI,
-  InterfaceGridTemplateArea,
-  PlayerPlacement,
-  PlayListPlacement,
-  ProgressUI,
-  VolumeSliderPlacement,
-} from "react-modern-audio-player";
+import AudioPlayer from "react-modern-audio-player";
 
 const cx = classNames.bind(style);
 

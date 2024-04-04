@@ -19,7 +19,6 @@ const AudioWidget = () => {
   const { isPlaying, trackContext, audioRef } = useAudioContext();
   const [expanded, setExpanded] = useState(false);
   const [loadedTrack, setLoadedTrack] = useState(false);
-  const [time, setTime] = useState();
 
   useEffect(() => {
     if (isPlaying) {

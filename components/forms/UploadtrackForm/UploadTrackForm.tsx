@@ -7,9 +7,7 @@ import classNames from "classnames/bind";
 import styles from "./UploadTrackForm.module.scss";
 import { useLoginContext } from "../../../context/LoginContext";
 import Form from "../Form/Form";
-import Loading from "../../Loading";
-import Link from "next/link";
-import { redirect } from "next/navigation";
+import { redirect, RedirectType } from "next/navigation";
 import FileIcon from "../../Icons/FileIcon";
 
 const cx = classNames.bind(styles);
@@ -24,14 +22,14 @@ function UploadTrackForm() {
 
   const { userData, isLoggedIn } = useLoginContext();
 
-  const [image, setImage] = useState();
-  const [audio, setAudio] = useState();
+  const [image, setImage] = useState("");
+  const [audio, setAudio] = useState("");
   const [loading, setLoading] = useState(false);
   const [complete, setComplete] = useState(false);
 
   useEffect(() => {
     if (complete) {
-      redirect(`/${userData?.uid}?f=all`, "push");
+      redirect(`/${userData?.uid}?f=all`, RedirectType.push);
     }
   }, [complete]);
 
@@ -81,10 +79,6 @@ function UploadTrackForm() {
 
     setLoading(false);
     setComplete(true);
-    // redirect(
-    //   `${window.location.origin}${window.location.pathname}?upload=false`,
-    //   "push"
-    // );
   };
 
   if (!isLoggedIn) {
@@ -122,7 +116,8 @@ function UploadTrackForm() {
           required
           {...register("artworkFile")}
           onInput={(e) => {
-            setImage(e.target.files[0]?.name);
+            const file = (e.target as HTMLInputElement).files[0];
+            setImage(file?.name);
           }}
         />
         <input
@@ -133,7 +128,8 @@ function UploadTrackForm() {
           required
           {...register("audioFile")}
           onInput={(e) => {
-            setAudio(e.target.files[0]?.name);
+            const file = (e.target as HTMLInputElement).files[0];
+            setAudio(file?.name);
           }}
         />
 
