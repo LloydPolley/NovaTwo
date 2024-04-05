@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import classNames from "classnames/bind";
 import style from "./AudioWidget.module.scss";
 import { useAudioContext } from "../../context/AudioContext";
@@ -10,29 +9,7 @@ import AudioPlayer from "react-modern-audio-player";
 const cx = classNames.bind(style);
 
 const AudioWidget = ({ audioRef }) => {
-  const { isPlaying, setIsPlaying, trackContext } = useAudioContext();
-
-  const [expanded, setExpanded] = useState(false);
-  const [loadedTrack, setLoadedTrack] = useState(false);
-  const [interfacePlacement, setInterfacePlacement] = useState({
-    artwork: "row1-2",
-    playList: "row1-3",
-    trackInfo: "row2-2",
-    trackTimeCurrent: "row3-1",
-    progress: "row3-2",
-    trackTimeDuration: "row3-3",
-    playButton: "row4-2",
-    repeatType: "row4-1",
-    volume: "row4-3",
-  });
-
-  const [progressType, setProgressType] = useState("waveform");
-  const [playerPlacement, setPlayerPlacement] = useState("bottom");
-  const [playListPlacement, setPlayListPlacement] = useState("top");
-  const [volumeSliderPlacement, setVolumeSliderPlacement] = useState();
-  const [theme, setTheme] = useState("dark" || "light" || undefined);
-  const [width, setWidth] = useState("100%");
-  const [activeUI, setActiveUI] = useState({ all: true });
+  const { isPlaying, trackContext } = useAudioContext();
 
   const playList = [
     {
@@ -55,12 +32,7 @@ const AudioWidget = ({ audioRef }) => {
         isPlaying: isPlaying,
       }}
       placement={{
-        player: playerPlacement,
-        interface: {
-          templateArea: interfacePlacement,
-        },
-        playList: playListPlacement,
-        volumeSlider: volumeSliderPlacement,
+        player: "bottom",
       }}
       activeUI={{
         playButton: false,

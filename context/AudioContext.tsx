@@ -4,17 +4,22 @@ import { createContext, useContext, useState, useEffect, useRef } from "react";
 
 export const AudioContext = createContext({
   isPlaying: false,
-  setIsPlaying: () => {},
-  trackContext: { url: "", audioFileLocation: "" },
+  trackContext: {
+    url: "",
+    audioFileLocation: "",
+    artworkFileLocation: "",
+    artwork: "",
+    name: "",
+    artist: "",
+  },
   playContext: (track) => {},
   pauseContext: () => {},
-  audioRef: () => {},
+  audioRef: { current: { play: () => {}, pause: () => {} } },
 });
 
 const AudioProvider = ({ children }) => {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [trackContext, setTrackContext] = useState();
-  const [playlist, setPlaylist] = useState([]);
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const [trackContext, setTrackContext] = useState<any>();
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const playContext = async (track) => {
@@ -46,10 +51,7 @@ const AudioProvider = ({ children }) => {
         pauseContext,
         isPlaying,
         trackContext,
-        setIsPlaying,
         audioRef,
-        playlist,
-        setPlaylist,
       }}
     >
       {children}

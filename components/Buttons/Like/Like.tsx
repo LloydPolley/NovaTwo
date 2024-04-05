@@ -13,7 +13,7 @@ import { useLoginContext } from "../../../context/LoginContext";
 
 const cx = classNames.bind(styles);
 
-function Like({ track, isLikedContext, setLocalLikes }) {
+function Like({ track, isLikedContext, setNewLike }) {
   const [isLiked, setIsLiked] = useState(false);
   const { userData } = useLoginContext();
 
@@ -25,7 +25,7 @@ function Like({ track, isLikedContext, setLocalLikes }) {
         ? await addLikeToCollection(obj)
         : await deleteLikeTracksCollection(obj)
     );
-    setLocalLikes(obj);
+    setNewLike(obj);
   };
 
   useEffect(() => {

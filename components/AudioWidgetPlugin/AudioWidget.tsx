@@ -4,8 +4,6 @@ import { useEffect, useState } from "react";
 import classNames from "classnames/bind";
 import style from "./AudioWidget.module.scss";
 import { useAudioContext } from "../../context/AudioContext";
-import PlayIcon from "../Icons/PlayIcon";
-import PauseIcon from "../Icons/PauseIcon";
 import dynamic from "next/dynamic";
 import Play from "../Buttons/Play";
 

@@ -7,7 +7,7 @@ import { useLoginContext } from "./LoginContext";
 
 export const LikesContext = createContext({
   likes: [],
-  setLocalLikes: () => {},
+  setLocalLikes: (like) => {},
 });
 
 const LikesProvider = ({ children }) => {

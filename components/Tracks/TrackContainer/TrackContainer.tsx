@@ -23,9 +23,6 @@ const TrackContainer = ({ searchParams, params }) => {
   const [tracks, setTracks] = useState([]);
   const { order } = searchParams;
 
-  console.log("searchPara", searchParams);
-  console.log("params", params);
-
   const fetchingTracks = async () => {
     switch (searchParams.f) {
       case "likes":

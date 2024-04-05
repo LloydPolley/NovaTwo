@@ -4,6 +4,8 @@ import Navigation from "../components/Navigation";
 import AudioWidget from "../components/AudioWidgetPlugin";
 import LoginProvider from "../context/LoginContext";
 import AudioProvider from "../context/AudioContext";
+import LikesProvider from "../context/LikesContextReducer";
+
 import Footer from "../components/Footer";
 import { Lato, Raleway, Poppins } from "next/font/google";
 import styles from "./Home.module.scss";
@@ -30,7 +32,6 @@ const poppins = Poppins({
 });
 
 import "./globals.scss";
-import LikesProvider from "../context/LikesContext";
 
 export default function RootLayout(props) {
   const { children } = props;
