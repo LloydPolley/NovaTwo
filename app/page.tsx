@@ -18,7 +18,7 @@ export default async function Dj({ searchParams, params }) {
     <>
       <div className={cx("artist")}>
         <div className={cx("artist__hero")}>
-          <h1>Featured Artists</h1>
+          <h1>Featured</h1>
           <Carousel data={["", "", "", "", "", "", "", "", ""]} />
         </div>
       </div>
