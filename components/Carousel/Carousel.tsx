@@ -5,54 +5,48 @@ import classNames from "classnames/bind";
 import style from "./Carousel.module.scss";
 import TrackSquare from "../Tracks/TrackSquare";
 import { getAllArtists } from "../../api/getTracks";
+import { getUserFollowers } from "../../api/addFollower";
+import Link from "next/link";
 
 const cx = classNames.bind(style);
 
-const Carousel = ({ data }) => {
-  const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(false);
+const Carousel = ({ users, searchParams, hp }) => {
+  // const [users, setUsers] = useState([]);
+  // const [loading, setLoading] = useState(false);
 
-  const getArtists = async () => {
-    setLoading(true);
-    const artists = await getAllArtists();
-    setUsers(artists);
-    setLoading(false);
-  };
+  // // console.log("searchParams", searchParams);
+  // // console.log("params", params);
 
-  useEffect(() => {
-    getArtists();
-  }, []);
+  // const getArtists = async () => {
+  //   setLoading(true);
+  //   const artists = await getUserFollowers(params?.id);
+  //   console.log("getArtists", artists);
+  //   setUsers(artists);
+  //   setLoading(false);
+  // };
 
-  useEffect(() => {
-    console.log("users", users);
-  }, [users]);
-
-  if (loading) {
-    return <div className={cx("loading")}>Loading</div>;
+  if (searchParams?.f !== "following" && !hp) {
+    return null;
   }
 
   return (
-    <div className={cx("carousel")}>
-      {users &&
-        !loading &&
-        users?.slice(0, 6).map((user) => {
-          const inlineStyle = {
-            backgroundImage: `url(${user.profile})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          };
-          return (
-            <a
-              key={user?.uid}
-              className={cx("carousel__element")}
-              href={`/${user?.uid}?f=all`}
-              // style={inlineStyle}
-            >
-              <img src={user.profile} />
-              <p>{user.displayName}</p>
-            </a>
-          );
-        })}
+    <div className={cx("carousel-wrapper")}>
+      <div className={cx("carousel")}>
+        {users &&
+          users?.slice(0, 11).map((user) => {
+            return (
+              <div className={cx("carousel__container")} key={user?.uid}>
+                <Link
+                  className={cx("carousel__element")}
+                  href={`/${user?.uid}?f=all`}
+                >
+                  <img src={user.profile} />
+                </Link>
+                <p>{user.displayName}</p>
+              </div>
+            );
+          })}
+      </div>
     </div>
   );
 };

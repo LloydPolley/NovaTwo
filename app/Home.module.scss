@@ -1,92 +1,9 @@
 @import "../styles/mixins.scss";
 
-.title {
-  font-size: 60px;
-  text-transform: uppercase;
-  text-align: center;
-  margin: 0;
-  // margin-top: 100px;
-}
-
-.header {
-  display: flex;
-  // position: sticky;
-  top: 0px;
-  padding: 55px 0 0;
-  justify-content: space-between;
-  z-index: 5;
-
-  h1 {
-    display: flex;
-    align-items: center;
-    font-size: 10vw;
-
-    @include medium {
-      font-size: 50px;
-    }
-    @include large {
-      font-size: 60px;
-    }
-  }
-
-  // background-color: $widgetColor;
-}
-
-.hero {
-  margin: 20px 20px 49.5px;
-  min-height: 400px;
-  max-height: 400px;
-  position: relative;
-
-  &__widget {
-    border-radius: 10px;
-    height: 100%;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.2);
-    background-image: url("http://localhost:3000/_next/image?url=https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Fnovatwo-f3f41.appspot.com%2Fo%2FMassano%252Ftracks%252FThe%2520Feeling%252Fartwork%252FMassano%2520feeling.webp%3Falt%3Dmedia%26token%3D45561bb4-651e-4fb1-9317-ea0d7ea6782f&w=828&q=75");
-    background-size: cover;
-    background-position: center;
-
-    display: flex;
-    flex-direction: column-reverse;
-  }
-
-  video {
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-    object-fit: cover;
-    min-height: 400px;
-    max-height: 400px;
-  }
-
-  &__text {
-    a {
-      background-color: black;
-      border-radius: 10px;
-      padding: 20px;
-      margin: 20px 0;
-    }
-  }
-}
-
-.carousel-block {
-  margin-bottom: 45px;
-  width: 80%;
-  overflow: hidden;
-}
-
-.artist {
-  margin: 30px 20px;
-
+.home {
   @include large {
-    margin: 50px 20px;
   }
 
   &__hero {
-    // background-color: black;
-    // border: 1px solid white;
-    // padding: 20px;
-    // border-radius: 10px;
   }
 }

@@ -4,15 +4,16 @@
   background-position: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
   position: relative;
-  overflow: hidden;
   min-height: 400px;
+  margin-bottom: 20px;
+  text-align: center;
 
   @include large {
-    margin-left: 20px;
+    // margin-left: 20px;
     flex-direction: row;
-    height: 400px;
+    justify-content: space-between;
+    margin-bottom: 40px;
   }
 
   &__gradient {
@@ -20,12 +21,13 @@
     z-index: 0;
     height: 45%;
     width: 100%;
-    background: rgba(243, 51, 102, 1);
+    background: rgb(37, 8, 15);
     background: conic-gradient(
       from 315deg,
-      rgba(243, 51, 102, 1),
-      rgba(46, 138, 101, 1)
+      rgb(166, 162, 163),
+      rgb(16, 45, 33)
     );
+    background: conic-gradient(from 315deg, rgb(99, 95, 96), rgb(47, 50, 49));
 
     @include large {
       height: 100%;
@@ -33,41 +35,35 @@
   }
 
   img {
-    margin-top: 50px;
+    margin: 50px auto 0;
     z-index: 1;
     aspect-ratio: 1/1;
     width: 50%;
     object-fit: cover;
     border-radius: 50%;
-    // border: 4px solid yellow;
-
-    // background: linear-gradient(white, white) padding-box,
-    //   linear-gradient(to right, rgb(139, 0, 16), rgb(73, 50, 204)) border-box;
-    // border-radius: 50em;
-    // border: 4px solid transparent;
-    border: 1px solid white;
+    border: 4px solid white;
+    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.5);
 
     @include large {
+      margin-top: 0px;
       width: 250px;
-      // position: absolute;
-      // right: 45%;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
       // padding: 10px;
-      // width: 25%;
+      width: 25%;
     }
   }
 
   &__text {
     text-align: center;
-    width: 100%;
-    // background-color: black;
-    padding: 20px;
+    padding: 10px;
 
     @include large {
       text-align: left;
-      // margin-left: 20px;
-      margin-top: 0px;
+      padding: 20px;
 
-      height: 100%;
       display: flex;
       flex-direction: column;
       justify-content: end;
@@ -90,16 +86,37 @@
     }
   }
 
-  button {
-    background-color: rgb(220, 220, 220);
-    border: 1px solid white;
-    border-radius: 50px;
-    text-align: center;
-    color: black;
-    cursor: pointer;
-    padding: 20px;
-    width: 150px;
-    text-align: center;
-    margin: 10px auto;
+  &__button {
+    z-index: 2;
+    height: auto;
+
+    @include large {
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      padding: 20px;
+    }
+
+    button {
+      background-color: #0195f6;
+      color: white;
+      font-weight: 700;
+      font-size: 18px;
+      // background-color: rgb(220, 220, 220);
+      border: 2px solid transparent;
+      border-radius: 20px;
+      text-align: center;
+      cursor: pointer;
+      padding: 20px;
+      width: 150px;
+      text-align: center;
+      margin: 10px auto;
+      margin-bottom: 20px;
+      height: auto;
+
+      @include large {
+        margin: 0;
+      }
+    }
   }
 }

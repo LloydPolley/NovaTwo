@@ -18,23 +18,22 @@ const deleteLikeTracksCollection = async ({ track, currentUser }) => {
   }
 };
 
-const addLikeToCollection = async ({ track, currentUser }) => {
+const followUser = async ({ followee, follower }) => {
   try {
     const date = new Date().toLocaleString();
-    await setDoc(doc(db, "likes", `${track.trackId}-${currentUser}`), {
+    await setDoc(doc(db, "followers", `${followee?.uid}-${follower}`), {
       date,
-      ...track,
-      currentUser,
+      ...followee,
+      follower,
     });
   } catch (e) {
-    console.log("caught", e);
     return false;
   }
 };
 
-const getUserLikes = async (userId) => {
-  const likesRef = collection(db, "likes");
-  const querys = query(likesRef, where("currentUser", "==", userId));
+const getUserFollowers = async (userId) => {
+  const likesRef = collection(db, "followers");
+  const querys = query(likesRef, where("follower", "==", userId));
   const querySnapshot = await getDocs(querys);
 
   const likesData = [];
@@ -47,4 +46,4 @@ const getUserLikes = async (userId) => {
   return likesData;
 };
 
-export { addLikeToCollection, getUserLikes, deleteLikeTracksCollection };
+export { followUser, getUserFollowers };

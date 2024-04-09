@@ -1,5 +1,9 @@
+"use client";
+
 import classNames from "classnames/bind";
 import style from "./Hero.module.scss";
+import { followUser } from "../../api/addFollower";
+import { useLoginContext } from "../../context/LoginContext";
 
 type HeroProps = {
   title: string;
@@ -13,29 +17,35 @@ type HeroProps = {
 
 const cx = classNames.bind(style);
 
-const Hero = ({
-  title,
-  gradient,
-  img,
-  imgClass,
-  childNode,
-  banner,
-  anim,
-}: HeroProps) => {
-  const styleObject: React.CSSProperties = {
-    textAlign: "center",
-  };
+const Hero = ({ title, img, user }: HeroProps) => {
+  console.log("user", user);
+
+  const { userData } = useLoginContext();
+
+  console.log("userData", userData);
+
+  const you = userData?.uid === user?.uid;
 
   return (
-    <div className={cx("hero")} style={styleObject}>
+    <div className={cx("hero")}>
       <div className={cx("hero__gradient")} />
       <img src={img} />
       <div className={cx("hero__text")}>
         <h1>{title}</h1>
         <p>Techno, Melodic Techno</p>
-        <button>Follow</button>
       </div>
-      {childNode}
+      {!you && (
+        <div className={cx("hero__button")}>
+          <button
+            onClick={() => {
+              console.log("follow someone");
+              followUser({ follower: userData?.uid, followee: user });
+            }}
+          >
+            Follow
+          </button>
+        </div>
+      )}
     </div>
   );
 };

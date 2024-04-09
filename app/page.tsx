@@ -4,6 +4,7 @@ import Wrapper from "../components/Wrapper";
 import TrackContainer from "../components/Tracks/TrackContainer";
 import FilterBar from "../components/FilterBar";
 import Carousel from "../components/Carousel";
+import { getAllArtists } from "../api/getTracks";
 
 const cx = classNames.bind(styles);
 
@@ -14,13 +15,12 @@ const filters = [
 ];
 
 export default async function Dj({ searchParams, params }) {
+  const users = await getAllArtists();
+
   return (
     <>
-      <div className={cx("artist")}>
-        <div className={cx("artist__hero")}>
-          <h1>Featured</h1>
-          <Carousel data={["", "", "", "", "", "", "", "", ""]} />
-        </div>
+      <div className={cx("home")}>
+        <Carousel users={users} searchParams={searchParams} hp />
       </div>
 
       <Wrapper>

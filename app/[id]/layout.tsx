@@ -14,7 +14,7 @@ export default async function RootLayout({ children, params }) {
 
   return (
     <div className={cx("artist")}>
-      <Hero title={user?.displayName} img={user?.profile} />
+      <Hero title={user?.displayName} img={user?.profile} user={user} />
       <Wrapper>{children}</Wrapper>
     </div>
   );

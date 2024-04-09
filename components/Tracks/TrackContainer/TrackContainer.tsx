@@ -44,8 +44,14 @@ const TrackContainer = ({ searchParams, params }) => {
   };
 
   useEffect(() => {
-    fetchingTracks();
+    if (searchParams.f !== "following") {
+      fetchingTracks();
+    }
   }, [searchParams.f]);
+
+  if (searchParams?.f === "following") {
+    return null;
+  }
 
   return (
     <Suspense fallback={<p>Loading</p>}>

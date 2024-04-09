@@ -5,6 +5,14 @@
   gap: 40px;
   border-bottom: 1px solid rgb(46, 46, 46);
   margin-bottom: 25px;
+  overflow: hidden;
+  display: inline-flex;
+  overflow: scroll;
+  width: 100%;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   font-family: var(--font-raleway);
 

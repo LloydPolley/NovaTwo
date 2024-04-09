@@ -10,7 +10,6 @@ import { useLoginContext } from "../../../context/LoginContext";
 import { useLikesContext } from "../../../context/LikesContextReducer";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { isLikedByUser } from "../../../api/addLike";
 
 const cx = classNames.bind(style);
 

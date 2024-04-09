@@ -2,18 +2,10 @@
 
 import classNames from "classnames/bind";
 import style from "./Navigation.module.scss";
-import { useLoginContext } from "../../context/LoginContext";
 import { useState, useEffect } from "react";
 import NavContent from "./NavContent";
-import Burger from "../Icons/Burger";
 import Link from "next/link";
-import {
-  useSelectedLayoutSegment,
-  useSelectedLayoutSegments,
-  useRouter,
-  usePathname,
-  useSearchParams,
-} from "next/navigation";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
 const cx = classNames.bind(style);
 
@@ -29,7 +21,6 @@ const Navigation = () => {
 
   useEffect(() => {
     closeNav();
-    // router.refresh();
   }, [pathname, searchParams]);
 
   return (
@@ -45,12 +36,12 @@ const Navigation = () => {
             viewBox="0 0 275 274"
             width="1em"
             height="1em"
-            // style="height: 22.5px; width: 22.5px;"
           >
             <path d="M8 8h258v258h-86v-86H94V94H8V8Z" fill="#fff"></path>
             <path d="M94 180v86H8v-86h86Z" fill="#fff"></path>
           </svg>
         </Link>
+        <p className={cx("nav__title")}>NOVA</p>
         <button
           className={cx("nav__burger")}
           onClick={() => {

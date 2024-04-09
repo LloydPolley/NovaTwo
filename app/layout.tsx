@@ -53,7 +53,7 @@ export default function RootLayout(props) {
               <Navigation />
               <div className={"side-bar"}>
                 <NavContent />
-                <div>{children}</div>
+                <div className={"main-content"}>{children}</div>
               </div>
               <AudioWidget />
             </AudioProvider>

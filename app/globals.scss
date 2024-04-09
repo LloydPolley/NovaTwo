@@ -5,24 +5,8 @@ body {
   padding: 0;
   margin: 0;
   font-family: var(--font-poppins);
-  // font-family: "Roboto", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-  //   Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   max-width: 100%;
-  // background-color: #121212;
-
-  // background: #181818;
   background-color: #171717;
-  // background: linear-gradient(9deg, rgba(0, 0, 0, 1) 0%, rgb(22, 22, 22) 100%);
-
-  // background: rgb(4, 13, 29);
-  // background: rgb(6 6 6);
-  // background: rgb(6 6 6);
-  // background: linear-gradient(
-  //   0deg,
-  //   rgb(6 19 41) 30%,
-  //   rgba(255, 255, 255, 0) 100%
-  // );
-  // min-height: 100vh;
 }
 
 h1 {
@@ -74,30 +58,16 @@ label {
 
   @include large {
     display: grid;
-    grid-template-columns: 235px 6fr;
-    grid-template-rows: auto; /* You can adjust row heights as needed */
-    grid-gap: 10px; /* Adjust the gap between grid items */
+    grid-template-columns: 235px calc(100% - 235px);
+    grid-template-rows: auto;
   }
 }
-
-// .title,
-// .writer,
-// .drawer-trigger-wrapper,
-// .artwork-container {
-//   display: none !important;
-// }
 
 .rm-audio-player,
 .rm-audio-player-provider,
 .interface-grid {
   padding: 0 !important;
 }
-
-// :root {
-//   --rm-audio-player-interface-container: red !important;
-//   --rm-audio-player-volume-background: red;
-//   --rm-audio-player-progress-bar: red;
-// }
 
 .spectrum--medium_9e130c {
   --rm-audio-player-interface-container: transparent !important;

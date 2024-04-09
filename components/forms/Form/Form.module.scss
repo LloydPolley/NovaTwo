@@ -3,24 +3,23 @@
 .form {
   position: relative;
   text-align: left;
-  background-color: black;
-  border-radius: $borderRaidus;
-  box-shadow: $boxShadow;
+
+  // box-shadow: $boxShadow;
   display: flex;
   flex-direction: column;
 
   width: 90%;
-  padding: 50px;
-  border: $borderOne;
+  padding: 25px;
   max-width: 500px;
-
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  margin: 0 auto;
 
   @include large {
-    // margin: 100px auto 0;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: $borderRaidus;
+    border: $borderOne;
   }
 
   &__load {
@@ -63,15 +62,14 @@
 
   input,
   label {
-    padding: 10px;
-    background-color: black;
+    padding: 20px;
     margin-bottom: 30px;
     color: rgb(225, 225, 225);
     font-size: 16px;
     font-weight: 500;
     // text-transform: uppercase;
     border: none;
-    border-bottom: 1px solid white;
+    border-radius: 10px;
 
     &::placeholder {
       color: rgb(225, 225, 225);
