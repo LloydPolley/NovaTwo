@@ -1,6 +1,13 @@
 @import "../../styles/mixins.scss";
 
 .wrapper {
-  // min-height: 92vh;
+  min-height: 85vh;
   margin: 0px 20px;
+  border-bottom: 1px solid rgb(46, 46, 46);
+  margin-bottom: 20px;
+}
+
+.footer {
+  margin: 20px;
+  text-align: right;
 }
