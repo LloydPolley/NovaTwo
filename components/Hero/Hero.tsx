@@ -13,6 +13,7 @@ type HeroProps = {
   childNode?: React.ReactNode;
   banner?: boolean;
   anim?: boolean;
+  user?: any;
 };
 
 const cx = classNames.bind(style);
