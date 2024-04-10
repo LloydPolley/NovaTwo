@@ -9,6 +9,7 @@
   height: 100%;
   padding: 25px;
   border-radius: $borderRadius;
+  min-height: 100vh;
 
   display: flex;
   flex-grow: 1;
@@ -16,7 +17,7 @@
   background-color: $widgetColor;
 
   &__container {
-    margin: 15% auto;
+    margin: 10% auto;
     width: 80%;
   }
 

@@ -9,8 +9,19 @@
 
 .toggle {
   display: flex;
+  width: 100%;
+  max-width: 450px;
+  margin: 15px auto;
+  white-space: nowrap;
+
+  p {
+    margin: 5px;
+  }
 
   input {
     margin: auto;
+    display: inline-block;
+    width: initial;
+    margin-left: 10px;
   }
 }
