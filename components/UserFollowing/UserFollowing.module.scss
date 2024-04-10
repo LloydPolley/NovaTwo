@@ -1,7 +1,7 @@
 @import "../../styles/mixins.scss";
 
 .following {
-  background-color: #0f0f0f;
+  background-color: $widgetColor;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;

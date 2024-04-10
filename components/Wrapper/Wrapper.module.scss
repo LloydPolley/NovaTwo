@@ -1,12 +1,12 @@
 @import "../../styles/mixins.scss";
 
 .wrapper {
-  margin: 0px 10px;
   padding-bottom: 105px;
-  background-color: #0f0f0f;
+  background-color: $widgetColor;
   padding: 20px;
-  border-radius: 10px 10px 0 0;
+  // border-radius: $borderRadius 10px 0 0;
   min-height: 50vh;
+  border-radius: $borderRadius;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -14,9 +14,10 @@
 
 .footer {
   // border-top: 1px solid rgb(46, 46, 46);
-  background-color: #0f0f0f;
-  border-radius: 0 0 10px 10px;
-  margin: 0 10px;
+  background-color: $widgetColor;
+  border-radius: $borderRadius;
+  margin-bottom: 0;
+  margin-top: 0;
   padding: 20px;
   text-align: center;
   font-size: 14px;

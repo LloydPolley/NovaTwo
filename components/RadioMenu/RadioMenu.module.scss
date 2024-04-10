@@ -15,7 +15,7 @@
     bottom: 1%;
     left: 1%;
     // border: 1px solid rgb(131, 131, 131);
-    border-radius: 10px;
+    border-radius: $borderRadius;
     justify-content: initial;
     width: initial;
     border-top-right-radius: 10px;
@@ -33,10 +33,10 @@
     color: white;
     padding: 10px;
     font-weight: 700;
-    border-radius: $borderRaidus;
+    border-radius: $borderRadius;
 
     @include large {
-      // border-radius: $borderRaidus;
+      // border-radius: $borderRadius;
       padding: 20px;
     }
   }
@@ -46,7 +46,7 @@
     background-color: white !important;
 
     @include large {
-      border-radius: 10px;
+      border-radius: $borderRadius;
       border: $borderOne;
     }
   }

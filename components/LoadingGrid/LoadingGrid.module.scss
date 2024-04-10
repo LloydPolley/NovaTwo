@@ -12,12 +12,12 @@
   grid-auto-rows: 1fr;
 
   // border: $borderOne;
-  border-radius: 10px;
+  border-radius: $borderRadius;
 
   &__element {
     aspect-ratio: 1/1;
     background-color: $widgetColor;
-    border-radius: 10px;
+    border-radius: $borderRadius;
   }
 
   @include medium {
