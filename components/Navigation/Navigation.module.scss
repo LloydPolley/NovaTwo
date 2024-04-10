@@ -102,9 +102,7 @@
 }
 
 .nav-content {
-  // background-color: rgba(0, 0, 0, 0.5);
   background: #0f0f0f;
-  // border-right: 1px solid rgb(52, 52, 52);
   border-radius: 10px;
   gap: 15px;
   position: fixed;
@@ -135,9 +133,9 @@
 
   @include large {
     position: sticky;
-    top: 0;
     opacity: 1;
     pointer-events: all;
+    top: 0;
   }
 
   &__inner {

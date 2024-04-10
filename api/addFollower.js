@@ -32,18 +32,18 @@ const followUser = async ({ followee, follower }) => {
 };
 
 const getUserFollowers = async (userId) => {
-  const likesRef = collection(db, "followers");
-  const querys = query(likesRef, where("follower", "==", userId));
+  const followersRef = collection(db, "followers");
+  const querys = query(followersRef, where("follower", "==", userId));
   const querySnapshot = await getDocs(querys);
 
-  const likesData = [];
+  const followerData = [];
 
   querySnapshot.forEach((doc) => {
     const data = doc.data();
-    likesData.push(data);
+    followerData.push(data);
   });
 
-  return likesData;
+  return followerData;
 };
 
 export { followUser, getUserFollowers };

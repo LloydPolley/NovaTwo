@@ -8,7 +8,7 @@ const cx = classNames.bind(style);
 
 const UserWidget = ({ user }) => {
   return (
-    <div className={cx("user")} key={user?.uid}>
+    <div className={cx("user")}>
       <Link className={cx("user__element")} href={`/${user?.uid}?f=all`}>
         <img src={user.profile} />
       </Link>

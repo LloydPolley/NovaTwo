@@ -6,12 +6,7 @@ import ProfileForm from "../../components/forms/ProfileForm/ProfileForm";
 const cx = classNames.bind(styles);
 
 function SignInScreen() {
-  return (
-    <div className={cx("page")}>
-      {/* <ProfileForm /> */}
-      <AuthWidget />
-    </div>
-  );
+  return <AuthWidget />;
 }
 
 export default SignInScreen;

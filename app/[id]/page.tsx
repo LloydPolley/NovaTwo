@@ -2,6 +2,7 @@ import TrackContainer from "../../components/Tracks/TrackContainer";
 import FilterBar from "../../components/FilterBar";
 import Carousel from "../../components/Carousel";
 import { getUserFollowers } from "../../api/addFollower";
+import UserFollowing from "../../components/UserFollowing";
 
 const filters = [
   { label: "All", url: "?f=all" },
@@ -17,7 +18,7 @@ export default async function DjProfile({ params, searchParams }) {
   return (
     <>
       <FilterBar searchParams={searchParams} filters={filters} />
-      <Carousel users={users} searchParams={searchParams} hp={false} />
+      <UserFollowing users={users} searchParams={searchParams} hp={false} />
       <TrackContainer searchParams={searchParams} params={params} />
     </>
   );

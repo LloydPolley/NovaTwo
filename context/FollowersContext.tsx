@@ -1,61 +1,62 @@
 "use client";
 
 import { createContext, useContext, useReducer, useEffect } from "react";
-import { getUserLikes } from "../api/addLike";
+import { getUserFollowers } from "../api/addFollower";
 import { useLoginContext } from "./LoginContext";
 
 const initialState = {
-  likes: [],
-  newLike: {},
-  setNewLike: (like) => {},
+  followers: [],
+  newFollower: {},
+  setNewFollower: (follower) => {},
 };
 
 const likesReducer = (state, action) => {
   switch (action.type) {
-    case "SET_LIKES":
+    case "SET_FOLLOWERS":
       return { ...state, likes: action.payload };
-    case "SET_NEW_LIKE":
+    case "ADD_NEW_FOLLOWER":
       return { ...state, newLike: action.payload };
     default:
       return state;
   }
 };
 
-export const LikesContext = createContext(initialState);
+export const FollowersContext = createContext(initialState);
 
-const LikesProvider = ({ children }) => {
+const FollowersProvider = ({ children }) => {
   const [state, dispatch] = useReducer(likesReducer, initialState);
   const { isLoggedIn, userData } = useLoginContext();
 
-  const getLikes = async () => {
-    const userLikes = await getUserLikes(userData?.uid);
-    if (userLikes !== state.likes) {
-      dispatch({ type: "SET_LIKES", payload: userLikes });
+  const getFollowers = async () => {
+    const followers = await getUserFollowers(userData?.uid);
+    if (followers !== state.likes) {
+      console.log("followers", followers);
+      dispatch({ type: "SET_FOLLOWERS", payload: followers });
     }
   };
 
   useEffect(() => {
     if (!isLoggedIn) return;
-    getLikes();
+    getFollowers();
   }, [userData, state.newLike, isLoggedIn]);
 
-  const setNewLike = (likes) => {
-    dispatch({ type: "SET_NEW_LIKE", payload: likes });
+  const setNewFollower = (likes) => {
+    dispatch({ type: "ADD_NEW_FOLLOWER", payload: likes });
   };
 
   return (
-    <LikesContext.Provider
+    <FollowersContext.Provider
       value={{
-        likes: state.likes,
-        newLike: {},
-        setNewLike,
+        followers: state.likes,
+        newFollower: {},
+        setNewFollower,
       }}
     >
       {children}
-    </LikesContext.Provider>
+    </FollowersContext.Provider>
   );
 };
 
-export const useLikesContext = () => useContext(LikesContext);
+export const useFollowersContext = () => useContext(FollowersContext);
 
-export default LikesProvider;
+export default FollowersProvider;
