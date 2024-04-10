@@ -6,11 +6,7 @@ import UploadTrackForm from "../../components/forms/UploadtrackForm/UploadTrackF
 const cx = classNames.bind(styles);
 
 function SignInScreen() {
-  return (
-    <div className={cx("page")}>
-      <UploadTrackForm />
-    </div>
-  );
+  return <UploadTrackForm />;
 }
 
 export default SignInScreen;

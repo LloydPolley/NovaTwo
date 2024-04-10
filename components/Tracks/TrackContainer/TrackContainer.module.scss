@@ -23,4 +23,9 @@
     row-gap: 20px;
     column-gap: 20px;
   }
+  @include xl {
+    grid-template-columns: repeat(5, 1fr);
+    row-gap: 20px;
+    column-gap: 20px;
+  }
 }

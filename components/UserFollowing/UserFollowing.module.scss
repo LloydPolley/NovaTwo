@@ -1,0 +1,12 @@
+@import "../../styles/mixins.scss";
+
+.following {
+  background-color: #0f0f0f;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  @include large {
+    gap: 20px;
+  }
+}

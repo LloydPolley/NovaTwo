@@ -6,7 +6,7 @@ body {
   margin: 0;
   font-family: var(--font-poppins);
   max-width: 100%;
-  background-color: #171717;
+  background-color: black;
 }
 
 h1 {
@@ -19,6 +19,11 @@ h1 {
   @include xl {
     margin: 0 auto;
   }
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
 }
 
 a {

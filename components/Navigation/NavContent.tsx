@@ -57,7 +57,7 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
           >
             Tracks
           </Link>
-          {/* <Link
+          <Link
             className={cx(
               activeSegments.length === 0 &&
                 search === "mix" &&
@@ -66,7 +66,7 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
             href="/?f=mix"
           >
             Mix
-          </Link> */}
+          </Link>
           <p className={cx("nav-content__category")}>MY MUSIC</p>
           {!userData?.email ? (
             <Link
@@ -101,6 +101,16 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
                 }}
               >
                 Likes
+              </Link>
+              <Link
+                className={cx(
+                  activeSegments.length === 0 &&
+                    search === "following" &&
+                    "nav-content__active"
+                )}
+                href={`/${userData?.uid}?f=following`}
+              >
+                Following
               </Link>
               <Link
                 className={cx(

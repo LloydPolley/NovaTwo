@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import classNames from "classnames/bind";
-import style from "./Carousel.module.scss";
+import style from "./UserFollowing.module.scss";
 import TrackSquare from "../Tracks/TrackSquare";
 import { getAllArtists } from "../../api/getTracks";
 import { getUserFollowers } from "../../api/addFollower";
@@ -17,18 +17,16 @@ const Carousel = ({ users, searchParams, hp }) => {
 
   console.log("followers", followers);
 
-  if (searchParams?.f !== "following" && !hp) {
+  if (searchParams?.f !== "following") {
     return null;
   }
 
   return (
-    <div className={cx("carousel")}>
-      <div className={cx("carousel__inner")}>
-        {users &&
-          users?.slice(0, 11).map((user) => {
-            return <UserWidget user={user} key={user?.uid} />;
-          })}
-      </div>
+    <div className={cx("following")}>
+      {users &&
+        users?.map((user) => {
+          return <UserWidget user={user} key={user?.uid} />;
+        })}
     </div>
   );
 };

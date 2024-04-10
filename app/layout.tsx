@@ -32,6 +32,7 @@ const poppins = Poppins({
 });
 
 import "./globals.scss";
+import FollowersProvider from "../context/FollowersContext";
 
 export default function RootLayout(props) {
   const { children } = props;
@@ -48,16 +49,18 @@ export default function RootLayout(props) {
       </head>
       <body id="body">
         <LoginProvider>
-          <LikesProvider>
-            <AudioProvider>
-              <Navigation />
-              <div className={"side-bar"}>
-                <NavContent />
-                <div className={"main-content"}>{children}</div>
-              </div>
-              <AudioWidget />
-            </AudioProvider>
-          </LikesProvider>
+          <FollowersProvider>
+            <LikesProvider>
+              <AudioProvider>
+                <Navigation />
+                <div className={"side-bar"}>
+                  <NavContent />
+                  <div className={"main-content"}>{children}</div>
+                </div>
+                <AudioWidget />
+              </AudioProvider>
+            </LikesProvider>
+          </FollowersProvider>
         </LoginProvider>
       </body>
     </html>
