@@ -24,6 +24,12 @@ h1 {
 .main-content {
   display: flex;
   flex-direction: column;
+  gap: 10px;
+  margin: 5px;
+
+  @include large {
+    margin: 10px 10px 0 0px;
+  }
 }
 
 a {
@@ -63,8 +69,9 @@ label {
 
   @include large {
     display: grid;
-    grid-template-columns: 235px calc(100% - 235px);
+    grid-template-columns: 235px calc(100% - 245px);
     grid-template-rows: auto;
+    gap: 10px;
   }
 }
 

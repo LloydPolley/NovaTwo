@@ -9,8 +9,8 @@
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  background-color: #0f0f0f;
-  border-radius: 10px;
+  background-color: $widgetColor;
+  border-radius: $borderRadius;
 
   // border-bottom: 1px solid rgb(65, 65, 65);
   width: 100%;
@@ -102,13 +102,12 @@
 }
 
 .nav-content {
-  background: #0f0f0f;
-  border-radius: 10px;
+  // border: 1px solid white;
+  background: $widgetColor;
+  border-radius: $borderRadius;
   gap: 15px;
   position: fixed;
-  top: 2%;
   min-width: 0;
-  width: 100%;
   z-index: 6;
   transition: 0.2s ease-in-out all;
   height: 100vh;
@@ -116,12 +115,17 @@
   backdrop-filter: blur(50px);
   opacity: 0;
   font-family: var(--font-raleway);
+  margin-top: 10px;
 
   display: flex;
   justify-content: space-between;
   flex-direction: column;
 
   pointer-events: none;
+
+  // @include large {
+  //   margin: 10px 0px 10px 10px;
+  // }
 
   &__name {
     display: none;
@@ -197,6 +201,7 @@
     pointer-events: all;
     opacity: 1;
     min-width: 300px;
+    width: 100%;
     .nav-content__inner {
       transition-delay: 0.2s;
       opacity: 1;

@@ -23,6 +23,7 @@ const Carousel = ({ users, searchParams, hp }) => {
 
   return (
     <div className={cx("carousel")}>
+      <h1>Favourite Artists</h1>
       <div className={cx("carousel__inner")}>
         {users &&
           users?.slice(0, 11).map((user) => {
