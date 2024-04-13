@@ -53,7 +53,7 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
                 search == "tracks" &&
                 "nav-content__active"
             )}
-            href="/?f=tracks"
+            href="/discover/?f=tracks"
           >
             Tracks
           </Link>
@@ -63,7 +63,7 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
                 search === "mix" &&
                 "nav-content__active"
             )}
-            href="/?f=mix"
+            href="/discover?f=mix"
           >
             Mix
           </Link>

@@ -1,18 +1,39 @@
 @import "../../../styles/mixins.scss";
 
+.track-container {
+  background-color: $widgetColor;
+  padding-top: 50px;
+  padding: 20px;
+
+  &__text {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  h2 {
+    text-transform: capitalize;
+  }
+
+  h2,
+  p {
+    margin: 0;
+  }
+  p {
+    margin-top: auto;
+  }
+}
+
 .track-grid {
   display: grid;
   row-gap: 10px;
   column-gap: 10px;
   flex-wrap: wrap;
   width: 100%;
+  flex-grow: 1;
 
   grid-template-columns: 1fr;
   grid-auto-rows: 1fr;
-
-  border-radius: $borderRadius;
-
-  // background-color: rgb(27, 27, 27);
 
   @include medium {
     grid-template-columns: 1fr 1fr;

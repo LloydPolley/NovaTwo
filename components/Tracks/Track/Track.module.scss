@@ -5,35 +5,21 @@
   flex-direction: row;
   width: 100%;
   overflow: hidden;
-  // background-color: $widgetColor;
-  // background-color: rgba(97, 93, 142, 0.1);
-  // padding: 10px;
-  // border-radius: $borderRadius;
-  // box-shadow: $boxShadow;
   height: fit-content;
   border-radius: 5px;
-
-  &:hover {
-    // background-color: rgb(23, 23, 23);
-  }
 
   @include large {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    // padding: 25px;
   }
 
   &__head {
     position: relative;
     width: 100%;
     aspect-ratio: 1/1;
-    // background-color: rgb(56, 56, 56);
-    // border-radius: $borderRadius;
     width: 30%;
     border-radius: $borderRadius;
-
-    // transform: skew(30deg, 20deg);
 
     @include large {
       width: 100%;
@@ -46,9 +32,7 @@
     display: inline-block;
     border-radius: $borderRadius;
 
-    // box-shadow: $boxShadow;
     display: block;
-    // background-color: none;
   }
 
   &__text {

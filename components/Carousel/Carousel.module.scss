@@ -3,15 +3,10 @@
 .carousel {
   background-color: $widgetColor;
   padding: 20px 0;
-  border-radius: $borderRadius;
 
-  h1 {
+  h2 {
     margin-top: 0;
-    margin-left: 30px;
-  }
-
-  @include large {
-    // margin: 30px 0;
+    margin-left: 20px;
   }
 
   &__inner {

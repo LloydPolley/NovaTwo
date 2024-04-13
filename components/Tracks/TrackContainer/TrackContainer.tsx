@@ -56,11 +56,13 @@ const TrackContainer = ({ searchParams, params }) => {
   return (
     <Suspense fallback={<p>Loading</p>}>
       {tracks?.length > 0 && tracks[0].name !== undefined ? (
-        <div className={cx("track-grid")}>
-          {tracks.map((track) => {
-            if (!track.artist) return null;
-            return <Track key={track.name} track={track} />;
-          })}
+        <div className={cx("track-container")}>
+          <div className={cx("track-grid")}>
+            {tracks.map((track) => {
+              if (!track.artist) return null;
+              return <Track key={track.name} track={track} />;
+            })}
+          </div>
         </div>
       ) : (
         <p>No Tracks here...</p>

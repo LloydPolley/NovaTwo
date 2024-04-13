@@ -1,120 +1,112 @@
 @import "../../styles/mixins.scss";
 
 .hero {
-  background-position: center;
-  display: flex;
-  flex-direction: column;
+  background-color: $widgetColor;
   position: relative;
-  min-height: 400px;
-  text-align: center;
-  border-radius: $borderRadius;
+  height: 400px;
+  border-radius: 10px 10px 0 0;
+  overflow: hidden;
+  margin-bottom: 20px;
+  background-image: url("https://whenwedip.com/wp-content/uploads/2024/03/Anyma-PC_-Michael-Drummond-3.jpg");
+  background-position: center 40%;
+  background-repeat: no-repeat;
+  background-size: cover;
 
   @include large {
-    // margin-left: 20px;
-    flex-direction: row;
-    justify-content: space-between;
-    // margin-bottom: 40px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
   }
 
-  &__gradient {
-    border-radius: $borderRadius;
+  &::before {
+    content: "";
+
+    background: $widgetColor;
+    opacity: 0.3;
+    // background: radial-gradient(
+    //   circle,
+    //   rgba(20, 20, 20, 0.1) 0%,
+    //   rgba(20, 20, 20, 1) 100%
+    // );
 
     position: absolute;
-    z-index: 0;
-    height: 45%;
+    top: 0;
+    left: 0;
     width: 100%;
-    background: rgb(37, 8, 15);
-    background: conic-gradient(
-      from 315deg,
-      rgb(166, 162, 163),
-      rgb(16, 45, 33)
-    );
-    background: conic-gradient(from 315deg, rgb(99, 95, 96), rgb(47, 50, 49));
+    height: 100%;
+    z-index: 2;
 
     @include large {
-      height: 100%;
+      display: none;
     }
   }
 
-  img {
-    margin: 50px auto 0;
-    z-index: 1;
-    aspect-ratio: 1/1;
-    width: 50%;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 4px solid white;
-    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.5);
+  &__content {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
 
     @include large {
-      margin-top: 0px;
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      width: 325px;
+      margin: auto;
+      width: 80%;
+      height: 80%;
+      justify-content: center;
+      gap: 20px;
+    }
+  }
+
+  &__image {
+    position: relative;
+    aspect-ratio: 1/1;
+    width: 100%;
+
+    @include large {
+      width: 300px;
+    }
+
+    img {
+      object-fit: cover;
+
+      @include large {
+        border-radius: $borderRadius;
+        // border-bottom: 10px solid rgb(10, 12, 14);
+        // box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+      }
     }
   }
 
   &__text {
-    text-align: center;
-    padding: 10px;
+    position: absolute;
+    bottom: 0;
+    left: 5%;
+    // transform: translateX(-50%);
+    z-index: 2;
 
     @include large {
-      text-align: left;
-      padding: 20px;
-
-      display: flex;
-      flex-direction: column;
-      justify-content: end;
+      position: relative;
+      bottom: 0;
+      left: 0;
+      margin: auto 0;
     }
 
     h1 {
-      text-shadow: 1px 0px 9px rgba(0, 0, 0, 0.9);
-      width: auto;
-      z-index: 3;
-      display: inline-block;
-      font-size: 50px;
-      text-transform: uppercase;
-      margin: 0;
-    }
-
-    p {
-      margin: 0;
-      z-index: 3;
-    }
-  }
-
-  &__button {
-    z-index: 2;
-    height: auto;
-
-    @include large {
-      display: flex;
-      flex-direction: column;
-      justify-content: end;
-      padding: 20px;
-    }
-
-    button {
-      background-color: #0195f6;
-      color: white;
-      font-weight: 700;
-      font-size: 18px;
-      border: 2px solid transparent;
-      border-radius: 20px;
-      text-align: center;
-      cursor: pointer;
-      padding: 20px;
-      width: 150px;
-      text-align: center;
-      margin: 10px auto;
-      margin-bottom: 20px;
-      height: auto;
+      margin-top: 0;
 
       @include large {
-        margin: 0;
+        position: relative;
+        transform: none;
+        left: initial;
+        margin-bottom: 0;
+        font-size: 96px;
       }
+    }
+    p {
+      text-align: left;
+      margin: 0;
+      font-size: 14px;
     }
   }
 }

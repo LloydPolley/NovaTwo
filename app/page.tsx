@@ -1,10 +1,16 @@
 import classNames from "classnames/bind";
 import styles from "./Home.module.scss";
 import Wrapper from "../components/Wrapper";
-import TrackContainer from "../components/Tracks/TrackContainer";
+import TrackContainerServer from "../components/Tracks/TrackContainer/TrackContainerServer";
 import FilterBar from "../components/FilterBar";
 import Carousel from "../components/Carousel";
 import { getAllArtists } from "../api/getTracks";
+import Hero from "../components/Hero";
+import {
+  getAllTracksOrdered,
+  getArtistTracks,
+  getTracksWhere,
+} from "../api/getTracks";
 
 const cx = classNames.bind(styles);
 
@@ -16,17 +22,25 @@ const filters = [
 
 export default async function Dj({ searchParams, params }) {
   const users = await getAllArtists();
+  const mixes = await getTracksWhere("mix", false);
+  const releases = await getTracksWhere("mix", true);
 
   return (
     <>
-      <div className={cx("home")}>
-        <Carousel users={users} searchParams={searchParams} hp />
-      </div>
-
-      <Wrapper>
-        <FilterBar searchParams={searchParams} filters={filters} />
-        <TrackContainer searchParams={searchParams} params={params} />
-      </Wrapper>
+      <Hero />
+      <Carousel
+        items={users}
+        text="Featured Artists"
+        type="users"
+        searchParams={searchParams}
+        hp
+      />
+      <TrackContainerServer text={"Mixes"} tracks={mixes} url={"f=mix"} />
+      <TrackContainerServer
+        text={"Releases"}
+        tracks={releases}
+        url={"f=tracks"}
+      />
     </>
   );
 }

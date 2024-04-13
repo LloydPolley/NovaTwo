@@ -8,11 +8,12 @@ import { getAllArtists } from "../../api/getTracks";
 import { getUserFollowers } from "../../api/addFollower";
 import Link from "next/link";
 import UserWidget from "../UserWidget";
+import Track from "../Tracks/Track";
 import { useFollowersContext } from "../../context/FollowersContext";
 
 const cx = classNames.bind(style);
 
-const Carousel = ({ users, searchParams, hp }) => {
+const Carousel = ({ items, text, type, searchParams, hp }) => {
   const { followers, setNewFollower } = useFollowersContext();
 
   console.log("followers", followers);
@@ -23,10 +24,11 @@ const Carousel = ({ users, searchParams, hp }) => {
 
   return (
     <div className={cx("carousel")}>
-      <h1>Favourite Artists</h1>
+      <h2>{text}</h2>
       <div className={cx("carousel__inner")}>
-        {users &&
-          users?.slice(0, 11).map((user) => {
+        {items &&
+          type === "users" &&
+          items?.slice(0, 11).map((user) => {
             return <UserWidget user={user} key={user?.uid} />;
           })}
       </div>

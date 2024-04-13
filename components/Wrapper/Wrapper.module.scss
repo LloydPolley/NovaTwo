@@ -1,21 +1,28 @@
 @import "../../styles/mixins.scss";
 
 .wrapper {
-  padding-bottom: 105px;
-  background-color: $widgetColor;
-  padding: 20px;
-  // border-radius: $borderRadius 10px 0 0;
   min-height: 50vh;
   border-radius: $borderRadius;
+
+  grid-template-columns: 1fr 1fr; /* Two columns */
+
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  background-color: $widgetColor;
+
+  // gap: 10px;
+  margin: 5px;
+
+  @include large {
+    margin: 10px 10px 0 0px;
+  }
 }
 
 .footer {
   // border-top: 1px solid rgb(46, 46, 46);
   background-color: $widgetColor;
-  border-radius: $borderRadius;
+  // border-radius: $borderRadius;
   margin-bottom: 0;
   margin-top: 0;
   padding: 20px;

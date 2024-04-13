@@ -33,6 +33,7 @@ const poppins = Poppins({
 
 import "./globals.scss";
 import FollowersProvider from "../context/FollowersContext";
+import Wrapper from "../components/Wrapper";
 
 export default function RootLayout(props) {
   const { children } = props;
@@ -55,7 +56,7 @@ export default function RootLayout(props) {
                 <Navigation />
                 <div className={"side-bar"}>
                   <NavContent />
-                  <div className={"main-content"}>{children}</div>
+                  <Wrapper>{children}</Wrapper>
                 </div>
                 <AudioWidget />
               </AudioProvider>
