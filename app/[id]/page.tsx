@@ -23,11 +23,7 @@ export default async function DjProfile({ params, searchParams }) {
       <AritstHero title={user?.displayName} img={user?.profile} user={user} />
       <FilterBar searchParams={searchParams} filters={filters} />
       <UserFollowing users={users} searchParams={searchParams} hp={false} />
-      <TrackContainer
-        searchParams={searchParams}
-        params={params}
-        img={user?.profile}
-      />
+      <TrackContainer searchParams={searchParams} params={params} />
     </>
   );
 }

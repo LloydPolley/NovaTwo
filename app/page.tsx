@@ -2,6 +2,7 @@ import classNames from "classnames/bind";
 import styles from "./Home.module.scss";
 import Wrapper from "../components/Wrapper";
 import TrackContainerServer from "../components/Tracks/TrackContainer/TrackContainerServer";
+import TrackContainerArtist from "../components/Tracks/TrackContainer/TrackContainerArtist";
 import FilterBar from "../components/FilterBar";
 import Carousel from "../components/Carousel";
 import { getAllArtists } from "../api/getTracks";
@@ -28,13 +29,7 @@ export default async function Dj({ searchParams, params }) {
   return (
     <>
       <Hero />
-      <Carousel
-        items={users}
-        text="Featured Artists"
-        type="users"
-        searchParams={searchParams}
-        hp
-      />
+      <TrackContainerArtist text={"Mixes"} users={users} url={"f=mix"} />
       <TrackContainerServer text={"Mixes"} tracks={mixes} url={"f=mix"} />
       <TrackContainerServer
         text={"Releases"}
