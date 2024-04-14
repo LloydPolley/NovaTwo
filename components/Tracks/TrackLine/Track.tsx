@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 
 const cx = classNames.bind(style);
 
-const Track = ({ item }) => {
+const Track = ({ track }) => {
   const {
     artist,
     artworkFileLocation,
@@ -22,7 +22,7 @@ const Track = ({ item }) => {
     name,
     trackId,
     artwork,
-  } = item || {};
+  } = track;
 
   const [isLiked, setIsLiked] = useState(false);
 
@@ -47,7 +47,7 @@ const Track = ({ item }) => {
       className={cx("track", isPlayingLocal && "track__playing")}
       key={`${artist} - ${name}`}
       onClick={() => {
-        !isPlayingLocal ? playContext(item) : pauseContext();
+        !isPlayingLocal ? playContext(track) : pauseContext();
       }}
     >
       <div className={cx("track__head")}>

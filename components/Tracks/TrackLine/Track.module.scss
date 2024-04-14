@@ -8,22 +8,12 @@
   height: fit-content;
   border-radius: 5px;
 
-  // @include large {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  // }
-
   &__head {
     position: relative;
     width: 100%;
     aspect-ratio: 1/1;
     width: 30%;
     border-radius: $borderRadius;
-
-    // @include large {
-    width: 100%;
-    // }
   }
 
   img {
@@ -44,11 +34,6 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-
-    // @include large {
-    padding: 15px 5px;
-    margin-left: 0;
-    // }
 
     a {
       color: rgb(181, 181, 181);
@@ -83,18 +68,5 @@
     position: absolute;
     right: 1.5%;
     bottom: 40%;
-
-    // @include large {
-    right: 0%;
-    bottom: 20%;
-    // }
-  }
-
-  @include large {
-    &:hover {
-      .track__play {
-        opacity: 1;
-      }
-    }
   }
 }

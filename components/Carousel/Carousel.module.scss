@@ -1,29 +1,48 @@
 @import "../../styles/mixins.scss";
 
 .carousel {
-  background-color: $widgetColor;
-  padding: 20px 0;
+  margin-bottom: 15px;
 
-  h2 {
-    margin-top: 0;
-    margin-left: 20px;
+  &__text {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+
+    h2 {
+      text-transform: capitalize;
+    }
+
+    h2,
+    p {
+      margin: 0;
+    }
+    p {
+      margin-top: auto;
+    }
   }
 
   &__inner {
-    width: 100%;
-    max-width: 100%;
-    overflow: hidden;
-    display: inline-flex;
-    gap: 15px;
-    overflow: scroll;
     display: flex;
-
-    opacity: 0;
-    animation: fadeIn 0.5s ease-in forwards;
-    padding-left: 20px;
-
+    overflow-x: auto;
+    max-width: 100%;
+    gap: 15px;
     &::-webkit-scrollbar {
       display: none;
+    }
+  }
+
+  &__item {
+    flex: 0 0 200px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+
+    // @include large {
+    //   flex: 0 0 200px;
+    // }
+
+    &:first-child {
+      margin-left: 10px;
     }
   }
 }

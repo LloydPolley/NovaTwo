@@ -12,6 +12,8 @@ import {
   getArtistTracks,
   getTracksWhere,
 } from "../api/getTracks";
+import Track from "../components/Tracks/Track";
+import UserWidget from "../components/UserWidget";
 
 const cx = classNames.bind(styles);
 
@@ -23,19 +25,26 @@ const filters = [
 
 export default async function Dj({ searchParams, params }) {
   const users = await getAllArtists();
-  const mixes = await getTracksWhere("mix", false);
-  const releases = await getTracksWhere("mix", true);
+  const mixes = await getTracksWhere("mix", true);
+  const releases = await getTracksWhere("mix", false);
+
+  console.log("users", users);
 
   return (
     <>
       <Hero />
-      <TrackContainerArtist text={"Mixes"} users={users} url={"f=mix"} />
-      <TrackContainerServer text={"Mixes"} tracks={mixes} url={"f=mix"} />
-      <TrackContainerServer
-        text={"Releases"}
-        tracks={releases}
-        url={"f=tracks"}
+      <Carousel
+        Component={UserWidget}
+        items={users}
+        text={"Favourite Artists"}
       />
+      <Carousel
+        Component={Track}
+        items={releases}
+        text={"Releases"}
+        url={"f=release"}
+      />
+      <Carousel Component={Track} items={mixes} text={"Mixes"} url={"f=mix"} />
     </>
   );
 }

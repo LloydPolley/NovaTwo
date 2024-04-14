@@ -26,7 +26,7 @@ const TrackContainerServer = ({ text, tracks, url }) => {
           <div className={cx("track-grid")}>
             {tracks.map((track) => {
               if (!track.artist) return null;
-              return <Track key={track.name} track={track} />;
+              return <Track key={track.name} item={track} />;
             })}
           </div>
         ) : (

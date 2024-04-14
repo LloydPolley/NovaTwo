@@ -7,8 +7,6 @@ import { useLoginContext } from "../../context/LoginContext";
 import { useFollowersContext } from "../../context/FollowersContext";
 import { useEffect, useState } from "react";
 
-import { usePalette } from "react-palette";
-
 type HeroProps = {
   title: string;
   img?: string;
