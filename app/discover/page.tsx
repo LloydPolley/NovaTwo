@@ -37,7 +37,7 @@ export default async function Dj({ searchParams, params }) {
   return (
     <>
       <FilterBar searchParams={searchParams} filters={filters} />
-      <TrackContainerServer text={filterType} tracks={tracks} url={"?f=mix"} />
+      <TrackContainerServer text={filterType} tracks={tracks} />
     </>
   );
 }

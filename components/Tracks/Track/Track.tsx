@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 
 const cx = classNames.bind(style);
 
-const Track = ({ item }) => {
+const Track = ({ item, type }) => {
   const {
     artist,
     artworkFileLocation,
@@ -44,7 +44,11 @@ const Track = ({ item }) => {
 
   return (
     <div
-      className={cx("track", isPlayingLocal && "track__playing")}
+      className={cx(
+        "track",
+        type === "both" ? "track-both" : "track-square",
+        isPlayingLocal && "track__playing"
+      )}
       key={`${artist} - ${name}`}
       onClick={() => {
         !isPlayingLocal ? playContext(item) : pauseContext();

@@ -60,7 +60,7 @@ const TrackContainer = ({ searchParams, params }) => {
           <div className={cx("track-grid")}>
             {tracks.map((track) => {
               if (!track.artist) return null;
-              return <Track key={track.name} item={track} />;
+              return <Track key={track.name} item={track} type="both" />;
             })}
           </div>
         </div>

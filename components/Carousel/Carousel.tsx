@@ -10,11 +10,12 @@ type CarouselTypes = {
   items: TrackType[];
   text?: string;
   url?: string;
+  type?: string;
 };
 
 const cx = classNames.bind(style);
 
-const Carousel = ({ Component, items, text, url }: CarouselTypes) => {
+const Carousel = ({ Component, items, text, url, type }: CarouselTypes) => {
   return (
     <div className={cx("carousel")}>
       <div className={cx("carousel__text")}>
@@ -24,9 +25,14 @@ const Carousel = ({ Component, items, text, url }: CarouselTypes) => {
       <div className={cx("carousel__inner")}>
         {items &&
           items.map((item) => {
+            console.log("item", item);
+
             return (
-              <div className={cx("carousel__item")}>
-                <Component item={item} key={item?.uid} />
+              <div
+                className={cx("carousel__item")}
+                key={item?.trackId || item?.uid}
+              >
+                <Component item={item} type={type} />
               </div>
             );
           })}

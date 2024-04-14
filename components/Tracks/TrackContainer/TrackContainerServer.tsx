@@ -19,14 +19,14 @@ const TrackContainerServer = ({ text, tracks, url }) => {
       <div className={cx("track-container")}>
         <div className={cx("track-container__text")}>
           <h2>{text}</h2>
-          <Link href={`discover?${url}`}>See more</Link>
+          {url && <Link href={`discover?${url}`}>See more</Link>}
         </div>
 
         {tracks?.length > 0 && tracks[0].name !== undefined ? (
           <div className={cx("track-grid")}>
             {tracks.map((track) => {
               if (!track.artist) return null;
-              return <Track key={track.name} item={track} />;
+              return <Track key={track.name} item={track} type="both" />;
             })}
           </div>
         ) : (

@@ -20,7 +20,7 @@ const TrackContainerServer = ({ text, users, url }) => {
       <div className={cx("track-container")}>
         <div className={cx("track-container__text")}>
           <h2>{text}</h2>
-          <Link href={`discover?${url}`}>See more</Link>
+          {url && <Link href={`discover?${url}`}>See more</Link>}
         </div>
 
         {users?.length > 0 ? (
