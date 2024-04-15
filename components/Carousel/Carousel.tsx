@@ -6,7 +6,7 @@ import Link from "next/link";
 import { TrackType } from "../../types/tracks";
 
 type CarouselTypes = {
-  Component: React.ComponentType<{ item: TrackType }>;
+  Component: React.ComponentType<{ item: TrackType; type?: string }>;
   items: TrackType[];
   text?: string;
   url?: string;
