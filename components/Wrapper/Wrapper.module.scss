@@ -1,15 +1,12 @@
 @import "../../styles/mixins.scss";
 
 .wrapper {
-  min-height: 50vh;
   border-radius: $borderRadius;
-
-  grid-template-columns: 1fr 1fr; /* Two columns */
-
   display: flex;
   flex-direction: column;
   flex-grow: 1;
   background-color: $widgetColor;
+  min-height: 93vh;
 
   // gap: 10px;
   margin: 5px;

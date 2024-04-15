@@ -5,6 +5,7 @@ import { getUserFollowers } from "../../api/addFollower";
 import UserFollowing from "../../components/UserFollowing";
 import { getDj } from "../../api/getDjs";
 import AritstHero from "../../components/ArtistHero";
+import { Suspense } from "react";
 
 const filters = [
   { label: "All", url: "?f=all" },
@@ -23,7 +24,15 @@ export default async function DjProfile({ params, searchParams }) {
       <AritstHero title={user?.displayName} img={user?.profile} user={user} />
       <FilterBar searchParams={searchParams} filters={filters} />
       <UserFollowing users={users} searchParams={searchParams} hp={false} />
-      <TrackContainer searchParams={searchParams} params={params} />
+      <Suspense fallback={"hello"}>
+        <TrackContainer
+          searchParams={searchParams}
+          params={params}
+          text={undefined}
+          trackList={undefined}
+          url={undefined}
+        />
+      </Suspense>
     </>
   );
 }

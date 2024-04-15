@@ -1,6 +1,6 @@
 import classNames from "classnames/bind";
 import styles from "./discover.module.scss";
-import TrackContainerServer from "../../components/Tracks/TrackContainer/TrackContainerServer";
+import TrackContainer from "../../components/Tracks/TrackContainer";
 import Carousel from "../../components/Carousel";
 import { getAllArtists } from "../../api/getTracks";
 import Hero from "../../components/Hero";
@@ -10,6 +10,7 @@ import {
   getTracksWhere,
 } from "../../api/getTracks";
 import FilterBar from "../../components/FilterBar";
+import { Suspense } from "react";
 
 const cx = classNames.bind(styles);
 
@@ -22,22 +23,28 @@ const filters = [
 export default async function Dj({ searchParams, params }) {
   const filterType = searchParams.f;
 
-  console.log("filter type", filterType);
-
   let tracks = [];
 
   if (filterType === "tracks") {
     tracks = await getTracksWhere("mix", false);
   } else if (filterType === "mix") {
     tracks = await getTracksWhere("mix", true);
-  } else {
+  } else if (filterType === "all") {
     tracks = await getAllTracksOrdered("asc");
   }
 
   return (
     <>
       <FilterBar searchParams={searchParams} filters={filters} />
-      <TrackContainerServer text={filterType} tracks={tracks} />
+      <Suspense>
+        <TrackContainer
+          text={filterType}
+          trackList={tracks}
+          searchParams={searchParams}
+          params={params}
+          url={undefined}
+        />
+      </Suspense>
     </>
   );
 }

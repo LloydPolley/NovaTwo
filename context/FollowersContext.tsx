@@ -30,7 +30,6 @@ const FollowersProvider = ({ children }) => {
   const getFollowers = async () => {
     const followers = await getUserFollowers(userData?.uid);
     if (followers !== state.likes) {
-      console.log("followers", followers);
       dispatch({ type: "SET_FOLLOWERS", payload: followers });
     }
   };

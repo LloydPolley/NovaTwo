@@ -50,3 +50,11 @@
     column-gap: 20px;
   }
 }
+
+.nothing {
+  height: 200px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}

@@ -25,8 +25,6 @@ const Carousel = ({ Component, items, text, url, type }: CarouselTypes) => {
       <div className={cx("carousel__inner")}>
         {items &&
           items.map((item) => {
-            console.log("item", item);
-
             return (
               <div
                 className={cx("carousel__item")}

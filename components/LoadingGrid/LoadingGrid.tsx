@@ -6,10 +6,10 @@ const cx = classNames.bind(style);
 
 const LoadingGrid = () => {
   const elements = Array.from({ length: 4 }, (_, index) => (
-    <div key={index} className={cx("track-grid__element")}></div>
+    <div key={index} className={cx("loading__element")}></div>
   ));
 
-  return <div className={cx("track-grid")}>{elements}</div>;
+  return <div className={cx("loading")}>{elements}</div>;
 };
 
 export default LoadingGrid;

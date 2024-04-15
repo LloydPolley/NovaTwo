@@ -1,7 +1,6 @@
 import classNames from "classnames/bind";
 import styles from "./Home.module.scss";
 import Wrapper from "../components/Wrapper";
-import TrackContainerServer from "../components/Tracks/TrackContainer/TrackContainerServer";
 import TrackContainerArtist from "../components/Tracks/TrackContainer/TrackContainerArtist";
 import FilterBar from "../components/FilterBar";
 import Carousel from "../components/Carousel";
@@ -14,6 +13,7 @@ import {
 } from "../api/getTracks";
 import Track from "../components/Tracks/Track";
 import UserWidget from "../components/UserWidget";
+import { Suspense } from "react";
 
 const cx = classNames.bind(styles);
 
@@ -26,9 +26,7 @@ const filters = [
 export default async function Dj({ searchParams, params }) {
   const users = await getAllArtists();
   const mixes = await getTracksWhere("mix", true);
-  const releases = await getTracksWhere("mix", false);
-
-  console.log("users", users);
+  const tracks = await getTracksWhere("mix", false);
 
   return (
     <>
@@ -40,9 +38,9 @@ export default async function Dj({ searchParams, params }) {
       />
       <Carousel
         Component={Track}
-        items={releases}
+        items={tracks}
         text={"Releases"}
-        url={"f=release"}
+        url={"f=tracks"}
       />
       <Carousel Component={Track} items={mixes} text={"Mixes"} url={"f=mix"} />
     </>

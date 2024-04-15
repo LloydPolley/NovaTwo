@@ -34,7 +34,7 @@ function UploadTrackForm() {
   }, [complete]);
 
   const onSubmit = async (data) => {
-    const { name, audioFile, artworkFile, label, mix } = data;
+    const { name, audioFile, artworkFile, label, mix, album } = data;
     const { displayName, uid } = userData;
 
     const audioUrl = `gs://novatwo-f3f41.appspot.com/${displayName}/tracks/${name}/audio/${audioFile[0].name}`;
@@ -73,6 +73,7 @@ function UploadTrackForm() {
       audioFileLocation: audioAccess,
       artworkFileLocation: artworkAccess,
       label,
+      album,
       uid,
       mix,
     });
@@ -89,6 +90,7 @@ function UploadTrackForm() {
     <Form title={"Upload your track"} loading={loading}>
       <form className={cx("upload-form")} onSubmit={handleSubmit(onSubmit)}>
         <input placeholder={"Track name"} {...register("name")} required />
+        <input placeholder={"Album"} {...register("album")} required />
         <input placeholder={"Label"} {...register("label")} required />
         <label htmlFor="audio-upload" className={cx("upload-element")}>
           <FileIcon />
@@ -99,7 +101,7 @@ function UploadTrackForm() {
           <p> {image ? image : "Upload Artwork"}</p>
         </label>
 
-        <div className={cx("toggle")}>
+        <div className={cx("upload-form__toggle")}>
           <p>Is Mix</p>
           <input
             type="checkbox"

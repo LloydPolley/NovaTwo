@@ -65,7 +65,8 @@ label {
 }
 
 .side-bar {
-  // display: flex;
+  display: flex;
+  flex-direction: column;
 
   @include large {
     display: grid;
