@@ -27,7 +27,7 @@ const TrackContainerServer = ({ text, users, url }) => {
           <div className={cx("track-grid")}>
             {users &&
               users?.map((user) => {
-                return <UserWidget user={user} key={user?.uid} />;
+                return "hello";
               })}
           </div>
         ) : (
