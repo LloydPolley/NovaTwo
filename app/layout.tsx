@@ -47,12 +47,14 @@ export default function RootLayout(props) {
       </head>
       <body id="body">
         <Providers>
-          <Navigation />
+          <Suspense>
+            <Navigation />
+          </Suspense>
           <div className={"side-bar"}>
-            <NavContent />
             <Suspense>
-              <Wrapper>{children}</Wrapper>
+              <NavContent />
             </Suspense>
+            <Wrapper>{children}</Wrapper>
           </div>
           <AudioWidget />
         </Providers>

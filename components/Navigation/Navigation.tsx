@@ -13,7 +13,6 @@ const Navigation = () => {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const router = useRouter();
 
   const closeNav = () => {
     setOpen(false);
