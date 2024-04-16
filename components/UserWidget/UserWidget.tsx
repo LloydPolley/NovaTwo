@@ -10,9 +10,9 @@ const UserWidget = ({ item }) => {
   return (
     <div className={cx("user")}>
       <Link className={cx("user__element")} href={`/${item?.uid}?f=all`}>
-        <img src={item.profile} />
+        <img src={item?.profile} />
       </Link>
-      <p>{item.displayName}</p>
+      <p>{item?.displayName}</p>
     </div>
   );
 };

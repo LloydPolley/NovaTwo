@@ -2,9 +2,8 @@
 
 import classNames from "classnames/bind";
 import style from "./ArtistHero.module.scss";
-import { followUser } from "../../api/addFollower";
 import { useLoginContext } from "../../context/LoginContext";
-import { useFollowersContext } from "../../context/FollowersContext";
+import { useFollowingContext } from "../../context/FollowersContext";
 import { useEffect, useState } from "react";
 
 type HeroProps = {
@@ -22,15 +21,15 @@ const cx = classNames.bind(style);
 
 const AritstHero = ({ title, img, user }: HeroProps) => {
   const { userData } = useLoginContext();
-  const { followers } = useFollowersContext();
+  const { following, setNewFollowing } = useFollowingContext();
   const [isFollowed, setIsFollowed] = useState(false);
 
   useEffect(() => {
-    if (!followers) return;
-    const follow = followers?.some((follower) => follower.uid === user?.uid);
+    if (!following) return;
+    const follow = following?.some((follower) => follower.uid === user?.uid);
     setIsFollowed(follow);
     console.log("is being followed", follow);
-  }, [followers]);
+  }, [following]);
 
   const yourProfile = userData?.uid === user?.uid;
 
@@ -50,10 +49,10 @@ const AritstHero = ({ title, img, user }: HeroProps) => {
           <button
             onClick={() => {
               console.log("follow someone");
-              followUser({ follower: userData.uid, followee: user.uid });
+              setNewFollowing({ user: userData, following: user });
             }}
           >
-            +
+            Follow
           </button>
         </div>
       )}

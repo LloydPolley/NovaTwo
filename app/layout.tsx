@@ -1,15 +1,11 @@
 import classNames from "classnames/bind";
 
 import Navigation from "../components/Navigation";
+import NavContent from "../components/Navigation/NavContent";
 import AudioWidget from "../components/AudioWidgetPlugin";
-import LoginProvider from "../context/LoginContext";
-import AudioProvider from "../context/AudioContext";
-import LikesProvider from "../context/LikesContextReducer";
-
-import Footer from "../components/Footer";
+import { Providers } from "../context/Providers";
 import { Lato, Raleway, Poppins } from "next/font/google";
 import styles from "./Home.module.scss";
-import NavContent from "../components/Navigation/NavContent";
 
 const cx = classNames.bind(styles);
 
@@ -49,20 +45,14 @@ export default function RootLayout(props) {
         />
       </head>
       <body id="body">
-        <LoginProvider>
-          <FollowersProvider>
-            <LikesProvider>
-              <AudioProvider>
-                <Navigation />
-                <div className={"side-bar"}>
-                  <NavContent />
-                  <Wrapper>{children}</Wrapper>
-                </div>
-                <AudioWidget />
-              </AudioProvider>
-            </LikesProvider>
-          </FollowersProvider>
-        </LoginProvider>
+        <Providers>
+          <Navigation />
+          <div className={"side-bar"}>
+            <NavContent />
+            <Wrapper>{children}</Wrapper>
+          </div>
+          <AudioWidget />
+        </Providers>
       </body>
     </html>
   );

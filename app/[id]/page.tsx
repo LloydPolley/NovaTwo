@@ -17,13 +17,12 @@ const filters = [
 
 export default async function DjProfile({ params, searchParams }) {
   const user = await getDj(params?.id);
-  const users = await getUserFollowers(params?.id);
 
   return (
     <>
       <AritstHero title={user?.displayName} img={user?.profile} user={user} />
       <FilterBar searchParams={searchParams} filters={filters} />
-      <UserFollowing users={users} searchParams={searchParams} hp={false} />
+      <UserFollowing searchParams={searchParams} params={params} />
       <Suspense fallback={"hello"}>
         <TrackContainer
           searchParams={searchParams}

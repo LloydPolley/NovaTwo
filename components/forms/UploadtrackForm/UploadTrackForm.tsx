@@ -90,8 +90,8 @@ function UploadTrackForm() {
     <Form title={"Upload your track"} loading={loading}>
       <form className={cx("upload-form")} onSubmit={handleSubmit(onSubmit)}>
         <input placeholder={"Track name"} {...register("name")} required />
-        <input placeholder={"Album"} {...register("album")} required />
-        <input placeholder={"Label"} {...register("label")} required />
+        <input placeholder={"Album"} {...register("album")} />
+        <input placeholder={"Label"} {...register("label")} />
         <label htmlFor="audio-upload" className={cx("upload-element")}>
           <FileIcon />
           <p> {audio ? audio : "Upload Audio"}</p>

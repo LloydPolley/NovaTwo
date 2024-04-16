@@ -60,6 +60,7 @@ const TrackContainer = ({
   };
 
   useEffect(() => {
+    setTracks([]);
     if (searchParams.f !== "following" && !trackList) {
       fetchingTracks();
     } else if (trackList) {

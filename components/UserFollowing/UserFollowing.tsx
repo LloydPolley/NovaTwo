@@ -1,16 +1,34 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import classNames from "classnames/bind";
 import style from "./UserFollowing.module.scss";
 import UserWidget from "../UserWidget";
-import { useFollowersContext } from "../../context/FollowersContext";
+import { useFollowingContext } from "../../context/FollowersContext";
+import { useLoginContext } from "../../context/LoginContext";
+import { getUserFollowers } from "../../api/addFollower";
 
 const cx = classNames.bind(style);
 
-const Carousel = ({ users, searchParams, hp }) => {
-  const { followers, setNewFollower } = useFollowersContext();
+const Carousel = ({ searchParams, params }) => {
+  const { following } = useFollowingContext();
+  const { userData } = useLoginContext();
+  const [users, setUsers] = useState([]);
 
-  console.log("followers", followers);
+  const fetchUserFollowers = async () => {
+    const users = await getUserFollowers(params?.id);
+    setUsers(users);
+  };
+
+  useEffect(() => {
+    const isYou = params?.id === userData?.uid;
+    if (isYou) {
+      console.log("isyou", isYou);
+      setUsers(following);
+      return;
+    }
+    fetchUserFollowers();
+  }, []);
 
   if (searchParams?.f !== "following") {
     return null;
@@ -20,8 +38,7 @@ const Carousel = ({ users, searchParams, hp }) => {
     <div className={cx("following")}>
       {users &&
         users?.map((user) => {
-          <p>Hello</p>;
-          // return <UserWidget user={user} key={user?.uid} />;
+          return <UserWidget item={user} key={user?.uid} />;
         })}
     </div>
   );

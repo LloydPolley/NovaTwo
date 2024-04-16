@@ -22,10 +22,3 @@ const Hero = () => {
 };
 
 export default Hero;
-
-{
-  /* <video autoPlay muted loop playsInline>
-          <source src={"/anyma-30.mp4"} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video> */
-}

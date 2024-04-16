@@ -10,28 +10,28 @@ import {
   deleteLikeTracksCollection,
 } from "../../../api/addLike";
 import { useLoginContext } from "../../../context/LoginContext";
+import { useLikesContext } from "../../../context/LikesContext";
 
 const cx = classNames.bind(styles);
 
-function Like({ track, isLikedContext, setNewLike }) {
+function Like({ track }) {
+  const { trackId } = track || {};
   const [isLiked, setIsLiked] = useState(false);
+  const { likes, addLike, removeLike } = useLikesContext();
   const { userData } = useLoginContext();
 
-  const clickHandler = async () => {
+  const clickHandler = () => {
     const obj = { track, currentUser: userData?.uid };
-
-    setIsLiked(
-      !isLiked
-        ? await addLikeToCollection(obj)
-        : await deleteLikeTracksCollection(obj)
-    );
-    setNewLike(obj);
+    !isLiked ? addLike(obj) : removeLike(obj);
   };
 
   useEffect(() => {
-    console.log("fetching like", isLikedContext);
-    setIsLiked(isLikedContext);
-  }, [isLikedContext, isLiked]);
+    const isLikedByUser = likes.find(
+      (likedTrack) => likedTrack.trackId === trackId
+    );
+
+    setIsLiked(isLikedByUser);
+  }, [likes]);
 
   return (
     <button

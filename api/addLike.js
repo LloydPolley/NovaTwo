@@ -13,6 +13,7 @@ import {
 const deleteLikeTracksCollection = async ({ track, currentUser }) => {
   try {
     await deleteDoc(doc(db, "likes", `${track.trackId}-${currentUser}`));
+    return true;
   } catch (e) {
     return false;
   }
@@ -26,6 +27,7 @@ const addLikeToCollection = async ({ track, currentUser }) => {
       ...track,
       currentUser,
     });
+    return true;
   } catch (e) {
     console.log("caught", e);
     return false;
