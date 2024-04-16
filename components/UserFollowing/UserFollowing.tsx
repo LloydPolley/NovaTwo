@@ -1,12 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import classNames from "classnames/bind";
 import style from "./UserFollowing.module.scss";
-import TrackSquare from "../Tracks/TrackSquare";
-import { getAllArtists } from "../../api/getTracks";
-import { getUserFollowers } from "../../api/addFollower";
-import Link from "next/link";
 import UserWidget from "../UserWidget";
 import { useFollowersContext } from "../../context/FollowersContext";
 
@@ -25,7 +20,8 @@ const Carousel = ({ users, searchParams, hp }) => {
     <div className={cx("following")}>
       {users &&
         users?.map((user) => {
-          return <UserWidget user={user} key={user?.uid} />;
+          <p>Hello</p>;
+          // return <UserWidget user={user} key={user?.uid} />;
         })}
     </div>
   );
