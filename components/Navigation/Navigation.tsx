@@ -2,7 +2,7 @@
 
 import classNames from "classnames/bind";
 import style from "./Navigation.module.scss";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import NavContent from "./NavContent";
 import Link from "next/link";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
@@ -24,7 +24,7 @@ const Navigation = () => {
   }, [pathname, searchParams]);
 
   return (
-    <>
+    <Suspense>
       <div className={cx("nav-content-mobile")}>
         <NavContent open={open} closeNav={closeNav} />
       </div>
@@ -60,7 +60,7 @@ const Navigation = () => {
           {/* <Burger /> */}
         </button>
       </div>
-    </>
+    </Suspense>
   );
 };
 

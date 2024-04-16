@@ -1,23 +1,22 @@
 @import "../../styles/mixins.scss";
 
 .carousel {
-  margin-bottom: 25px;
+  margin-bottom: 50px;
 
   &__text {
     display: flex;
     justify-content: space-between;
+    gap: 40px;
     padding: 10px;
 
     h2 {
       text-transform: capitalize;
-    }
-
-    h2,
-    p {
       margin: 0;
     }
-    p {
-      margin-top: auto;
+
+    a {
+      margin: auto 0;
+      font-size: 16px;
     }
   }
 

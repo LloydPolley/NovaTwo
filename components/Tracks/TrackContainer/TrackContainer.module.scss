@@ -2,8 +2,7 @@
 
 .track-container {
   background-color: $widgetColor;
-  padding-top: 50px;
-  padding: 20px;
+  padding: 50px 20px;
 
   &__text {
     display: flex;
@@ -26,8 +25,8 @@
 
 .track-grid {
   display: grid;
-  row-gap: 10px;
-  column-gap: 10px;
+  row-gap: 20px;
+  column-gap: 20px;
   flex-wrap: wrap;
   width: 100%;
   flex-grow: 1;
@@ -43,13 +42,13 @@
 
   @include large {
     grid-template-columns: repeat(4, 1fr);
-    row-gap: 20px;
-    column-gap: 20px;
+    row-gap: 30px;
+    column-gap: 30px;
   }
   @include xl {
     grid-template-columns: repeat(6, 1fr);
-    row-gap: 20px;
-    column-gap: 20px;
+    row-gap: 30px;
+    column-gap: 30px;
   }
 }
 

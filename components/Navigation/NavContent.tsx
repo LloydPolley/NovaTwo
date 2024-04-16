@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import classNames from "classnames/bind";
 import style from "./Navigation.module.scss";
 import Link from "next/link";
@@ -30,7 +30,7 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
   const search = searchParams.get("f");
 
   return (
-    <>
+    <Suspense>
       <div className={cx("nav-content", open && "nav-content__open")}>
         <div className={cx("nav-content__inner")}>
           <Link className={cx("nav-content__name")} href={"/"}>
@@ -135,7 +135,7 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
           SIGN OUT
         </button>
       </div>
-    </>
+    </Suspense>
   );
 };
 

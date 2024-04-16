@@ -30,6 +30,7 @@ const poppins = Poppins({
 import "./globals.scss";
 import FollowersProvider from "../context/FollowersContext";
 import Wrapper from "../components/Wrapper";
+import { Suspense } from "react";
 
 export default function RootLayout(props) {
   const { children } = props;
