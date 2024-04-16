@@ -16,14 +16,17 @@ $squareWidthM: 300px;
 $squareWidthL: 300px;
 
 //colour square
-$widgetColor: #141414;
+$widgetColor: rgb(16, 16, 16);
+// $widgetColor: #141414;
 
 $boxShadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.75);
 $borderRadius: 10px;
 // $borderOne: 5px solid #28282a;
 $borderOne: 1px solid #3b3b3b;
 
-$cta: white;
+$ctaActive: white;
+$ctaDim: #1d1d1d;
+$ctaBright: #0195f6;
 
 @mixin small {
   @media (max-width: 599px) {

@@ -18,22 +18,25 @@ const deleteLikeTracksCollection = async ({ track, currentUser }) => {
   }
 };
 
-const followUser = async ({ followee, follower }) => {
+const followUser = async ({ user, following }) => {
   try {
     const date = new Date().toLocaleString();
-    await setDoc(doc(db, "followers", `${followee?.uid}-${follower}`), {
+    await setDoc(doc(db, "followers", `${user?.uid}-${following?.uid}`), {
       date,
-      ...followee,
-      follower,
+      ...following,
+      user: user?.uid,
+      userName: user?.displayName,
     });
+    return true;
   } catch (e) {
+    console.log("e", e);
     return false;
   }
 };
 
 const getUserFollowers = async (userId) => {
   const followersRef = collection(db, "followers");
-  const querys = query(followersRef, where("follower", "==", userId));
+  const querys = query(followersRef, where("user", "==", userId));
   const querySnapshot = await getDocs(querys);
 
   const followerData = [];

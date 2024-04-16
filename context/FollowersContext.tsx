@@ -2,61 +2,66 @@
 
 import { createContext, useContext, useReducer, useEffect } from "react";
 import { getUserFollowers } from "../api/addFollower";
+import { followUser } from "../api/addFollower";
 import { useLoginContext } from "./LoginContext";
 
 const initialState = {
-  followers: [],
-  newFollower: {},
-  setNewFollower: (follower) => {},
+  following: [],
+  newFollowing: {},
+  setNewFollowing: (following) => {},
 };
 
-const likesReducer = (state, action) => {
+const followingReducer = (state, action) => {
   switch (action.type) {
-    case "SET_FOLLOWERS":
-      return { ...state, likes: action.payload };
-    case "ADD_NEW_FOLLOWER":
-      return { ...state, newLike: action.payload };
+    case "SET_FOLLOWING":
+      return { ...state, following: action.payload };
+    case "ADD_NEW_FOLLOWING":
+      return { ...state, newFollowing: action.payload };
     default:
       return state;
   }
 };
 
-export const FollowersContext = createContext(initialState);
+export const FollowingContext = createContext(initialState);
 
-const FollowersProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(likesReducer, initialState);
+const FollowingProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(followingReducer, initialState);
   const { isLoggedIn, userData } = useLoginContext();
 
-  const getFollowers = async () => {
-    const followers = await getUserFollowers(userData?.uid);
-    if (followers !== state.likes) {
-      console.log("followers", followers);
-      dispatch({ type: "SET_FOLLOWERS", payload: followers });
+  const getFollowing = async () => {
+    const following = await getUserFollowers(userData?.uid);
+    if (following !== state.following) {
+      dispatch({ type: "SET_FOLLOWING", payload: following });
     }
   };
 
   useEffect(() => {
     if (!isLoggedIn) return;
-    getFollowers();
-  }, [userData, state.newLike, isLoggedIn]);
 
-  const setNewFollower = (likes) => {
-    dispatch({ type: "ADD_NEW_FOLLOWER", payload: likes });
+    getFollowing();
+  }, [userData, state.newFollowing, isLoggedIn]);
+
+  const setNewFollowing = async ({ user, following }) => {
+    const follow = await followUser({ user, following });
+
+    if (follow) {
+      dispatch({ type: "ADD_NEW_FOLLOWING", payload: following });
+    }
   };
 
   return (
-    <FollowersContext.Provider
+    <FollowingContext.Provider
       value={{
-        followers: state.likes,
-        newFollower: {},
-        setNewFollower,
+        following: state.following,
+        newFollowing: {},
+        setNewFollowing,
       }}
     >
       {children}
-    </FollowersContext.Provider>
+    </FollowingContext.Provider>
   );
 };
 
-export const useFollowersContext = () => useContext(FollowersContext);
+export const useFollowingContext = () => useContext(FollowingContext);
 
-export default FollowersProvider;
+export default FollowingProvider;

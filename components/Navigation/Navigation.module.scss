@@ -115,7 +115,6 @@
   backdrop-filter: blur(50px);
   opacity: 0;
   font-family: var(--font-raleway);
-  margin-top: 10px;
 
   display: flex;
   justify-content: space-between;
@@ -123,9 +122,10 @@
 
   pointer-events: none;
 
-  // @include large {
-  //   margin: 10px 0px 10px 10px;
-  // }
+  @include large {
+    margin-top: 10px;
+    margin-left: 10px;
+  }
 
   &__name {
     display: none;

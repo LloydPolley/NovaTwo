@@ -7,13 +7,11 @@ import Like from "../../Buttons/Like";
 import Link from "next/link";
 import { useAudioContext } from "../../../context/AudioContext";
 import { useLoginContext } from "../../../context/LoginContext";
-import { useLikesContext } from "../../../context/LikesContextReducer";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 
 const cx = classNames.bind(style);
 
-const Track = ({ track }) => {
+const Track = ({ item, type }) => {
   const {
     artist,
     artworkFileLocation,
@@ -22,11 +20,8 @@ const Track = ({ track }) => {
     name,
     trackId,
     artwork,
-  } = track;
+  } = item || {};
 
-  const [isLiked, setIsLiked] = useState(false);
-
-  const { likes, setNewLike } = useLikesContext();
   const { playContext, pauseContext, isPlaying, trackContext } =
     useAudioContext();
   const { userData } = useLoginContext();
@@ -34,20 +29,16 @@ const Track = ({ track }) => {
   const isPlayingLocal =
     isPlaying && trackContext?.audioFileLocation === audioFileLocation;
 
-  useEffect(() => {
-    const isLikedByUser = likes.find(
-      (likedTrack) => likedTrack.trackId === trackId
-    );
-
-    setIsLiked(isLikedByUser);
-  }, [likes]);
-
   return (
     <div
-      className={cx("track", isPlayingLocal && "track__playing")}
+      className={cx(
+        "track",
+        type === "both" ? "track-both" : "track-square",
+        isPlayingLocal && "track__playing"
+      )}
       key={`${artist} - ${name}`}
       onClick={() => {
-        !isPlayingLocal ? playContext(track) : pauseContext();
+        !isPlayingLocal ? playContext(item) : pauseContext();
       }}
     >
       <div className={cx("track__head")}>
@@ -57,9 +48,7 @@ const Track = ({ track }) => {
           blurDataURL={artworkFileLocation || artwork}
           alt={name}
           fill
-          // onLoad={() => {
-          //   console.log("loaded image", artwork);
-          // }}
+          objectFit="cover"
         />
         <div className={cx("track__play")}>
           <Play isPlayingAudio={isPlayingLocal} />
@@ -79,8 +68,6 @@ const Track = ({ track }) => {
         <div className={cx("track__like-container")}>
           {userData?.uid && (
             <Like
-              isLikedContext={!!isLiked}
-              setNewLike={setNewLike}
               track={{
                 artist,
                 name,

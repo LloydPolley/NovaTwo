@@ -3,18 +3,25 @@
 import { createContext, useContext, useReducer, useEffect } from "react";
 import { getUserLikes } from "../api/addLike";
 import { useLoginContext } from "./LoginContext";
+import {
+  addLikeToCollection,
+  deleteLikeTracksCollection,
+} from "../api/addLike";
 
 const initialState = {
   likes: [],
   newLike: {},
-  setNewLike: (like) => {},
+  addLike: (like) => {},
+  removeLike: (like) => {},
 };
 
 const likesReducer = (state, action) => {
   switch (action.type) {
     case "SET_LIKES":
       return { ...state, likes: action.payload };
-    case "SET_NEW_LIKE":
+    case "ADD_LIKE":
+      return { ...state, newLike: action.payload };
+    case "REMOVE_LIKE":
       return { ...state, newLike: action.payload };
     default:
       return state;
@@ -39,8 +46,14 @@ const LikesProvider = ({ children }) => {
     getLikes();
   }, [userData, state.newLike, isLoggedIn]);
 
-  const setNewLike = (likes) => {
-    dispatch({ type: "SET_NEW_LIKE", payload: likes });
+  const addLike = async (track) => {
+    const success = await addLikeToCollection(track);
+    if (success) dispatch({ type: "ADD_LIKE", payload: track });
+  };
+
+  const removeLike = async (track) => {
+    const success = await deleteLikeTracksCollection(track);
+    if (success) dispatch({ type: "REMOVE_LIKE", payload: track });
   };
 
   return (
@@ -48,7 +61,8 @@ const LikesProvider = ({ children }) => {
       value={{
         likes: state.likes,
         newLike: {},
-        setNewLike,
+        addLike,
+        removeLike,
       }}
     >
       {children}

@@ -19,6 +19,7 @@ const addTrack = async ({
   label,
   uid,
   mix,
+  album,
 }) => {
   try {
     const date = new Date().toLocaleString();
@@ -45,6 +46,7 @@ const addTrack = async ({
       label,
       mix,
       trackId,
+      album,
     });
 
     // console.log("Document added with custom ID: ", customId);

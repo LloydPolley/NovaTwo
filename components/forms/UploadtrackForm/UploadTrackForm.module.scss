@@ -7,21 +7,21 @@
   margin: 0;
 }
 
-.toggle {
-  display: flex;
-  width: 100%;
-  max-width: 450px;
-  margin: 15px auto;
-  white-space: nowrap;
+.upload-form {
+  &__toggle {
+    display: flex;
+    width: 100%;
+    max-width: 450px;
+    margin: 15px auto;
+    white-space: nowrap;
 
-  p {
-    margin: 5px;
-  }
+    p {
+      margin: 0px !important;
+    }
 
-  input {
-    margin: auto;
-    display: inline-block;
-    width: initial;
-    margin-left: 10px;
+    input {
+      margin-left: 0 !important;
+      width: initial !important;
+    }
   }
 }

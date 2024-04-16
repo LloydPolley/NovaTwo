@@ -77,6 +77,8 @@ const getTracksWhere = async (
         trackId: doc.id,
       } as TrackType)
   );
+
+  // const serializedObject = JSON.parse(JSON.stringify(originalObject));
   return arr;
 };
 

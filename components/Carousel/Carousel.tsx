@@ -1,33 +1,38 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import classNames from "classnames/bind";
 import style from "./Carousel.module.scss";
-import TrackSquare from "../Tracks/TrackSquare";
-import { getAllArtists } from "../../api/getTracks";
-import { getUserFollowers } from "../../api/addFollower";
 import Link from "next/link";
-import UserWidget from "../UserWidget";
-import { useFollowersContext } from "../../context/FollowersContext";
+import { TrackType } from "../../types/tracks";
+
+type CarouselTypes = {
+  Component: React.ComponentType<{ item: TrackType; type?: string }>;
+  items: TrackType[];
+  text?: string;
+  url?: string;
+  type?: string;
+};
 
 const cx = classNames.bind(style);
 
-const Carousel = ({ users, searchParams, hp }) => {
-  const { followers, setNewFollower } = useFollowersContext();
-
-  console.log("followers", followers);
-
-  if (searchParams?.f !== "following" && !hp) {
-    return null;
-  }
-
+const Carousel = ({ Component, items, text, url, type }: CarouselTypes) => {
   return (
     <div className={cx("carousel")}>
-      <h1>Favourite Artists</h1>
+      <div className={cx("carousel__text")}>
+        <h2>{text}</h2>
+        {url && <Link href={`discover?${url}`}>See more</Link>}
+      </div>
       <div className={cx("carousel__inner")}>
-        {users &&
-          users?.slice(0, 11).map((user) => {
-            return <UserWidget user={user} key={user?.uid} />;
+        {items &&
+          items.map((item) => {
+            return (
+              <div
+                className={cx("carousel__item")}
+                key={item?.trackId || item?.uid}
+              >
+                <Component item={item} type={type} />
+              </div>
+            );
           })}
       </div>
     </div>

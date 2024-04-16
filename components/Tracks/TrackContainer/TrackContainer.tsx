@@ -12,14 +12,30 @@ import {
   getTracksWhere,
 } from "../../../api/getTracks";
 import { getUserLikes } from "../../../api/addLike";
+import Link from "next/link";
 
 const cx = classNames.bind(style);
 
 type TrackListProps = {
-  tracks?: TrackType[];
+  searchParams: {
+    f: string;
+    order: string;
+  };
+  params: {
+    id: string;
+  };
+  text?: string;
+  trackList?: TrackType[];
+  url?: string;
 };
 
-const TrackContainer = ({ searchParams, params }) => {
+const TrackContainer = ({
+  searchParams,
+  params,
+  text,
+  trackList,
+  url,
+}: TrackListProps) => {
   const [tracks, setTracks] = useState([]);
   const { order } = searchParams;
 
@@ -44,8 +60,11 @@ const TrackContainer = ({ searchParams, params }) => {
   };
 
   useEffect(() => {
-    if (searchParams.f !== "following") {
+    setTracks([]);
+    if (searchParams.f !== "following" && !trackList) {
       fetchingTracks();
+    } else if (trackList) {
+      setTracks(trackList);
     }
   }, [searchParams.f]);
 
@@ -54,17 +73,23 @@ const TrackContainer = ({ searchParams, params }) => {
   }
 
   return (
-    <Suspense fallback={<p>Loading</p>}>
-      {tracks?.length > 0 && tracks[0].name !== undefined ? (
-        <div className={cx("track-grid")}>
-          {tracks.map((track) => {
-            if (!track.artist) return null;
-            return <Track key={track.name} track={track} />;
-          })}
-        </div>
-      ) : (
-        <p>No Tracks here...</p>
-      )}
+    <Suspense fallback={<LoadingGrid />}>
+      <div className={cx("track-container")}>
+        {text && (
+          <div className={cx("track-container__text")}>
+            <h2>{text}</h2>
+            {url && <Link href={`discover?${url}`}>See more</Link>}
+          </div>
+        )}
+        {tracks?.length > 0 && tracks[0].name !== undefined && (
+          <div className={cx("track-grid")}>
+            {tracks.map((track) => {
+              if (!track.artist) return null;
+              return <Track key={track.name} item={track} type="both" />;
+            })}
+          </div>
+        )}
+      </div>
     </Suspense>
   );
 };

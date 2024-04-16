@@ -1,15 +1,11 @@
 import classNames from "classnames/bind";
 
 import Navigation from "../components/Navigation";
+import NavContent from "../components/Navigation/NavContent";
 import AudioWidget from "../components/AudioWidgetPlugin";
-import LoginProvider from "../context/LoginContext";
-import AudioProvider from "../context/AudioContext";
-import LikesProvider from "../context/LikesContextReducer";
-
-import Footer from "../components/Footer";
+import { Providers } from "../context/Providers";
 import { Lato, Raleway, Poppins } from "next/font/google";
 import styles from "./Home.module.scss";
-import NavContent from "../components/Navigation/NavContent";
 
 const cx = classNames.bind(styles);
 
@@ -33,6 +29,8 @@ const poppins = Poppins({
 
 import "./globals.scss";
 import FollowersProvider from "../context/FollowersContext";
+import Wrapper from "../components/Wrapper";
+import { Suspense } from "react";
 
 export default function RootLayout(props) {
   const { children } = props;
@@ -48,20 +46,18 @@ export default function RootLayout(props) {
         />
       </head>
       <body id="body">
-        <LoginProvider>
-          <FollowersProvider>
-            <LikesProvider>
-              <AudioProvider>
-                <Navigation />
-                <div className={"side-bar"}>
-                  <NavContent />
-                  <div className={"main-content"}>{children}</div>
-                </div>
-                <AudioWidget />
-              </AudioProvider>
-            </LikesProvider>
-          </FollowersProvider>
-        </LoginProvider>
+        <Providers>
+          <Suspense>
+            <Navigation />
+          </Suspense>
+          <div className={"side-bar"}>
+            <Suspense>
+              <NavContent />
+            </Suspense>
+            <Wrapper>{children}</Wrapper>
+          </div>
+          <AudioWidget />
+        </Providers>
       </body>
     </html>
   );

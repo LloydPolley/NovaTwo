@@ -2,6 +2,8 @@
 
 .user {
   position: relative;
+  width: 100%;
+  height: 100%;
 
   &__element {
     position: relative;
@@ -9,16 +11,17 @@
     flex-direction: column-reverse;
 
     img {
-      height: 150px;
-      width: 150px;
+      height: 100%;
+      aspect-ratio: 1/1;
+      width: 100%;
       border-radius: 50%;
       z-index: 1;
       object-fit: cover;
       box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.5);
 
       @include large {
-        height: 200px;
-        width: 200px;
+        height: 100%;
+        width: 100%;
       }
     }
   }
