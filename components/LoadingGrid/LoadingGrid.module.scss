@@ -27,7 +27,7 @@
   }
 
   &__element {
-    background-color: $ctaDim;
+    background-color: $widgetHover;
     border-radius: $borderRadius;
     aspect-ratio: 16/20.75;
     animation: loadingAnim 1.5s infinite forwards ease-in-out;

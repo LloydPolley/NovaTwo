@@ -8,7 +8,6 @@
   display: inline-flex;
   overflow: scroll;
   width: 100%;
-  background-color: rgb(16, 16, 16);
   padding: 20px;
   padding-bottom: 0;
 
@@ -33,6 +32,6 @@
     font-size: 16px;
     font-weight: 700;
     border-radius: $borderRadius;
-    background-color: $ctaDim;
+    background-color: rgba(0, 0, 0, 0.9);
   }
 }

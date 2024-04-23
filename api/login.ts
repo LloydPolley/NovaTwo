@@ -1,5 +1,6 @@
-import { auth } from "../utils/firebase";
+import { auth, db } from "../utils/firebase";
 import { signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
 
 const signIn = async (email, password) => {
   try {
@@ -12,8 +13,8 @@ const signIn = async (email, password) => {
 const signOutUser = () => {
   try {
     signOut(auth);
-  } catch (error) {
-    return { ...error };
+  } catch (e) {
+    return { ...e };
   }
 };
 

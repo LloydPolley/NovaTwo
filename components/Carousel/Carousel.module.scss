@@ -1,13 +1,14 @@
 @import "../../styles/mixins.scss";
 
 .carousel {
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 
   &__text {
     display: flex;
     justify-content: space-between;
     gap: 40px;
     padding: 10px;
+    padding-left: 20px;
 
     h2 {
       text-transform: capitalize;
@@ -24,21 +25,17 @@
     display: flex;
     overflow-x: auto;
     max-width: 100%;
-    gap: 15px;
+    gap: 5px;
     &::-webkit-scrollbar {
       display: none;
     }
   }
 
   &__item {
-    flex: 0 0 200px;
+    flex: 0 0 225px;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-
-    // @include large {
-    //   flex: 0 0 200px;
-    // }
 
     &:first-child {
       margin-left: 10px;

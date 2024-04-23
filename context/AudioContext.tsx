@@ -25,7 +25,6 @@ const AudioProvider = ({ children }) => {
   const playContext = async (track) => {
     await setTrackContext(track);
     await setIsPlaying(true);
-
     audioRef.current.play();
   };
 

@@ -13,11 +13,11 @@ import { signIn } from "../../../api/login";
 
 function SignInScreen() {
   const [showLogin, setShowLogin] = useState(true);
-  const { isLoggedIn, userData } = useLoginContext();
+  const { userData } = useLoginContext();
 
-  if (isLoggedIn && showLogin) {
+  if (userData !== null && showLogin) {
     redirect(`/${userData?.uid}?f=all`, RedirectType.push);
-  } else if (isLoggedIn && !showLogin) {
+  } else if (userData !== null && !showLogin) {
     redirect(`/edit`, RedirectType.push);
   }
 

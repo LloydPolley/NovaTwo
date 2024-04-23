@@ -39,15 +39,27 @@ function SignInForm({ Switcher }) {
         onChange={onChange}
         onSubmit={handleSubmit(onSubmit)}
       >
-        <input placeholder="Email" {...register("email")} required />
-        <input placeholder="Password" {...register("password")} required />
+        <label htmlFor="email">Email</label>
+        <input id="email" placeholder="Email" {...register("email")} required />
+
+        <label htmlFor="password">Password</label>
         <input
+          id="password"
+          placeholder="Password"
+          {...register("password")}
+          required
+        />
+
+        <label htmlFor="displayName">Display Name</label>
+        <input
+          id="displayName"
           placeholder="Display Name"
           {...register("displayName")}
           required
         />
+
         {errors.login && <p>{errors.login.type.toString()}</p>}
-        <input type="submit" />
+        <input type="submit" value="Create Account" />
         <Switcher />
       </form>
     </Form>

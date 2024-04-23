@@ -9,9 +9,7 @@ const cx = classNames.bind(styles);
 function SignInScreen() {
   return (
     <div className={cx("page")}>
-      <Suspense>
-        <UploadTrackForm />
-      </Suspense>
+      <UploadTrackForm />
     </div>
   );
 }

@@ -13,6 +13,13 @@ import {
   useSearchParams,
 } from "next/navigation";
 import { signOutUser } from "../../api/login";
+import Favourite from "../Icons/Favourite";
+import ProfileIcon from "../Icons/ProfileIcon";
+import FileIcon from "../Icons/FileIcon";
+import FollowerIcon from "../Icons/FollowerIcon";
+import UploadIcon from "../Icons/UploadIcon";
+import TracksIcon from "../Icons/TracksIcon";
+import MixIcon from "../Icons/MixIcon";
 
 type NavTypes = {
   open?: boolean;
@@ -40,11 +47,11 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
               viewBox="0 0 275 274"
               width="1em"
               height="1em"
-              // style="height: 22.5px; width: 22.5px;"
             >
               <path d="M8 8h258v258h-86v-86H94V94H8V8Z" fill="#fff"></path>
               <path d="M94 180v86H8v-86h86Z" fill="#fff"></path>
             </svg>
+            <span>Nova</span>
           </Link>
           <p className={cx("nav-content__category")}>FEATURED</p>
           <Link
@@ -55,7 +62,7 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
             )}
             href="/discover/?f=tracks"
           >
-            Tracks
+            <TracksIcon /> <span>Tracks</span>
           </Link>
           <Link
             className={cx(
@@ -65,7 +72,7 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
             )}
             href="/discover?f=mix"
           >
-            Mix
+            <MixIcon /> <span>Mix</span>
           </Link>
           <p className={cx("nav-content__category")}>MY MUSIC</p>
           {!userData?.email ? (
@@ -75,7 +82,7 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
               )}
               href="/login"
             >
-              Sign In
+              <ProfileIcon /> <span>Sign In</span>
             </Link>
           ) : (
             <>
@@ -88,19 +95,16 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
                 href={`/${userData?.uid}?f=all`}
                 onClick={closeNav}
               >
-                {userData?.displayName}
+                <ProfileIcon /> <span>{userData?.displayName}</span>
               </Link>
               <Link
                 className={cx(
                   activeSegments[1] === "likes" && "nav-content__active"
                 )}
                 href={`/${userData?.uid}?f=likes`}
-                onClick={() => {
-                  console.log("refresh");
-                  // router.refresh();
-                }}
               >
-                Likes
+                <Favourite />
+                <span>Likes</span>
               </Link>
               <Link
                 className={cx(
@@ -110,15 +114,7 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
                 )}
                 href={`/${userData?.uid}?f=following`}
               >
-                Following
-              </Link>
-              <Link
-                className={cx(
-                  activeSegments[0] === "edit" && "nav-content__active"
-                )}
-                href={`/edit`}
-              >
-                Edit
+                <FollowerIcon /> <span>Following</span>
               </Link>
               <Link
                 className={cx(
@@ -126,14 +122,20 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
                 )}
                 href={`/upload`}
               >
-                Upload
+                <UploadIcon /> <span>Upload</span>
               </Link>
             </>
           )}
         </div>
-        <button className={cx("nav-content__sign-out")} onClick={signOutUser}>
-          SIGN OUT
-        </button>
+        {!!userData && (
+          <Link
+            className={cx("nav-content__sign-out")}
+            href={`/`}
+            onClick={signOutUser}
+          >
+            SIGN OUT
+          </Link>
+        )}
       </div>
     </Suspense>
   );

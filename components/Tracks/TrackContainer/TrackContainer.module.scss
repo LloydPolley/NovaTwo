@@ -1,8 +1,8 @@
 @import "../../../styles/mixins.scss";
 
 .track-container {
-  background-color: $widgetColor;
-  padding: 50px 20px;
+  padding: 20px;
+  flex: 1;
 
   &__text {
     display: flex;
@@ -12,6 +12,7 @@
 
   h2 {
     text-transform: capitalize;
+    padding-left: 10px;
   }
 
   h2,
@@ -25,8 +26,8 @@
 
 .track-grid {
   display: grid;
-  row-gap: 20px;
-  column-gap: 20px;
+  row-gap: 5px;
+  column-gap: 5px;
   flex-wrap: wrap;
   width: 100%;
   flex-grow: 1;
@@ -42,13 +43,9 @@
 
   @include large {
     grid-template-columns: repeat(4, 1fr);
-    row-gap: 30px;
-    column-gap: 30px;
   }
   @include xl {
     grid-template-columns: repeat(6, 1fr);
-    row-gap: 30px;
-    column-gap: 30px;
   }
 }
 

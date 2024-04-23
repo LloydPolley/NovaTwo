@@ -22,7 +22,7 @@ function Form({ title, para, children, classForm, loading }: FormTypes) {
       <div className={cx("form__container")}>
         <div className={cx("form__header")}>
           <h1>{title}</h1>
-          <p>{para}</p>
+          {para && <p>{para}</p>}
         </div>
         {children}
       </div>

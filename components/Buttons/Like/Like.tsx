@@ -5,10 +5,6 @@ import classNames from "classnames/bind";
 import styles from "./Like.module.scss";
 import Favourite from "../../Icons/Favourite";
 import FavouriteFilled from "../../Icons/FavouriteFilled";
-import {
-  addLikeToCollection,
-  deleteLikeTracksCollection,
-} from "../../../api/addLike";
 import { useLoginContext } from "../../../context/LoginContext";
 import { useLikesContext } from "../../../context/LikesContext";
 
@@ -29,7 +25,7 @@ function Like({ track }) {
     const isLikedByUser = likes.find(
       (likedTrack) => likedTrack.trackId === trackId
     );
-
+    console.log("isLikedByUser", !!isLikedByUser);
     setIsLiked(isLikedByUser);
   }, [likes]);
 

@@ -32,7 +32,7 @@
     "components/Tracks/Track/Track.tsx",
     "components/Navigation/Navigation.js",
     "components/Tracks/TrackSquare/TrackSquare.js",
-    "api/getDjs.js",
+    "api/getDjs.ts",
     "context/AudioContext.tsx",
     "context/LikesContext.tsx",
     "components/FilterBar/FilterBar.js",

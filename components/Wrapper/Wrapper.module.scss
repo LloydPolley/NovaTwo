@@ -8,11 +8,9 @@
   background-color: $widgetColor;
   min-height: 93vh;
 
-  // gap: 10px;
-  margin: 5px;
-
   @include large {
-    margin: 10px 10px 0 0px;
+    overflow: hidden;
+    margin: 10px 10px 10px 0px;
   }
 }
 
@@ -20,7 +18,7 @@
   // border-top: 1px solid rgb(46, 46, 46);
   background-color: $widgetColor;
   // border-radius: $borderRadius;
-  margin-bottom: 0;
+  margin-bottom: 0px;
   margin-top: 0;
   padding: 20px;
   text-align: center;

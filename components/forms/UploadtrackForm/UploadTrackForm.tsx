@@ -18,9 +18,18 @@ function UploadTrackForm() {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      name: "",
+      album: "",
+      label: "",
+      mix: "release",
+      artworkFile: "",
+      audioFile: "",
+    },
+  });
 
-  const { userData, isLoggedIn } = useLoginContext();
+  const { userData } = useLoginContext();
 
   const [image, setImage] = useState("");
   const [audio, setAudio] = useState("");
@@ -35,6 +44,7 @@ function UploadTrackForm() {
 
   const onSubmit = async (data) => {
     const { name, audioFile, artworkFile, label, mix, album } = data;
+    console.log("data", data);
     const { displayName, uid } = userData;
 
     const audioUrl = `gs://novatwo-f3f41.appspot.com/${displayName}/tracks/${name}/audio/${audioFile[0].name}`;
@@ -75,40 +85,61 @@ function UploadTrackForm() {
       label,
       album,
       uid,
-      mix,
+      mix: mix === "mix" ? true : false,
     });
 
     setLoading(false);
     setComplete(true);
   };
 
-  if (!isLoggedIn) {
+  if (userData === null) {
     return null;
   }
 
   return (
-    <Form title={"Upload your track"} loading={loading}>
+    <Form title={"Upload"} loading={loading}>
       <form className={cx("upload-form")} onSubmit={handleSubmit(onSubmit)}>
-        <input placeholder={"Track name"} {...register("name")} required />
-        <input placeholder={"Album"} {...register("album")} />
-        <input placeholder={"Label"} {...register("label")} />
-        <label htmlFor="audio-upload" className={cx("upload-element")}>
-          <FileIcon />
-          <p> {audio ? audio : "Upload Audio"}</p>
+        <label htmlFor="track-name">Name</label>
+        <input
+          id="track-name"
+          placeholder={"Track name"}
+          {...register("name")}
+          required
+        />
+
+        <label htmlFor="album">Album</label>
+        <input id="album" placeholder="Track album" {...register("album")} />
+
+        <label htmlFor="label">Label</label>
+        <input id="label" placeholder="Track label" {...register("label")} />
+
+        <label htmlFor="label">Audio</label>
+        <label htmlFor="audio-upload" className={cx("upload-form__widget")}>
+          <p>{audio ? audio : "Upload audio"}</p>
         </label>
-        <label htmlFor="artwork-upload" className={cx("upload-element")}>
-          <FileIcon />
-          <p> {image ? image : "Upload Artwork"}</p>
+        <label htmlFor="label">Artwork</label>
+        <label htmlFor="artwork-upload" className={cx("upload-form__widget")}>
+          <p>{image ? image : "Upload artwork image"}</p>
         </label>
 
         <div className={cx("upload-form__toggle")}>
-          <p>Is Mix</p>
           <input
-            type="checkbox"
-            id="mix"
-            placeholder={"Mix"}
+            type="radio"
+            id="release"
+            name="release-type"
+            value="release"
+            defaultChecked
             {...register("mix")}
           />
+          <label htmlFor="release">Release</label>
+          <input
+            type="radio"
+            id="mix"
+            name="release-type"
+            value="mix"
+            {...register("mix")}
+          />
+          <label htmlFor="mix">Mix</label>
         </div>
         <input
           className={cx("upload-button")}
@@ -135,7 +166,7 @@ function UploadTrackForm() {
           }}
         />
 
-        <input type="submit" disabled={loading} />
+        <input type="submit" value="Upload" disabled={loading} />
       </form>
     </Form>
   );

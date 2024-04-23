@@ -33,21 +33,24 @@ function LoginForm({ signIn, Switcher }) {
   };
 
   return (
-    <Form title={"Get Signed in"}>
+    <Form title={"Login to Your Account"}>
       <form
         className={cx("auth-form")}
         onChange={onChange}
         onSubmit={handleSubmit(onSubmit)}
       >
-        <input placeholder="Email" {...register("email")} />
+        <label htmlFor="email">Email</label>
+        <input id="email" placeholder="Your Email" {...register("email")} />
+        <label htmlFor="password">Password</label>
         <input
-          placeholder="Password"
+          id="password"
+          placeholder="Your Password"
           type={"password"}
           name="password"
           {...register("password")}
         />
         {errors.login && <p>{errors.login.type.toString()}</p>}
-        <input type="submit" />
+        <input type="submit" value="Login" />
         <Switcher />
       </form>
     </Form>

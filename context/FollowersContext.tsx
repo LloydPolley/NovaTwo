@@ -26,7 +26,7 @@ export const FollowingContext = createContext(initialState);
 
 const FollowingProvider = ({ children }) => {
   const [state, dispatch] = useReducer(followingReducer, initialState);
-  const { isLoggedIn, userData } = useLoginContext();
+  const { userData } = useLoginContext();
 
   const getFollowing = async () => {
     const following = await getUserFollowers(userData?.uid);
@@ -36,10 +36,9 @@ const FollowingProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    if (!isLoggedIn) return;
-
+    if (userData === null) return;
     getFollowing();
-  }, [userData, state.newFollowing, isLoggedIn]);
+  }, [userData, state.newFollowing]);
 
   const setNewFollowing = async ({ user, following }) => {
     const follow = await followUser({ user, following });

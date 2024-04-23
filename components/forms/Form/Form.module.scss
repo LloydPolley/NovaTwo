@@ -2,23 +2,80 @@
 
 .form {
   position: relative;
-  text-align: left;
-  // border: 1px solid white;
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: 25px;
-  border-radius: $borderRadius;
   min-height: 100vh;
 
   display: flex;
   flex-grow: 1;
 
-  background-color: $widgetColor;
+  @include large {
+    padding: 25px;
+  }
 
   &__container {
-    margin: 10% auto;
-    width: 80%;
+    margin: 5% auto;
+    width: 100%;
+    overflow: hidden;
+
+    @include large {
+      width: 700px;
+    }
+  }
+
+  &__header {
+    text-align: center;
+
+    @include large {
+      padding: 20px;
+    }
+
+    h1 {
+      margin: 0;
+    }
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    padding: 40px 10px;
+    max-width: 80%;
+    margin: 0 auto;
+  }
+
+  label {
+    margin-top: 10px;
+  }
+
+  input {
+    background-color: transparent;
+    border: 1px solid grey;
+    padding: 15px;
+    color: rgba(225, 225, 225, 0.1);
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: $borderRadius;
+    margin: 5px auto 10px;
+    width: 100%;
+    color: white;
+
+    &::placeholder {
+      color: rgb(188, 188, 188);
+      opacity: 1;
+    }
+
+    &[type="submit"] {
+      background-color: $ctaBright;
+      border: 1px solid $ctaBright;
+      color: white;
+      cursor: pointer;
+      padding: 20px;
+      text-align: center;
+      margin: 10px auto;
+      font-weight: 600;
+      border-radius: 20px;
+    }
   }
 
   &__load {
@@ -42,73 +99,5 @@
     opacity: 1;
     pointer-events: all;
     display: none;
-  }
-
-  h1,
-  p {
-    text-align: center;
-    margin-bottom: 25px;
-    // text-decoration: underline;
-  }
-
-  p {
-    margin-bottom: 30px;
-  }
-
-  form {
-    display: flex;
-    flex-direction: column;
-  }
-
-  input,
-  label {
-    padding: 20px;
-    color: rgb(225, 225, 225);
-    font-size: 16px;
-    font-weight: 500;
-    // text-transform: uppercase;
-    border: none;
-    border-radius: $borderRadius;
-    margin: 15px auto;
-    width: 100%;
-    max-width: 450px;
-
-    &::placeholder {
-      color: rgb(225, 225, 225);
-      opacity: 1;
-    }
-
-    &[type="submit"] {
-      background-color: rgb(220, 220, 220);
-      border: 1px solid white;
-      border-radius: $borderRadius;
-      text-align: center;
-      color: black;
-      cursor: pointer;
-      padding: 20px;
-      width: 150px;
-      text-align: center;
-      margin: 10px auto;
-      width: 100%;
-      max-width: 450px;
-    }
-  }
-
-  label {
-    background-color: rgb(220, 220, 220);
-    color: black;
-    border-radius: $borderRadius;
-
-    display: flex;
-
-    p {
-      color: black;
-      margin: auto;
-      margin-left: 10px;
-    }
-
-    svg {
-      width: 40px;
-    }
   }
 }

@@ -8,20 +8,56 @@
 }
 
 .upload-form {
+  &__widget {
+    border: 1px solid grey;
+    border-style: dashed;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: center;
+    margin-bottom: 10px;
+    text-align: left;
+
+    p {
+      margin: 0;
+      padding: 15px;
+    }
+
+    // p {
+    //   text-align: center;
+    //   &:last-child {
+    //     background-color: $ctaBright;
+
+    //     border-radius: 10px;
+    //     padding: 20px 40px;
+    //     display: inline-block;
+    //     margin: 10px auto 20px;
+    //   }
+    // }
+  }
+
   &__toggle {
     display: flex;
+    justify-content: space-between;
     width: 100%;
-    max-width: 450px;
     margin: 15px auto;
     white-space: nowrap;
 
-    p {
-      margin: 0px !important;
+    label {
+      border: 1px solid grey;
+      width: 45%;
+      text-align: center;
+      padding: 20px;
+      border-radius: 10px;
+      cursor: pointer;
     }
 
-    input {
-      margin-left: 0 !important;
-      width: initial !important;
+    input[type="radio"]:checked + label {
+      color: black; // Example: Change text color
+      background-color: white;
+    }
+
+    input[type="radio"] {
+      display: none;
     }
   }
 }

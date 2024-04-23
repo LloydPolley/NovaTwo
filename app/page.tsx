@@ -25,8 +25,8 @@ const filters = [
 
 export default async function Dj({ searchParams, params }) {
   const users = await getAllArtists();
-  const mixes = await getTracksWhere("mix", true);
   const tracks = await getTracksWhere("mix", false);
+  const mixes = await getTracksWhere("mix", true);
 
   return (
     <>

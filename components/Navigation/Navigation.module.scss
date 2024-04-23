@@ -29,8 +29,8 @@
     padding: 0;
 
     svg {
-      height: 25px;
-      width: 25px;
+      height: 20px;
+      width: 20px;
     }
   }
 
@@ -102,7 +102,6 @@
 }
 
 .nav-content {
-  // border: 1px solid white;
   background: $widgetColor;
   border-radius: $borderRadius;
   gap: 15px;
@@ -110,11 +109,21 @@
   min-width: 0;
   z-index: 6;
   transition: 0.2s ease-in-out all;
-  height: 100vh;
+  height: calc(100vh - 10px);
   overflow: hidden;
   backdrop-filter: blur(50px);
   opacity: 0;
   font-family: var(--font-raleway);
+
+  svg {
+    display: inline-block;
+    max-width: 25px;
+    // fill: rgb(152, 152, 152);
+
+    path {
+      // fill: rgb(152, 152, 152);
+    }
+  }
 
   display: flex;
   justify-content: space-between;
@@ -146,20 +155,27 @@
     margin-top: 50px;
     display: flex;
     flex-direction: column;
-    // text-transform: uppercase;
     text-align: left;
     z-index: 1;
     overflow: hidden;
     transition: 0.5s ease all;
-    color: rgb(152, 152, 152);
+    color: rgb(184, 184, 184);
     padding: 0 20px;
+
+    a {
+      display: flex;
+
+      span {
+        margin: auto 10px;
+      }
+    }
 
     a,
     button {
       transition: 0.2s all;
       font-weight: 700;
-      font-size: 20px;
-      margin-bottom: 20px;
+      font-size: 18px;
+      margin-bottom: 25px;
 
       &:hover {
         color: white;
@@ -170,7 +186,7 @@
 
   &__category {
     font-weight: 700;
-    font-size: 20px;
+    font-size: 16px;
     color: rgb(73, 73, 73);
     margin-bottom: 20px;
   }

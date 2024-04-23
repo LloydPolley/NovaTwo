@@ -7,6 +7,14 @@
   overflow: hidden;
   height: fit-content;
   border-radius: 5px;
+  padding: 8px 8px 0px 8px;
+  border-radius: $borderRadius;
+  transition: 0.2s ease all;
+
+  &:hover {
+    background-color: $widgetHover;
+    box-shadow: $boxShadow;
+  }
 
   &__head {
     position: relative;

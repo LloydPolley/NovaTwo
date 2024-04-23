@@ -32,7 +32,7 @@ export const LikesContext = createContext(initialState);
 
 const LikesProvider = ({ children }) => {
   const [state, dispatch] = useReducer(likesReducer, initialState);
-  const { isLoggedIn, userData } = useLoginContext();
+  const { userData } = useLoginContext();
 
   const getLikes = async () => {
     const userLikes = await getUserLikes(userData?.uid);
@@ -42,9 +42,9 @@ const LikesProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    if (!isLoggedIn) return;
+    if (userData === null) return;
     getLikes();
-  }, [userData, state.newLike, isLoggedIn]);
+  }, [userData, state.newLike, !userData]);
 
   const addLike = async (track) => {
     const success = await addLikeToCollection(track);
