@@ -52,7 +52,7 @@ export default async function Dj({ searchParams, params }) {
 
   return (
     <>
-      <AritstHero title={text} img={img} user={{}} />
+      <AritstHero title={text} img={img} user={{}} overlay />
       <FilterBar searchParams={searchParams} filters={filters} />
       <Suspense>
         <TrackContainer

@@ -10,10 +10,11 @@ import { updateUserDoc } from "../../../api/signUp";
 
 const cx = classNames.bind(styles);
 
-function ProfileForm() {
+function ProfileForm({}) {
   const { register, handleSubmit } = useForm();
 
   const { userData } = useLoginContext();
+  const [show, setShow] = useState(false);
   const [profileImg, setProfileImg] = useState("");
 
   const [loading, setLoading] = useState(false);
@@ -50,8 +51,29 @@ function ProfileForm() {
     return null;
   }
 
+  if (!show) {
+    return (
+      <div
+        className={cx("edit-button")}
+        onClick={() => {
+          setShow(true);
+        }}
+      >
+        Edit
+      </div>
+    );
+  }
+
   return (
     <form className={cx("profile")} onSubmit={handleSubmit(onSubmit)}>
+      <div
+        className={cx("profile__close")}
+        onClick={() => {
+          setShow(false);
+        }}
+      >
+        X
+      </div>
       <p>{profileImg ? profileImg : "Edit Profile"}</p>
       <label htmlFor="profile-upload" className={cx("upload-element")}>
         Edit

@@ -1,5 +1,10 @@
 @import "../../../styles/mixins.scss";
 
+.edit-button {
+  margin: 10px;
+  font-size: 20px;
+}
+
 .profile {
   position: absolute;
   top: 1%;
@@ -12,6 +17,13 @@
   border: $borderOne;
   text-align: center;
   max-width: 200px;
+
+  &__close {
+    position: absolute;
+    right: 3%;
+    top: 3%;
+    width: 10px;
+  }
 
   p {
     margin: 0;

@@ -17,11 +17,12 @@ type HeroProps = {
   banner?: boolean;
   anim?: boolean;
   user?: any;
+  overlay?: boolean;
 };
 
 const cx = classNames.bind(style);
 
-const AritstHero = ({ title, img, user }: HeroProps) => {
+const AritstHero = ({ title, img, user, overlay }: HeroProps) => {
   const { userData } = useLoginContext();
   const { following, setNewFollowing } = useFollowingContext();
   const [isFollowed, setIsFollowed] = useState(false);
@@ -36,7 +37,7 @@ const AritstHero = ({ title, img, user }: HeroProps) => {
 
   return (
     <div
-      className={cx("artist-hero")}
+      className={cx("artist-hero", overlay && "artist-hero__overlay")}
       style={{
         backgroundImage: `url("${img}")`,
       }}
