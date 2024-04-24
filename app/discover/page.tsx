@@ -21,13 +21,13 @@ const filters = [
   { label: "Mix", url: "?f=mix" },
 ];
 
-const setImg = "./1.jpg";
+const setImg = "./3.jpg";
 const djImg = "./2.jpg";
-const allImg = "./3.jpg";
+const allImg = "./1.jpg";
 
 const mix = "Live Mixes";
 const releases = "Releases";
-const all = "All";
+const all = "Tracks";
 
 export default async function Dj({ searchParams, params }) {
   const filterType = searchParams.f;
@@ -51,8 +51,8 @@ export default async function Dj({ searchParams, params }) {
   }
 
   return (
-    <>
-      <AritstHero title={text} img={img} user={{}} overlay />
+    <div className={cx("discover", `discover__${filterType}`)}>
+      <AritstHero title={text} user={{}} imgBox={img} overlay box />
       <FilterBar searchParams={searchParams} filters={filters} />
       <Suspense>
         <TrackContainer
@@ -62,6 +62,6 @@ export default async function Dj({ searchParams, params }) {
           url={undefined}
         />
       </Suspense>
-    </>
+    </div>
   );
 }

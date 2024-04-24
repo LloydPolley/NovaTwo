@@ -12,20 +12,20 @@
   transition: 0.2s ease all;
   border: 1px solid transparent;
 
-  &:hover {
-    background-color: $widgetHover;
-    box-shadow: $boxShadow;
-    border: 1px solid rgba(47, 47, 47, 0.401);
+  // &:hover {
+  //   background-color: $widgetHover;
+  //   box-shadow: $boxShadow;
+  //   border: 1px solid rgba(47, 47, 47, 0.401);
 
-    img {
-      scale: 0.9;
-    }
-  }
+  //   img {
+  //     scale: 0.9;
+  //   }
+  // }
 
   &__head {
     position: relative;
     aspect-ratio: 1/1;
-    width: 30%;
+    width: 25%;
     border-radius: $borderRadius;
   }
 
@@ -124,7 +124,7 @@
       }
 
       &__text {
-        padding: 15px 20px;
+        // padding: 15px;
         margin-left: 0;
       }
 

@@ -18,11 +18,13 @@ type HeroProps = {
   anim?: boolean;
   user?: any;
   overlay?: boolean;
+  box?: boolean;
+  imgBox?: string;
 };
 
 const cx = classNames.bind(style);
 
-const AritstHero = ({ title, img, user, overlay }: HeroProps) => {
+const AritstHero = ({ title, img, imgBox, user, overlay, box }: HeroProps) => {
   const { userData } = useLoginContext();
   const { following, setNewFollowing } = useFollowingContext();
   const [isFollowed, setIsFollowed] = useState(false);
@@ -37,12 +39,25 @@ const AritstHero = ({ title, img, user, overlay }: HeroProps) => {
 
   return (
     <div
-      className={cx("artist-hero", overlay && "artist-hero__overlay")}
+      className={cx(
+        "artist-hero",
+        overlay && "artist-hero__overlay",
+        box && "artist-hero__box-container"
+      )}
       style={{
         backgroundImage: `url("${img}")`,
       }}
     >
+      {box && (
+        <div
+          className={cx("artist-hero__box")}
+          style={{
+            backgroundImage: `url("${imgBox}")`,
+          }}
+        />
+      )}
       <div className={cx("artist-hero__text")}>
+        <p>Discover</p>
         <h1>{title}</h1>
         <p>Techno, Melodic Techno</p>
       </div>

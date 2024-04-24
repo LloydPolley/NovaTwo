@@ -26,8 +26,7 @@
 
 .track-grid {
   display: grid;
-  row-gap: 20px;
-  column-gap: 20px;
+  row-gap: 10px;
   flex-wrap: wrap;
   width: 100%;
   flex-grow: 1;
@@ -39,12 +38,17 @@
 
   @include medium {
     grid-template-columns: 1fr 1fr;
+    row-gap: 20px;
+    column-gap: 20px;
   }
-
   @include large {
+    row-gap: 20px;
+    column-gap: 20px;
     grid-template-columns: repeat(4, 1fr);
   }
   @include xl {
+    row-gap: 20px;
+    column-gap: 20px;
     grid-template-columns: repeat(6, 1fr);
   }
 }

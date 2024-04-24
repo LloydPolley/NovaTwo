@@ -1,9 +1,32 @@
 @import "../../styles/mixins.scss";
 
 .discover {
-  &__hero {
-    text-align: center;
-    min-height: 200px;
-    background-color: red;
+  flex: 1;
+
+  &__all {
+    background: rgb(80, 1, 85);
+    background: linear-gradient(
+      185deg,
+      rgba(80, 1, 85, 1) 0%,
+      rgba(16, 16, 16, 1) 63%
+    );
+  }
+
+  &__tracks {
+    background: rgb(2, 72, 117);
+    background: linear-gradient(
+      185deg,
+      rgba(2, 72, 117, 1) 0%,
+      rgba(16, 16, 16, 1) 63%
+    );
+  }
+
+  &__mix {
+    background: rgb(117, 2, 32);
+    background: linear-gradient(
+      185deg,
+      rgba(117, 2, 32, 1) 0%,
+      rgba(16, 16, 16, 1) 63%
+    );
   }
 }
