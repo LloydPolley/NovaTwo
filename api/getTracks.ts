@@ -70,15 +70,17 @@ const getTracksWhere = async (
     q = query(collection(db, "tracks"), where(type, "==", input));
   }
   const querySnapshot = await getDocs(q);
-  const arr = querySnapshot.docs.map(
-    (doc) =>
-      ({
-        ...(doc.data() as Record<string, unknown>),
-        trackId: doc.id,
-      } as TrackType)
-  );
+  const arr = querySnapshot.docs.map((doc) => {
+    const { timestamp, ...dataWithoutTimestamp } = doc.data() as Record<
+      string,
+      unknown
+    >;
+    return {
+      ...dataWithoutTimestamp,
+      trackId: doc.id,
+    } as TrackType;
+  });
 
-  // const serializedObject = JSON.parse(JSON.stringify(originalObject));
   return arr;
 };
 

@@ -89,7 +89,7 @@ $color2: #0a3656;
 
     display: flex;
     flex-direction: column;
-    justify-content: end;
+    justify-content: flex-end;
 
     @include large {
       padding: 20px;

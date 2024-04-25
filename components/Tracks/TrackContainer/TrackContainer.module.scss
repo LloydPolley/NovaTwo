@@ -1,8 +1,17 @@
 @import "../../../styles/mixins.scss";
 
+.loading {
+  text-align: center;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .track-container {
   padding: 20px;
   flex: 1;
+  animation: fadeIn 0.5s forwards ease-in-out;
 
   &__text {
     display: flex;

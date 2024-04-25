@@ -20,7 +20,7 @@
   }
 
   &::before {
-    content: "";
+    // content: "";
 
     background: $widgetColor;
     opacity: 0.3;
@@ -79,18 +79,8 @@
   }
 
   &__text {
-    position: absolute;
-    bottom: 0;
-    left: 5%;
-    // transform: translateX(-50%);
-    z-index: 2;
-
-    @include large {
-      position: relative;
-      bottom: 0;
-      left: 0;
-      margin: auto 0;
-    }
+    position: relative;
+    margin: auto 0;
 
     h1 {
       margin-top: 0;

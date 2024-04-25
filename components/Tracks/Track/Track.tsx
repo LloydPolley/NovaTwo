@@ -48,7 +48,7 @@ const Track = ({ item, type }) => {
           blurDataURL={artworkFileLocation || artwork}
           alt={name}
           fill
-          objectFit="cover"
+          style={{ objectFit: "cover" }}
         />
         <div className={cx("track__play")}>
           <Play isPlayingAudio={isPlayingLocal} />

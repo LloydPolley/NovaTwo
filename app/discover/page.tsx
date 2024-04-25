@@ -11,53 +11,59 @@ import {
 } from "../../api/getTracks";
 import FilterBar from "../../components/FilterBar";
 import { Suspense } from "react";
-import AritstHero from "../../components/ArtistHero";
+import ArtistHero from "../../components/ArtistHero";
 
 const cx = classNames.bind(styles);
 
+const FILTER_TYPES = {
+  ALL: "all",
+  TRACKS: "tracks",
+  MIX: "mix",
+};
+
 const filters = [
-  { label: "All", url: "?f=all" },
-  { label: "Tracks", url: "?f=tracks" },
-  { label: "Mix", url: "?f=mix" },
+  { label: "All", url: `?f=${FILTER_TYPES.ALL}` },
+  { label: "Tracks", url: `?f=${FILTER_TYPES.TRACKS}` },
+  { label: "Mix", url: `?f=${FILTER_TYPES.MIX}` },
 ];
 
-const setImg = "./3.jpg";
-const djImg = "./2.jpg";
-const allImg = "./1.jpg";
+const IMAGES = {
+  tracks: "./3.jpg",
+  mix: "./2.jpg",
+  all: "./1.jpg",
+};
 
-const mix = "Live Mixes";
-const releases = "Releases";
-const all = "Tracks";
+const TITLES = {
+  mix: "Live Mixes",
+  tracks: "Releases",
+  all: "All",
+};
 
-export default async function Dj({ searchParams, params }) {
-  const filterType = searchParams.f;
+const filterFunctions = {
+  [FILTER_TYPES.TRACKS]: () => getTracksWhere("mix", false),
+  [FILTER_TYPES.MIX]: () => getTracksWhere("mix", true),
+  [FILTER_TYPES.ALL]: () => getAllTracksOrdered("asc"),
+};
 
-  let tracks = [];
-  let img;
-  let text;
+export default async function Dj({ searchParams: { f, order }, params }) {
+  const filterType = f || FILTER_TYPES.ALL;
 
-  if (filterType === "tracks") {
-    tracks = await getTracksWhere("mix", false);
-    img = djImg;
-    text = releases;
-  } else if (filterType === "mix") {
-    tracks = await getTracksWhere("mix", true);
-    img = setImg;
-    text = mix;
-  } else if (filterType === "all") {
-    tracks = await getAllTracksOrdered("asc");
-    img = allImg;
-    text = all;
-  }
+  console.log("filtertype", filterType);
+
+  const filterFunction = filterFunctions[filterType];
+  const tracks = await filterFunction();
+
+  const img = IMAGES[filterType];
+  const text = TITLES[filterType];
 
   return (
     <div className={cx("discover", `discover__${filterType}`)}>
-      <AritstHero title={text} user={{}} imgBox={img} overlay box />
-      <FilterBar searchParams={searchParams} filters={filters} />
+      <ArtistHero title={text} user={{}} imgBox={img} overlay box />
+      <FilterBar searchParams={{ f }} filters={filters} />
       <Suspense>
         <TrackContainer
           trackList={tracks}
-          searchParams={searchParams}
+          searchParams={{ f }}
           params={params}
           url={undefined}
         />

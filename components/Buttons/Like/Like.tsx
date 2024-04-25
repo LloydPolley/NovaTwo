@@ -25,7 +25,6 @@ function Like({ track }) {
     const isLikedByUser = likes.find(
       (likedTrack) => likedTrack.trackId === trackId
     );
-    console.log("isLikedByUser", !!isLikedByUser);
     setIsLiked(isLikedByUser);
   }, [likes]);
 

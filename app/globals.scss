@@ -6,7 +6,10 @@ body {
   margin: 0;
   font-family: var(--font-poppins);
   max-width: 100%;
-  background-color: black;
+
+  @include large {
+    background-color: black;
+  }
 }
 
 h1 {
