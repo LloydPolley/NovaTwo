@@ -6,26 +6,28 @@ import styles from "./Like.module.scss";
 import Favourite from "../../Icons/Favourite";
 import FavouriteFilled from "../../Icons/FavouriteFilled";
 import { useLoginContext } from "../../../context/LoginContext";
-import { useLikesContext } from "../../../context/LikesContext";
+import useLikesStore from "../../../context/LikesStore";
 
 const cx = classNames.bind(styles);
 
 function Like({ track }) {
   const { trackId } = track || {};
   const [isLiked, setIsLiked] = useState(false);
-  const { likes, addLike, removeLike } = useLikesContext();
+  const { likes, addLike, removeLike } = useLikesStore((state) => state);
+
   const { userData } = useLoginContext();
 
   const clickHandler = () => {
-    const obj = { track, currentUser: userData?.uid };
-    !isLiked ? addLike(obj) : removeLike(obj);
+    const trackDetails = { ...track, currentUser: userData?.uid };
+    console.log("isLiked", isLiked);
+    !isLiked ? addLike(trackDetails) : removeLike(trackDetails);
   };
 
   useEffect(() => {
     const isLikedByUser = likes.find(
       (likedTrack) => likedTrack.trackId === trackId
     );
-    setIsLiked(isLikedByUser);
+    setIsLiked(!!isLikedByUser);
   }, [likes]);
 
   return (

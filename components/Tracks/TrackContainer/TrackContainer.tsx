@@ -1,6 +1,6 @@
 "use client";
 
-import React, { forwardRef, Ref, Suspense, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import classNames from "classnames/bind";
 import style from "./TrackContainer.module.scss";
 import Track from "../Track";
@@ -13,6 +13,8 @@ import {
 } from "../../../api/getTracks";
 import { getUserLikes } from "../../../api/addLike";
 import Link from "next/link";
+
+import useBearStore from "../../../context/LikesStore";
 
 const cx = classNames.bind(style);
 
