@@ -1,9 +1,4 @@
 import { create } from "zustand";
-import {
-  addLikeToCollection,
-  deleteLikeTracksCollection,
-  getUserLikes,
-} from "../api/addLike";
 import { getUserFollowers } from "../api/addFollower";
 import { followUser } from "../api/addFollower";
 
@@ -16,9 +11,7 @@ interface FollowerStore {
 const useFollowerStore = create<FollowerStore>()((set) => ({
   following: [],
   setFollowing: async (userData) => {
-    console.log("setFollowing", userData);
     const userFollowing = await getUserFollowers(userData?.uid);
-    console.log("userFollowing", userFollowing);
     if (userFollowing) set(() => ({ following: [...userFollowing] }));
   },
   setNewFollowing: async (newFollowing) => {

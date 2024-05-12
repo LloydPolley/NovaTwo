@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import classNames from "classnames/bind";
 import styles from "./SignUpForm.module.scss";
-import { useLoginContext } from "../../../context/LoginContext";
 import Form from "../Form/Form";
 import { registerUser } from "../../../api/signUp";
 

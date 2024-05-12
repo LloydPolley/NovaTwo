@@ -5,10 +5,10 @@ import { useForm } from "react-hook-form";
 import { addTrack, uploadFile, fetchFile } from "../../../api/addTracks";
 import classNames from "classnames/bind";
 import styles from "./UploadTrackForm.module.scss";
-import { useLoginContext } from "../../../context/LoginContext";
 import Form from "../Form/Form";
 import { redirect, RedirectType } from "next/navigation";
 import FileIcon from "../../Icons/FileIcon";
+import useAuthStore from "../../../context/AuthStore";
 
 const cx = classNames.bind(styles);
 
@@ -29,7 +29,7 @@ function UploadTrackForm() {
     },
   });
 
-  const { userData } = useLoginContext();
+  const { userData } = useAuthStore((state) => state);
 
   const [image, setImage] = useState("");
   const [audio, setAudio] = useState("");

@@ -5,8 +5,8 @@ import classNames from "classnames/bind";
 import styles from "./Like.module.scss";
 import Favourite from "../../Icons/Favourite";
 import FavouriteFilled from "../../Icons/FavouriteFilled";
-import { useLoginContext } from "../../../context/LoginContext";
 import useLikesStore from "../../../context/LikesStore";
+import useAuthStore from "../../../context/AuthStore";
 
 const cx = classNames.bind(styles);
 
@@ -15,7 +15,7 @@ function Like({ track }) {
   const [isLiked, setIsLiked] = useState(false);
   const { likes, addLike, removeLike } = useLikesStore((state) => state);
 
-  const { userData } = useLoginContext();
+  const { userData } = useAuthStore((state) => state);
 
   const clickHandler = () => {
     const trackDetails = { ...track, currentUser: userData?.uid };

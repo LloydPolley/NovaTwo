@@ -1,14 +1,9 @@
-import classNames from "classnames/bind";
-import styles from "./Home.module.scss";
-
 import Carousel from "../components/Carousel";
 import { getAllArtists } from "../api/getTracks";
 import Hero from "../components/Hero";
 import { getTracksWhere } from "../api/getTracks";
 import Track from "../components/Tracks/Track";
 import UserWidget from "../components/UserWidget";
-
-const cx = classNames.bind(styles);
 
 export default async function Dj({ searchParams, params }) {
   const users = await getAllArtists();

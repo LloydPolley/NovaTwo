@@ -5,15 +5,15 @@ import { useForm } from "react-hook-form";
 import { uploadImg, fetchFile } from "../../../api/addTracks";
 import classNames from "classnames/bind";
 import styles from "./ProfileForm.module.scss";
-import { useLoginContext } from "../../../context/LoginContext";
 import { updateUserDoc } from "../../../api/signUp";
+import useAuthStore from "../../../context/AuthStore";
 
 const cx = classNames.bind(styles);
 
 function ProfileForm({}) {
   const { register, handleSubmit } = useForm();
 
-  const { userData } = useLoginContext();
+  const { userData } = useAuthStore((state) => state);
   const [show, setShow] = useState(false);
   const [profileImg, setProfileImg] = useState("");
 

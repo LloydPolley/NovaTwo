@@ -2,9 +2,9 @@
 
 import classNames from "classnames/bind";
 import style from "./ArtistHero.module.scss";
-import { useLoginContext } from "../../context/LoginContext";
 import ProfileForm from "../forms/ProfileForm/ProfileForm";
 import useFollowerStore from "../../context/FollowerStore";
+import useAuthStore from "../../context/AuthStore";
 
 type HeroProps = {
   title: string;
@@ -23,7 +23,7 @@ type HeroProps = {
 const cx = classNames.bind(style);
 
 const AritstHero = ({ title, img, imgBox, user, overlay, box }: HeroProps) => {
-  const { userData } = useLoginContext();
+  const { userData } = useAuthStore((state) => state);
   const { setNewFollowing, following } = useFollowerStore((state) => state);
 
   const yourProfile = userData?.uid === user?.uid;

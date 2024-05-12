@@ -7,11 +7,6 @@
   border-radius: $borderRadius;
   transition: 0.2s ease all;
 
-  &:hover {
-    background-color: $widgetHover;
-    box-shadow: $boxShadow;
-  }
-
   &__element {
     position: relative;
     display: flex;

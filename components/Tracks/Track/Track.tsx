@@ -5,9 +5,9 @@ import style from "./Track.module.scss";
 import Play from "../../Buttons/Play";
 import Like from "../../Buttons/Like";
 import Link from "next/link";
-import { useAudioContext } from "../../../context/AudioContext";
-import { useLoginContext } from "../../../context/LoginContext";
+import useAudioStore from "../../../context/AudioStore";
 import Image from "next/image";
+import useAuthStore from "../../../context/AuthStore";
 
 const cx = classNames.bind(style);
 
@@ -22,9 +22,11 @@ const Track = ({ item, type }) => {
     artwork,
   } = item || {};
 
-  const { playContext, pauseContext, isPlaying, trackContext } =
-    useAudioContext();
-  const { userData } = useLoginContext();
+  const { isPlaying, trackContext, playContext, pauseContext } = useAudioStore(
+    (state) => state
+  );
+
+  const { userData } = useAuthStore((state) => state);
 
   const isPlayingLocal =
     isPlaying && trackContext?.audioFileLocation === audioFileLocation;

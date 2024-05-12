@@ -4,15 +4,15 @@ import { useEffect, useState } from "react";
 import classNames from "classnames/bind";
 import style from "./UserFollowing.module.scss";
 import UserWidget from "../UserWidget";
-import { useLoginContext } from "../../context/LoginContext";
 import { getUserFollowers } from "../../api/addFollower";
 import useFollowerStore from "../../context/FollowerStore";
+import useAuthStore from "../../context/AuthStore";
 
 const cx = classNames.bind(style);
 
 const Carousel = ({ searchParams, params }) => {
   const { following } = useFollowerStore((state) => state);
-  const { userData } = useLoginContext();
+  const { userData } = useAuthStore((state) => state);
   const [users, setUsers] = useState([]);
 
   const fetchUserFollowers = async () => {
