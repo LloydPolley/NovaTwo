@@ -23,7 +23,6 @@ const useLikesStore = create<LikesStore>()((set) => ({
     if (success) set((state) => ({ likes: [...state.likes, like] }));
   },
   removeLike: async (likeToRemove) => {
-    console.log("toRemove", likeToRemove);
     const success = await deleteLikeTracksCollection(likeToRemove);
     if (success) {
       set((state) => ({

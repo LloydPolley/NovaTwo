@@ -20,7 +20,6 @@ const deleteLikeTracksCollection = async (track) => {
 };
 
 const addLikeToCollection = async (track) => {
-  console.log("track", track);
   try {
     const date = new Date().toLocaleString();
     await setDoc(doc(db, "likes", `${track.trackId}-${track.currentUser}`), {

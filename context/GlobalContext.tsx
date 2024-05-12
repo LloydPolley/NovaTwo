@@ -31,7 +31,6 @@ export const GlobalProvider = ({ children }) => {
   const watchUserStatus = () => {
     return onAuthStateChanged(auth, (user) => {
       const info = user ? user?.uid : null;
-      console.log("info", info);
       AuthStore.getUser(info);
     });
   };
@@ -42,10 +41,6 @@ export const GlobalProvider = ({ children }) => {
       AuthStore.getUser(info);
     });
   };
-
-  useEffect(() => {
-    console.log("userData", userData);
-  }, [userData]);
 
   const playContext = async (track) => {
     audioRef.current.play();

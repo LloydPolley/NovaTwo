@@ -19,7 +19,6 @@ function Like({ track }) {
 
   const clickHandler = () => {
     const trackDetails = { ...track, currentUser: userData?.uid };
-    console.log("isLiked", isLiked);
     !isLiked ? addLike(trackDetails) : removeLike(trackDetails);
   };
 

@@ -48,8 +48,6 @@ const filterFunctions = {
 export default async function Dj({ searchParams: { f, order }, params }) {
   const filterType = f || FILTER_TYPES.ALL;
 
-  console.log("filtertype", filterType);
-
   const filterFunction = filterFunctions[filterType];
   const tracks = await filterFunction();
 

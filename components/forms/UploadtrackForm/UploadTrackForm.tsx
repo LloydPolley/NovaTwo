@@ -44,7 +44,6 @@ function UploadTrackForm() {
 
   const onSubmit = async (data) => {
     const { name, audioFile, artworkFile, label, mix, album } = data;
-    console.log("data", data);
     const { displayName, uid } = userData;
 
     const audioUrl = `gs://novatwo-f3f41.appspot.com/${displayName}/tracks/${name}/audio/${audioFile[0].name}`;
