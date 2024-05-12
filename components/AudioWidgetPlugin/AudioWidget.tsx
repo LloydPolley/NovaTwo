@@ -3,9 +3,9 @@
 import { useEffect, useState } from "react";
 import classNames from "classnames/bind";
 import style from "./AudioWidget.module.scss";
-import { useAudioContext } from "../../context/AudioContext";
 import dynamic from "next/dynamic";
 import Play from "../Buttons/Play";
+import useAudioStore from "../../context/AudioStore";
 
 const cx = classNames.bind(style);
 
@@ -14,7 +14,7 @@ const DynamicPlayer = dynamic(() => import("./widget"), {
 });
 
 const AudioWidget = () => {
-  const { isPlaying, trackContext, audioRef } = useAudioContext();
+  const { isPlaying, trackContext, audioRef } = useAudioStore();
   const [expanded, setExpanded] = useState(false);
   const [loadedTrack, setLoadedTrack] = useState(false);
 

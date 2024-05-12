@@ -48,8 +48,6 @@ const addTrack = async ({
       trackId,
       album,
     });
-
-    // console.log("Document added with custom ID: ", customId);
   } catch (e) {
     console.error("Error adding document: ", e);
     return { ...e };
@@ -79,7 +77,7 @@ const fetchFile = async (audioUrl) => {
     const url = await getDownloadURL(ref(storage, audioUrl));
     return url;
   } catch (e) {
-    console.log("fetch audio error", e);
+    return e;
   }
 };
 
