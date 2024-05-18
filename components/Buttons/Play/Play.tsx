@@ -1,9 +1,8 @@
 "use client";
 
-import { useEffect, useState, MouseEventHandler } from "react";
+import { MouseEventHandler } from "react";
 import classNames from "classnames/bind";
 import styles from "./Play.module.scss";
-import { useAudioContext } from "../../../context/AudioContext";
 import PlayIcon from "../../Icons/PlayIcon";
 import PauseIcon from "../../Icons/PauseIcon";
 

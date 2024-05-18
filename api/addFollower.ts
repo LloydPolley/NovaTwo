@@ -10,15 +10,16 @@ import {
   getDocs,
 } from "firebase/firestore";
 
-const followUser = async ({ user, following }) => {
+const followUser = async (newFollowing) => {
   try {
     const date = new Date().toLocaleString();
-    await setDoc(doc(db, "followers", `${user?.uid}-${following?.uid}`), {
-      date,
-      ...following,
-      user: user?.uid,
-      userName: user?.displayName,
-    });
+    await setDoc(
+      doc(db, "followers", `${newFollowing?.user}-${newFollowing?.uid}`),
+      {
+        date,
+        ...newFollowing,
+      }
+    );
     return true;
   } catch (e) {
     return false;

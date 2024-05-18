@@ -2,14 +2,14 @@
 
 import classNames from "classnames/bind";
 import style from "./AudioWidget.module.scss";
-import { useAudioContext } from "../../context/AudioContext";
 
 import AudioPlayer from "react-modern-audio-player";
+import useAudioStore from "../../context/AudioStore";
 
 const cx = classNames.bind(style);
 
 const AudioWidget = ({ audioRef }) => {
-  const { isPlaying, trackContext } = useAudioContext();
+  const { isPlaying, trackContext } = useAudioStore();
 
   const playList = [
     {

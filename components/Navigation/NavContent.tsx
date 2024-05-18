@@ -4,7 +4,6 @@ import { Suspense, useEffect, useState } from "react";
 import classNames from "classnames/bind";
 import style from "./Navigation.module.scss";
 import Link from "next/link";
-import { useLoginContext } from "../../context/LoginContext";
 import {
   useSelectedLayoutSegment,
   useSelectedLayoutSegments,
@@ -20,6 +19,7 @@ import FollowerIcon from "../Icons/FollowerIcon";
 import UploadIcon from "../Icons/UploadIcon";
 import TracksIcon from "../Icons/TracksIcon";
 import MixIcon from "../Icons/MixIcon";
+import useAuthStore from "../../context/AuthStore";
 
 type NavTypes = {
   open?: boolean;
@@ -29,7 +29,7 @@ type NavTypes = {
 const cx = classNames.bind(style);
 
 const NavContent = ({ open, closeNav }: NavTypes) => {
-  const { userData } = useLoginContext();
+  const { userData } = useAuthStore((state) => state);
   const router = useRouter();
   const activeSegments = useSelectedLayoutSegments();
   const pathname = usePathname();

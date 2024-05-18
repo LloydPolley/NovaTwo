@@ -4,15 +4,15 @@ import { useEffect, useState } from "react";
 import classNames from "classnames/bind";
 import style from "./UserFollowing.module.scss";
 import UserWidget from "../UserWidget";
-import { useFollowingContext } from "../../context/FollowersContext";
-import { useLoginContext } from "../../context/LoginContext";
 import { getUserFollowers } from "../../api/addFollower";
+import useFollowerStore from "../../context/FollowerStore";
+import useAuthStore from "../../context/AuthStore";
 
 const cx = classNames.bind(style);
 
 const Carousel = ({ searchParams, params }) => {
-  const { following } = useFollowingContext();
-  const { userData } = useLoginContext();
+  const { following } = useFollowerStore((state) => state);
+  const { userData } = useAuthStore((state) => state);
   const [users, setUsers] = useState([]);
 
   const fetchUserFollowers = async () => {
@@ -23,7 +23,6 @@ const Carousel = ({ searchParams, params }) => {
   useEffect(() => {
     const isYou = params?.id === userData?.uid;
     if (isYou) {
-      console.log("isyou", isYou);
       setUsers(following);
       return;
     }

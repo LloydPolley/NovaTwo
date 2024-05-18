@@ -1,13 +1,12 @@
-import classNames from "classnames/bind";
-
 import Navigation from "../components/Navigation";
 import NavContent from "../components/Navigation/NavContent";
 import AudioWidget from "../components/AudioWidgetPlugin";
-import { Providers } from "../context/Providers";
 import { Lato, Raleway, Poppins } from "next/font/google";
-import styles from "./Home.module.scss";
 
-const cx = classNames.bind(styles);
+import "./globals.scss";
+import Wrapper from "../components/Wrapper";
+import { Suspense } from "react";
+import GlobalProvider from "../context/GlobalContext";
 
 const lato = Lato({
   weight: ["400", "700"],
@@ -27,11 +26,6 @@ const poppins = Poppins({
   variable: "--font-poppins",
 });
 
-import "./globals.scss";
-import FollowersProvider from "../context/FollowersContext";
-import Wrapper from "../components/Wrapper";
-import { Suspense } from "react";
-
 export default function RootLayout(props) {
   const { children } = props;
 
@@ -46,7 +40,7 @@ export default function RootLayout(props) {
         />
       </head>
       <body id="body">
-        <Providers>
+        <GlobalProvider>
           <Suspense>
             <Navigation />
           </Suspense>
@@ -57,7 +51,7 @@ export default function RootLayout(props) {
             <Wrapper>{children}</Wrapper>
           </div>
           <AudioWidget />
-        </Providers>
+        </GlobalProvider>
       </body>
     </html>
   );

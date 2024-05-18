@@ -10,26 +10,24 @@ import {
   getDocs,
 } from "firebase/firestore";
 
-const deleteLikeTracksCollection = async ({ track, currentUser }) => {
+const deleteLikeTracksCollection = async (track) => {
   try {
-    await deleteDoc(doc(db, "likes", `${track.trackId}-${currentUser}`));
+    await deleteDoc(doc(db, "likes", `${track.trackId}-${track.currentUser}`));
     return true;
   } catch (e) {
     return false;
   }
 };
 
-const addLikeToCollection = async ({ track, currentUser }) => {
+const addLikeToCollection = async (track) => {
   try {
     const date = new Date().toLocaleString();
-    await setDoc(doc(db, "likes", `${track.trackId}-${currentUser}`), {
+    await setDoc(doc(db, "likes", `${track.trackId}-${track.currentUser}`), {
       date,
       ...track,
-      currentUser,
     });
     return true;
   } catch (e) {
-    console.log("caught", e);
     return false;
   }
 };

@@ -5,15 +5,15 @@ import classNames from "classnames/bind";
 // import styles from "./AuthWidget.module.scss";
 import LoginForm from "../LoginForm/LoginForm";
 import SignUpForm from "../SignUpForm/SignUpForm";
-import { useLoginContext } from "../../../context/LoginContext";
 import { redirect, RedirectType } from "next/navigation";
 import { signIn } from "../../../api/login";
+import useAuthStore from "../../../context/AuthStore";
 
 // const cx = classNames.bind(styles);
 
 function SignInScreen() {
   const [showLogin, setShowLogin] = useState(true);
-  const { userData } = useLoginContext();
+  const { userData } = useAuthStore((state) => state);
 
   if (userData !== null && showLogin) {
     redirect(`/${userData?.uid}?f=all`, RedirectType.push);
