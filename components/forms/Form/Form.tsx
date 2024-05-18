@@ -14,10 +14,11 @@ type FormTypes = {
 };
 
 function Form({ title, para, children, classForm, loading }: FormTypes) {
+  console.log("loading form", loading);
   return (
     <div className={cx("form", classForm)}>
       <div className={cx("form__load", loading && "form__show-load")}>
-        Loading
+        Loading...
       </div>
       <div className={cx("form__container")}>
         <div className={cx("form__header")}>

@@ -10,9 +10,6 @@
   justify-content: space-between;
   padding: 10px;
   background-color: $widgetColor;
-  // border-radius: $borderRadius;
-
-  // border-bottom: 1px solid rgb(65, 65, 65);
   width: 100%;
 
   @include large {
@@ -184,7 +181,6 @@
 
       &:hover {
         color: white;
-        // display: list-item;
       }
     }
   }

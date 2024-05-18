@@ -58,9 +58,6 @@ const TrackContainer = ({
       case "all":
         setTracks(await getArtistTracks(params?.id));
         break;
-      default:
-        setTracks(await getAllTracksOrdered(order));
-        break;
     }
   };
 
