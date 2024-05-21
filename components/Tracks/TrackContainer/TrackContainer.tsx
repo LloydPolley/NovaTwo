@@ -40,7 +40,6 @@ const TrackContainer = ({
 }: TrackListProps) => {
   const [tracks, setTracks] = useState([]);
   const [loading, setLoading] = useState(false);
-  const { order } = searchParams;
 
   const fetchingTracks = async () => {
     setLoading(true);
@@ -71,7 +70,6 @@ const TrackContainer = ({
   }, [searchParams.f]);
 
   useEffect(() => {
-    if (tracks.length === 0) return;
     setLoading(false);
   }, [tracks]);
 
@@ -80,7 +78,7 @@ const TrackContainer = ({
   }
 
   if (loading) {
-    return <p className={cx("loading")}>No Tracks here</p>;
+    return <p className={cx("loading")}>Loading</p>;
   }
 
   return (
@@ -91,13 +89,15 @@ const TrackContainer = ({
           {url && <Link href={`discover?${url}`}>See more</Link>}
         </div>
       )}
-      {tracks?.length > 0 && tracks[0].name !== undefined && (
+      {tracks?.length > 0 ? (
         <div className={cx("track-grid")}>
           {tracks.map((track) => {
             if (!track.artist) return null;
             return <Track key={track.name} item={track} type="both" />;
           })}
         </div>
+      ) : (
+        <p className={cx("loading")}>No Tracks here</p>
       )}
     </div>
   );

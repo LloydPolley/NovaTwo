@@ -20,6 +20,7 @@ import UploadIcon from "../Icons/UploadIcon";
 import TracksIcon from "../Icons/TracksIcon";
 import MixIcon from "../Icons/MixIcon";
 import useAuthStore from "../../context/AuthStore";
+import Edit from "../Icons/Edit";
 
 type NavTypes = {
   open?: boolean;
@@ -115,6 +116,14 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
                 href={`/${userData?.uid}?f=following`}
               >
                 <FollowerIcon /> <span>Following</span>
+              </Link>
+              <Link
+                className={cx(
+                  activeSegments[0] === "upload" && "nav-content__active"
+                )}
+                href={`/profile`}
+              >
+                <Edit /> <span>Edit</span>
               </Link>
               <Link
                 className={cx(

@@ -52,7 +52,6 @@ const AritstHero = ({ title, img, imgBox, user, overlay, box }: HeroProps) => {
         <h1>{title}</h1>
         <p>Techno, Melodic Techno</p>
       </div>
-      {yourProfile && <ProfileForm />}
       {userData &&
         !yourProfile &&
         Object.keys(user).length !== 0 &&

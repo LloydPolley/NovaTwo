@@ -24,7 +24,7 @@ const Carousel = ({ Component, items, text, url, type }: CarouselTypes) => {
       </div>
       <div className={cx("carousel__inner")}>
         {items &&
-          items.map((item) => {
+          items.slice(0, 8).map((item) => {
             return (
               <div
                 className={cx("carousel__item")}

@@ -7,6 +7,7 @@ import classNames from "classnames/bind";
 import styles from "./ProfileForm.module.scss";
 import { updateUserDoc } from "../../../api/signUp";
 import useAuthStore from "../../../context/AuthStore";
+import Form from "../Form/Form";
 
 const cx = classNames.bind(styles);
 
@@ -14,7 +15,6 @@ function ProfileForm({}) {
   const { register, handleSubmit } = useForm();
 
   const { userData } = useAuthStore((state) => state);
-  const [show, setShow] = useState(false);
   const [profileImg, setProfileImg] = useState("");
 
   const [loading, setLoading] = useState(false);
@@ -50,46 +50,25 @@ function ProfileForm({}) {
     return null;
   }
 
-  if (!show) {
-    return (
-      <div
-        className={cx("edit-button")}
-        onClick={() => {
-          setShow(true);
-        }}
-      >
-        Edit
-      </div>
-    );
-  }
-
   return (
-    <form className={cx("profile")} onSubmit={handleSubmit(onSubmit)}>
-      <div
-        className={cx("profile__close")}
-        onClick={() => {
-          setShow(false);
-        }}
-      >
-        X
-      </div>
-      <p>{profileImg ? profileImg : "Edit Profile"}</p>
-      <label htmlFor="profile-upload" className={cx("upload-element")}>
-        Edit
-      </label>
-      <input
-        className={cx("upload-button")}
-        id="profile-upload"
-        type="file"
-        accept="image/*"
-        {...register("profileImgForm")}
-        onInput={(e) => {
-          const file = (e.target as HTMLInputElement).files[0];
-          setProfileImg(file?.name);
-        }}
-      />
-      <input type="submit" value="Upload" disabled={loading} />
-    </form>
+    <Form title="Upload Profile">
+      <form className={cx("profile")} onSubmit={handleSubmit(onSubmit)}>
+        <label htmlFor="profile-upload">Profile image</label>
+        <input
+          className={cx("upload-button")}
+          id="profile-upload"
+          type="file"
+          accept="image/*"
+          placeholder="Display Name"
+          {...register("profileImgForm")}
+          onInput={(e) => {
+            const file = (e.target as HTMLInputElement).files[0];
+            setProfileImg(file?.name);
+          }}
+        />
+        <input type="submit" value="Upload" disabled={loading} />
+      </form>
+    </Form>
   );
 }
 
