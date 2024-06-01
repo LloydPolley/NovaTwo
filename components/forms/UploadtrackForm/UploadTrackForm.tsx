@@ -7,7 +7,6 @@ import classNames from "classnames/bind";
 import styles from "./UploadTrackForm.module.scss";
 import Form from "../Form/Form";
 import { redirect, RedirectType } from "next/navigation";
-import FileIcon from "../../Icons/FileIcon";
 import useAuthStore from "../../../context/AuthStore";
 
 const cx = classNames.bind(styles);

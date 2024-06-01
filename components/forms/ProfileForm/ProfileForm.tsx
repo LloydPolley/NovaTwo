@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { redirect, RedirectType } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { uploadImg, fetchFile } from "../../../api/addTracks";
 import classNames from "classnames/bind";
@@ -18,7 +19,13 @@ function ProfileForm({}) {
   const [profileImg, setProfileImg] = useState("");
 
   const [loading, setLoading] = useState(false);
-  const [finished, setFinished] = useState(false);
+  const [complete, setComplete] = useState(false);
+
+  useEffect(() => {
+    if (complete) {
+      redirect(`/${userData?.uid}?f=all`, RedirectType.push);
+    }
+  }, [complete]);
 
   const onSubmit = async (data) => {
     const { name, profileImgForm } = data;
@@ -43,7 +50,7 @@ function ProfileForm({}) {
     });
 
     setLoading(false);
-    setFinished(true);
+    setComplete(true);
   };
 
   if (userData === null) {
@@ -51,7 +58,7 @@ function ProfileForm({}) {
   }
 
   return (
-    <Form title="Upload Profile">
+    <Form title="Upload Profile" loading={loading}>
       <form className={cx("profile")} onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="profile-upload">Profile image</label>
         <input
