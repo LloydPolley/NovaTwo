@@ -14,7 +14,8 @@ const DynamicPlayer = dynamic(() => import("./widget"), {
 });
 
 const AudioWidget = () => {
-  const { isPlaying, trackContext, audioRef } = useAudioStore();
+  const { isPlaying, trackContext, audioRef, playContext, pauseContext } =
+    useAudioStore();
   const [expanded, setExpanded] = useState(false);
   const [loadedTrack, setLoadedTrack] = useState(false);
 
@@ -44,7 +45,8 @@ const AudioWidget = () => {
           <div className={cx("audio-widget__btn")}>
             <Play
               onClick={() => {
-                isPlaying ? audioRef.current.pause() : audioRef.current.play();
+                console.log("isplaying", isPlaying);
+                isPlaying ? pauseContext() : playContext(trackContext);
               }}
               isPlayingAudio={isPlaying}
             />
