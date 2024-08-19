@@ -103,6 +103,35 @@ const getArtistTracks = async (input: string): Promise<TrackType[]> => {
   return arr;
 };
 
+const getArtistReleases = async (input: string): Promise<TrackType[]> => {
+  const q = query(collection(db, "releases"), where("uid", "==", input));
+  const querySnapshot = await getDocs(q);
+  const arr = querySnapshot.docs.map((doc) => {
+    const obj = doc.data();
+    delete obj.timestamp;
+    return obj as TrackType;
+  });
+  return arr;
+};
+
+const getTracksInRelease = async (trackIds: string[]): Promise<TrackType[]> => {
+  if (!trackIds || trackIds.length === 0) {
+    return [];
+  }
+
+  const q = query(collection(db, "tracks"), where("trackId", "in", trackIds));
+
+  const querySnapshot = await getDocs(q);
+
+  const tracks = querySnapshot.docs.map((doc) => {
+    const trackData = doc.data();
+    delete trackData.timestamp; // Removing the timestamp if needed
+    return trackData as TrackType;
+  });
+
+  return tracks;
+};
+
 export {
   getAllTracks,
   getArtistTracks,
@@ -111,4 +140,6 @@ export {
   getAllTracksOrdered,
   getAllArtists,
   getAllArtistsWhere,
+  getTracksInRelease,
+  getArtistReleases,
 };

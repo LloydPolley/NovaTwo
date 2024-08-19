@@ -41,6 +41,8 @@ const TrackContainer = ({
   const [tracks, setTracks] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  console.log("tracks", tracks);
+
   const fetchingTracks = async () => {
     setLoading(true);
 

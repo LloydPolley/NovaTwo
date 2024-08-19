@@ -13,10 +13,9 @@ type FormTypes = {
   loading?: boolean;
 };
 
-function Form({ title, para, children, classForm, loading }: FormTypes) {
-  console.log("loading form", loading);
+function Form({ title, para, children, loading }: FormTypes) {
   return (
-    <div className={cx("form", classForm)}>
+    <div className={cx("form")}>
       <div className={cx("form__load", loading && "form__show-load")}>
         Loading...
       </div>

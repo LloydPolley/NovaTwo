@@ -119,11 +119,19 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
               </Link>
               <Link
                 className={cx(
-                  activeSegments[0] === "upload" && "nav-content__active"
+                  activeSegments[0] === "edit" && "nav-content__active"
                 )}
                 href={`/profile`}
               >
                 <Edit /> <span>Edit</span>
+              </Link>
+              <Link
+                className={cx(
+                  activeSegments[0] === "release" && "nav-content__active"
+                )}
+                href={`/release`}
+              >
+                <UploadIcon /> <span>Create Release</span>
               </Link>
               <Link
                 className={cx(

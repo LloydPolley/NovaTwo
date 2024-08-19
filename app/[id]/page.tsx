@@ -1,5 +1,5 @@
 import classNames from "classnames/bind";
-import TrackContainer from "../../components/Tracks/TrackContainer";
+import TrackContainer from "../../components/TracksV2/TrackContainer";
 import FilterBar from "../../components/FilterBar";
 import Carousel from "../../components/Carousel";
 import { getUserFollowers } from "../../api/addFollower";
