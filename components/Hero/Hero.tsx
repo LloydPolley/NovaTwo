@@ -9,7 +9,7 @@ const cx = classNames.bind(style);
 
 const Hero = () => {
   return (
-    <Link href={"/KywxSv3ue7aUrqyZJqcQGf14h683?f=all"}>
+    <Link href={"bAZ90A94sSQ88KPgxANhRzCuCQ93?f=all"}>
       <div className={cx("hero")}>
         <div className={cx("hero__content")}>
           <div className={cx("hero__text")}>
