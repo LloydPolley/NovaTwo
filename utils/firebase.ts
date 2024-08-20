@@ -14,13 +14,13 @@ import { getStorage, ref } from "firebase/storage";
 // };
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCuFp4gwssSmq3fjqNKTKuaTsjLs6DDx-k",
-  authDomain: "novatwo-f3f41.firebaseapp.com",
-  projectId: "novatwo-f3f41",
-  storageBucket: "novatwo-f3f41.appspot.com",
-  messagingSenderId: "251081613120",
-  appId: "1:251081613120:web:bbe1cff6fe81b5274b24a5",
-  measurementId: "G-0K9EJZZ9N9",
+  apiKey: "AIzaSyAfBYr2qkjV0n9l2LI3E45_8B5YlMK2H00",
+  authDomain: "nova-2-1c493.firebaseapp.com",
+  projectId: "nova-2-1c493",
+  storageBucket: "nova-2-1c493.appspot.com",
+  messagingSenderId: "40887506510",
+  appId: "1:40887506510:web:6b17615b673a3256c5d51f",
+  measurementId: "G-ZRPM6QKELK",
 };
 
 const { getApp, initializeApp } = firebase;

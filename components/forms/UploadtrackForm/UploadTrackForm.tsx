@@ -42,37 +42,39 @@ function UploadTrackForm() {
     const { name, audioFile, label, mix, releaseId } = data;
     const { displayName, uid } = userData;
 
-    const audioUrl = `gs://novatwo-f3f41.appspot.com/${displayName}/tracks/${name}/audio/${audioFile[0].name}`;
+    console.log("data", data);
 
-    let audioAccess;
+    // const audioUrl = `gs://nova-2-1c493.appspot.com/${displayName}/tracks/${name}/audio/${audioFile[0].name}`;
 
-    setLoading(true);
+    // let audioAccess;
 
-    if (audioFile) {
-      await uploadFile({
-        trackName: name,
-        artist: displayName,
-        file: audioFile[0],
-        type: "audio",
-      });
+    // setLoading(true);
 
-      audioAccess = await fetchFile(audioUrl);
-    }
+    // if (audioFile) {
+    //   await uploadFile({
+    //     trackName: name,
+    //     artist: displayName,
+    //     file: audioFile[0],
+    //     type: "audio",
+    //   });
 
-    await addTrack({
-      name,
-      artist: displayName,
-      trackName: audioFile[0].name,
-      audioFileLocation: audioAccess,
-      artworkFileLocation: userData.releases[releaseIndex].artworkFileLocation,
-      label,
-      releaseId,
-      uid,
-      mix: mix === "mix" ? true : false,
-    });
+    //   audioAccess = await fetchFile(audioUrl);
+    // }
 
-    setLoading(false);
-    setComplete(true);
+    // await addTrack({
+    //   name,
+    //   artist: displayName,
+    //   trackName: audioFile[0].name,
+    //   audioFileLocation: audioAccess,
+    //   artworkFileLocation: userData.releases[releaseIndex].artworkFileLocation,
+    //   label,
+    //   releaseId,
+    //   uid,
+    //   mix: mix === "mix" ? true : false,
+    // });
+
+    // setLoading(false);
+    // setComplete(true);
   };
 
   useEffect(() => {

@@ -36,7 +36,7 @@ function ProfileForm({}) {
     setLoading(true);
 
     if (profileImgForm.length > 0) {
-      profileImgUrl = `gs://novatwo-f3f41.appspot.com/${displayName}/profile/${profileImgForm[0]?.name}`;
+      profileImgUrl = `gs://nova-2-1c493.appspot.com/${displayName}/profile/${profileImgForm[0]?.name}`;
       await uploadImg({
         artist: displayName,
         file: profileImgForm[0],

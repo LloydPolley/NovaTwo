@@ -124,7 +124,7 @@ const TrackContainer = ({
         </div>
       )}
       {releases?.length > 0 ? (
-        <div className="grid gap-2.5 w-full flex-grow animate-fadeIn grid-cols-1 lg:grid-cols-2">
+        <div className="grid gap-2.5 w-full flex-grow animate-fadeIn grid-cols-1 xl:grid-cols-2">
           {releases.map((release) => {
             if (!release.artist) return null;
             return (

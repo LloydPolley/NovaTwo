@@ -16,7 +16,7 @@ const defaultValues = {
   audioFile: "",
 };
 
-function CreateReleaseForm() {
+function CreateReleaseForm({ setRelease }) {
   const {
     register,
     handleSubmit,
@@ -30,21 +30,28 @@ function CreateReleaseForm() {
   const { userData } = useAuthStore((state) => state);
 
   const [image, setImage] = useState("");
+  const [releaseName, setReleaseName] = useState("");
+  const [artworkReleaseUrl, setArtworkReleaseUrl] = useState("");
   const [loading, setLoading] = useState(false);
   const [complete, setComplete] = useState(false);
 
   useEffect(() => {
     if (complete) {
       console.log("complete");
-      redirect(`/upload`, RedirectType.push);
+      setRelease({
+        created: true,
+        releaseId: `${releaseName}_${userData?.uid}_release`,
+        artwork: artworkReleaseUrl,
+      });
     }
   }, [complete]);
 
   const onSubmit = async (data) => {
-    const { name, artworkFile, label, album } = data;
+    const { name, artworkFile } = data;
     const { displayName, uid } = userData;
+    setReleaseName(name);
 
-    const artworkUrl = `gs://novatwo-f3f41.appspot.com/${displayName}/releases/${name}/artwork/${artworkFile[0].name}`;
+    const artworkUrl = `gs://nova-2-1c493.appspot.com/${displayName}/releases/${name}/artwork/${artworkFile[0].name}`;
 
     let artworkAccess;
 
@@ -57,17 +64,15 @@ function CreateReleaseForm() {
         file: artworkFile[0],
         type: "artwork",
       });
-
       artworkAccess = await fetchFile(artworkUrl);
+      setArtworkReleaseUrl(artworkAccess);
     }
 
-    console.log("artworkAccess", artworkAccess);
-
     await addRelease({
+      releaseId: `${name}_${uid}_release`,
       name,
       artist: displayName,
       artworkFileLocation: artworkAccess,
-      label,
       uid,
     });
 
@@ -89,14 +94,6 @@ function CreateReleaseForm() {
           placeholder={"Release name"}
           {...register("name")}
           required
-        />
-
-        <label htmlFor="label">Label</label>
-        <input
-          id="label"
-          className="w-full p-2 border border-gray-300 rounded"
-          placeholder="Track label"
-          {...register("label")}
         />
 
         <label htmlFor="label">Artwork</label>
@@ -122,7 +119,7 @@ function CreateReleaseForm() {
 
         <input
           type="submit"
-          value="Upload"
+          value="Next"
           disabled={loading}
           className="w-full p-2 text-white bg-blue-500 rounded cursor-pointer disabled:opacity-50 mt-3"
         />
@@ -132,3 +129,6 @@ function CreateReleaseForm() {
 }
 
 export default CreateReleaseForm;
+
+// https://firebasestorage.googleapis.com/v0/b/novatwo-f3f41.appspot.com/o/Anyma%2Freleases%2FGenesys%20II%2Fartwork%2Fanyma%20gen.jpeg
+// https://firebasestorage.googleapis.com/v0/b/nova-2-1c493.appspot.com/o/Anyma%2Freleases%2FGenesys%20II%2Fartwork%2Fanyma%20gen.jpeg

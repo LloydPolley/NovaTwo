@@ -129,7 +129,7 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
                 className={cx(
                   activeSegments[0] === "release" && "nav-content__active"
                 )}
-                href={`/release`}
+                href={`/uploads`}
               >
                 <UploadIcon /> <span>Create Release</span>
               </Link>

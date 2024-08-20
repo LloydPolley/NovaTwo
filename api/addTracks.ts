@@ -17,7 +17,6 @@ const addTrack = async ({
   trackName,
   audioFileLocation,
   artworkFileLocation,
-  label,
   uid,
   mix,
   releaseId,
@@ -44,7 +43,6 @@ const addTrack = async ({
       date,
       timestamp: serverTimestamp(),
       uid,
-      label,
       mix,
       trackId,
       releaseId,
@@ -70,13 +68,12 @@ const addRelease = async ({
   name,
   artist,
   artworkFileLocation,
-  label,
   uid,
+  releaseId,
 }) => {
   try {
     const date = new Date().toLocaleString();
 
-    const releaseId = `${name}_${uid}_release`;
     const docRef = doc(collection(db, "releases"), releaseId);
     const docSnapshot = await getDoc(docRef);
 
@@ -93,7 +90,6 @@ const addRelease = async ({
       date,
       timestamp: serverTimestamp(),
       uid,
-      label,
       releaseId,
     });
 
