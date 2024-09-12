@@ -4,7 +4,6 @@ import AudioWidget from "../components/AudioWidgetPlugin";
 import { Lato, Raleway, Poppins } from "next/font/google";
 
 import "./globals.scss";
-import "./globals.css";
 import Wrapper from "../components/Wrapper";
 import { Suspense } from "react";
 import GlobalProvider from "../context/GlobalContext";
@@ -33,6 +32,7 @@ export default function RootLayout(props) {
   return (
     <html
       className={`${lato.variable} ${raleway.variable} ${poppins.variable}`}
+      suppressHydrationWarning
     >
       <head>
         <meta

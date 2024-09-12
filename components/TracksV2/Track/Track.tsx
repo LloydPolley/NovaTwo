@@ -17,9 +17,8 @@ const Track = ({ item, index }) => {
     trackId,
     artwork,
     mix,
+    duration,
   } = item || {};
-
-  // console.log("item", item);
 
   const { isPlaying, trackContext, playContext, pauseContext } = useAudioStore(
     (state) => state
@@ -32,13 +31,12 @@ const Track = ({ item, index }) => {
 
   return (
     <div
-      className="flex w-full p-3 justify-between items-center"
+      className="flex w-full p-2 justify-between items-center"
       key={`${artist} - ${name}`}
       onClick={() => {
         playContext(item);
       }}
     >
-      {/* Left side: index, track name, artist */}
       <div className="flex items-center space-x-4">
         <p className="w-10 text-center">{index + 1}</p>
         <div className="flex-grow">
@@ -55,9 +53,9 @@ const Track = ({ item, index }) => {
         </div>
       </div>
 
-      {/* Right side: mix/track label and like button */}
-      <div className="flex items-center space-x-4">
+      <div className="flex items-center space-x-4 basis-1/4 justify-between">
         <p className="text-sm">{mix ? "Mix" : "Track"}</p>
+        <p className="text-sm">{duration}</p>
         {userData?.uid && (
           <Like
             track={{

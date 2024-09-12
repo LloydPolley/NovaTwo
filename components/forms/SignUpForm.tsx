@@ -1,11 +1,8 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import classNames from "classnames/bind";
 import styles from "./SignUpForm.module.scss";
-import Form from "../Form/Form";
-import { registerUser } from "../../../api/signUp";
-
-const cx = classNames.bind(styles);
+import Form from "./Form/Form";
+import { registerUser } from "../../api/signUp";
 
 function SignInForm({ Switcher }) {
   const {
@@ -33,11 +30,7 @@ function SignInForm({ Switcher }) {
 
   return (
     <Form title="Create An Account">
-      <form
-        className={cx("auth-form")}
-        onChange={onChange}
-        onSubmit={handleSubmit(onSubmit)}
-      >
+      <form onChange={onChange} onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="email">Email</label>
         <input id="email" placeholder="Email" {...register("email")} required />
 

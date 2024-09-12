@@ -40,21 +40,30 @@ const Track = ({ item, type }) => {
       )}
       key={`${artist} - ${name}`}
       onClick={() => {
-        !isPlayingLocal ? playContext(item) : pauseContext();
+        if (audioFileLocation) {
+          !isPlayingLocal ? playContext(item) : pauseContext();
+        }
       }}
     >
       <div className={cx("track__head")}>
-        <Image
-          src={artworkFileLocation || artwork}
-          placeholder="blur"
-          blurDataURL={artworkFileLocation || artwork}
-          alt={name}
-          fill
-          style={{ objectFit: "cover" }}
-        />
-        <div className={cx("track__play")}>
-          <Play isPlayingAudio={isPlayingLocal} />
-        </div>
+        <Link
+          onClick={(e) => e.stopPropagation()}
+          href={`/${uid}?f=all&name=${name}`}
+        >
+          <Image
+            src={artworkFileLocation || artwork}
+            placeholder="blur"
+            blurDataURL={artworkFileLocation || artwork}
+            alt={name}
+            fill
+            style={{ objectFit: "cover" }}
+          />
+          {audioFileLocation && (
+            <div className={cx("track__play")}>
+              <Play isPlayingAudio={isPlayingLocal} />
+            </div>
+          )}
+        </Link>
       </div>
       <div className={cx("track__text")}>
         <p className={cx("track__name")}>{name}</p>

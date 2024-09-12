@@ -1,15 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import classNames from "classnames/bind";
-// import styles from "./AuthWidget.module.scss";
-import LoginForm from "../LoginForm/LoginForm";
-import SignUpForm from "../SignUpForm/SignUpForm";
+import LoginForm from "./LoginForm/LoginForm";
+import SignUpForm from "./SignUpForm";
 import { redirect, RedirectType } from "next/navigation";
-import { signIn } from "../../../api/login";
-import useAuthStore from "../../../context/AuthStore";
-
-// const cx = classNames.bind(styles);
+import { signIn } from "../../api/login";
+import useAuthStore from "../../context/AuthStore";
 
 function SignInScreen() {
   const [showLogin, setShowLogin] = useState(true);

@@ -2,10 +2,11 @@
 
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { addRelease, uploadFile, fetchFile } from "../../../api/addTracks";
-import Form from "../Form/Form";
+import { addRelease, uploadFile, fetchFile } from "../../api/addTracks";
+import Form from "./Form/Form";
 import { redirect, RedirectType } from "next/navigation";
-import useAuthStore from "../../../context/AuthStore";
+import useAuthStore from "../../context/AuthStore";
+import Input from "./Input";
 
 const defaultValues = {
   name: "",
@@ -16,7 +17,7 @@ const defaultValues = {
   audioFile: "",
 };
 
-function CreateReleaseForm({ setRelease }) {
+function CreateReleaseForm() {
   const {
     register,
     handleSubmit,
@@ -34,48 +35,64 @@ function CreateReleaseForm({ setRelease }) {
   const [artworkReleaseUrl, setArtworkReleaseUrl] = useState("");
   const [loading, setLoading] = useState(false);
   const [complete, setComplete] = useState(false);
+  const [url, setUrl] = useState(null);
+  const [newUrl, setNewUrl] = useState(null);
 
   useEffect(() => {
-    if (complete) {
-      console.log("complete");
-      setRelease({
-        created: true,
-        releaseId: `${releaseName}_${userData?.uid}_release`,
-        artwork: artworkReleaseUrl,
-      });
+    if (url) {
+      redirect(url, RedirectType.push);
     }
-  }, [complete]);
+  }, [url]);
 
   const onSubmit = async (data) => {
     const { name, artworkFile } = data;
     const { displayName, uid } = userData;
     setReleaseName(name);
 
-    const artworkUrl = `gs://nova-2-1c493.appspot.com/${displayName}/releases/${name}/artwork/${artworkFile[0].name}`;
+    // Modify the file name to remove spaces
+    const modifiedFileName = artworkFile[0].name.replace(/\s+/g, "_");
+
+    // Construct the artwork URL with the modified file name
+    const artworkUrl = `gs://nova-2-1c493.appspot.com/${displayName}/releases/${name}/artwork/${modifiedFileName}`;
 
     let artworkAccess;
 
     setLoading(true);
 
     if (artworkFile) {
+      // Create a new File object with the modified file name
+      const modifiedFile = new File([artworkFile[0]], modifiedFileName, {
+        type: artworkFile[0].type,
+      });
+
       await uploadFile({
         trackName: name,
         artist: displayName,
-        file: artworkFile[0],
+        file: modifiedFile,
         type: "artwork",
       });
       artworkAccess = await fetchFile(artworkUrl);
       setArtworkReleaseUrl(artworkAccess);
     }
 
+    const releaseId = `${name}_${uid}_release`;
+
     await addRelease({
-      releaseId: `${name}_${uid}_release`,
+      releaseId,
       name,
       artist: displayName,
       artworkFileLocation: artworkAccess,
       uid,
     });
 
+    const generatedLink = `/release/upload?releaseId=${releaseId}&name=${name}&artworkUrl=${artworkAccess}`;
+
+    localStorage.setItem(
+      "release",
+      JSON.stringify({ name, releaseId, artworkFileLocation: artworkAccess })
+    );
+
+    setUrl("/release/upload");
     setLoading(false);
     setComplete(true);
   };
@@ -86,7 +103,7 @@ function CreateReleaseForm({ setRelease }) {
 
   return (
     <Form title={"Create Release"} loading={loading}>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form className="form" onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="track-name">Release</label>
         <input
           id="track-name"
@@ -121,7 +138,7 @@ function CreateReleaseForm({ setRelease }) {
           type="submit"
           value="Next"
           disabled={loading}
-          className="w-full p-2 text-white bg-blue-500 rounded cursor-pointer disabled:opacity-50 mt-3"
+          className="submit w-full p-2 text-white bg-blue-500 rounded cursor-pointer disabled:opacity-50 mt-3"
         />
       </form>
     </Form>

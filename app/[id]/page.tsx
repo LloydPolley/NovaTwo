@@ -11,7 +11,7 @@ import styles from "./artist.module.scss";
 
 const filters = [
   { label: "All", url: "?f=all" },
-  { label: "Tracks", url: "?f=tracks" },
+  { label: "Tracks", url: "?f=releases" },
   { label: "Mix", url: "?f=mix" },
   { label: "Likes", url: "?f=likes" },
   { label: "Following", url: "?f=following" },
@@ -27,7 +27,7 @@ export default async function DjProfile({ params, searchParams }) {
       <AritstHero title={user?.displayName} img={user?.profile} user={user} />
       <FilterBar searchParams={searchParams} filters={filters} />
       <UserFollowing searchParams={searchParams} params={params} />
-      <Suspense fallback={"hello"}>
+      <Suspense>
         <TrackContainer
           searchParams={searchParams}
           params={params}

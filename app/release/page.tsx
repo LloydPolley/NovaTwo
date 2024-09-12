@@ -1,11 +1,14 @@
-import CreateReleaseForm from "../../components/forms/CreateRelease/CreateRelease";
+"use client";
 
-function SignInScreen() {
+import Form from "../../components/forms/Form/Form";
+import PickerForm from "../../components/forms/PickerForm";
+
+function Uploads() {
   return (
-    <div>
-      <CreateReleaseForm />
-    </div>
+    <Form title={"Create Release"}>
+      <PickerForm />
+    </Form>
   );
 }
 
-export default SignInScreen;
+export default Uploads;

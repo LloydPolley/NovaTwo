@@ -1,26 +1,21 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Track from "../Track";
 import EP from "../EP";
-import LoadingGrid from "../../LoadingGrid";
-import { TrackType } from "../../../types/tracks";
 import {
-  getAllTracksOrdered,
   getArtistTracks,
   getTracksWhere,
-  getTracksInRelease,
   getArtistReleases,
 } from "../../../api/getTracks";
 import { getUserLikes } from "../../../api/addLike";
 import Link from "next/link";
 
-import useBearStore from "../../../context/LikesStore";
-
 type TrackListProps = {
   searchParams: {
     f?: string;
     order?: string;
+    name?: string;
   };
   params: {
     id: string;
@@ -41,6 +36,7 @@ const TrackContainer = ({
   const [sortedTracks, setSortedTracks] = useState({});
   const [releases, setReleases] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   const fetchingTracks = async () => {
     setLoading(true);
@@ -63,6 +59,28 @@ const TrackContainer = ({
   };
 
   useEffect(() => {
+    const { name } = searchParams;
+    if (name && !scrolled && !loading) {
+      const decoded = decodeURIComponent(name);
+      const observer = new MutationObserver((mutationsList, observer) => {
+        const element = document.querySelector(`[data-name="${decoded}"]`);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "center" });
+          setScrolled(true);
+          element.classList.add("flash-once");
+          observer.disconnect();
+        }
+      });
+
+      observer.observe(document.body, { childList: true, subtree: true });
+
+      return () => {
+        observer.disconnect();
+      };
+    }
+  }, [searchParams, scrolled, loading]);
+
+  useEffect(() => {
     setTracks([]);
     if (searchParams.f !== "following" && !trackList) {
       fetchingTracks();
@@ -75,15 +93,8 @@ const TrackContainer = ({
     setSortedTracks(sortByReleaseId(tracks));
   }, [tracks]);
 
-  useEffect(() => {
-    console.log("sorted", sortedTracks);
-  }, [sortedTracks]);
-
-  console.log("tracks", tracks);
-
   const sortByReleaseId = (items) => {
     const result = {};
-
     tracks.forEach((track) => {
       if (track.releaseId) {
         if (!result[track.releaseId]) {
@@ -91,7 +102,6 @@ const TrackContainer = ({
         }
         result[track.releaseId].push(track);
       } else {
-        // Use trackId as key if there's no releaseId
         const key = track.trackId;
         if (!result[key]) {
           result[key] = [];
@@ -99,7 +109,6 @@ const TrackContainer = ({
         result[key].push(track);
       }
     });
-
     return result;
   };
 
@@ -116,7 +125,7 @@ const TrackContainer = ({
   }
 
   return (
-    <div className="p-5 flex-1 animate-fadeIn">
+    <div className="p-4 flex-1 animate-fadeIn">
       {text && (
         <div className="flex justify-between mb-2.5">
           <h2 className="capitalize pl-2.5">{text}</h2>
@@ -124,7 +133,7 @@ const TrackContainer = ({
         </div>
       )}
       {releases?.length > 0 ? (
-        <div className="grid gap-2.5 w-full flex-grow animate-fadeIn grid-cols-1 xl:grid-cols-2">
+        <div className="grid gap-6 w-full animate-fadeIn grid-cols-1 items-start">
           {releases.map((release) => {
             if (!release.artist) return null;
             return (

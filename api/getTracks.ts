@@ -17,6 +17,14 @@ const getAllTracks = async (): Promise<TrackType[]> => {
   return arr;
 };
 
+const getAllReleases = async (): Promise<TrackType[]> => {
+  const snapshot = await getDocs(collection(db, "releases"));
+  const arr = snapshot.docs.map(
+    (doc) => ({ ...doc.data(), trackId: doc.id } as TrackType)
+  );
+  return arr;
+};
+
 const getAllArtists = async (): Promise<TrackType[]> => {
   const snapshot = await getDocs(collection(db, "users"));
   const arr = snapshot.docs.map((doc) => ({ ...doc.data() } as TrackType));
@@ -125,7 +133,7 @@ const getTracksInRelease = async (trackIds: string[]): Promise<TrackType[]> => {
 
   const tracks = querySnapshot.docs.map((doc) => {
     const trackData = doc.data();
-    delete trackData.timestamp; // Removing the timestamp if needed
+    delete trackData.timestamp;
     return trackData as TrackType;
   });
 
@@ -142,4 +150,5 @@ export {
   getAllArtistsWhere,
   getTracksInRelease,
   getArtistReleases,
+  getAllReleases,
 };

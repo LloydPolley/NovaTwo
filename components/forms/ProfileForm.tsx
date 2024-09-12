@@ -3,14 +3,10 @@
 import { useState, useEffect } from "react";
 import { redirect, RedirectType } from "next/navigation";
 import { useForm } from "react-hook-form";
-import { uploadImg, fetchFile } from "../../../api/addTracks";
-import classNames from "classnames/bind";
-import styles from "./ProfileForm.module.scss";
-import { updateUserDoc } from "../../../api/signUp";
-import useAuthStore from "../../../context/AuthStore";
-import Form from "../Form/Form";
-
-const cx = classNames.bind(styles);
+import { uploadImg, fetchFile } from "../../api/addTracks";
+import { updateUserDoc } from "../../api/signUp";
+import useAuthStore from "../../context/AuthStore";
+import Form from "./Form/Form";
 
 function ProfileForm({}) {
   const { register, handleSubmit } = useForm();
@@ -59,10 +55,9 @@ function ProfileForm({}) {
 
   return (
     <Form title="Upload Profile" loading={loading}>
-      <form className={cx("profile")} onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="profile-upload">Profile image</label>
         <input
-          className={cx("upload-button")}
           id="profile-upload"
           type="file"
           accept="image/*"

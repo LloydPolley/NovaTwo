@@ -1,12 +1,6 @@
 "use client";
 
-import classNames from "classnames/bind";
-import Play from "../../Buttons/Play";
-import Like from "../../Buttons/Like";
-import Link from "next/link";
-import useAudioStore from "../../../context/AudioStore";
 import Image from "next/image";
-import useAuthStore from "../../../context/AuthStore";
 import Track from "../Track";
 
 const EP = ({ release, tracks }) => {
@@ -14,12 +8,10 @@ const EP = ({ release, tracks }) => {
     return;
   }
 
-  console.log("tracks 111", tracks);
-
-  const { artworkFileLocation, name, label } = release;
+  const { artworkFileLocation, name, date } = release;
 
   return (
-    <div className="bg-stone-950 rounded-xl p-4">
+    <div className="bg-stone-950 rounded-xl p-4" data-name={name}>
       <div className="flex border-b-2 border-gray-700 pb-8 pt-4">
         <div className="aspect-square w-24 lg:w-36 relative rounded-lg overflow-hidden">
           <Image
@@ -33,13 +25,15 @@ const EP = ({ release, tracks }) => {
         </div>
         <div className="flex flex-col my-auto ml-4">
           <p className="text-xl font-bold">{name}</p>
-          <p className="text-base">{label}</p>
+          <p className="text-base">{date.split(",")[0]}</p>
         </div>
       </div>
-      {tracks?.map((track, index) => {
-        const { name } = track;
-        return <Track key={name} index={index} item={track} />;
-      })}
+      <div className="grid gap-2.5 w-full grid-cols-1">
+        {tracks?.map((track, index) => {
+          const { name } = track;
+          return <Track key={name} index={index} item={track} />;
+        })}
+      </div>
     </div>
   );
 };

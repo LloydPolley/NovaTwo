@@ -1,12 +1,8 @@
 "use client";
 
-import { useState } from "react";
 import { useForm } from "react-hook-form";
-import classNames from "classnames/bind";
-import styles from "./LoginForm.module.scss";
 import Form from "../Form/Form";
-
-const cx = classNames.bind(styles);
+import Input from "../Input";
 
 function LoginForm({ signIn, Switcher }) {
   const {
@@ -34,13 +30,13 @@ function LoginForm({ signIn, Switcher }) {
 
   return (
     <Form title={"Login to Your Account"}>
-      <form
-        className={cx("auth-form")}
-        onChange={onChange}
-        onSubmit={handleSubmit(onSubmit)}
-      >
+      <form onChange={onChange} onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="email">Email</label>
-        <input id="email" placeholder="Your Email" {...register("email")} />
+        <Input
+          id="email"
+          placeholder="Your Email"
+          register={register("email")}
+        />
         <label htmlFor="password">Password</label>
         <input
           id="password"
@@ -50,7 +46,7 @@ function LoginForm({ signIn, Switcher }) {
           {...register("password")}
         />
         {errors.login && <p>{errors.login.type.toString()}</p>}
-        <input type="submit" value="Login" />
+        <input className="submit" type="submit" value="Login" />
         <Switcher />
       </form>
     </Form>

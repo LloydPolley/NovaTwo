@@ -20,6 +20,7 @@ const addTrack = async ({
   uid,
   mix,
   releaseId,
+  duration,
 }) => {
   try {
     const date = new Date().toLocaleString();
@@ -46,6 +47,7 @@ const addTrack = async ({
       mix,
       trackId,
       releaseId,
+      duration,
     });
 
     const releaseDocRef = doc(db, "releases", releaseId);

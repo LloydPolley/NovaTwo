@@ -21,6 +21,7 @@ import TracksIcon from "../Icons/TracksIcon";
 import MixIcon from "../Icons/MixIcon";
 import useAuthStore from "../../context/AuthStore";
 import Edit from "../Icons/Edit";
+import Logo from "../Icons/Logo";
 
 type NavTypes = {
   open?: boolean;
@@ -42,7 +43,7 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
       <div className={cx("nav-content", open && "nav-content__open")}>
         <div className={cx("nav-content__inner")}>
           <Link className={cx("nav-content__name")} href={"/"}>
-            <svg
+            {/* <svg
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 275 274"
@@ -51,7 +52,8 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
             >
               <path d="M8 8h258v258h-86v-86H94V94H8V8Z" fill="#fff"></path>
               <path d="M94 180v86H8v-86h86Z" fill="#fff"></path>
-            </svg>
+            </svg> */}
+            <Logo />
             <span>Nova</span>
           </Link>
           <p className={cx("nav-content__category")}>FEATURED</p>
@@ -61,9 +63,9 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
                 search == "tracks" &&
                 "nav-content__active"
             )}
-            href="/discover/?f=tracks"
+            href="/discover/?f=releases"
           >
-            <TracksIcon /> <span>Tracks</span>
+            <TracksIcon /> <span>Releases</span>
           </Link>
           <Link
             className={cx(
@@ -129,17 +131,9 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
                 className={cx(
                   activeSegments[0] === "release" && "nav-content__active"
                 )}
-                href={`/uploads`}
+                href={`/release`}
               >
-                <UploadIcon /> <span>Create Release</span>
-              </Link>
-              <Link
-                className={cx(
-                  activeSegments[0] === "upload" && "nav-content__active"
-                )}
-                href={`/upload`}
-              >
-                <UploadIcon /> <span>Upload</span>
+                <UploadIcon /> <span>Release</span>
               </Link>
             </>
           )}

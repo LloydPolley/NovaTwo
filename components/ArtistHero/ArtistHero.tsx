@@ -2,7 +2,7 @@
 
 import classNames from "classnames/bind";
 import style from "./ArtistHero.module.scss";
-import ProfileForm from "../forms/ProfileForm/ProfileForm";
+import ProfileForm from "../forms/ProfileForm";
 import useFollowerStore from "../../context/FollowerStore";
 import useAuthStore from "../../context/AuthStore";
 

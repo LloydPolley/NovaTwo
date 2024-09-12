@@ -8,6 +8,7 @@ import {
   getAllTracksOrdered,
   getArtistTracks,
   getTracksWhere,
+  getAllReleases,
 } from "../../api/getTracks";
 import FilterBar from "../../components/FilterBar";
 import { Suspense } from "react";
@@ -17,30 +18,30 @@ const cx = classNames.bind(styles);
 
 const FILTER_TYPES = {
   ALL: "all",
-  TRACKS: "tracks",
+  RELEASES: "releases",
   MIX: "mix",
 };
 
 const filters = [
   { label: "All", url: `?f=${FILTER_TYPES.ALL}` },
-  { label: "Tracks", url: `?f=${FILTER_TYPES.TRACKS}` },
+  { label: "Releases", url: `?f=${FILTER_TYPES.RELEASES}` },
   { label: "Mix", url: `?f=${FILTER_TYPES.MIX}` },
 ];
 
 const IMAGES = {
-  tracks: "./3.jpg",
+  releases: "./3.jpg",
   mix: "./2.jpg",
   all: "./1.jpg",
 };
 
 const TITLES = {
   mix: "Live Mixes",
-  tracks: "Releases",
+  releases: "Releases",
   all: "All",
 };
 
 const filterFunctions = {
-  [FILTER_TYPES.TRACKS]: () => getTracksWhere("mix", false),
+  [FILTER_TYPES.RELEASES]: () => getAllReleases(),
   [FILTER_TYPES.MIX]: () => getTracksWhere("mix", true),
   [FILTER_TYPES.ALL]: () => getAllTracksOrdered("asc"),
 };
