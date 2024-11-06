@@ -13,18 +13,18 @@ export default async function Dj({ searchParams, params }) {
   return (
     <>
       <Hero />
-      {/* {/* <Carousel
+      <Carousel
         Component={UserWidget}
         items={users}
-        text={"Favourite Artists"}
-      /> */}
+        text={"Featured Artists"}
+      />
       <Carousel
         Component={Track}
         items={tracks}
         text={"Releases"}
         url={"f=releases"}
       />
-      {/* <Carousel Component={Track} items={mixes} text={"Mixes"} url={"f=mix"} /> */}
+      <Carousel Component={Track} items={mixes} text={"Mixes"} url={"f=mix"} />
     </>
   );
 }

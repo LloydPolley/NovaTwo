@@ -45,6 +45,10 @@
   grid-template-columns: 1fr;
   grid-auto-rows: 1fr;
 
+  &__discover {
+    grid-template-columns: 1fr 1fr;
+  }
+
   @include medium {
     grid-template-columns: 1fr 1fr;
     row-gap: 20px;

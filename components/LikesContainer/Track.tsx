@@ -2,16 +2,16 @@
 
 import classNames from "classnames/bind";
 import style from "./Track.module.scss";
-import Play from "../../Buttons/Play";
-import Like from "../../Buttons/Like";
+import Play from "../Buttons/Play";
+import Like from "../Buttons/Like";
 import Link from "next/link";
-import useAudioStore from "../../../context/AudioStore";
+import useAudioStore from "../../context/AudioStore";
 import Image from "next/image";
-import useAuthStore from "../../../context/AuthStore";
+import useAuthStore from "../../context/AuthStore";
 
 const cx = classNames.bind(style);
 
-const Track = ({ item, type }) => {
+const Track = ({ item }) => {
   const {
     artist,
     artworkFileLocation,
@@ -35,7 +35,7 @@ const Track = ({ item, type }) => {
     <div
       className={cx(
         "track",
-        type === "both" ? "track-both" : "track-square",
+        "track-square",
         isPlayingLocal && "track__playing"
       )}
       key={`${artist} - ${name}`}
@@ -46,41 +46,18 @@ const Track = ({ item, type }) => {
       }}
     >
       <div className={cx("track__head")}>
-        {audioFileLocation ? (
-          <>
-            <Image
-              src={artworkFileLocation || artwork}
-              placeholder="blur"
-              blurDataURL={artworkFileLocation || artwork}
-              alt={name}
-              fill
-              style={{ objectFit: "cover" }}
-            />
-            {audioFileLocation && (
-              <div className={cx("track__play")}>
-                <Play isPlayingAudio={isPlayingLocal} />
-              </div>
-            )}
-          </>
-        ) : (
-          <Link
-            onClick={(e) => e.stopPropagation()}
-            href={`/${uid}?f=all&name=${name}`}
-          >
-            <Image
-              src={artworkFileLocation || artwork}
-              placeholder="blur"
-              blurDataURL={artworkFileLocation || artwork}
-              alt={name}
-              fill
-              style={{ objectFit: "cover" }}
-            />
-            {audioFileLocation && (
-              <div className={cx("track__play")}>
-                <Play isPlayingAudio={isPlayingLocal} />
-              </div>
-            )}
-          </Link>
+        <Image
+          src={artworkFileLocation || artwork}
+          placeholder="blur"
+          blurDataURL={artworkFileLocation || artwork}
+          alt={name}
+          fill
+          style={{ objectFit: "cover" }}
+        />
+        {audioFileLocation && (
+          <div className={cx("track__play")}>
+            <Play isPlayingAudio={isPlayingLocal} />
+          </div>
         )}
       </div>
       <div className={cx("track__text")}>
@@ -95,7 +72,7 @@ const Track = ({ item, type }) => {
           </Link>
         )}
         <div className={cx("track__like-container")}>
-          {userData?.uid && type === "both" && (
+          {userData?.uid && (
             <Like
               track={{
                 artist,

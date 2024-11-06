@@ -11,7 +11,6 @@ import {
   getArtistTracks,
   getTracksWhere,
 } from "../../../api/getTracks";
-import { getUserLikes } from "../../../api/addLike";
 import Link from "next/link";
 
 import useBearStore from "../../../context/LikesStore";
@@ -37,39 +36,12 @@ const TrackContainer = ({
   text,
   trackList,
   url,
+  page,
 }: TrackListProps) => {
   const [tracks, setTracks] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  console.log("tracks", tracks);
-
-  const fetchingTracks = async () => {
-    setLoading(true);
-
-    switch (searchParams.f) {
-      case "likes":
-        setTracks(await getUserLikes(params?.id));
-        break;
-      case "tracks":
-        setTracks(await getTracksWhere("mix", false, params.id));
-        break;
-      case "mix":
-        setTracks(await getTracksWhere("mix", true, params.id));
-        break;
-      case "all":
-        setTracks(await getArtistTracks(params?.id));
-        break;
-    }
-  };
-
-  useEffect(() => {
-    setTracks([]);
-    if (searchParams.f !== "following" && !trackList) {
-      fetchingTracks();
-    } else if (trackList) {
-      setTracks(trackList);
-    }
-  }, [searchParams.f]);
+  const type = page ? "page" : "both";
 
   useEffect(() => {
     setLoading(false);
@@ -91,11 +63,16 @@ const TrackContainer = ({
           {url && <Link href={`discover?${url}`}>See more</Link>}
         </div>
       )}
-      {tracks?.length > 0 ? (
-        <div className={cx("track-grid")}>
-          {tracks.map((track) => {
+      {trackList?.length > 0 ? (
+        <div
+          className={cx(
+            "track-grid",
+            type === "page" && "track-grid__discover"
+          )}
+        >
+          {trackList?.map((track) => {
             if (!track.artist) return null;
-            return <Track key={track.name} item={track} type="both" />;
+            return <Track key={track.name} item={track} type={type} />;
           })}
         </div>
       ) : (

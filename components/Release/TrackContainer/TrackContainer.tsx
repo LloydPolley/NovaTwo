@@ -1,15 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import Track from "../Track";
 import EP from "../EP";
-import {
-  getArtistTracks,
-  getTracksWhere,
-  getArtistReleases,
-} from "../../../api/getTracks";
-import { getUserLikes } from "../../../api/addLike";
-import Link from "next/link";
 
 type TrackListProps = {
   searchParams: {
@@ -17,46 +9,21 @@ type TrackListProps = {
     order?: string;
     name?: string;
   };
-  params: {
-    id: string;
-  };
-  text?: string;
   trackList?: TrackType[];
-  url?: string;
+  releaseList: [];
 };
 
 const TrackContainer = ({
   searchParams,
-  params,
-  text,
   trackList,
-  url,
+  releaseList,
 }: TrackListProps) => {
   const [tracks, setTracks] = useState([]);
   const [sortedTracks, setSortedTracks] = useState({});
-  const [releases, setReleases] = useState([]);
   const [loading, setLoading] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  const fetchingTracks = async () => {
-    setLoading(true);
-
-    switch (searchParams.f) {
-      case "all":
-        setTracks(await getArtistTracks(params?.id));
-        setReleases(await getArtistReleases(params?.id));
-        break;
-      case "tracks":
-        setTracks(await getTracksWhere("mix", false, params.id));
-        break;
-      case "mix":
-        setTracks(await getTracksWhere("mix", true, params.id));
-        break;
-      case "likes":
-        setTracks(await getUserLikes(params?.id));
-        break;
-    }
-  };
+  console.log("trackList", trackList);
 
   useEffect(() => {
     const { name } = searchParams;
@@ -81,21 +48,12 @@ const TrackContainer = ({
   }, [searchParams, scrolled, loading]);
 
   useEffect(() => {
-    setTracks([]);
-    if (searchParams.f !== "following" && !trackList) {
-      fetchingTracks();
-    } else if (trackList) {
-      setTracks(trackList);
-    }
-  }, [searchParams.f]);
-
-  useEffect(() => {
-    setSortedTracks(sortByReleaseId(tracks));
+    setSortedTracks(sortByReleaseId(trackList));
   }, [tracks]);
 
   const sortByReleaseId = (items) => {
     const result = {};
-    tracks.forEach((track) => {
+    trackList.forEach((track) => {
       if (track.releaseId) {
         if (!result[track.releaseId]) {
           result[track.releaseId] = [];
@@ -124,17 +82,13 @@ const TrackContainer = ({
     return <p>Loading</p>;
   }
 
+  console.log("sortedTracks", sortedTracks);
+
   return (
     <div className="p-4 flex-1 animate-fadeIn">
-      {text && (
-        <div className="flex justify-between mb-2.5">
-          <h2 className="capitalize pl-2.5">{text}</h2>
-          {url && <Link href={`discover?${url}`}>See more</Link>}
-        </div>
-      )}
-      {releases?.length > 0 ? (
+      {releaseList?.length > 0 ? (
         <div className="grid gap-6 w-full animate-fadeIn grid-cols-1 items-start">
-          {releases.map((release) => {
+          {releaseList.map((release) => {
             if (!release.artist) return null;
             return (
               <EP

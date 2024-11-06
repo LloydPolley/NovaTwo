@@ -48,9 +48,6 @@ function UploadTrackForm({ releaseId, artworkFileLocation, name }) {
 
         let audioAccess;
 
-        console.log("index", index);
-        console.log("audio", audio);
-
         if (audio) {
           await uploadFile({
             trackName: names[index],
@@ -71,7 +68,7 @@ function UploadTrackForm({ releaseId, artworkFileLocation, name }) {
           releaseId,
           uid,
           duration: audio.duration,
-          mix: mix === "mix" ? true : false,
+          mix: mix[index] === "mix" ? true : false,
         });
       })
     );
@@ -107,15 +104,11 @@ function UploadTrackForm({ releaseId, artworkFileLocation, name }) {
         audioElement.onloadedmetadata = () => {
           const duration = formatDuration(audioElement.duration);
 
-          // Create a new object with the original file and its duration
           const fileWithDuration = {
             file,
             duration,
           };
-
           filesWithDuration.push(fileWithDuration);
-
-          // Update the state once all files have been processed
           if (filesWithDuration.length === files.length) {
             setAudioFiles(filesWithDuration);
           }
@@ -157,6 +150,14 @@ function UploadTrackForm({ releaseId, artworkFileLocation, name }) {
                 {...register(`names.${index}`)}
                 required
               />
+              <input
+                type="radio"
+                id="mix"
+                name="release-type"
+                value="mix"
+                {...register(`mix.${index}`)}
+              />
+              <label htmlFor="mix">Mix</label>
             </div>
           ))}
 

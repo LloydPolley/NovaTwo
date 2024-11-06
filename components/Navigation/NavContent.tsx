@@ -104,7 +104,7 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
                 className={cx(
                   activeSegments[1] === "likes" && "nav-content__active"
                 )}
-                href={`/${userData?.uid}?f=likes`}
+                href={`/${userData?.uid}/likes`}
               >
                 <Favourite />
                 <span>Likes</span>
@@ -115,7 +115,7 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
                     search === "following" &&
                     "nav-content__active"
                 )}
-                href={`/${userData?.uid}?f=following`}
+                href={`/${userData?.uid}/following`}
               >
                 <FollowerIcon /> <span>Following</span>
               </Link>

@@ -9,10 +9,12 @@ import {
   where,
   getDocs,
 } from "firebase/firestore";
+import { revalidatePath } from "next/cache";
 
 const deleteLikeTracksCollection = async (track) => {
   try {
     await deleteDoc(doc(db, "likes", `${track.trackId}-${track.currentUser}`));
+    console.log("delete");
     return true;
   } catch (e) {
     return false;
@@ -26,25 +28,11 @@ const addLikeToCollection = async (track) => {
       date,
       ...track,
     });
+    console.log("add like");
     return true;
   } catch (e) {
     return false;
   }
 };
 
-const getUserLikes = async (userId) => {
-  const likesRef = collection(db, "likes");
-  const querys = query(likesRef, where("currentUser", "==", userId));
-  const querySnapshot = await getDocs(querys);
-
-  const likesData = [];
-
-  querySnapshot.forEach((doc) => {
-    const data = doc.data();
-    likesData.push(data);
-  });
-
-  return likesData;
-};
-
-export { addLikeToCollection, getUserLikes, deleteLikeTracksCollection };
+export { addLikeToCollection, deleteLikeTracksCollection };

@@ -2,8 +2,8 @@ import { create } from "zustand";
 import {
   addLikeToCollection,
   deleteLikeTracksCollection,
-  getUserLikes,
 } from "../api/addLike";
+import getUserLikes from "../api/likes/getUserLikes";
 
 interface LikesStore {
   likes: any[];

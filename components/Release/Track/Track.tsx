@@ -31,7 +31,7 @@ const Track = ({ item, index }) => {
 
   return (
     <div
-      className="flex w-full p-2 justify-between items-center"
+      className="flex w-full p-2 justify-between items-center rounded-lg hover:bg-stone-900"
       key={`${artist} - ${name}`}
       onClick={() => {
         playContext(item);

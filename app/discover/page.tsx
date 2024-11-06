@@ -17,13 +17,11 @@ import ArtistHero from "../../components/ArtistHero";
 const cx = classNames.bind(styles);
 
 const FILTER_TYPES = {
-  ALL: "all",
   RELEASES: "releases",
   MIX: "mix",
 };
 
 const filters = [
-  { label: "All", url: `?f=${FILTER_TYPES.ALL}` },
   { label: "Releases", url: `?f=${FILTER_TYPES.RELEASES}` },
   { label: "Mix", url: `?f=${FILTER_TYPES.MIX}` },
 ];
@@ -31,23 +29,20 @@ const filters = [
 const IMAGES = {
   releases: "./3.jpg",
   mix: "./2.jpg",
-  all: "./1.jpg",
 };
 
 const TITLES = {
   mix: "Live Mixes",
   releases: "Releases",
-  all: "All",
 };
 
 const filterFunctions = {
   [FILTER_TYPES.RELEASES]: () => getAllReleases(),
   [FILTER_TYPES.MIX]: () => getTracksWhere("mix", true),
-  [FILTER_TYPES.ALL]: () => getAllTracksOrdered("asc"),
 };
 
 export default async function Dj({ searchParams: { f, order }, params }) {
-  const filterType = f || FILTER_TYPES.ALL;
+  const filterType = f;
 
   const filterFunction = filterFunctions[filterType];
   const tracks = await filterFunction();
@@ -65,6 +60,7 @@ export default async function Dj({ searchParams: { f, order }, params }) {
           searchParams={{ f }}
           params={params}
           url={undefined}
+          page="discover"
         />
       </Suspense>
     </div>

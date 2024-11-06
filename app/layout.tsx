@@ -8,6 +8,8 @@ import Wrapper from "../components/Wrapper";
 import { Suspense } from "react";
 import GlobalProvider from "../context/GlobalContext";
 
+require("dotenv").config();
+
 const lato = Lato({
   weight: ["400", "700"],
   subsets: ["latin"],

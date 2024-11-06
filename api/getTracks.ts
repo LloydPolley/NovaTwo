@@ -112,11 +112,14 @@ const getArtistTracks = async (input: string): Promise<TrackType[]> => {
 };
 
 const getArtistReleases = async (input: string): Promise<TrackType[]> => {
-  const q = query(collection(db, "releases"), where("uid", "==", input));
+  const q = query(
+    collection(db, "releases"),
+    where("uid", "==", input),
+    orderBy("timestamp", "desc") // Order by timestamp in descending order
+  );
   const querySnapshot = await getDocs(q);
   const arr = querySnapshot.docs.map((doc) => {
     const obj = doc.data();
-    delete obj.timestamp;
     return obj as TrackType;
   });
   return arr;
