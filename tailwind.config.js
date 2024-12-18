@@ -8,7 +8,21 @@ module.exports = {
   ],
   theme: {
     extend: {
+      scrollSnapAlign: {
+        start: "start",
+      },
       colors: {
+        widgetBlack: {
+          100: "#f2f2f2",
+          200: "#d9d9d9",
+          300: "#bfbfbf",
+          400: "#808080",
+          500: "#101010",
+          600: "#0d0d0d",
+          700: "#0b0b0b",
+          800: "#080808",
+          900: "#050505",
+        },
         royalPurple: {
           100: "#e9e5f7",
           200: "#c9bff0",
@@ -32,5 +46,13 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addComponents }) {
+      addComponents({
+        ".hide-scrollbar::-webkit-scrollbar": {
+          display: "none",
+        },
+      });
+    },
+  ],
 };

@@ -10,9 +10,9 @@ type TrackListProps = {
 
 const LikesContainer = ({ likes }: TrackListProps) => {
   return (
-    <div className="fadeIn p-5 flex-1">
+    <div className="likes-container fadeIn py-4 px-3 flex-1">
       {likes?.length > 0 ? (
-        <div className="grid gap-5 fadeIn flex-grow grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 auto-rows-fr">
+        <div className="grid gap-3 fadeIn flex-grow grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 auto-rows-fr">
           {likes?.map((track) => {
             if (!track.artist) return null;
             return <Track key={track.name} item={track} />;

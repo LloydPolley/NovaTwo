@@ -41,7 +41,7 @@ const TrackContainer = ({
   const [tracks, setTracks] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const type = page ? "page" : "both";
+  const type = "both";
 
   useEffect(() => {
     setLoading(false);

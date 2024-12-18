@@ -49,12 +49,13 @@ const AritstHero = ({ title, img, imgBox, user, overlay, box }: HeroProps) => {
       )}
       <div className={cx("artist-hero__text")}>
         <p>Discover</p>
-        <h1>{title}</h1>
-        <p>Techno, Melodic Techno</p>
+        <h1 className=" font-semibold tracking-wide">{title}</h1>
+        {/* <p>Techno, Melodic Techno</p> */}
       </div>
       {userData &&
+        user &&
         !yourProfile &&
-        Object.keys(user).length !== 0 &&
+        Object?.keys(user).length !== 0 &&
         !following?.some((follower) => follower.uid === user?.uid) && (
           <div className={cx("artist-hero__button")}>
             <button

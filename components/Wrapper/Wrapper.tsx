@@ -1,14 +1,11 @@
 import classNames from "classnames/bind";
-import style from "./Wrapper.module.scss";
-
-const cx = classNames.bind(style);
 
 const Wrapper = ({ children }) => {
   return (
     <>
-      <div className={cx("wrapper")}>
+      <div className="flex flex-col flex-1 min-h-dvh bg-widgetBlack-500 rounded-lg">
         {children}
-        <div className={cx("footer")}>
+        <div className="p-5 text-center text-sm">
           <p>Nova 2</p>
         </div>
       </div>

@@ -82,10 +82,8 @@ const TrackContainer = ({
     return <p>Loading</p>;
   }
 
-  console.log("sortedTracks", sortedTracks);
-
   return (
-    <div className="p-4 flex-1 animate-fadeIn">
+    <div className="flex-1 animate-fadeIn">
       {releaseList?.length > 0 ? (
         <div className="grid gap-6 w-full animate-fadeIn grid-cols-1 items-start">
           {releaseList.map((release) => {

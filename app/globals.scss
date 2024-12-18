@@ -80,6 +80,7 @@ label {
     grid-template-columns: 300px calc(100% - 310px);
     grid-template-rows: auto;
     gap: 10px;
+    padding: 10px;
   }
 }
 
@@ -184,4 +185,75 @@ ul li:has(input:checked) {
 
 ul li {
   border: 1px solid transparent;
+}
+
+//glass
+
+// @include large {
+//   .glass-common {
+//     background-color: rgba(0, 0, 0, 0.04);
+//     backdrop-filter: blur(10px);
+//     -webkit-backdrop-filter: blur(10px);
+//   }
+
+//   .glass- {
+//     @extend .glass-common;
+//     background-image: linear-gradient(
+//       74deg,
+//       rgba(255, 255, 255, 0.04) 17%,
+//       rgba(0, 0, 0, 0.04) 91%
+//     ) !important;
+//   }
+
+//   .glass-2 {
+//     @extend .glass-common;
+//     background-image: linear-gradient(
+//       111deg,
+//       rgba(0, 0, 0, 0.04) 30%,
+//       rgba(255, 255, 255, 0.04) 70%
+//     ) !important;
+//   }
+
+//   .glass-3 {
+//     @extend .glass-common;
+//     background-image: linear-gradient(
+//       44deg,
+//       rgba(255, 255, 255, 0.04) 25%,
+//       rgba(0, 0, 0, 0.04) 75%
+//     ) !important;
+//   }
+
+//   .glass-4 {
+//     @extend .glass-common;
+//     background-image: linear-gradient(
+//       160deg,
+//       rgba(0, 0, 0, 0.04) 35%,
+//       rgba(255, 255, 255, 0.04) 65%
+//     ) !important;
+//   }
+
+//   .glass-5 {
+//     @extend .glass-common;
+//     background-image: linear-gradient(
+//       92deg,
+//       rgba(255, 255, 255, 0.04) 15%,
+//       rgba(0, 0, 0, 0.04) 85%
+//     ) !important;
+//   }
+// }
+
+//Carousel
+.carousel {
+}
+
+.flex-pixels {
+  flex: 0 0 150px;
+
+  @include large {
+    flex: 0 0 225px;
+  }
+}
+
+.scroll-snap-start {
+  scroll-snap-align: start;
 }

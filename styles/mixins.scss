@@ -24,7 +24,7 @@ $ctaPurp: #6e54b5;
   }
 }
 @mixin large {
-  @media (min-width: 1000px) {
+  @media (min-width: 1024px) {
     @content;
   }
 }

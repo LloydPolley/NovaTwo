@@ -13,8 +13,8 @@
 
   &__head {
     position: relative;
-    aspect-ratio: 1/1;
-    width: 25%;
+    width: 120px;
+    height: 120px;
     border-radius: $borderRadius;
   }
 
@@ -31,7 +31,7 @@
   &__text {
     position: relative;
     margin: 0;
-    width: 100%;
+    flex: 1;
     margin-left: 12px;
     padding: 10px;
     display: flex;

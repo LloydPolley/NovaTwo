@@ -13,7 +13,7 @@ const Hero = () => {
       <div className={cx("hero")}>
         <div className={cx("hero__content")}>
           <div className={cx("hero__text")}>
-            <h1>Genesys II</h1>
+            <h1>End of Genesys</h1>
           </div>
         </div>
       </div>

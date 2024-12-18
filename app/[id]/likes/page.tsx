@@ -1,25 +1,39 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { getDj } from "../../../api/getDjs";
 import AritstHero from "../../../components/ArtistHero";
 import LikesContainer from "../../../components/LikesContainer/LikesContainer";
 import getUserLikes from "../../../api/likes/getUserLikes";
-import { revalidatePath } from "next/cache";
 
-export default async function likes({ params }) {
-  const user = await getDj(params?.id);
-  const likes = await getUserLikes(params?.id);
+export default function Likes({ params }) {
+  const [user, setUser] = useState(null);
+  const [likes, setLikes] = useState([]);
+  const userId = params?.id;
 
-  revalidatePath("/", "page");
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const fetchedUser = await getDj(userId);
+      setUser(fetchedUser);
+    };
 
-  console.log("likes", likes);
+    const fetchLikesData = async () => {
+      const fetchedLikes = await getUserLikes(userId);
+      setLikes(fetchedLikes);
+    };
+
+    if (userId) {
+      fetchUserData();
+      fetchLikesData();
+    }
+  }, [userId]);
 
   return (
     <div className="rounded flex-grow">
-      <AritstHero title={user?.displayName} img={user?.profile} user={user} />
-      <LikesContainer
-        // trackFetch={getUserLikes}
-        uid={params?.id}
-        likes={likes}
-      />
+      {user && (
+        <AritstHero title={user.displayName} img={user.profile} user={user} />
+      )}
+      <LikesContainer uid={userId} likes={likes} />
     </div>
   );
 }

@@ -2,7 +2,7 @@
 
 .nav {
   position: sticky;
-  top: 0%;
+  top: 0px;
   left: 0%;
   z-index: 7;
 
@@ -113,7 +113,7 @@
   font-family: var(--font-raleway);
 
   @include large {
-    height: calc(100vh - 10px);
+    height: calc(100vh - 20px);
   }
 
   svg {
@@ -132,12 +132,6 @@
 
   pointer-events: none;
 
-  @include large {
-    margin-top: 10px;
-    margin-left: 10px;
-    margin-bottom: 10px;
-  }
-
   &__name {
     display: none;
 
@@ -150,7 +144,7 @@
     position: sticky;
     opacity: 1;
     pointer-events: all;
-    top: 0;
+    top: 10px;
   }
 
   &__inner {

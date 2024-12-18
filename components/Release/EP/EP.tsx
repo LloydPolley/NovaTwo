@@ -10,9 +10,11 @@ const EP = ({ release, tracks }) => {
 
   const { artworkFileLocation, name, date } = release;
 
+  const glass = Math.floor(Math.random() * 4) + 2;
+
   return (
-    <div className="bg-stone-950 rounded-xl p-4" data-name={name}>
-      <div className="flex border-b-2 border-gray-700 pb-8 pt-4">
+    <div className="rounded-xl p-5 lg:p-7" data-name={name}>
+      <div className="flex border-b-2 border-widgetBlack-400 pb-6 pt-4">
         <div className="aspect-square w-24 lg:w-36 relative rounded-lg overflow-hidden">
           <Image
             src={artworkFileLocation}
@@ -24,11 +26,11 @@ const EP = ({ release, tracks }) => {
           />
         </div>
         <div className="flex flex-col my-auto ml-4">
-          <p className="text-xl font-bold">{name}</p>
+          <p className="text-4xl uppercase font-bold">{name}</p>
           <p className="text-base">{date.split(",")[0]}</p>
         </div>
       </div>
-      <div className="grid gap-2.5 w-full grid-cols-1">
+      <div className="grid gap-2.5 w-full grid-cols-1 pt-6">
         {tracks?.map((track, index) => {
           const { name } = track;
           return <Track key={name} index={index} item={track} />;
