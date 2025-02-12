@@ -47,7 +47,7 @@ const MusicWrapper = ({
   }, [searchParams, scrolled, loading]);
 
   useEffect(() => {
-    setSortedTracks(sortByReleaseId(trackList));
+    setSortedTracks(sortByReleaseId());
   }, [tracks]);
 
   const sortByReleaseId = () => {

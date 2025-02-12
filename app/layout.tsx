@@ -7,6 +7,7 @@ import "./globals.scss";
 import Wrapper from "../components/LayoutComps/Wrapper";
 import { Suspense } from "react";
 import GlobalProvider from "../context/GlobalContext";
+import { Analytics } from "@vercel/analytics/react";
 
 require("dotenv").config();
 
@@ -66,6 +67,7 @@ export default function RootLayout(props) {
           </div>
           <AudioWidget />
         </GlobalProvider>
+        <Analytics />
       </body>
     </html>
   );
