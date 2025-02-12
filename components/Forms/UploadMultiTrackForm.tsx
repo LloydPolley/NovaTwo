@@ -78,28 +78,29 @@ function UploadTrackForm({ releaseId, artworkFileLocation, name }) {
     return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
   };
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files) return;
+
     const files = Array.from(e.target.files);
-    const filesWithDuration = [];
+    const filesWithDuration: { file: File; duration: string }[] = [];
 
     files.forEach((file) => {
       const reader = new FileReader();
 
       reader.onload = (event) => {
-        const audioElement = new Audio(event.target.result);
+        const result = event.target?.result;
+        if (typeof result === "string") {
+          const audioElement = new Audio(result);
+          audioElement.onloadedmetadata = () => {
+            const duration = formatDuration(audioElement.duration);
 
-        audioElement.onloadedmetadata = () => {
-          const duration = formatDuration(audioElement.duration);
+            filesWithDuration.push({ file, duration });
 
-          const fileWithDuration = {
-            file,
-            duration,
+            if (filesWithDuration.length === files.length) {
+              setAudioFiles(filesWithDuration);
+            }
           };
-          filesWithDuration.push(fileWithDuration);
-          if (filesWithDuration.length === files.length) {
-            setAudioFiles(filesWithDuration);
-          }
-        };
+        }
       };
 
       reader.readAsDataURL(file);

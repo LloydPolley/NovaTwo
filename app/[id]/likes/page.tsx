@@ -6,7 +6,6 @@ import TrackContainer from "@/components/Music/TrackContainer";
 import AritstHero from "@/components/ArtistHero";
 
 export default function Likes({ params }) {
-  const [user, setUser] = useState(null);
   const [likes, setLikes] = useState([]);
   const userId = params?.id;
 
@@ -23,7 +22,7 @@ export default function Likes({ params }) {
 
   return (
     <div className="rounded flex-grow">
-      <AritstHero title={"Likes"} imgBox={"./3.jpg"} overlay box />
+      <AritstHero title={"Likes"} imgBox={"./3.jpg"} box />
       <TrackContainer trackList={likes} />
     </div>
   );

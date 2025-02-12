@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import EP from "../EP";
+import { TrackType, ReleaseType } from "@/types/tracks";
 
 type TrackListProps = {
   searchParams: {
@@ -10,7 +11,7 @@ type TrackListProps = {
     name?: string;
   };
   trackList?: TrackType[];
-  releaseList: [];
+  releaseList: ReleaseType[];
 };
 
 const MusicWrapper = ({
@@ -49,7 +50,7 @@ const MusicWrapper = ({
     setSortedTracks(sortByReleaseId(trackList));
   }, [tracks]);
 
-  const sortByReleaseId = (items) => {
+  const sortByReleaseId = () => {
     const result = {};
     trackList.forEach((track) => {
       if (track.releaseId) {

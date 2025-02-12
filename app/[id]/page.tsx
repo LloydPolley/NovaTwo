@@ -2,11 +2,7 @@ import MusicWrapper from "../../components/Music/EPWrapper";
 import UserFollowing from "../../components/User/UserFollowing";
 import { getDj } from "../../api/getDjs";
 import AritstHero from "../../components/ArtistHero";
-import {
-  getArtistTracks,
-  getTracksWhere,
-  getArtistReleases,
-} from "../../api/getTracks";
+import { getArtistTracks, getArtistReleases } from "../../api/getTracks";
 
 export default async function DjProfile({ params, searchParams }) {
   const user = await getDj(params?.id);
@@ -19,7 +15,6 @@ export default async function DjProfile({ params, searchParams }) {
       <UserFollowing searchParams={searchParams} params={params} />
       <MusicWrapper
         searchParams={searchParams}
-        params={params}
         trackList={tracks}
         releaseList={releases}
       />

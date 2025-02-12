@@ -2,11 +2,10 @@
 
 import classNames from "classnames/bind";
 import style from "./Navigation.module.scss";
-import { useState, useEffect, Suspense } from "react";
+import { useState, useEffect } from "react";
 import NavContent from "./NavContent";
 import Link from "next/link";
-import { useRouter, usePathname, useSearchParams } from "next/navigation";
-import Logo from "../../Icons/Logo";
+import { usePathname, useSearchParams } from "next/navigation";
 
 const cx = classNames.bind(style);
 

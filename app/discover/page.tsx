@@ -1,15 +1,7 @@
 import classNames from "classnames/bind";
 import styles from "./discover.module.scss";
 import TrackContainer from "../../components/Music/TrackContainer";
-import Carousel from "../../components/Music/Carousel";
-import { getAllArtists } from "../../api/getTracks";
-import Hero from "../../components/LayoutComps/Hero";
-import {
-  getAllTracksOrdered,
-  getArtistTracks,
-  getTracksWhere,
-  getAllReleases,
-} from "../../api/getTracks";
+import { getTracksWhere, getAllReleases } from "../../api/getTracks";
 import FilterBar from "../../components/LayoutComps/FilterBar";
 import { Suspense } from "react";
 import ArtistHero from "../../components/ArtistHero";
@@ -52,16 +44,10 @@ export default async function Dj({ searchParams: { f, order }, params }) {
 
   return (
     <div className={cx("discover", `discover__${filterType}`)}>
-      <ArtistHero title={text} user={{}} imgBox={img} overlay box />
+      <ArtistHero title={text} user={{}} imgBox={img} box />
       <FilterBar searchParams={{ f }} filters={filters} />
       <Suspense>
-        <TrackContainer
-          trackList={tracks}
-          searchParams={{ f }}
-          params={params}
-          url={undefined}
-          page="discover"
-        />
+        <TrackContainer trackList={tracks} />
       </Suspense>
     </div>
   );

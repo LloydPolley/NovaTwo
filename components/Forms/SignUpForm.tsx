@@ -1,6 +1,4 @@
-import { useState } from "react";
 import { useForm } from "react-hook-form";
-import styles from "./SignUpForm.module.scss";
 import Form from "./Form/Form";
 import { registerUser } from "../../api/signUp";
 

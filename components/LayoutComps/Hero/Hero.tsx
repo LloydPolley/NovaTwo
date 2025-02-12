@@ -2,7 +2,6 @@
 
 import classNames from "classnames/bind";
 import style from "./Hero.module.scss";
-import Image from "next/image";
 import Link from "next/link";
 
 const cx = classNames.bind(style);

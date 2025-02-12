@@ -33,9 +33,11 @@ function LoginForm({ signIn, Switcher }) {
       <form onChange={onChange} onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="email">Email</label>
         <Input
+          classNames=""
           id="email"
           placeholder="Your Email"
           register={register("email")}
+          onInputFunc={() => {}}
         />
         <label htmlFor="password">Password</label>
         <input

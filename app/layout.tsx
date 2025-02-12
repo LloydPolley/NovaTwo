@@ -35,7 +35,7 @@ const anton = Anton({
 });
 
 const bebasNeue = Bebas_Neue({
-  weight: ["400"], // Bebas Neue typically has one weight
+  weight: ["400"],
   subsets: ["latin"],
   variable: "--font-bebas-neue",
 });

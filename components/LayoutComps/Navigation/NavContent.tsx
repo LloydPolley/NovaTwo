@@ -1,11 +1,10 @@
 "use client";
 
-import { Suspense, useEffect, useState } from "react";
+import { Suspense } from "react";
 import classNames from "classnames/bind";
 import style from "./Navigation.module.scss";
 import Link from "next/link";
 import {
-  useSelectedLayoutSegment,
   useSelectedLayoutSegments,
   useRouter,
   usePathname,

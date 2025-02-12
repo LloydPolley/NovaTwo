@@ -1,4 +1,4 @@
-@import "../../styles/mixins.scss";
+@import "../../../styles/mixins.scss";
 
 .hero {
   background-color: $widgetColor;
@@ -21,15 +21,8 @@
   }
 
   &::before {
-    // content: "";
-
     background: $widgetColor;
     opacity: 0.3;
-    // background: radial-gradient(
-    //   circle,
-    //   rgba(20, 20, 20, 0.1) 0%,
-    //   rgba(20, 20, 20, 1) 100%
-    // );
 
     position: absolute;
     top: 0;
