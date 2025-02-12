@@ -64,7 +64,6 @@ export default function RootLayout(props) {
               <Wrapper>{children}</Wrapper>
             </div>
           </Suspense>
-
           <AudioWidget />
         </GlobalProvider>
         <Analytics />
