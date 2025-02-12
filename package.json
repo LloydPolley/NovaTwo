@@ -35,7 +35,6 @@
     "zustand": "^4.5.2"
   },
   "devDependencies": {
-    "@netlify/plugin-nextjs": "^4.29.5-appdir.0",
     "@types/react": "18.2.21",
     "autoprefixer": "^10.4.20",
     "eslint": "^8.53.0",
