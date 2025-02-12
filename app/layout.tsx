@@ -59,12 +59,12 @@ export default function RootLayout(props) {
         <GlobalProvider>
           <Suspense>
             <Navigation />
+            <div className={"side-bar"}>
+              <NavContent />
+              <Wrapper>{children}</Wrapper>
+            </div>
           </Suspense>
-          <div className={"side-bar"}>
-            {/* <div /> */}
-            <NavContent />
-            <Wrapper>{children}</Wrapper>
-          </div>
+
           <AudioWidget />
         </GlobalProvider>
         <Analytics />
