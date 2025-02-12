@@ -1,6 +1,6 @@
 "use client";
 
-import UploadMultiTrackForm from "../../../components/Forms/UploadMultiTrackForm";
+import UploadMultiTrackForm from "@/components/Forms/UploadMultiTrackForm";
 
 function Uploads() {
   const { artworkFileLocation, name, releaseId } = JSON.parse(
