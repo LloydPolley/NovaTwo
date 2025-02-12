@@ -1,5 +1,5 @@
-import TrackContainer from "../../components/Release/TrackContainer";
-import UserFollowing from "../../components/UserFollowing";
+import MusicWrapper from "../../components/Music/EPWrapper";
+import UserFollowing from "../../components/User/UserFollowing";
 import { getDj } from "../../api/getDjs";
 import AritstHero from "../../components/ArtistHero";
 import {
@@ -17,7 +17,7 @@ export default async function DjProfile({ params, searchParams }) {
     <div className="rounded flex-grow">
       <AritstHero title={user?.displayName} img={user?.profile} user={user} />
       <UserFollowing searchParams={searchParams} params={params} />
-      <TrackContainer
+      <MusicWrapper
         searchParams={searchParams}
         params={params}
         trackList={tracks}

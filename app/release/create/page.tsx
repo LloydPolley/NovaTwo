@@ -1,8 +1,8 @@
 "use client";
 
-import UploadMultiTrackForm from "../../../components/forms/UploadMultiTrackForm";
-import CreateReleaseForm from "../../../components/forms/CreateRelease";
-import ReleaseType from "../../../components/forms/ReleaseType";
+import UploadMultiTrackForm from "../../../components/Forms/UploadMultiTrackForm";
+import CreateReleaseForm from "../../../components/Forms/CreateRelease";
+import ReleaseType from "../../../components/Forms/ReleaseType";
 import { useState } from "react";
 
 function Uploads() {

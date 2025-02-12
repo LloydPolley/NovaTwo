@@ -1,10 +1,10 @@
-import Carousel from "../components/Carousel";
+import Carousel from "../components/Music/Carousel";
 import { getAllArtists, getAllArtistsWhere } from "../api/getTracks";
-import Hero from "../components/Hero";
+import Hero from "../components/LayoutComps/Hero";
 import { getTracksWhere, getAllReleases } from "../api/getTracks";
-import Track from "../components/Tracks/Track";
-import UserWidget from "../components/UserWidget";
-import FilterBar from "../components/FilterBar";
+import Track from "../components/Music/Track";
+import UserWidget from "../components/User/UserWidget";
+import FilterBar from "../components/LayoutComps/FilterBar";
 import AritstHero from "../components/ArtistHero";
 
 export default async function Dj({ searchParams, params }) {

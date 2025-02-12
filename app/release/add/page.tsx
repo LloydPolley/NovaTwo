@@ -1,4 +1,4 @@
-import ReleaseType from "../../../components/forms/ReleaseType";
+import ReleaseType from "../../../components/Forms/ReleaseType";
 
 function Add() {
   return <ReleaseType />;

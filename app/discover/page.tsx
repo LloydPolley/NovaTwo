@@ -1,16 +1,16 @@
 import classNames from "classnames/bind";
 import styles from "./discover.module.scss";
-import TrackContainer from "../../components/Tracks/TrackContainer";
-import Carousel from "../../components/Carousel";
+import TrackContainer from "../../components/Music/TrackContainer";
+import Carousel from "../../components/Music/Carousel";
 import { getAllArtists } from "../../api/getTracks";
-import Hero from "../../components/Hero";
+import Hero from "../../components/LayoutComps/Hero";
 import {
   getAllTracksOrdered,
   getArtistTracks,
   getTracksWhere,
   getAllReleases,
 } from "../../api/getTracks";
-import FilterBar from "../../components/FilterBar";
+import FilterBar from "../../components/LayoutComps/FilterBar";
 import { Suspense } from "react";
 import ArtistHero from "../../components/ArtistHero";
 

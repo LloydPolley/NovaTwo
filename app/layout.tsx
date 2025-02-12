@@ -1,10 +1,10 @@
-import Navigation from "../components/Navigation";
-import NavContent from "../components/Navigation/NavContent";
+import Navigation from "../components/LayoutComps/Navigation";
+import NavContent from "../components/LayoutComps/Navigation/NavContent";
 import AudioWidget from "../components/AudioWidgetPlugin";
 import { Lato, Raleway, Poppins, Anton, Bebas_Neue } from "next/font/google";
 
 import "./globals.scss";
-import Wrapper from "../components/Wrapper";
+import Wrapper from "../components/LayoutComps/Wrapper";
 import { Suspense } from "react";
 import GlobalProvider from "../context/GlobalContext";
 

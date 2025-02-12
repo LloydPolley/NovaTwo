@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 
 const options = [
@@ -13,13 +12,6 @@ const options = [
 ];
 
 function PickerForm() {
-  const [release, setRelease] = useState({
-    created: false,
-    releaseId: "",
-    artwork: "",
-    name: "",
-  });
-
   return (
     <div className="gap-6 w-full">
       {options.map((option) => {

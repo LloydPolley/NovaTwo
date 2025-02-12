@@ -52,6 +52,9 @@ module.exports = {
         ".hide-scrollbar::-webkit-scrollbar": {
           display: "none",
         },
+        ".all-unset": {
+          all: "unset",
+        },
       });
     },
   ],

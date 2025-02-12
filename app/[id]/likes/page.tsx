@@ -1,10 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getDj } from "../../../api/getDjs";
-import AritstHero from "../../../components/ArtistHero";
-import LikesContainer from "../../../components/LikesContainer/LikesContainer";
-import getUserLikes from "../../../api/likes/getUserLikes";
+import getUserLikes from "@/api/likes/getUserLikes";
+import TrackContainer from "@/components/Music/TrackContainer";
+import AritstHero from "@/components/ArtistHero";
 
 export default function Likes({ params }) {
   const [user, setUser] = useState(null);
@@ -12,28 +11,20 @@ export default function Likes({ params }) {
   const userId = params?.id;
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      const fetchedUser = await getDj(userId);
-      setUser(fetchedUser);
-    };
-
     const fetchLikesData = async () => {
       const fetchedLikes = await getUserLikes(userId);
       setLikes(fetchedLikes);
     };
 
     if (userId) {
-      fetchUserData();
       fetchLikesData();
     }
   }, [userId]);
 
   return (
     <div className="rounded flex-grow">
-      {user && (
-        <AritstHero title={user.displayName} img={user.profile} user={user} />
-      )}
-      <LikesContainer uid={userId} likes={likes} />
+      <AritstHero title={"Likes"} imgBox={"./3.jpg"} overlay box />
+      <TrackContainer trackList={likes} />
     </div>
   );
 }

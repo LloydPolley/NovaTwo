@@ -11,13 +11,7 @@ const defaultValues = {
 };
 
 function ReleaseType() {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    reset,
-    formState: { errors },
-  } = useForm({
+  const { register, handleSubmit } = useForm({
     defaultValues,
   });
 
@@ -27,7 +21,7 @@ function ReleaseType() {
   const onSubmit = async (data) => {
     const { artworkFileLocation, releaseId, name } =
       userData.releases[data.releaseId];
-    console.log("data", data);
+
     localStorage.setItem(
       "release",
       JSON.stringify({ name, releaseId, artworkFileLocation })

@@ -6,7 +6,6 @@ import { addRelease, uploadFile, fetchFile } from "../../api/addTracks";
 import Form from "./Form/Form";
 import { redirect, RedirectType } from "next/navigation";
 import useAuthStore from "../../context/AuthStore";
-import Input from "./Input";
 
 const defaultValues = {
   name: "",
@@ -18,13 +17,7 @@ const defaultValues = {
 };
 
 function CreateReleaseForm() {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    reset,
-    formState: { errors },
-  } = useForm({
+  const { register, handleSubmit } = useForm({
     defaultValues,
   });
 
@@ -85,8 +78,6 @@ function CreateReleaseForm() {
       uid,
     });
 
-    const generatedLink = `/release/upload?releaseId=${releaseId}&name=${name}&artworkUrl=${artworkAccess}`;
-
     localStorage.setItem(
       "release",
       JSON.stringify({ name, releaseId, artworkFileLocation: artworkAccess })
@@ -146,6 +137,3 @@ function CreateReleaseForm() {
 }
 
 export default CreateReleaseForm;
-
-// https://firebasestorage.googleapis.com/v0/b/novatwo-f3f41.appspot.com/o/Anyma%2Freleases%2FGenesys%20II%2Fartwork%2Fanyma%20gen.jpeg
-// https://firebasestorage.googleapis.com/v0/b/nova-2-1c493.appspot.com/o/Anyma%2Freleases%2FGenesys%20II%2Fartwork%2Fanyma%20gen.jpeg

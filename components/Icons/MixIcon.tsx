@@ -1,4 +1,4 @@
-const FollowerIcon = () => (
+const MixIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     fill="#fff"
@@ -15,4 +15,4 @@ const FollowerIcon = () => (
   </svg>
 );
 
-export default FollowerIcon;
+export default MixIcon;

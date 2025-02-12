@@ -14,25 +14,12 @@ const defaultValues = {
 };
 
 function UploadTrackForm({ releaseId, artworkFileLocation, name }) {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    reset,
-    getValues,
-    formState: { errors },
-  } = useForm({
-    // defaultValues,
-  });
+  const { register, handleSubmit, reset } = useForm();
 
   const { userData } = useAuthStore((state) => state);
   const [audioFiles, setAudioFiles] = useState([]);
   const [loading, setLoading] = useState(false);
   const [complete, setComplete] = useState(false);
-
-  useEffect(() => {
-    console.log("loading", loading);
-  }, [loading]);
 
   const onSubmit = async (data) => {
     const { names, audioFilesForm, mix } = data;

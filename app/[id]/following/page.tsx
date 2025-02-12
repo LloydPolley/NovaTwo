@@ -1,9 +1,9 @@
-import FilterBar from "../../../components/FilterBar";
-import UserFollowing from "../../../components/UserFollowing";
+import FilterBar from "../../../components/LayoutComps/FilterBar";
+import UserFollowing from "../../../components/User/UserFollowing";
 import { getDj } from "../../../api/getDjs";
 import AritstHero from "../../../components/ArtistHero";
 import { Suspense } from "react";
-import TrackContainer from "../../../components/Tracks/TrackContainer";
+import TrackContainer from "../../../components/Music/TrackContainer";
 import { getUserFollowers } from "../../../api/addFollower";
 
 export default async function DjProfile({ params, searchParams }) {
@@ -13,13 +13,13 @@ export default async function DjProfile({ params, searchParams }) {
   return (
     <div className="rounded flex-grow">
       <AritstHero title={user?.displayName} img={user?.profile} user={user} />
-      <TrackContainer
+      {/* <TrackContainer
         searchParams={searchParams}
         params={params}
         text={undefined}
         trackList={following}
         url={undefined}
-      />
+      /> */}
     </div>
   );
 }
