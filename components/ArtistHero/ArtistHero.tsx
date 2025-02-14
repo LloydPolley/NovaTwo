@@ -1,28 +1,17 @@
 "use client";
 
-import classNames from "classnames/bind";
-import style from "./ArtistHero.module.scss";
-import ProfileForm from "../forms/ProfileForm/ProfileForm";
 import useFollowerStore from "../../context/FollowerStore";
 import useAuthStore from "../../context/AuthStore";
 
 type HeroProps = {
   title: string;
   img?: string;
-  imgClass?: string;
-  gradient?: boolean;
-  childNode?: React.ReactNode;
-  banner?: boolean;
-  anim?: boolean;
   user?: any;
-  overlay?: boolean;
   box?: boolean;
   imgBox?: string;
 };
 
-const cx = classNames.bind(style);
-
-const AritstHero = ({ title, img, imgBox, user, overlay, box }: HeroProps) => {
+const AritstHero = ({ title, img, imgBox, user, box }: HeroProps) => {
   const { userData } = useAuthStore((state) => state);
   const { setNewFollowing, following } = useFollowerStore((state) => state);
 
@@ -30,34 +19,37 @@ const AritstHero = ({ title, img, imgBox, user, overlay, box }: HeroProps) => {
 
   return (
     <div
-      className={cx(
-        "artist-hero",
-        overlay && "artist-hero__overlay",
-        box && "artist-hero__box-container"
-      )}
+      className={`${"flex flex-row relative min-h-[250px]  lg:h-[400px] bg-center bg-cover bg-no-repeat justify-between"} ${
+        imgBox
+          ? "flex-col text-center justify-center h-auto p-5 lg:flex-row lg:justify-start lg:text-left"
+          : ""
+      }`}
       style={{
         backgroundImage: `url("${img}")`,
       }}
     >
       {box && (
         <div
-          className={cx("artist-hero__box")}
+          className="h-[200px] w-[200px] mx-auto rounded-3xl bg-no-repeat bg-cover shadow-xl lg:mt-auto lg:mx-0 lg:h-[250px] lg:w-[250px]"
           style={{
             backgroundImage: `url("${imgBox}")`,
           }}
         />
       )}
-      <div className={cx("artist-hero__text")}>
+      <div className="z-10 p-4 flex flex-col justify-end md:p-5">
         <p>Discover</p>
-        <h1>{title}</h1>
-        <p>Techno, Melodic Techno</p>
+        <h1 className="font-semibold tracking-wide text-4xl md:text-6xl text-white drop-shadow-lg">
+          {title}
+        </h1>
       </div>
       {userData &&
+        user &&
         !yourProfile &&
-        Object.keys(user).length !== 0 &&
+        Object?.keys(user).length !== 0 &&
         !following?.some((follower) => follower.uid === user?.uid) && (
-          <div className={cx("artist-hero__button")}>
+          <div className="z-10 flex flex-col justify-end p-4 md:p-5">
             <button
+              className="bg-blue-500 text-white font-bold text-lg border-2 border-transparent rounded-3xl px-5 py-2 w-[100px] shadow-md hover:bg-blue-600"
               onClick={() => {
                 const { displayName, uid } = userData;
                 const newFollowing = {

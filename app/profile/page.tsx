@@ -1,15 +1,7 @@
-import classNames from "classnames/bind";
-import styles from "./Page.module.scss";
-import ProfileForm from "../../components/forms/ProfileForm/ProfileForm";
-
-const cx = classNames.bind(styles);
+import ProfileForm from "../../components/Forms/ProfileForm";
 
 function SignInScreen() {
-  return (
-    <div className={cx("page")}>
-      <ProfileForm />
-    </div>
-  );
+  return <ProfileForm />;
 }
 
 export default SignInScreen;

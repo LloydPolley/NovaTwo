@@ -15,6 +15,7 @@ export type TrackType = {
   audioFileLocation: string;
   trackId: string;
   mix: boolean;
+  releaseId: string;
 };
 
 export type TrackWrapperProps = {
@@ -22,4 +23,12 @@ export type TrackWrapperProps = {
   uid?: string;
   params?: { id: string };
   isArtist?: boolean;
+};
+
+export type ReleaseType = {
+  date: string;
+  artist: string;
+  artworkFileLocation?: string;
+  releaseId: string;
+  name: string;
 };

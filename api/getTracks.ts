@@ -17,6 +17,14 @@ const getAllTracks = async (): Promise<TrackType[]> => {
   return arr;
 };
 
+const getAllReleases = async (): Promise<TrackType[]> => {
+  const snapshot = await getDocs(collection(db, "releases"));
+  const arr = snapshot.docs.map(
+    (doc) => ({ ...doc.data(), trackId: doc.id } as TrackType)
+  );
+  return arr;
+};
+
 const getAllArtists = async (): Promise<TrackType[]> => {
   const snapshot = await getDocs(collection(db, "users"));
   const arr = snapshot.docs.map((doc) => ({ ...doc.data() } as TrackType));
@@ -103,6 +111,38 @@ const getArtistTracks = async (input: string): Promise<TrackType[]> => {
   return arr;
 };
 
+const getArtistReleases = async (input: string): Promise<TrackType[]> => {
+  const q = query(
+    collection(db, "releases"),
+    where("uid", "==", input),
+    orderBy("timestamp", "desc") // Order by timestamp in descending order
+  );
+  const querySnapshot = await getDocs(q);
+  const arr = querySnapshot.docs.map((doc) => {
+    const obj = doc.data();
+    return obj as TrackType;
+  });
+  return arr;
+};
+
+const getTracksInRelease = async (trackIds: string[]): Promise<TrackType[]> => {
+  if (!trackIds || trackIds.length === 0) {
+    return [];
+  }
+
+  const q = query(collection(db, "tracks"), where("trackId", "in", trackIds));
+
+  const querySnapshot = await getDocs(q);
+
+  const tracks = querySnapshot.docs.map((doc) => {
+    const trackData = doc.data();
+    delete trackData.timestamp;
+    return trackData as TrackType;
+  });
+
+  return tracks;
+};
+
 export {
   getAllTracks,
   getArtistTracks,
@@ -111,4 +151,7 @@ export {
   getAllTracksOrdered,
   getAllArtists,
   getAllArtistsWhere,
+  getTracksInRelease,
+  getArtistReleases,
+  getAllReleases,
 };

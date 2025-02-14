@@ -1,41 +1,23 @@
-import classNames from "classnames/bind";
-import TrackContainer from "../../components/Tracks/TrackContainer";
-import FilterBar from "../../components/FilterBar";
-import Carousel from "../../components/Carousel";
-import { getUserFollowers } from "../../api/addFollower";
-import UserFollowing from "../../components/UserFollowing";
+import MusicWrapper from "../../components/Music/EPWrapper";
+import UserFollowing from "../../components/User/UserFollowing";
 import { getDj } from "../../api/getDjs";
 import AritstHero from "../../components/ArtistHero";
-import { Suspense } from "react";
-import styles from "./artist.module.scss";
-
-const filters = [
-  { label: "All", url: "?f=all" },
-  { label: "Tracks", url: "?f=tracks" },
-  { label: "Mix", url: "?f=mix" },
-  { label: "Likes", url: "?f=likes" },
-  { label: "Following", url: "?f=following" },
-];
-
-const cx = classNames.bind(styles);
+import { getArtistTracks, getArtistReleases } from "../../api/getTracks";
 
 export default async function DjProfile({ params, searchParams }) {
   const user = await getDj(params?.id);
+  const releases = await getArtistReleases(params?.id);
+  const tracks = await getArtistTracks(params?.id);
 
   return (
-    <div className={cx("artist")}>
+    <div className="rounded flex-grow">
       <AritstHero title={user?.displayName} img={user?.profile} user={user} />
-      <FilterBar searchParams={searchParams} filters={filters} />
       <UserFollowing searchParams={searchParams} params={params} />
-      <Suspense fallback={"hello"}>
-        <TrackContainer
-          searchParams={searchParams}
-          params={params}
-          text={undefined}
-          trackList={undefined}
-          url={undefined}
-        />
-      </Suspense>
+      <MusicWrapper
+        searchParams={searchParams}
+        trackList={tracks}
+        releaseList={releases}
+      />
     </div>
   );
 }

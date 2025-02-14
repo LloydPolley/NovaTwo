@@ -1,52 +1,40 @@
 import classNames from "classnames/bind";
 import styles from "./discover.module.scss";
-import TrackContainer from "../../components/Tracks/TrackContainer";
-import Carousel from "../../components/Carousel";
-import { getAllArtists } from "../../api/getTracks";
-import Hero from "../../components/Hero";
-import {
-  getAllTracksOrdered,
-  getArtistTracks,
-  getTracksWhere,
-} from "../../api/getTracks";
-import FilterBar from "../../components/FilterBar";
+import TrackContainer from "../../components/Music/TrackContainer";
+import { getTracksWhere, getAllReleases } from "../../api/getTracks";
+import FilterBar from "../../components/LayoutComps/FilterBar";
 import { Suspense } from "react";
 import ArtistHero from "../../components/ArtistHero";
 
 const cx = classNames.bind(styles);
 
 const FILTER_TYPES = {
-  ALL: "all",
-  TRACKS: "tracks",
+  RELEASES: "releases",
   MIX: "mix",
 };
 
 const filters = [
-  { label: "All", url: `?f=${FILTER_TYPES.ALL}` },
-  { label: "Tracks", url: `?f=${FILTER_TYPES.TRACKS}` },
+  { label: "Releases", url: `?f=${FILTER_TYPES.RELEASES}` },
   { label: "Mix", url: `?f=${FILTER_TYPES.MIX}` },
 ];
 
 const IMAGES = {
-  tracks: "./3.jpg",
+  releases: "./3.jpg",
   mix: "./2.jpg",
-  all: "./1.jpg",
 };
 
 const TITLES = {
   mix: "Live Mixes",
-  tracks: "Releases",
-  all: "All",
+  releases: "Releases",
 };
 
 const filterFunctions = {
-  [FILTER_TYPES.TRACKS]: () => getTracksWhere("mix", false),
+  [FILTER_TYPES.RELEASES]: () => getAllReleases(),
   [FILTER_TYPES.MIX]: () => getTracksWhere("mix", true),
-  [FILTER_TYPES.ALL]: () => getAllTracksOrdered("asc"),
 };
 
 export default async function Dj({ searchParams: { f, order }, params }) {
-  const filterType = f || FILTER_TYPES.ALL;
+  const filterType = f;
 
   const filterFunction = filterFunctions[filterType];
   const tracks = await filterFunction();
@@ -56,15 +44,10 @@ export default async function Dj({ searchParams: { f, order }, params }) {
 
   return (
     <div className={cx("discover", `discover__${filterType}`)}>
-      <ArtistHero title={text} user={{}} imgBox={img} overlay box />
+      <ArtistHero title={text} user={{}} imgBox={img} box />
       <FilterBar searchParams={{ f }} filters={filters} />
       <Suspense>
-        <TrackContainer
-          trackList={tracks}
-          searchParams={{ f }}
-          params={params}
-          url={undefined}
-        />
+        <TrackContainer trackList={tracks} />
       </Suspense>
     </div>
   );

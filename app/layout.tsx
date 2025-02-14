@@ -1,13 +1,15 @@
-import Navigation from "../components/Navigation";
-import NavContent from "../components/Navigation/NavContent";
+import Navigation from "../components/LayoutComps/Navigation";
+import NavContent from "../components/LayoutComps/Navigation/NavContent";
 import AudioWidget from "../components/AudioWidgetPlugin";
-import { Lato, Raleway, Poppins } from "next/font/google";
+import { Lato, Raleway, Poppins, Anton, Bebas_Neue } from "next/font/google";
 
 import "./globals.scss";
-import Wrapper from "../components/Wrapper";
+import Wrapper from "../components/LayoutComps/Wrapper";
 import { Suspense } from "react";
 import GlobalProvider from "../context/GlobalContext";
 import { Analytics } from "@vercel/analytics/react";
+
+require("dotenv").config();
 
 const lato = Lato({
   weight: ["400", "700"],
@@ -27,12 +29,25 @@ const poppins = Poppins({
   variable: "--font-poppins",
 });
 
+const anton = Anton({
+  weight: ["400"],
+  subsets: ["latin"],
+  variable: "--font-anton",
+});
+
+const bebasNeue = Bebas_Neue({
+  weight: ["400"],
+  subsets: ["latin"],
+  variable: "--font-bebas-neue",
+});
+
 export default function RootLayout(props) {
   const { children } = props;
 
   return (
     <html
-      className={`${lato.variable} ${raleway.variable} ${poppins.variable}`}
+      className={`${lato.variable} ${raleway.variable} ${poppins.variable} ${anton.variable} ${bebasNeue.variable}`}
+      suppressHydrationWarning
     >
       <head>
         <meta
@@ -44,13 +59,11 @@ export default function RootLayout(props) {
         <GlobalProvider>
           <Suspense>
             <Navigation />
-          </Suspense>
-          <div className={"side-bar"}>
-            <Suspense>
+            <div className={"side-bar"}>
               <NavContent />
-            </Suspense>
-            <Wrapper>{children}</Wrapper>
-          </div>
+              <Wrapper>{children}</Wrapper>
+            </div>
+          </Suspense>
           <AudioWidget />
         </GlobalProvider>
         <Analytics />

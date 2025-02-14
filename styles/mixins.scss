@@ -11,6 +11,7 @@ $widgetHover: #000000a4;
 
 $ctaActive: white;
 $ctaBright: #0195f6;
+$ctaPurp: #6e54b5;
 
 @mixin small {
   @media (max-width: 599px) {
@@ -23,7 +24,7 @@ $ctaBright: #0195f6;
   }
 }
 @mixin large {
-  @media (min-width: 1000px) {
+  @media (min-width: 1024px) {
     @content;
   }
 }
