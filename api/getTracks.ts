@@ -7,7 +7,7 @@ import {
   DocumentData,
   orderBy,
 } from "firebase/firestore";
-import { TrackType } from "../types/tracks"; // Replace with the appropriate type definition for your Track
+import { TrackType } from "../types/tracks";
 
 const getAllTracks = async (): Promise<TrackType[]> => {
   const snapshot = await getDocs(collection(db, "tracks"));
@@ -57,11 +57,7 @@ const getAllTracksOrdered = async (ascending: string): Promise<TrackType[]> => {
 };
 
 const getAllLikedTracks = async (uid: string): Promise<TrackType[]> => {
-  const q = query(
-    collection(db, "likes")
-    // where("currentUser", "==", uid),
-    // orderBy("timestamp", "asc")
-  );
+  const q = query(collection(db, "likes"));
   const querySnapshot = await getDocs(q);
   const arr = querySnapshot.docs.map((doc) => doc.data() as TrackType);
   return arr;
@@ -115,7 +111,7 @@ const getArtistReleases = async (input: string): Promise<TrackType[]> => {
   const q = query(
     collection(db, "releases"),
     where("uid", "==", input),
-    orderBy("timestamp", "desc") // Order by timestamp in descending order
+    orderBy("timestamp", "desc")
   );
   const querySnapshot = await getDocs(q);
   const arr = querySnapshot.docs.map((doc) => {

@@ -1,57 +1,46 @@
-import {
-  pgTable,
-  bigint,
-  varchar,
-  integer,
-  timestamp,
-} from "drizzle-orm/pg-core";
+import { pgTable, varchar, timestamp } from "drizzle-orm/pg-core";
 
 export const users = pgTable("users", {
-  id: integer().primaryKey(),
+  id: varchar("id", { length: 255 }).primaryKey(),
   name: varchar("name", { length: 255 }).notNull(),
   email: varchar("email", { length: 255 }).notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
+export const likes = pgTable("likes", {
+  id: varchar("id", { length: 255 }).primaryKey(),
+  userId: varchar("user_id", { length: 255 })
+    .references(() => users.id, { onDelete: "cascade" })
+    .notNull(),
+  trackId: varchar("track_id", { length: 255 }).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
 export const releases = pgTable("releases", {
-  id: bigint("id", { mode: "number" }).primaryKey(),
+  id: varchar("id", { length: 255 }).primaryKey(),
   title: varchar("title", { length: 255 }).notNull(),
-  artistId: bigint("artist_id", { mode: "number" })
+  artistId: varchar("artist_id", { length: 255 })
     .references(() => users.id, { onDelete: "cascade" })
     .notNull(),
   releaseDate: timestamp("release_date").defaultNow().notNull(),
 });
 
 export const tracks = pgTable("tracks", {
-  id: bigint("id", { mode: "number" }).primaryKey(),
+  id: varchar("id", { length: 255 }).primaryKey(),
   title: varchar("title", { length: 255 }).notNull(),
-  artistId: bigint("artist_id", { mode: "number" })
+  artistId: varchar("artist_id", { length: 255 })
     .references(() => users.id, { onDelete: "cascade" })
     .notNull(),
-  releaseId: bigint("release_id", { mode: "number" }).references(
-    () => releases.id,
-    { onDelete: "cascade" }
-  ),
-  createdAt: timestamp("created_at").defaultNow().notNull(),
-});
-
-export const likes = pgTable("likes", {
-  id: bigint("id", { mode: "number" }).primaryKey(),
-  userId: bigint("user_id", { mode: "number" })
-    .references(() => users.id, { onDelete: "cascade" })
-    .notNull(),
-  trackId: bigint("track_id", { mode: "number" })
-    .references(() => tracks.id, { onDelete: "cascade" })
-    .notNull(),
+  releaseId: varchar("release_id", { length: 255 }),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
 export const followers = pgTable("followers", {
-  id: bigint("id", { mode: "number" }).primaryKey(),
-  followerId: bigint("follower_id", { mode: "number" })
+  id: varchar("id", { length: 255 }).primaryKey(),
+  followerId: varchar("follower_id", { length: 255 })
     .references(() => users.id, { onDelete: "cascade" })
     .notNull(),
-  followingId: bigint("following_id", { mode: "number" })
+  followingId: varchar("following_id", { length: 255 })
     .references(() => users.id, { onDelete: "cascade" })
     .notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),

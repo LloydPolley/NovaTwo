@@ -11,66 +11,22 @@ type HeroProps = {
   imgBox?: string;
 };
 
-async function addUser() {
-  const response = await fetch("/api/users", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-
-  const data = await response.json();
-
-  if (!response.ok) {
-    throw new Error(data.error || "Failed to add user");
-  }
-
-  return data.user; // returns the user object
-}
-
 const AritstHero = ({ title, img, imgBox, user, box }: HeroProps) => {
   const { userData } = useAuthStore((state) => state);
   const { setNewFollowing, following } = useFollowerStore((state) => state);
 
   const yourProfile = userData?.uid === user?.uid;
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      const user = await addUser();
-      console.log("User added:", user);
-    } catch (error) {
-      console.error("Error adding user:", error);
-    }
-  };
-
   return (
     <div
-      className={`${"flex flex-row relative min-h-[250px]  lg:h-[400px] bg-center bg-cover bg-no-repeat justify-between"} ${
-        imgBox
-          ? "flex-col text-center justify-center h-auto p-5 lg:flex-row lg:justify-start lg:text-left"
-          : ""
-      }`}
+      className={
+        "flex flex-row relative min-h-[250px]  lg:h-[400px] bg-center bg-cover bg-no-repeat justify-between m-3 rounded-xl"
+      }
+      test-id="artist-hero"
       style={{
         backgroundImage: `url("${img}")`,
       }}
     >
-      <button
-        onClick={(e) => {
-          handleSubmit(e);
-        }}
-      >
-        Add Neon user
-      </button>
-      {box && (
-        <div
-          className="h-[200px] w-[200px] mx-auto rounded-3xl bg-no-repeat bg-cover shadow-xl lg:mt-auto lg:mx-0 lg:h-[250px] lg:w-[250px]"
-          style={{
-            backgroundImage: `url("${imgBox}")`,
-          }}
-        />
-      )}
       <div className="z-10 p-4 flex flex-col justify-end md:p-5">
         <p>Discover</p>
         <h1 className="font-semibold tracking-wide text-4xl md:text-6xl text-white drop-shadow-lg">
