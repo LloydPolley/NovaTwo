@@ -10,16 +10,16 @@ export default async function DjProfile({ params, searchParams }) {
   const user = await getDj(params?.id);
   const following = await getUserFollowers(params?.id);
 
+  console.log("following", following);
+
   return (
     <div className="rounded flex-grow">
       <AritstHero title={user?.displayName} img={user?.profile} user={user} />
-      {/* <TrackContainer
-        searchParams={searchParams}
-        params={params}
-        text={undefined}
-        trackList={following}
-        url={undefined}
-      /> */}
+      <div className="">
+        {following.map((follow) => (
+          <div className="">{follow.displayName}</div>
+        ))}
+      </div>
     </div>
   );
 }

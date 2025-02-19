@@ -11,7 +11,6 @@ import { onAuthStateChanged, onIdTokenChanged } from "firebase/auth";
 const GlobalContext = createContext({});
 
 export const GlobalProvider = ({ children }) => {
-  const { userData } = useAuthStore((state) => state);
   const LikesStore = useLikesStore((state) => state);
   const FollowerStore = useFollowerStore((state) => state);
   const AuthStore = useAuthStore((state) => state);
@@ -22,11 +21,11 @@ export const GlobalProvider = ({ children }) => {
   const audio = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    if (userData) {
-      LikesStore.setLikes(userData);
-      FollowerStore.setFollowing(userData);
+    if (AuthStore.userData) {
+      LikesStore.setLikes(AuthStore.userData);
+      FollowerStore.setFollowing(AuthStore.userData);
     }
-  }, [userData]);
+  }, [AuthStore.userData]);
 
   const watchUserStatus = () => {
     return onAuthStateChanged(auth, (user) => {
@@ -42,7 +41,7 @@ export const GlobalProvider = ({ children }) => {
     });
   };
 
-  const playContext = async (track) => {
+  const playContext = async () => {
     audioRef.current.play();
   };
 
@@ -53,7 +52,7 @@ export const GlobalProvider = ({ children }) => {
   useEffect(() => {
     if (!audioRef?.current) return;
     audioRef.current.addEventListener("play", () => {
-      playContext(trackContext);
+      playContext();
     });
     audioRef.current.addEventListener("pause", () => {
       pauseContext();

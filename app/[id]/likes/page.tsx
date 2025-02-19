@@ -22,7 +22,13 @@ export default function Likes({ params }) {
 
   return (
     <div className="rounded flex-grow">
-      <AritstHero title={"Likes"} imgBox={"./3.jpg"} box />
+      <AritstHero
+        title={"Likes"}
+        img={
+          "https://images.pexels.com/photos/29708311/pexels-photo-29708311/free-photo-of-dynamic-orange-abstract-digital-art.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        }
+        box
+      />
       <TrackContainer trackList={likes} />
     </div>
   );

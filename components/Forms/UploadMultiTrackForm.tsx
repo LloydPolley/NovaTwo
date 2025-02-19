@@ -27,8 +27,6 @@ function UploadTrackForm({ releaseId, artworkFileLocation, name }) {
 
     setLoading(true);
 
-    console.log("submit form", loading);
-
     await Promise.all(
       audioFiles.map(async (audio, index) => {
         const audioUrl = `gs://nova-2-1c493.appspot.com/${displayName}/tracks/${names[index]}/audio/${audio.file.name}`;

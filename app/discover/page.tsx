@@ -1,12 +1,8 @@
-import classNames from "classnames/bind";
-import styles from "./discover.module.scss";
 import TrackContainer from "../../components/Music/TrackContainer";
 import { getTracksWhere, getAllReleases } from "../../api/getTracks";
 import FilterBar from "../../components/LayoutComps/FilterBar";
 import { Suspense } from "react";
 import ArtistHero from "../../components/ArtistHero";
-
-const cx = classNames.bind(styles);
 
 const FILTER_TYPES = {
   RELEASES: "releases",
@@ -19,8 +15,9 @@ const filters = [
 ];
 
 const IMAGES = {
-  releases: "./3.jpg",
-  mix: "./2.jpg",
+  releases:
+    "https://images.pexels.com/photos/29708306/pexels-photo-29708306/free-photo-of-abstract-digital-art-with-fluid-shape.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  mix: "https://images.pexels.com/photos/29488853/pexels-photo-29488853/free-photo-of-dynamic-geometric-abstract-art-with-bold-colors.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
 };
 
 const TITLES = {
@@ -43,8 +40,8 @@ export default async function Dj({ searchParams: { f, order }, params }) {
   const text = TITLES[filterType];
 
   return (
-    <div className={cx("discover", `discover__${filterType}`)}>
-      <ArtistHero title={text} user={{}} imgBox={img} box />
+    <div className="flex-1">
+      <ArtistHero title={text} user={{}} img={img} />
       <FilterBar searchParams={{ f }} filters={filters} />
       <Suspense>
         <TrackContainer trackList={tracks} />

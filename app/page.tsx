@@ -1,12 +1,12 @@
 import Carousel from "../components/Music/Carousel";
-import { getAllArtistsWhere } from "../api/getTracks";
+import { getAllArtists } from "../api/getTracks";
 import Hero from "../components/LayoutComps/Hero";
 import { getTracksWhere, getAllReleases } from "../api/getTracks";
 import Track from "../components/Music/Track";
 import UserWidget from "../components/User/UserWidget";
 
 export default async function Dj() {
-  const users = await getAllArtistsWhere();
+  const users = await getAllArtists();
   const tracks = await getAllReleases();
   const mixes = await getTracksWhere("mix", true);
 
