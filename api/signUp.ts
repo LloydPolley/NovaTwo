@@ -3,6 +3,27 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 
 import { doc, updateDoc, setDoc } from "firebase/firestore";
 
+const addNeonUser = async ({
+  email,
+  displayName,
+  uid,
+}: {
+  email: string;
+  displayName: string;
+  uid: string;
+}) => {
+  const response = await fetch("/api/users", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, displayName, uid }),
+  });
+
+  const data = await response.json();
+  if (!response.ok) throw new Error(data.error || "Failed to add user");
+
+  return data;
+};
+
 const registerUser = async ({ email, password, displayName }) => {
   try {
     const createdUser = await createUserWithEmailAndPassword(
@@ -10,6 +31,7 @@ const registerUser = async ({ email, password, displayName }) => {
       email,
       password
     );
+    await addNeonUser({ email, displayName, uid: createdUser?.user?.uid });
     await setUserDoc({ uid: createdUser?.user?.uid, email, displayName });
   } catch (e) {
     return { ...e };
@@ -39,4 +61,4 @@ const updateUserDoc = async (uid, { displayName, profile }) => {
   }
 };
 
-export { registerUser, setUserDoc, updateUserDoc };
+export { registerUser, updateUserDoc };

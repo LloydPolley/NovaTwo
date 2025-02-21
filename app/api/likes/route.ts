@@ -5,14 +5,19 @@ import { likes } from "@/db/schema";
 
 export async function POST(req: Request) {
   try {
-    const { userId, trackId } = await req.json();
-
-    const data = await db
+    console.log("post like");
+    const data = await req.json();
+    console.log("data", data);
+    const a = await db
       .insert(likes)
-      .values({ id: v4(), userId, trackId })
+      .values({
+        id: v4(),
+        uid: "TdoZ6leQFIWqYJD5S1yG1uE3y7S2",
+        trackId: "5",
+      })
       .returning();
 
-    return NextResponse.json({ like: "newLike" }, { status: 201 });
+    return NextResponse.json({ like: "data" }, { status: 201 });
   } catch (error) {
     console.error("Error inserting like:", error);
     return NextResponse.json(

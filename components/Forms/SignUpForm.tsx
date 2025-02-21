@@ -17,7 +17,7 @@ function SignInForm({ Switcher }) {
 
     if (details) {
       setError("login", {
-        type: details.code,
+        type: details?.code,
       });
     }
   };
@@ -48,7 +48,7 @@ function SignInForm({ Switcher }) {
           required
         />
 
-        {errors.login && <p>{errors.login.type.toString()}</p>}
+        {/* {errors.login && <p>{errors}</p>} */}
         <input type="submit" value="Create Account" />
         <Switcher />
       </form>

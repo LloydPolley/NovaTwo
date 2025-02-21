@@ -20,6 +20,7 @@ const useLikesStore = create<LikesStore>()((set) => ({
   },
   addLike: async (like) => {
     const success = await addLikeToCollection(like);
+    console.log("like", like);
     if (success) set((state) => ({ likes: [...state.likes, like] }));
   },
   removeLike: async (likeToRemove) => {
