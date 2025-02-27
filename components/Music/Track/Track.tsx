@@ -7,17 +7,7 @@ import useAuthStore from "../../../context/AuthStore";
 import Like from "@/components/LayoutComps/Buttons/Like";
 
 const Track = ({ item }) => {
-  const {
-    artist,
-    artworkFileLocation,
-    audioFileLocation,
-    uid,
-    title,
-    trackId,
-    artwork,
-    id,
-  } = item || {};
-  console.log("item", item);
+  const { artist, artwork, audio, uid, title, id } = item || {};
 
   const { isPlaying, trackContext, playContext, pauseContext } = useAudioStore(
     (state) => state
@@ -25,15 +15,14 @@ const Track = ({ item }) => {
 
   const { userData } = useAuthStore((state) => state);
 
-  const isPlayingLocal =
-    isPlaying && trackContext?.audioFileLocation === audioFileLocation;
+  const isPlayingLocal = isPlaying && trackContext?.audio === audio;
 
   return (
     <div
       className=""
       key={id}
       onClick={() => {
-        if (audioFileLocation) {
+        if (audio) {
           !isPlayingLocal ? playContext(item) : pauseContext();
         }
       }}
@@ -42,15 +31,15 @@ const Track = ({ item }) => {
         <Link
           className="shadow-lg"
           onClick={(e) => {
-            audioFileLocation ? e.preventDefault() : e.stopPropagation();
+            audio ? e.preventDefault() : e.stopPropagation();
           }}
-          href={audioFileLocation ? "#" : `/${uid}?f=all&name=${title}`}
+          href={audio ? "#" : `/${uid}?f=all&name=${title}`}
         >
           <Image
             className="rounded-3xl"
-            src={artworkFileLocation || artwork}
+            src={artwork || artwork}
             placeholder="blur"
-            blurDataURL={artworkFileLocation || artwork}
+            blurDataURL={artwork || artwork}
             alt={title}
             fill
             style={{ objectFit: "cover" }}
@@ -66,18 +55,9 @@ const Track = ({ item }) => {
         >
           {artist}
         </Link>
-        {userData?.uid && audioFileLocation && (
+        {userData?.uid && audio && (
           <div className="absolute right-2 top-4">
-            <Like
-              track={{
-                artist,
-                title,
-                artwork: artwork || artworkFileLocation,
-                audioFileLocation,
-                uid,
-                trackId,
-              }}
-            />
+            <Like track={item} />
           </div>
         )}
       </div>

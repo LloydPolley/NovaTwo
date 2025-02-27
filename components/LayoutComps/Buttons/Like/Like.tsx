@@ -10,7 +10,7 @@ import { Heart } from "lucide-react";
 const cx = classNames.bind(styles);
 
 function Like({ track }) {
-  const { trackId } = track || {};
+  const { id } = track || {};
   const [isLiked, setIsLiked] = useState(false);
   const { likes, addLike, removeLike } = useLikesStore((state) => state);
 
@@ -18,16 +18,13 @@ function Like({ track }) {
 
   const clickHandler = async () => {
     const trackDetails = { ...userData, ...track, currentUser: userData?.uid };
-    console.log("trackDetails", trackDetails);
-    !isLiked ? addLike(trackDetails, userData) : removeLike(trackDetails);
-
-    console.log("trackDetails", trackDetails);
+    isLiked
+      ? removeLike(trackDetails, userData)
+      : addLike(trackDetails, userData);
   };
 
   useEffect(() => {
-    const isLikedByUser = likes.find(
-      (likedTrack) => likedTrack.trackId === trackId
-    );
+    const isLikedByUser = likes?.find((like) => like.id === id);
     setIsLiked(!!isLikedByUser);
   }, [likes]);
 
@@ -39,7 +36,7 @@ function Like({ track }) {
         clickHandler();
       }}
     >
-      {!isLiked ? <Heart /> : <Heart fill="white" />}
+      {isLiked ? <Heart fill="white" /> : <Heart />}
     </button>
   );
 }

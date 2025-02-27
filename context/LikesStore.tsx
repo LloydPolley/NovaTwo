@@ -1,19 +1,14 @@
 import { create } from "zustand";
-import {
-  addLikeToCollection,
-  deleteLikeTracksCollection,
-} from "../api/addLike";
-import getUserLikes from "../api/likes/getUserLikes";
 import { v4 } from "uuid";
 
 interface LikesStore {
   likes: any[];
   setLikes: (userData: any) => Promise<void>;
-  removeLike: (like: any) => Promise<void>;
+  removeLike: (like: any, userData: any) => Promise<void>;
   addLike: (like: any, userData: any) => Promise<void>;
 }
 
-const addLikeNeon = async ({ uid, trackId }) => {
+const addLike = async ({ uid, trackId }) => {
   const response = await fetch("/api/likes", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -21,6 +16,23 @@ const addLikeNeon = async ({ uid, trackId }) => {
       id: v4(),
       uid,
       trackId,
+    }),
+  });
+
+  const data = await response.json();
+  if (!response.ok) throw new Error(data.error || "Failed to like song");
+  return data;
+};
+
+const removeLike = async ({ track, userData }) => {
+  console.log("track", track);
+  console.log("userData", userData);
+  const response = await fetch("/api/likes", {
+    method: "DELETE",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      trackId: track.id,
+      uid: userData.uid,
     }),
   });
 
@@ -41,27 +53,27 @@ const fetchLikes = async (uid) => {
 };
 
 const useLikesStore = create<LikesStore>()((set) => ({
-  likes: [],
+  likes: null,
   setLikes: async (userData) => {
-    const allUserLikes = await fetchLikes(userData?.uid);
-    console.log("allUserLikes", allUserLikes);
-    if (allUserLikes?.likes) set(() => ({ likes: [allUserLikes?.likes] }));
+    const likes = await fetchLikes(userData?.uid);
+    if (likes?.likes) set(() => ({ likes: likes?.likes }));
   },
   addLike: async (like, userData) => {
-    const success = await addLikeNeon({
+    const success = await addLike({
       uid: userData?.uid,
       trackId: like.id,
     });
-
-    if (success) set((state) => ({ likes: [...state.likes, like] }));
+    if (success)
+      set((state) => {
+        console.log("state", state);
+        return { likes: [...state.likes, like] };
+      });
   },
-  removeLike: async (likeToRemove) => {
-    const success = await deleteLikeTracksCollection(likeToRemove);
+  removeLike: async (track, userData) => {
+    const success = await removeLike({ track, userData });
     if (success) {
       set((state) => ({
-        likes: state.likes.filter(
-          (like) => like.trackId !== likeToRemove.trackId
-        ),
+        likes: state.likes.filter((like) => like.id !== track.id),
       }));
     }
   },
