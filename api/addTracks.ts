@@ -1,128 +1,79 @@
-import { db, storage } from "../utils/firebase";
-import {
-  collection,
-  addDoc,
-  doc,
-  serverTimestamp,
-  getDoc,
-  updateDoc,
-  setDoc,
-  arrayUnion,
-} from "firebase/firestore";
+import { storage } from "../utils/firebase";
+import { v4 } from "uuid";
 import { ref, getDownloadURL, getStorage, uploadBytes } from "firebase/storage";
 
-const addTrack = async ({
-  name,
-  artist,
-  trackName,
-  audioFileLocation,
-  artworkFileLocation,
-  uid,
-  mix,
-  releaseId,
-  duration,
-}) => {
-  try {
-    const date = new Date().toLocaleString();
-
-    const trackId = `${name}_${uid}`;
-    const docRef = doc(collection(db, "tracks"), trackId);
-    const docSnapshot = await getDoc(docRef);
-
-    if (docSnapshot.exists()) {
-      console.error("Document with the same custom ID already exists");
-      return { error: "Document with the same custom ID already exists" };
-    }
-
-    // Document doesn't exist, add the new document
-    await setDoc(docRef, {
-      name,
-      artist,
-      trackName,
-      audioFileLocation,
-      artworkFileLocation,
-      date,
-      timestamp: serverTimestamp(),
-      uid,
-      mix,
-      trackId,
-      releaseId,
-      duration,
-    });
-
-    const releaseDocRef = doc(db, "releases", releaseId);
-    const releaseDocSnap = await getDoc(releaseDocRef);
-    if (!releaseDocSnap.exists()) {
-      console.error("User document does not exist");
-      return { error: "User document does not exist" };
-    }
-
-    await updateDoc(releaseDocRef, {
-      trackIds: arrayUnion(trackId),
-    });
-  } catch (e) {
-    console.error("Error adding document: ", e);
-    return { ...e };
-  }
-};
-
 const addRelease = async ({
-  name,
-  artist,
-  artworkFileLocation,
+  title,
   uid,
-  releaseId,
+  artwork,
+  artist,
+}: {
+  title: string;
+  uid: string;
+  artwork: string;
+  artist: string;
 }) => {
-  try {
-    const date = new Date().toLocaleString();
+  const response = await fetch("/api/releases", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ title, uid, artwork, artist, id: v4() }),
+  });
 
-    const docRef = doc(collection(db, "releases"), releaseId);
-    const docSnapshot = await getDoc(docRef);
+  const data = await response.json();
+  if (!response.ok) throw new Error(data.error || "Failed to add user");
 
-    if (docSnapshot.exists()) {
-      console.error("Document with the same custom ID already exists");
-      return { error: "Document with the same custom ID already exists" };
-    }
-
-    // Set the document as before
-    await setDoc(docRef, {
-      name,
-      artist,
-      artworkFileLocation,
-      date,
-      timestamp: serverTimestamp(),
-      uid,
-      releaseId,
-    });
-
-    const userDocRef = doc(db, "users", uid);
-    const userDocSnapshot = await getDoc(userDocRef);
-    if (!userDocSnapshot.exists()) {
-      console.error("User document does not exist");
-      return { error: "User document does not exist" };
-    }
-
-    await updateDoc(userDocRef, {
-      releases: arrayUnion({ releaseId, artworkFileLocation, name }),
-    });
-
-    console.log(
-      "Release added successfully and name added to user's releases array"
-    );
-  } catch (e) {
-    console.error("Error adding release: ", e);
-    return { ...e };
-  }
+  return data;
 };
 
-const uploadFile = async ({ type = "audio", artist, file, trackName }) => {
+const addTrack = async ({
+  uid,
+  title,
+  artwork,
+  releaseId,
+  audio,
+  mix,
+  artist,
+  duration,
+}: {
+  title: string;
+  uid: string;
+  artwork: string;
+  releaseId: string;
+  artist: string;
+  audio: string;
+  mix: boolean;
+  duration: string;
+}) => {
+  console.log("add neon track");
+  const response = await fetch("/api/tracks", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      title,
+      uid,
+      artwork,
+      artist,
+      releaseId,
+      audio,
+      id: v4(),
+      mix,
+      duration,
+    }),
+  });
+
+  const data = await response.json();
+  if (!response.ok) throw new Error(data.error || "Failed to add track");
+  return data;
+};
+
+const uploadFile = async ({ type = "audio", artist, file, title }) => {
   try {
     const { name } = file;
     const typePicker = type === "audio" ? "tracks" : "releases";
     console.log("typePicker", typePicker);
     const storageRef = ref(
       storage,
-      `${artist}/${typePicker}/${trackName}/${type}/${name}`
+      `${artist}/${typePicker}/${title}/${type}/${name}`
     );
 
     const snapShot = await uploadBytes(storageRef, file);
@@ -131,6 +82,43 @@ const uploadFile = async ({ type = "audio", artist, file, trackName }) => {
   } catch (e) {
     console.log("e", e);
   }
+};
+
+const uploadNAddTrack = async ({
+  artist,
+  titles,
+  index,
+  audio,
+  artwork,
+  uid,
+  id,
+  mix,
+}) => {
+  const audioUrl = `gs://nova-2-1c493.appspot.com/${artist}/tracks/${titles[index]}/audio/${audio.file.name}`;
+
+  let audioAccess;
+
+  if (audio) {
+    await uploadFile({
+      title: titles[index],
+      artist,
+      file: audio.file,
+      type: "audio",
+    });
+
+    audioAccess = await fetchFile(audioUrl);
+  }
+
+  await addTrack({
+    title: titles[index],
+    artist,
+    audio: audioAccess,
+    artwork,
+    uid,
+    duration: audio.duration,
+    releaseId: id,
+    mix: mix[index] === "mix" ? true : false,
+  });
 };
 
 const uploadImg = async ({ artist, file }) => {
@@ -150,4 +138,11 @@ const fetchFile = async (itemUrl) => {
   }
 };
 
-export { addTrack, addRelease, uploadFile, fetchFile, uploadImg };
+export {
+  addTrack,
+  addRelease,
+  uploadFile,
+  fetchFile,
+  uploadImg,
+  uploadNAddTrack,
+};

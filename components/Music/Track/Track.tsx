@@ -12,10 +12,12 @@ const Track = ({ item }) => {
     artworkFileLocation,
     audioFileLocation,
     uid,
-    name,
+    title,
     trackId,
     artwork,
+    id,
   } = item || {};
+  console.log("item", item);
 
   const { isPlaying, trackContext, playContext, pauseContext } = useAudioStore(
     (state) => state
@@ -29,7 +31,7 @@ const Track = ({ item }) => {
   return (
     <div
       className=""
-      key={`${artist} - ${name}`}
+      key={id}
       onClick={() => {
         if (audioFileLocation) {
           !isPlayingLocal ? playContext(item) : pauseContext();
@@ -42,21 +44,21 @@ const Track = ({ item }) => {
           onClick={(e) => {
             audioFileLocation ? e.preventDefault() : e.stopPropagation();
           }}
-          href={audioFileLocation ? "#" : `/${uid}?f=all&name=${name}`}
+          href={audioFileLocation ? "#" : `/${uid}?f=all&name=${title}`}
         >
           <Image
             className="rounded-3xl"
             src={artworkFileLocation || artwork}
             placeholder="blur"
             blurDataURL={artworkFileLocation || artwork}
-            alt={name}
+            alt={title}
             fill
             style={{ objectFit: "cover" }}
           />
         </Link>
       </div>
       <div className="pt-2 relative w-11/12 m-auto">
-        <p className="text-lg">{name}</p>
+        <p className="text-lg">{title}</p>
         <Link
           className="text-widgetBlack-400 text-sm"
           onClick={(e) => e.stopPropagation()}
@@ -69,7 +71,7 @@ const Track = ({ item }) => {
             <Like
               track={{
                 artist,
-                name,
+                title,
                 artwork: artwork || artworkFileLocation,
                 audioFileLocation,
                 uid,

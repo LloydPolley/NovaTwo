@@ -1,21 +1,27 @@
 import MusicWrapper from "../../components/Music/EPWrapper";
-import { getDj } from "../../api/getDjs";
 import AritstHero from "../../components/ArtistHero";
-import { getArtistTracks, getArtistReleases } from "../../api/getTracks";
+import { db } from "@/db/drizzle";
+import { eq } from "drizzle-orm";
+import { users } from "@/db/schema";
 
-export default async function DjProfile({ params, searchParams }) {
-  const user = await getDj(params?.id);
-  const releases = await getArtistReleases(params?.id);
-  const tracks = await getArtistTracks(params?.id);
+export default async function ArtistProfile({ params }) {
+  const { artist, profile, releases } =
+    (await db.query.users.findFirst({
+      where: eq(users.id, params?.id),
+      with: {
+        releases: {
+          with: {
+            tracks: true,
+          },
+        },
+        tracks: true,
+      },
+    })) ?? {};
 
   return (
     <div className="rounded flex-grow">
-      <AritstHero title={user?.displayName} img={user?.profile} user={user} />
-      <MusicWrapper
-        searchParams={searchParams}
-        trackList={tracks}
-        releaseList={releases}
-      />
+      <AritstHero title={artist} img={profile} />
+      <MusicWrapper releases={releases} />
     </div>
   );
 }

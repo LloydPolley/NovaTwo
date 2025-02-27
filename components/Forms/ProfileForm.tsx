@@ -45,6 +45,8 @@ function ProfileForm({}) {
       displayName: name,
     });
 
+    console.log("uidate user updateUserDoc");
+
     setLoading(false);
     setComplete(true);
   };

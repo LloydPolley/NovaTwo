@@ -5,17 +5,17 @@ import { doc, updateDoc, setDoc } from "firebase/firestore";
 
 const addNeonUser = async ({
   email,
-  displayName,
+  artist,
   uid,
 }: {
   email: string;
-  displayName: string;
+  artist: string;
   uid: string;
 }) => {
   const response = await fetch("/api/users", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email, displayName, uid }),
+    body: JSON.stringify({ email, artist, uid }),
   });
 
   const data = await response.json();
@@ -24,15 +24,43 @@ const addNeonUser = async ({
   return data;
 };
 
-const registerUser = async ({ email, password, displayName }) => {
+const addNeonDisplayPhoto = async ({
+  profile,
+  id,
+}: {
+  profile: string;
+  id: string;
+}) => {
+  console.log("profile", profile);
+  const response = await fetch(`/api/profile`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ profile, id }),
+  });
+
+  console.log("neon display");
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.error || "Failed to update photo");
+  }
+
+  return response.json();
+};
+
+const registerUser = async ({ email, password, artist }) => {
   try {
     const createdUser = await createUserWithEmailAndPassword(
       auth,
       email,
       password
     );
-    await addNeonUser({ email, displayName, uid: createdUser?.user?.uid });
-    await setUserDoc({ uid: createdUser?.user?.uid, email, displayName });
+    await addNeonUser({ email, artist, uid: createdUser?.user?.uid });
+    await setUserDoc({
+      uid: createdUser?.user?.uid,
+      email,
+      displayName: artist,
+    });
   } catch (e) {
     return { ...e };
   }
@@ -52,9 +80,14 @@ const setUserDoc = async ({ displayName, uid, email }) => {
 
 const updateUserDoc = async (uid, { displayName, profile }) => {
   try {
-    updateDoc(doc(db, "users", uid), {
+    await updateDoc(doc(db, "users", uid), {
       ...(displayName ? { displayName } : {}),
       ...(profile ? { profile } : {}),
+    });
+
+    await addNeonDisplayPhoto({
+      id: uid,
+      profile,
     });
   } catch (e) {
     return { ...e };

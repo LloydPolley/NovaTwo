@@ -1,0 +1,2 @@
+ALTER TABLE "tracks" ADD COLUMN "uid" varchar(255) NOT NULL;--> statement-breakpoint
+ALTER TABLE "tracks" ADD CONSTRAINT "tracks_uid_users_id_fk" FOREIGN KEY ("uid") REFERENCES "public"."users"("id") ON DELETE cascade ON UPDATE no action;

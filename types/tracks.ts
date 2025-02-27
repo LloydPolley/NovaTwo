@@ -24,11 +24,3 @@ export type TrackWrapperProps = {
   params?: { id: string };
   isArtist?: boolean;
 };
-
-export type ReleaseType = {
-  date: string;
-  artist: string;
-  artworkFileLocation?: string;
-  releaseId: string;
-  name: string;
-};

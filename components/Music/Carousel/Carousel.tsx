@@ -13,14 +13,7 @@ type CarouselTypes = {
   glass?: string;
 };
 
-const Carousel = ({
-  Component,
-  items,
-  text,
-  url,
-  type,
-  glass,
-}: CarouselTypes) => {
+const Carousel = ({ Component, items, text, url, type }: CarouselTypes) => {
   return (
     <div className="carousel rounded-lg p-2 lg:p-7">
       <div className="flex justify-between  border-widgetBlack-400 w-[calc(100%-20px)] lg:w-full ml-5 lg:ml-0 mb-4">
@@ -40,7 +33,7 @@ const Carousel = ({
             return (
               <div
                 className="flex-pixels overflow-ellipsis whitespace-nowrap overflow-hidden scroll-snap-start first:ml-[15px] lg:first:ml-[0px]"
-                key={item?.trackId || item?.uid}
+                key={item?.id || item?.uid}
               >
                 <Component item={item} type={type} />
               </div>

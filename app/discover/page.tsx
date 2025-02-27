@@ -1,5 +1,4 @@
 import TrackContainer from "../../components/Music/TrackContainer";
-import { getTracksWhere, getAllReleases } from "../../api/getTracks";
 import FilterBar from "../../components/LayoutComps/FilterBar";
 import { Suspense } from "react";
 import ArtistHero from "../../components/ArtistHero";
@@ -26,8 +25,8 @@ const TITLES = {
 };
 
 const filterFunctions = {
-  [FILTER_TYPES.RELEASES]: () => getAllReleases(),
-  [FILTER_TYPES.MIX]: () => getTracksWhere("mix", true),
+  // [FILTER_TYPES.RELEASES]: () => getAllReleases(),
+  // [FILTER_TYPES.MIX]: () => getTracksWhere("mix", true),
 };
 
 export default async function Dj({ searchParams: { f, order }, params }) {

@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { addTrack, uploadFile, fetchFile } from "../../api/addTracks";
 import Form from "./Form/Form";
 import useAuthStore from "../../context/AuthStore";
+import { uploadNAddTrack } from "../../api/addTracks";
 
 const defaultValues = {
   label: "",
@@ -13,47 +14,30 @@ const defaultValues = {
   audioFile: "",
 };
 
-function UploadTrackForm({ releaseId, artworkFileLocation, name }) {
+function UploadMultiTrackForm({ release }) {
+  const { id, artwork, artist, uid } = release;
+
   const { register, handleSubmit, reset } = useForm();
 
-  const { userData } = useAuthStore((state) => state);
   const [audioFiles, setAudioFiles] = useState([]);
   const [loading, setLoading] = useState(false);
   const [complete, setComplete] = useState(false);
 
   const onSubmit = async (data) => {
-    const { names, audioFilesForm, mix } = data;
-    const { displayName, uid } = userData;
-
+    const { titles, mix } = data;
     setLoading(true);
 
     await Promise.all(
       audioFiles.map(async (audio, index) => {
-        const audioUrl = `gs://nova-2-1c493.appspot.com/${displayName}/tracks/${names[index]}/audio/${audio.file.name}`;
-
-        let audioAccess;
-
-        if (audio) {
-          await uploadFile({
-            trackName: names[index],
-            artist: displayName,
-            file: audio.file,
-            type: "audio",
-          });
-
-          audioAccess = await fetchFile(audioUrl);
-        }
-
-        await addTrack({
-          name: names[index],
-          artist: displayName,
-          trackName: audio.file.name,
-          audioFileLocation: audioAccess,
-          artworkFileLocation,
-          releaseId,
+        await uploadNAddTrack({
+          artist,
+          titles,
+          index,
+          audio,
+          artwork,
           uid,
-          duration: audio.duration,
-          mix: mix[index] === "mix" ? true : false,
+          id,
+          mix,
         });
       })
     );
@@ -105,12 +89,8 @@ function UploadTrackForm({ releaseId, artworkFileLocation, name }) {
     });
   };
 
-  if (userData === null) {
-    return null;
-  }
-
   return (
-    <Form title={name} loading={loading}>
+    <>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="audio-upload" className="block">
           Audio
@@ -133,7 +113,7 @@ function UploadTrackForm({ releaseId, artworkFileLocation, name }) {
                 id="track-name"
                 className="w-full border border-gray-300 rounded px-4 py-2"
                 placeholder={"Track name"}
-                {...register(`names.${index}`)}
+                {...register(`titles.${index}`)}
                 required
               />
               <input
@@ -156,12 +136,12 @@ function UploadTrackForm({ releaseId, artworkFileLocation, name }) {
       </form>
       <a
         className="block text-center text-blue-500 mt-4"
-        href={`/${userData?.uid}?f=all`}
+        href={`/${uid}?f=all`}
       >
         Done
       </a>
-    </Form>
+    </>
   );
 }
 
-export default UploadTrackForm;
+export default UploadMultiTrackForm;

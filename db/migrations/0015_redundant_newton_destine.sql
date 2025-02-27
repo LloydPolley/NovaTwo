@@ -1,0 +1,1 @@
+ALTER TABLE "releases" ADD COLUMN "artist" varchar(255) NOT NULL;

@@ -1,20 +1,17 @@
-import { v4 } from "uuid";
 import { NextResponse } from "next/server";
-import { db } from "@/db";
+import { db } from "@/db/drizzle";
 import { users } from "@/db/schema";
 
 export async function POST(req: Request) {
   try {
-    const data = await req.json();
-
-    console.log("post account");
+    const { uid, artist, email } = await req.json();
 
     const [user] = await db
       .insert(users)
       .values({
-        uid: data?.uid,
-        displayName: data?.displayName,
-        email: data.email,
+        id: uid,
+        artist,
+        email,
       })
       .returning();
 

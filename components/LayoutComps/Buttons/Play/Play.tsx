@@ -5,6 +5,7 @@ import classNames from "classnames/bind";
 import styles from "./Play.module.scss";
 import PlayIcon from "../../../Icons/PlayIcon";
 import PauseIcon from "../../../Icons/PauseIcon";
+import { Pause, Play } from "lucide-react";
 
 type PlayProps = {
   abso?: boolean;
@@ -14,12 +15,12 @@ type PlayProps = {
 
 const cx = classNames.bind(styles);
 
-function Play({ abso, isPlayingAudio, onClick }: PlayProps) {
+function PlayButton({ abso, isPlayingAudio, onClick }: PlayProps) {
   return (
     <button className={cx("play", abso && "play__abso")} onClick={onClick}>
-      {!isPlayingAudio ? <PlayIcon /> : <PauseIcon />}
+      {!isPlayingAudio ? <Play /> : <Pause />}
     </button>
   );
 }
 
-export default Play;
+export default PlayButton;

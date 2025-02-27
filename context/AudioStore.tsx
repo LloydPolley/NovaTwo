@@ -16,6 +16,7 @@ const useAudioStore = create<AudioStore>()((set) => ({
   audioRef: null,
   playContext: (track) =>
     set(({ audioRef }) => {
+      console.log("track", track);
       audioRef.current.play();
       return { trackContext: track, isPlaying: true };
     }),

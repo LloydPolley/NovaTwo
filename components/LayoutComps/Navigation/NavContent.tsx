@@ -11,16 +11,17 @@ import {
   useSearchParams,
 } from "next/navigation";
 import { signOutUser } from "../../../api/login";
-import Favourite from "../../Icons/Favourite";
-import ProfileIcon from "../../Icons/ProfileIcon";
-import FileIcon from "../../Icons/FileIcon";
-import FollowerIcon from "../../Icons/FollowerIcon";
-import UploadIcon from "../../Icons/UploadIcon";
-import TracksIcon from "../../Icons/TracksIcon";
-import MixIcon from "../../Icons/MixIcon";
 import useAuthStore from "../../../context/AuthStore";
-import Edit from "../../Icons/Edit";
-import Logo from "../../Icons/Logo";
+import {
+  Layers,
+  Library,
+  Disc3,
+  CircleUserRound,
+  Heart,
+  UserCheck,
+  LayoutDashboard,
+  CloudUpload,
+} from "lucide-react";
 
 type NavTypes = {
   open?: boolean;
@@ -42,7 +43,7 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
       <div className={cx("nav-content", open && "nav-content__open")}>
         <div className={cx("nav-content__inner")}>
           <Link className={cx("nav-content__name")} href={"/"}>
-            <Logo />
+            <Layers />
             <span>Nova</span>
           </Link>
           <p className={cx("nav-content__category")}>FEATURED</p>
@@ -54,7 +55,7 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
             )}
             href="/discover/?f=releases"
           >
-            <TracksIcon /> <span>Releases</span>
+            <Library /> <span>Releases</span>
           </Link>
           <Link
             className={cx(
@@ -64,7 +65,7 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
             )}
             href="/discover?f=mix"
           >
-            <MixIcon /> <span>Mix</span>
+            <Disc3 /> <span>Mix</span>
           </Link>
           <p className={cx("nav-content__category")}>MY MUSIC</p>
           {!userData?.email ? (
@@ -74,7 +75,7 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
               )}
               href="/login"
             >
-              <ProfileIcon /> <span>Sign In</span>
+              <CircleUserRound /> <span>Sign In</span>
             </Link>
           ) : (
             <>
@@ -87,7 +88,7 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
                 href={`/${userData?.uid}?f=all`}
                 onClick={closeNav}
               >
-                <ProfileIcon /> <span>{userData?.displayName}</span>
+                <CircleUserRound /> <span>{userData?.displayName}</span>
               </Link>
               <Link
                 className={cx(
@@ -95,7 +96,7 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
                 )}
                 href={`/${userData?.uid}/likes`}
               >
-                <Favourite />
+                <Heart />
                 <span>Likes</span>
               </Link>
               <Link
@@ -106,7 +107,7 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
                 )}
                 href={`/${userData?.uid}/following`}
               >
-                <FollowerIcon /> <span>Following</span>
+                <UserCheck /> <span>Following</span>
               </Link>
               <Link
                 className={cx(
@@ -114,15 +115,15 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
                 )}
                 href={`/profile`}
               >
-                <Edit /> <span>Edit</span>
+                <LayoutDashboard /> <span>Dashboard</span>
               </Link>
               <Link
                 className={cx(
                   activeSegments[0] === "release" && "nav-content__active"
                 )}
-                href={`/release`}
+                href={`/dashboard/${userData?.uid}/release?s=1`}
               >
-                <UploadIcon /> <span>Release</span>
+                <CloudUpload /> <span>Release</span>
               </Link>
             </>
           )}
