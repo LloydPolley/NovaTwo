@@ -25,8 +25,6 @@ const addLike = async ({ uid, trackId }) => {
 };
 
 const removeLike = async ({ track, userData }) => {
-  console.log("track", track);
-  console.log("userData", userData);
   const response = await fetch("/api/likes", {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },

@@ -1,7 +1,9 @@
-import TrackContainer from "../../components/Music/TrackContainer";
 import FilterBar from "../../components/LayoutComps/FilterBar";
-import { Suspense } from "react";
 import ArtistHero from "../../components/ArtistHero";
+import TrackContainer from "@/components/Music/TrackContainer";
+import { db } from "@/db/drizzle";
+import { eq } from "drizzle-orm";
+import { tracks } from "@/db/schema";
 
 const FILTER_TYPES = {
   RELEASES: "releases",
@@ -13,20 +15,17 @@ const filters = [
   { label: "Mix", url: `?f=${FILTER_TYPES.MIX}` },
 ];
 
-const IMAGES = {
-  releases:
-    "https://images.pexels.com/photos/29708306/pexels-photo-29708306/free-photo-of-abstract-digital-art-with-fluid-shape.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  mix: "https://images.pexels.com/photos/29488853/pexels-photo-29488853/free-photo-of-dynamic-geometric-abstract-art-with-bold-colors.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-};
-
 const TITLES = {
   mix: "Live Mixes",
   releases: "Releases",
 };
 
 const filterFunctions = {
-  // [FILTER_TYPES.RELEASES]: () => getAllReleases(),
-  // [FILTER_TYPES.MIX]: () => getTracksWhere("mix", true),
+  [FILTER_TYPES.RELEASES]: async () => await db.query.releases.findMany({}),
+  [FILTER_TYPES.MIX]: async () =>
+    await db.query.tracks.findMany({
+      where: eq(tracks.mix, true),
+    }),
 };
 
 export default async function Dj({ searchParams: { f, order }, params }) {
@@ -35,16 +34,13 @@ export default async function Dj({ searchParams: { f, order }, params }) {
   const filterFunction = filterFunctions[filterType];
   const tracks = await filterFunction();
 
-  const img = IMAGES[filterType];
   const text = TITLES[filterType];
 
   return (
     <div className="flex-1">
-      <ArtistHero title={text} user={{}} img={img} />
+      <ArtistHero title={text} />
       <FilterBar searchParams={{ f }} filters={filters} />
-      <Suspense>
-        <TrackContainer trackList={tracks} />
-      </Suspense>
+      <TrackContainer trackList={tracks} />
     </div>
   );
 }
