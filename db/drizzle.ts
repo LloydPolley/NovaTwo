@@ -1,7 +1,8 @@
 import { config } from "dotenv";
 import { drizzle } from "drizzle-orm/neon-http";
-import { users, releases, tracks, likes } from "./schema";
+import { users, releases, tracks, likes, followers } from "./schema";
 import {
+  followersRelations,
   likesRelations,
   releasesRelations,
   tracksRelations,
@@ -15,9 +16,11 @@ export const db = drizzle(process.env.DATABASE_URL!, {
     releases,
     tracks,
     likes,
+    followers,
     releasesRelations,
     tracksRelations,
     usersRelations,
     likesRelations,
+    followersRelations,
   },
 });

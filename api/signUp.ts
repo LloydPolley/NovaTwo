@@ -1,7 +1,5 @@
-import { auth, db } from "../utils/firebase";
+import { auth } from "../utils/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-
-import { doc, updateDoc, setDoc } from "firebase/firestore";
 
 const addNeonUser = async ({
   email,
@@ -31,14 +29,11 @@ const addNeonDisplayPhoto = async ({
   profile: string;
   id: string;
 }) => {
-  console.log("profile", profile);
   const response = await fetch(`/api/profile`, {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ profile, id }),
   });
-
-  console.log("neon display");
 
   if (!response.ok) {
     const errorData = await response.json();
@@ -56,23 +51,6 @@ const registerUser = async ({ email, password, artist }) => {
       password
     );
     await addNeonUser({ email, artist, uid: createdUser?.user?.uid });
-    await setUserDoc({
-      uid: createdUser?.user?.uid,
-      email,
-      displayName: artist,
-    });
-  } catch (e) {
-    return { ...e };
-  }
-};
-
-const setUserDoc = async ({ displayName, uid, email }) => {
-  try {
-    await setDoc(doc(db, "users", uid), {
-      uid,
-      email,
-      displayName,
-    });
   } catch (e) {
     return { ...e };
   }
@@ -80,11 +58,6 @@ const setUserDoc = async ({ displayName, uid, email }) => {
 
 const updateUserDoc = async (uid, { displayName, profile }) => {
   try {
-    await updateDoc(doc(db, "users", uid), {
-      ...(displayName ? { displayName } : {}),
-      ...(profile ? { profile } : {}),
-    });
-
     await addNeonDisplayPhoto({
       id: uid,
       profile,

@@ -2,6 +2,7 @@
 
 import { UserPlus } from "lucide-react";
 import useAuthStore from "../../context/AuthStore";
+import useFollowerStore from "@/context/FollowerStore";
 
 type HeroProps = {
   title: string;
@@ -11,8 +12,18 @@ type HeroProps = {
 
 const AritstHero = ({ title, img, uid }: HeroProps) => {
   const { userData } = useAuthStore((state) => state);
+  const { addFollower } = useFollowerStore((state) => state);
 
   const yourProfile = userData?.uid === uid;
+
+  const handleFollow = async () => {
+    const { displayName } = userData;
+    await addFollower({
+      uid: userData?.uid,
+      artist: displayName,
+      followingId: uid,
+    });
+  };
 
   return (
     <div
@@ -34,15 +45,7 @@ const AritstHero = ({ title, img, uid }: HeroProps) => {
         <div className="z-10 flex flex-col justify-end p-4 md:p-5">
           <button
             className="bg-blue-500 text-white font-bold text-lg border-2 border-transparent rounded-3xl px-5 py-2 shadow-md hover:bg-blue-600"
-            onClick={() => {
-              // const { displayName, uid } = userData;
-              // const newFollowing = {
-              //   userName: displayName,
-              //   user: uid,
-              //   ...user,
-              // };
-              // setNewFollowing(newFollowing);
-            }}
+            onClick={handleFollow}
           >
             <UserPlus />
           </button>

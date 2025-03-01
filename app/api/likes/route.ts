@@ -64,8 +64,6 @@ export async function GET(req: Request) {
 
     const tracksOnly = userLikes.map((like) => like.tracks);
 
-    console.log("tracksOnly", tracksOnly);
-
     return NextResponse.json({ likes: tracksOnly }, { status: 201 });
   } catch (error) {
     console.error("Error getting likes:", error);

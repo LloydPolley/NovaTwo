@@ -3,7 +3,7 @@
 import React, { createContext, useContext, useEffect, useRef } from "react";
 import { auth, db } from "../utils/firebase";
 import useLikesStore from "./LikesStore";
-// import useFollowerStore from "./FollowerStore";
+import useFollowerStore from "./FollowerStore";
 import useAuthStore from "./AuthStore";
 import useAudioStore from "./AudioStore";
 import { onAuthStateChanged, onIdTokenChanged } from "firebase/auth";
@@ -12,7 +12,7 @@ const GlobalContext = createContext({});
 
 export const GlobalProvider = ({ children }) => {
   const LikesStore = useLikesStore((state) => state);
-  // const FollowerStore = useFollowerStore((state) => state);
+  const { setFollowers } = useFollowerStore((state) => state);
   const AuthStore = useAuthStore((state) => state);
   const { setAudioRef, audioRef, isPlaying, trackContext } = useAudioStore(
     (state) => state
@@ -21,9 +21,9 @@ export const GlobalProvider = ({ children }) => {
   const audio = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    if (AuthStore.userData) {
+    if (AuthStore.userData?.uid) {
       LikesStore.setLikes(AuthStore.userData);
-      // FollowerStore.setFollowing(AuthStore.userData);
+      setFollowers(AuthStore.userData?.uid);
     }
   }, [AuthStore.userData]);
 

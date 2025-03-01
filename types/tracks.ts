@@ -4,16 +4,11 @@ export type TrackListProps = {
 };
 
 export type TrackType = {
-  featured?: boolean;
+  id: string;
   date: string;
   artist: string;
-  trackName: string;
+  title: string;
   uid: string;
-  name: string;
-  artworkFileLocation?: string;
-  artwork?: string;
-  audioFileLocation: string;
-  trackId: string;
   mix: boolean;
   releaseId: string;
 };

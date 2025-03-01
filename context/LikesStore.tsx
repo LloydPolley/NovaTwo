@@ -63,7 +63,6 @@ const useLikesStore = create<LikesStore>()((set) => ({
     });
     if (success)
       set((state) => {
-        console.log("state", state);
         return { likes: [...state.likes, like] };
       });
   },

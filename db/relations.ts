@@ -1,5 +1,5 @@
 import { relations } from "drizzle-orm";
-import { releases, users, tracks, likes } from "./schema";
+import { releases, users, tracks, likes, followers } from "./schema";
 
 export const releasesRelations = relations(releases, ({ one, many }) => ({
   user: one(users, { fields: [releases.uid], references: [users.id] }),
@@ -23,5 +23,16 @@ export const likesRelations = relations(likes, ({ one }) => ({
   tracks: one(tracks, {
     fields: [likes.trackId],
     references: [tracks.id],
+  }),
+}));
+
+export const followersRelations = relations(followers, ({ one }) => ({
+  me: one(users, {
+    fields: [followers.uid],
+    references: [users.id],
+  }),
+  user: one(users, {
+    fields: [followers.followingId],
+    references: [users.id],
   }),
 }));
