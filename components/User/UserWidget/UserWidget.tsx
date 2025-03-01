@@ -3,10 +3,11 @@
 import Link from "next/link";
 
 const UserWidget = ({ item }) => {
-  const { uid, artwork, artist } = item;
+  console.log("item", item);
+  const { id, artwork, artist } = item;
   return (
     <div className="w-full h-full">
-      <Link className="flex flex-col-reverse" href={`/${uid}`}>
+      <Link className="flex flex-col-reverse" href={`/${id}`}>
         <img
           className="h-full aspect-square w-full object-cover rounded-full shadow-lg"
           src={artwork}

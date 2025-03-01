@@ -55,7 +55,7 @@ const Track = ({ item }) => {
         >
           {artist}
         </Link>
-        {userData?.uid && audio && (
+        {userData?.id && audio && (
           <div className="absolute right-2 top-4">
             <Like track={item} />
           </div>

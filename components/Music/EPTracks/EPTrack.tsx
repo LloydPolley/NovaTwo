@@ -36,7 +36,7 @@ const Track = ({ item, index }) => {
         <p className="w-12 text-center">
           {duration === 0 ? <Timer className="m-auto" /> : duration}
         </p>
-        {userData?.uid && id !== "row" ? (
+        {userData?.id && id !== "row" ? (
           <Like
             track={{
               artist,

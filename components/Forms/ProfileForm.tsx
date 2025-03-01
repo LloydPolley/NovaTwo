@@ -19,7 +19,7 @@ function ProfileForm({}) {
 
   useEffect(() => {
     if (complete) {
-      redirect(`/${userData?.uid}?f=all`, RedirectType.push);
+      redirect(`/${userData?.id}?f=all`, RedirectType.push);
     }
   }, [complete]);
 
@@ -40,8 +40,8 @@ function ProfileForm({}) {
       profileImgAccess = await fetchFile(profileImgUrl);
     }
 
-    await updateUserDoc(userData?.uid, {
-      profile: profileImgAccess,
+    await updateUserDoc(userData?.id, {
+      artwork: profileImgAccess,
       displayName: name,
     });
 

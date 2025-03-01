@@ -23,16 +23,16 @@ const addNeonUser = async ({
 };
 
 const addNeonDisplayPhoto = async ({
-  profile,
+  artwork,
   id,
 }: {
-  profile: string;
+  artwork: string;
   id: string;
 }) => {
   const response = await fetch(`/api/profile`, {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ profile, id }),
+    body: JSON.stringify({ artwork, id }),
   });
 
   if (!response.ok) {
@@ -56,11 +56,11 @@ const registerUser = async ({ email, password, artist }) => {
   }
 };
 
-const updateUserDoc = async (uid, { displayName, profile }) => {
+const updateUserDoc = async (uid, { displayName, artwork }) => {
   try {
     await addNeonDisplayPhoto({
       id: uid,
-      profile,
+      artwork,
     });
   } catch (e) {
     return { ...e };

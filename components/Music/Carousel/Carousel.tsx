@@ -29,7 +29,6 @@ const Carousel = ({ Component, items, text, url }: CarouselTypes) => {
       <div className="flex overflow-x-auto max-w-full gap-5 hide-scrollbar">
         {items &&
           items.slice(0, 8).map((item) => {
-            console.log("item", item);
             return (
               <div
                 className="flex-pixels overflow-ellipsis whitespace-nowrap overflow-hidden scroll-snap-start first:ml-[15px] lg:first:ml-[0px]"

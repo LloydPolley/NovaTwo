@@ -14,12 +14,12 @@ const AritstHero = ({ title, img, uid }: HeroProps) => {
   const { userData } = useAuthStore((state) => state);
   const { addFollower } = useFollowerStore((state) => state);
 
-  const yourProfile = userData?.uid === uid;
+  const yourProfile = userData?.id === uid;
 
   const handleFollow = async () => {
     const { displayName } = userData;
     await addFollower({
-      uid: userData?.uid,
+      uid: userData?.id,
       artist: displayName,
       followingId: uid,
     });

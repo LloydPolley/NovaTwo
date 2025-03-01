@@ -30,7 +30,7 @@ const removeLike = async ({ track, userData }) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       trackId: track.id,
-      uid: userData.uid,
+      uid: userData.id,
     }),
   });
 
@@ -53,12 +53,12 @@ const fetchLikes = async (uid) => {
 const useLikesStore = create<LikesStore>()((set) => ({
   likes: null,
   setLikes: async (userData) => {
-    const likes = await fetchLikes(userData?.uid);
+    const likes = await fetchLikes(userData?.id);
     if (likes?.likes) set(() => ({ likes: likes?.likes }));
   },
   addLike: async (like, userData) => {
     const success = await addLike({
-      uid: userData?.uid,
+      uid: userData?.id,
       trackId: like.id,
     });
     if (success)

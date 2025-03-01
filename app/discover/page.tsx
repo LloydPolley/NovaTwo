@@ -4,6 +4,7 @@ import TrackContainer from "@/components/Music/TrackContainer";
 import { db } from "@/db/drizzle";
 import { eq } from "drizzle-orm";
 import { tracks } from "@/db/schema";
+import Header from "@/components/Header/Header";
 
 const FILTER_TYPES = {
   RELEASES: "releases",
@@ -38,7 +39,8 @@ export default async function Dj({ searchParams: { f, order }, params }) {
 
   return (
     <div className="flex-1">
-      <ArtistHero title={text} />
+      <Header title={text} />
+
       <FilterBar searchParams={{ f }} filters={filters} />
       <TrackContainer trackList={tracks} />
     </div>

@@ -42,13 +42,13 @@ function CreateReleaseForm() {
 
   const onSubmit = async (data) => {
     const { title, artworkFile } = data;
-    const { displayName, uid } = userData;
+    const { artist, id } = userData;
 
     // Modify the file name to remove spaces
     const modifiedFileName = artworkFile[0].name.replace(/\s+/g, "_");
 
     // Construct the artwork URL with the modified file name
-    const artworkUrl = `gs://nova-2-1c493.appspot.com/${displayName}/releases/${title}/artwork/${modifiedFileName}`;
+    const artworkUrl = `gs://nova-2-1c493.appspot.com/${artist}/releases/${title}/artwork/${modifiedFileName}`;
 
     let artwork;
 
@@ -62,7 +62,7 @@ function CreateReleaseForm() {
 
       await uploadFile({
         title: title,
-        artist: displayName,
+        artist,
         file: modifiedFile,
         type: "artwork",
       });
@@ -71,9 +71,9 @@ function CreateReleaseForm() {
 
     const neonReleaseId = await addRelease({
       title,
-      artist: displayName,
+      artist,
       artwork,
-      uid,
+      uid: id,
     });
 
     console.log("neonReleaseId", neonReleaseId);

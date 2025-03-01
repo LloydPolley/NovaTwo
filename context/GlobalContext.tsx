@@ -21,9 +21,9 @@ export const GlobalProvider = ({ children }) => {
   const audio = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    if (AuthStore.userData?.uid) {
+    if (AuthStore.userData?.id) {
       LikesStore.setLikes(AuthStore.userData);
-      setFollowers(AuthStore.userData?.uid);
+      setFollowers(AuthStore.userData?.id);
     }
   }, [AuthStore.userData]);
 

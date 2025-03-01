@@ -11,8 +11,14 @@ function SignInScreen() {
   const [showLogin, setShowLogin] = useState(true);
   const { userData } = useAuthStore((state) => state);
 
-  if (userData !== null && showLogin) {
-    redirect(`/${userData?.uid}?f=all`, RedirectType.push);
+  console.log("userData", userData);
+  // console.log("userData", userData !== und);
+  console.log("showLogin", showLogin);
+
+  // const isUserDataNull = userData
+
+  if (userData !== undefined && showLogin) {
+    redirect(`/${userData?.id}?f=all`, RedirectType.push);
   } else if (userData !== null && !showLogin) {
     redirect(`/edit`, RedirectType.push);
   }

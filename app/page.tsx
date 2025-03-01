@@ -14,11 +14,8 @@ export default async function Dj() {
     where: eq(tracks.mix, true),
   });
 
-  console.log("users", usersData);
-
   return (
     <>
-      {/* <Hero /> */}
       <Header title="Dashboard" />
       <div className="flex flex-col gap-6 mt-5">
         <Carousel

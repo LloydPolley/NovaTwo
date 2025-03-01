@@ -32,11 +32,11 @@ const cx = classNames.bind(style);
 
 const NavContent = ({ open, closeNav }: NavTypes) => {
   const { userData } = useAuthStore((state) => state);
-  const router = useRouter();
   const activeSegments = useSelectedLayoutSegments();
-  const pathname = usePathname();
   const searchParams = useSearchParams();
   const search = searchParams.get("f");
+
+  console.log("userData", userData);
 
   return (
     <Suspense>
@@ -81,20 +81,20 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
             <>
               <Link
                 className={cx(
-                  activeSegments[0] === userData.uid &&
+                  activeSegments[0] === userData.id &&
                     activeSegments[1] === "all" &&
                     "nav-content__active"
                 )}
-                href={`/${userData?.uid}?f=all`}
+                href={`/${userData?.id}?f=all`}
                 onClick={closeNav}
               >
-                <CircleUserRound /> <span>{userData?.displayName}</span>
+                <CircleUserRound /> <span>{userData?.artist}</span>
               </Link>
               <Link
                 className={cx(
                   activeSegments[1] === "likes" && "nav-content__active"
                 )}
-                href={`/${userData?.uid}/likes`}
+                href={`/${userData?.id}/likes`}
               >
                 <Heart />
                 <span>Likes</span>
@@ -105,7 +105,7 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
                     search === "following" &&
                     "nav-content__active"
                 )}
-                href={`/${userData?.uid}/following`}
+                href={`/${userData?.id}/following`}
               >
                 <UserCheck /> <span>Following</span>
               </Link>
@@ -121,7 +121,7 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
                 className={cx(
                   activeSegments[0] === "release" && "nav-content__active"
                 )}
-                href={`/dashboard/${userData?.uid}/release?s=1`}
+                href={`/dashboard/${userData?.id}/release?s=1`}
               >
                 <CloudUpload /> <span>Release</span>
               </Link>
