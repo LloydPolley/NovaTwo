@@ -1,5 +1,4 @@
 import { create } from "zustand";
-import { getUserData } from "../api/getUserData";
 
 interface AuthStore {
   userData: any;

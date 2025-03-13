@@ -1,8 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
 import EP from "../EP";
-import { TrackType } from "@/types/tracks";
 import { ReleaseType } from "@/types/releases";
 
 type TrackListProps = {

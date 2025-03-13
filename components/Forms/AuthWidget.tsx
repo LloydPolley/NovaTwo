@@ -14,14 +14,15 @@ function SignInScreen() {
   console.log("userData", userData);
   // console.log("userData", userData !== und);
   console.log("showLogin", showLogin);
+  console.log("showLogin", showLogin);
 
   // const isUserDataNull = userData
 
-  if (userData !== undefined && showLogin) {
-    redirect(`/${userData?.id}?f=all`, RedirectType.push);
-  } else if (userData !== null && !showLogin) {
-    redirect(`/edit`, RedirectType.push);
-  }
+  // if (userData !== undefined && showLogin) {
+  //   redirect(`/${userData?.id}?f=all`, RedirectType.push);
+  // } else if (userData !== undefined && !showLogin) {
+  //   redirect(`/edit`, RedirectType.push);
+  // }
 
   const textToggle = showLogin
     ? "Need an account? Create one here"

@@ -5,9 +5,23 @@ import useAudioStore from "../../../context/AudioStore";
 import Image from "next/image";
 import useAuthStore from "../../../context/AuthStore";
 import Like from "@/components/LayoutComps/Buttons/Like";
+import { TrackType } from "@/types/tracks";
+import { ReleaseType } from "@/types/releases";
 
-const Track = ({ item }) => {
-  const { artist, artwork, audio, uid, title, id } = item || {};
+type TrackProps = {
+  item: TrackType | ReleaseType;
+};
+
+const isTrack = (item: TrackType | ReleaseType): item is TrackType => {
+  return "audio" in item;
+};
+
+const Track = ({ item }: TrackProps) => {
+  const id = item.id;
+  const title = item.title;
+  const artwork = item.artwork;
+  const uid = item.uid;
+  const audio = isTrack(item) ? item.audio : "";
 
   const { isPlaying, trackContext, playContext, pauseContext } = useAudioStore(
     (state) => state
@@ -22,7 +36,7 @@ const Track = ({ item }) => {
       className=""
       key={id}
       onClick={() => {
-        if (audio) {
+        if (isTrack(item)) {
           !isPlayingLocal ? playContext(item) : pauseContext();
         }
       }}
@@ -53,9 +67,9 @@ const Track = ({ item }) => {
           onClick={(e) => e.stopPropagation()}
           href={`/${uid}`}
         >
-          {artist}
+          {item.artist}
         </Link>
-        {userData?.id && audio && (
+        {userData?.id && isTrack(item) && (
           <div className="absolute right-2 top-4">
             <Like track={item} />
           </div>

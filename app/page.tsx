@@ -1,18 +1,43 @@
 import Carousel from "../components/Music/Carousel";
-import Hero from "../components/LayoutComps/Hero";
 import Track from "../components/Music/Track";
 import UserWidget from "../components/User/UserWidget";
 import { db } from "@/db/drizzle";
-import { tracks } from "@/db/schema";
+import { tracks, users, releases } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import Header from "@/components/Header/Header";
 
 export default async function Dj() {
-  const usersData = await db.query.users.findMany({});
-  const tracksData = await db.query.releases.findMany({});
-  const mixData = await db.query.tracks.findMany({
-    where: eq(tracks.mix, true),
-  });
+  const usersData = await db
+    .select({
+      id: users.id,
+      artist: users.artist,
+      email: users.email,
+      artwork: users.artwork,
+      createdAt: users.createdAt,
+    })
+    .from(users);
+
+  const tracksData = await db
+    .select({
+      id: releases.id,
+      title: releases.title,
+      artwork: releases.artwork,
+      uid: releases.uid,
+    })
+    .from(releases);
+
+  const mixData = await db
+    .select({
+      id: tracks.id,
+      artist: tracks.artist,
+      title: tracks.title,
+      artwork: tracks.artwork,
+      audio: tracks.audio,
+      uid: tracks.uid,
+      mix: tracks.mix,
+    })
+    .from(tracks)
+    .where(eq(tracks.mix, true));
 
   return (
     <>

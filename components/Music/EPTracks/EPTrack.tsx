@@ -14,7 +14,7 @@ const Track = ({ item, index }) => {
 
   const { userData } = useAuthStore((state) => state);
 
-  const isPlayingLocal = isPlaying && trackContext?.audioFileLocation === audio;
+  const isPlayingLocal = isPlaying && trackContext?.audio === audio;
 
   return (
     <div

@@ -1,13 +1,16 @@
 "use client";
 
-import classNames from "classnames/bind";
 import Link from "next/link";
 import { TrackType } from "../../../types/tracks";
-import { UserListType, UserType } from "@/types/users";
+import { UserType } from "@/types/users";
+import { ReleaseCarouselType } from "@/types/releases";
 
 type CarouselTypes = {
-  Component: React.ComponentType<{ item: TrackType; type?: string }>;
-  items: UserType[];
+  Component: React.ComponentType<{
+    item: TrackType | UserType | ReleaseCarouselType;
+    type?: string;
+  }>;
+  items: (TrackType | UserType | ReleaseCarouselType)[];
   text?: string;
   url?: string;
 };
@@ -32,7 +35,7 @@ const Carousel = ({ Component, items, text, url }: CarouselTypes) => {
             return (
               <div
                 className="flex-pixels overflow-ellipsis whitespace-nowrap overflow-hidden scroll-snap-start first:ml-[15px] lg:first:ml-[0px]"
-                key={item?.id || item?.uid}
+                key={item.id}
               >
                 <Component item={item} />
               </div>

@@ -20,8 +20,6 @@ export default async function ReleasePage({ params, searchParams }) {
   });
   const { s, t, i } = searchParams;
 
-  console.log("release Page ----");
-
   return (
     <Form title={t || TITLES[s - 1]}>
       {s === "1" && <PickerForm />}

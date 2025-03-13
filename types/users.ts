@@ -7,5 +7,5 @@ export type UserType = {
   artist: string;
   email: string;
   artwork: string;
-  createdAt: Date;
+  createdAt: any;
 };

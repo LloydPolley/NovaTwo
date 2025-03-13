@@ -36,8 +36,6 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
   const searchParams = useSearchParams();
   const search = searchParams.get("f");
 
-  console.log("userData", userData);
-
   return (
     <Suspense>
       <div className={cx("nav-content", open && "nav-content__open")}>
