@@ -3,7 +3,6 @@
 import Link from "next/link";
 
 const UserWidget = ({ item }) => {
-  console.log("item", item);
   const { id, artwork, artist } = item;
   return (
     <div className="w-full h-full">

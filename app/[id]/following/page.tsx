@@ -11,9 +11,10 @@ export default function FollowPage() {
     <div className="rounded flex-grow">
       <Header title="Following" />
       <div className="grid gap-5 w-full p-5 flex-grow flex-wrap grid-cols-2 md:grid-cols-4 xl:grid-cols-6">
-        {followers?.map((user) => (
-          <UserWidget item={user} key={user?.uid} />
-        ))}
+        {followers?.map((user) => {
+          if (!user) return;
+          return <UserWidget key={user?.uid} item={user} />;
+        })}
       </div>
     </div>
   );
