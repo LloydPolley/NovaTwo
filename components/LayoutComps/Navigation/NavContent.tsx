@@ -113,7 +113,7 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
                 )}
                 href={`/profile`}
               >
-                <LayoutDashboard /> <span>Dashboard</span>
+                <LayoutDashboard /> <span>Edit</span>
               </Link>
               <Link
                 className={cx(

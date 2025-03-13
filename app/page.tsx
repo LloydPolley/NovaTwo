@@ -17,10 +17,11 @@ export default async function Dj() {
     })
     .from(users);
 
-  const tracksData = await db
+  const releasesData = await db
     .select({
       id: releases.id,
       title: releases.title,
+      artist: releases.artist,
       artwork: releases.artwork,
       uid: releases.uid,
     })
@@ -41,7 +42,7 @@ export default async function Dj() {
 
   return (
     <>
-      <Header title="Dashboard" />
+      <Header title="Overview" />
       <div className="flex flex-col gap-6 mt-5">
         <Carousel
           Component={UserWidget}
@@ -50,7 +51,7 @@ export default async function Dj() {
         />
         <Carousel
           Component={Track}
-          items={tracksData}
+          items={releasesData}
           text={"Releases"}
           url={"f=releases"}
         />

@@ -54,6 +54,7 @@ export default function RootLayout(props) {
           name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
         />
+        <title>Nova2</title>
       </head>
       <body id="body">
         <GlobalProvider>
