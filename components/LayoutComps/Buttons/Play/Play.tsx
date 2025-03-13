@@ -3,8 +3,6 @@
 import { MouseEventHandler } from "react";
 import classNames from "classnames/bind";
 import styles from "./Play.module.scss";
-import PlayIcon from "../../../Icons/PlayIcon";
-import PauseIcon from "../../../Icons/PauseIcon";
 import { Pause, Play } from "lucide-react";
 
 type PlayProps = {
