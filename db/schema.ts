@@ -3,7 +3,7 @@ import {
   varchar,
   timestamp,
   boolean,
-  uniqueIndex,
+  unique,
 } from "drizzle-orm/pg-core";
 
 export const users = pgTable("users", {
@@ -54,9 +54,7 @@ export const likes = pgTable(
       .notNull(),
     createdAt: timestamp("created_at").defaultNow().notNull(),
   },
-  (table) => ({
-    uniqueLike: uniqueIndex("unique_like").on(table.uid, table.trackId),
-  })
+  (table) => [unique().on(table.uid, table.trackId)]
 );
 
 export const followers = pgTable("followers", {
