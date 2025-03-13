@@ -5,9 +5,12 @@ import { eq } from "drizzle-orm";
 
 export async function PATCH(req: Request) {
   try {
-    const { id, artwork } = await req.json();
+    const { id, artwork }: { id: string; artwork: string } = await req.json();
 
-    await db.update(users).set({ artwork }).where(eq(users.id, id));
+    await db
+      .update(users)
+      .set({ artwork } as Partial<typeof users.$inferSelect>)
+      .where(eq(users.id, id));
 
     return NextResponse.json({ message: "Photo updated successfully" });
   } catch (error) {
