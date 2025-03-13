@@ -16,7 +16,7 @@ const AudioWidget = ({ audioRef }) => {
       name: "Welcome To The Opera",
       writer: "Anyma",
       img: "https://firebasestorage.googleapis.com/v0/b/novatwo-f3f41.appspot.com/o/Anyma%2Ftracks%2FWelcome%20To%20The%20Opera%2Fartwork%2Fanyma%20welcome%20to%20the%20opera.jpeg?alt=media&token=4eff78c0-1d0d-4e7c-abf2-52dea16abe23",
-      src: `${trackContext?.audioFileLocation}`,
+      src: `${trackContext?.audio}`,
       id: 1,
     },
   ];

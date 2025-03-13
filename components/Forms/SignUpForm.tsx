@@ -12,12 +12,13 @@ function SignInForm({ Switcher }) {
   } = useForm();
 
   const onSubmit = async (data) => {
-    const { email, password, displayName } = data;
-    const details = await registerUser({ email, password, displayName });
+    const { email, password, artist } = data;
+    console.log("artist", artist);
+    const details = await registerUser({ email, password, artist });
 
     if (details) {
       setError("login", {
-        type: details.code,
+        type: details?.code,
       });
     }
   };
@@ -40,15 +41,15 @@ function SignInForm({ Switcher }) {
           required
         />
 
-        <label htmlFor="displayName">Display Name</label>
+        <label htmlFor="artist">Display Name</label>
         <input
-          id="displayName"
-          placeholder="Display Name"
-          {...register("displayName")}
+          id="artist"
+          placeholder="Artist Name"
+          {...register("artist")}
           required
         />
 
-        {errors.login && <p>{errors.login.type.toString()}</p>}
+        {/* {errors.login && <p>{errors}</p>} */}
         <input type="submit" value="Create Account" />
         <Switcher />
       </form>

@@ -4,31 +4,19 @@ export type TrackListProps = {
 };
 
 export type TrackType = {
-  featured?: boolean;
-  date: string;
+  id: string;
   artist: string;
-  trackName: string;
+  title: string;
+  artwork: string;
+  audio: string;
   uid: string;
-  name: string;
-  artworkFileLocation?: string;
-  artwork?: string;
-  audioFileLocation: string;
-  trackId: string;
   mix: boolean;
-  releaseId: string;
 };
 
 export type TrackWrapperProps = {
   tracks: TrackType[];
   uid?: string;
   params?: { id: string };
+  id: string;
   isArtist?: boolean;
-};
-
-export type ReleaseType = {
-  date: string;
-  artist: string;
-  artworkFileLocation?: string;
-  releaseId: string;
-  name: string;
 };

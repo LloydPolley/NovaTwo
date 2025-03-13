@@ -1,54 +1,35 @@
-import classNames from "classnames/bind";
-import styles from "./discover.module.scss";
-import TrackContainer from "../../components/Music/TrackContainer";
-import { getTracksWhere, getAllReleases } from "../../api/getTracks";
 import FilterBar from "../../components/LayoutComps/FilterBar";
-import { Suspense } from "react";
-import ArtistHero from "../../components/ArtistHero";
-
-const cx = classNames.bind(styles);
-
-const FILTER_TYPES = {
-  RELEASES: "releases",
-  MIX: "mix",
-};
+import TrackContainer from "@/components/Music/TrackContainer";
+import { db } from "@/db/drizzle";
+import { eq } from "drizzle-orm";
+import { tracks } from "@/db/schema";
+import Header from "@/components/Header/Header";
+import { TrackType } from "@/types/tracks";
+import { ReleaseType } from "@/types/releases";
 
 const filters = [
-  { label: "Releases", url: `?f=${FILTER_TYPES.RELEASES}` },
-  { label: "Mix", url: `?f=${FILTER_TYPES.MIX}` },
+  { label: "Releases", url: `?f=releases` },
+  { label: "Mix", url: `?f=mix` },
 ];
 
-const IMAGES = {
-  releases: "./3.jpg",
-  mix: "./2.jpg",
-};
+export default async function Dj({ searchParams: { f = "releases" } }) {
+  const title = f === "mix" ? "Live Mixes" : "Releases";
 
-const TITLES = {
-  mix: "Live Mixes",
-  releases: "Releases",
-};
-
-const filterFunctions = {
-  [FILTER_TYPES.RELEASES]: () => getAllReleases(),
-  [FILTER_TYPES.MIX]: () => getTracksWhere("mix", true),
-};
-
-export default async function Dj({ searchParams: { f, order }, params }) {
-  const filterType = f;
-
-  const filterFunction = filterFunctions[filterType];
-  const tracks = await filterFunction();
-
-  const img = IMAGES[filterType];
-  const text = TITLES[filterType];
+  const items = await (f === "mix"
+    ? (db.query.tracks.findMany({
+        where: eq(tracks.mix, true),
+      }) as Promise<TrackType[]>)
+    : (db.query.releases.findMany({
+        with: {
+          tracks: true,
+        },
+      }) as Promise<ReleaseType[]>));
 
   return (
-    <div className={cx("discover", `discover__${filterType}`)}>
-      <ArtistHero title={text} user={{}} imgBox={img} box />
+    <div className="flex-1">
+      <Header title={title} />
       <FilterBar searchParams={{ f }} filters={filters} />
-      <Suspense>
-        <TrackContainer trackList={tracks} />
-      </Suspense>
+      <TrackContainer trackList={items} />
     </div>
   );
 }

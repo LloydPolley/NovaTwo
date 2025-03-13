@@ -17,6 +17,8 @@ function LoginForm({ signIn, Switcher }) {
   const onSubmit = async ({ email, password }) => {
     const signInDetails = await signIn(email, password);
 
+    console.log("signInDetails", signInDetails);
+
     if (signInDetails) {
       setError("login", {
         type: signInDetails.code,

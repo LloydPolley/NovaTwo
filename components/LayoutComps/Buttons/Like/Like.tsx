@@ -3,31 +3,28 @@
 import { useEffect, useState } from "react";
 import classNames from "classnames/bind";
 import styles from "./Like.module.scss";
-import Favourite from "../../../Icons/Favourite";
-import FavouriteFilled from "../../../Icons/FavouriteFilled";
 import useLikesStore from "../../../../context/LikesStore";
 import useAuthStore from "../../../../context/AuthStore";
+import { Heart } from "lucide-react";
 
 const cx = classNames.bind(styles);
 
 function Like({ track }) {
-  const { trackId } = track || {};
+  const { id } = track || {};
   const [isLiked, setIsLiked] = useState(false);
   const { likes, addLike, removeLike } = useLikesStore((state) => state);
 
   const { userData } = useAuthStore((state) => state);
 
-  const clickHandler = () => {
-    const trackDetails = { ...track, currentUser: userData?.uid };
-    console.log("click handler", !isLiked);
-    !isLiked ? addLike(trackDetails) : removeLike(trackDetails);
+  const clickHandler = async () => {
+    const trackDetails = { ...userData, ...track, currentUser: userData?.id };
+    isLiked
+      ? removeLike(trackDetails, userData)
+      : addLike(trackDetails, userData);
   };
 
   useEffect(() => {
-    const isLikedByUser = likes.find(
-      (likedTrack) => likedTrack.trackId === trackId
-    );
-    console.log(!!isLikedByUser);
+    const isLikedByUser = likes?.find((like) => like.id === id);
     setIsLiked(!!isLikedByUser);
   }, [likes]);
 
@@ -39,7 +36,7 @@ function Like({ track }) {
         clickHandler();
       }}
     >
-      {!isLiked ? <Favourite /> : <FavouriteFilled />}
+      {isLiked ? <Heart fill="white" /> : <Heart />}
     </button>
   );
 }

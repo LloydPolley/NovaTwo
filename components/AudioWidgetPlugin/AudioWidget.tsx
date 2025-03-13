@@ -35,11 +35,9 @@ const AudioWidget = () => {
     >
       <div className={cx("audio-widget__flex")}>
         <div className={cx("audio-widget__track")}>
-          <img
-            src={trackContext?.artworkFileLocation || trackContext?.artwork}
-          />
+          <img src={trackContext?.artwork} />
           <div className={cx("audio-widget__details")}>
-            <p>{trackContext?.name || "Track"}</p>
+            <p>{trackContext?.title || "Track"}</p>
             <p>{trackContext?.artist || "Artist"}</p>
           </div>
           <div className={cx("audio-widget__btn")}>
