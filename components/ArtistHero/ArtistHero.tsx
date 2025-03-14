@@ -41,7 +41,7 @@ const AritstHero = ({ title, img, uid }: HeroProps) => {
           {title}
         </h1>
       </div>
-      {userData && !yourProfile && (
+      {/* {userData && !yourProfile && (
         <div className="z-10 flex flex-col justify-end p-4 md:p-5">
           <button
             className="bg-blue-500 text-white font-bold text-lg border-2 border-transparent rounded-3xl px-5 py-2 shadow-md hover:bg-blue-600"
@@ -50,7 +50,7 @@ const AritstHero = ({ title, img, uid }: HeroProps) => {
             <UserPlus />
           </button>
         </div>
-      )}
+      )} */}
     </div>
   );
 };
