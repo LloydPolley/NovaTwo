@@ -97,7 +97,7 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
                 <Heart />
                 <span>Likes</span>
               </Link>
-              <Link
+              {/* <Link
                 className={cx(
                   activeSegments.length === 0 &&
                     search === "following" &&
@@ -106,7 +106,7 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
                 href={`/${userData?.id}/following`}
               >
                 <UserCheck /> <span>Following</span>
-              </Link>
+              </Link> */}
               <Link
                 className={cx(
                   activeSegments[0] === "edit" && "nav-content__active"
