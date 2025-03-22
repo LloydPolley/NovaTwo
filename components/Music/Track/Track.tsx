@@ -8,16 +8,16 @@ import Like from "@/components/LayoutComps/Buttons/Like";
 import { TrackType } from "@/types/tracks";
 import { ReleaseType } from "@/types/releases";
 
-type TrackProps = {
-  item: TrackType | ReleaseType;
-  releaseId?: string;
-};
+// type TrackProps = {
+//   item: TrackType | ReleaseType;
+//   releaseId?: string;
+// };
 
 const isTrack = (item: TrackType | ReleaseType): item is TrackType => {
   return "audio" in item;
 };
 
-const Track = ({ item, releaseId }: TrackProps) => {
+const Track = ({ item, releaseId }) => {
   const id = item.id;
   const title = item.title;
   const artwork = item.artwork;
@@ -72,7 +72,7 @@ const Track = ({ item, releaseId }: TrackProps) => {
         </Link>
         {userData?.id && isTrack(item) && (
           <div className="absolute right-2 top-4">
-            <Like track={item} artwork={artwork} artist={item.artist} />
+            <Like track={item} />
           </div>
         )}
       </div>
