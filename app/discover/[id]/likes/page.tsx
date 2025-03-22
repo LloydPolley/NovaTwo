@@ -10,7 +10,7 @@ export default function Likes() {
   return (
     <div className="rounded flex-grow">
       <Header title={"Likes"} />
-      <TrackContainer trackList={likes} />
+      <TrackContainer tracks={likes} />
     </div>
   );
 }

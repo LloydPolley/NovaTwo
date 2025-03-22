@@ -1,6 +1,7 @@
 @import "../../../styles/mixins.scss";
 
 .form {
+  background-color: black;
   &__load {
     pointer-events: none;
     opacity: 0;

@@ -162,6 +162,34 @@
       "when": 1740796574344,
       "tag": "0022_keen_mongoose",
       "breakpoints": true
+    },
+    {
+      "idx": 23,
+      "version": "7",
+      "when": 1742249979040,
+      "tag": "0023_soft_namor",
+      "breakpoints": true
+    },
+    {
+      "idx": 24,
+      "version": "7",
+      "when": 1742346102376,
+      "tag": "0024_fearless_groot",
+      "breakpoints": true
+    },
+    {
+      "idx": 25,
+      "version": "7",
+      "when": 1742608457749,
+      "tag": "0025_fat_riptide",
+      "breakpoints": true
+    },
+    {
+      "idx": 26,
+      "version": "7",
+      "when": 1742608504438,
+      "tag": "0026_slimy_skin",
+      "breakpoints": true
     }
   ]
 }

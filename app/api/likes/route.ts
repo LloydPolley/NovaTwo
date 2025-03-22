@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { db } from "@/db/drizzle";
 import { likes } from "@/db/schema";
 import { eq, and } from "drizzle-orm";
+import { users, tracks, releases } from "@/db/schema";
 
 export async function POST(req: Request) {
   try {
@@ -55,16 +56,22 @@ export async function GET(req: Request) {
     const { searchParams } = new URL(req.url);
     const uid = searchParams.get("uid");
 
-    const userLikes = await db.query.likes.findMany({
-      where: eq(likes.uid, uid),
-      with: {
-        tracks: true,
-      },
-    });
+    const userLikes = await db
+      .select({
+        id: tracks.id,
+        title: tracks.title,
+        audio: tracks.audio,
+        uid: tracks.uid,
+        artist: users.artist,
+        artwork: releases.artwork,
+      })
+      .from(likes)
+      .leftJoin(tracks, eq(likes.trackId, tracks.id))
+      .leftJoin(users, eq(tracks.uid, users.id))
+      .leftJoin(releases, eq(tracks.releaseId, releases.id))
+      .where(eq(likes.uid, uid));
 
-    const tracksOnly = userLikes.map((like) => like.tracks);
-
-    return NextResponse.json({ likes: tracksOnly }, { status: 201 });
+    return NextResponse.json({ likes: userLikes }, { status: 201 });
   } catch (error) {
     console.error("Error getting likes:", error);
     return NextResponse.json(

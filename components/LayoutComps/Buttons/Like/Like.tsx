@@ -17,7 +17,11 @@ function Like({ track }) {
   const { userData } = useAuthStore((state) => state);
 
   const clickHandler = async () => {
-    const trackDetails = { ...userData, ...track, currentUser: userData?.id };
+    const trackDetails = {
+      ...userData,
+      ...track,
+      currentUser: userData?.id,
+    };
     isLiked
       ? removeLike(trackDetails, userData)
       : addLike(trackDetails, userData);

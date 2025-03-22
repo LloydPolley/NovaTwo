@@ -19,7 +19,7 @@ function ProfileForm({}) {
 
   useEffect(() => {
     if (complete) {
-      redirect(`/${userData?.id}?f=all`, RedirectType.push);
+      redirect(`/discover/${userData?.id}`, RedirectType.push);
     }
   }, [complete]);
 
@@ -56,7 +56,7 @@ function ProfileForm({}) {
   }
 
   return (
-    <Form title="Upload Profile" loading={loading}>
+    <Form loading={loading}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="profile-upload">Profile image</label>
         <input
@@ -70,7 +70,31 @@ function ProfileForm({}) {
             setProfileImg(file?.name);
           }}
         />
-        <input type="submit" value="Upload" disabled={loading} />
+        <input
+          id="artist"
+          placeholder="Artist Name"
+          {...register("artist")}
+          required
+        />
+        <input
+          id="instagram"
+          placeholder="Instagram"
+          {...register("instagram")}
+          required
+        />
+        <input
+          id="spotify"
+          placeholder="Spotify"
+          {...register("spotify")}
+          required
+        />
+        <input
+          id="soundcloud"
+          placeholder="Soundcloud"
+          {...register("soundcloud")}
+          required
+        />
+        <input type="submit" value="Save" disabled={loading} />
       </form>
     </Form>
   );

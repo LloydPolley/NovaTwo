@@ -1,11 +1,7 @@
-import Navigation from "../components/LayoutComps/Navigation";
-import NavContent from "../components/LayoutComps/Navigation/NavContent";
 import AudioWidget from "../components/AudioWidgetPlugin";
 import { Lato, Raleway, Poppins, Anton, Bebas_Neue } from "next/font/google";
-
 import "./globals.scss";
-import Wrapper from "../components/LayoutComps/Wrapper";
-import { Suspense } from "react";
+
 import GlobalProvider from "../context/GlobalContext";
 import { Analytics } from "@vercel/analytics/react";
 
@@ -58,13 +54,7 @@ export default function RootLayout(props) {
       </head>
       <body id="body">
         <GlobalProvider>
-          <Suspense>
-            <Navigation />
-            <div className={"side-bar"}>
-              <NavContent />
-              <Wrapper>{children}</Wrapper>
-            </div>
-          </Suspense>
+          {children}
           <AudioWidget />
         </GlobalProvider>
         <Analytics />

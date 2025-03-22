@@ -156,7 +156,7 @@ label {
       margin: 10px auto;
       font-weight: 600;
       border-radius: 10px;
-      margin-top: 30px;
+      margin-top: 20px;
     }
   }
 }
@@ -256,4 +256,23 @@ ul li {
 
 .scroll-snap-start {
   scroll-snap-align: start;
+}
+
+.login_page {
+  background: linear-gradient(-45deg, #240046, #5a189a, #9d4edd, #4895ef);
+  background-size: 400% 400%;
+  animation: gradient 10s ease infinite;
+  height: 100vh;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }

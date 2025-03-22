@@ -11,13 +11,15 @@ export const users = pgTable("users", {
   artist: varchar("artist", { length: 255 }).notNull(),
   artwork: varchar("artwork", { length: 500 }),
   email: varchar().notNull(),
+  spotify: varchar("spotify", { length: 255 }),
+  instagram: varchar("instagram", { length: 255 }),
+  soundcloud: varchar("soundcloud", { length: 255 }),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
 export const releases = pgTable("releases", {
   id: varchar("id", { length: 255 }).primaryKey(),
   title: varchar("title", { length: 255 }).notNull(),
-  artist: varchar("artist", { length: 255 }).notNull(),
   artwork: varchar("artwork", { length: 255 }).notNull(),
   uid: varchar("uid", { length: 255 })
     .references(() => users.id, { onDelete: "cascade" })
@@ -34,8 +36,6 @@ export const tracks = pgTable("tracks", {
     .references(() => users.id, { onDelete: "cascade" })
     .notNull(),
   title: varchar("title", { length: 500 }).notNull(),
-  artist: varchar("artist", { length: 500 }).notNull(),
-  artwork: varchar("artwork", { length: 500 }).notNull(),
   audio: varchar("audio", { length: 500 }).notNull(),
   mix: boolean("mix").notNull(),
   duration: varchar("duration").notNull(),

@@ -134,10 +134,7 @@ function UploadMultiTrackForm({ release }) {
           className="w-full bg-blue-500 text-white rounded py-2 cursor-pointer disabled:bg-blue-300"
         />
       </form>
-      <a
-        className="block text-center text-blue-500 mt-4"
-        href={`/${uid}?f=all`}
-      >
+      <a className="block text-center text-blue-500 mt-4" href={`/${uid}`}>
         Done
       </a>
     </>

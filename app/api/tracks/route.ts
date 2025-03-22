@@ -5,7 +5,7 @@ import { revalidatePath } from "next/cache";
 
 export async function POST(req: Request) {
   try {
-    const { title, releaseId, audio, id, mix, duration, uid, artist, artwork } =
+    const { title, releaseId, audio, id, mix, duration, uid } =
       await req.json();
 
     const [track] = await db
@@ -15,8 +15,6 @@ export async function POST(req: Request) {
         releaseId,
         uid,
         title,
-        artist,
-        artwork,
         audio,
         mix,
         duration,

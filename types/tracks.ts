@@ -5,9 +5,7 @@ export type TrackListProps = {
 
 export type TrackType = {
   id: string;
-  artist: string;
   title: string;
-  artwork: string;
   audio: string;
   uid: string;
   mix: boolean;
