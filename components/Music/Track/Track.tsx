@@ -8,15 +8,16 @@ import Like from "@/components/LayoutComps/Buttons/Like";
 import { TrackType } from "@/types/tracks";
 import { ReleaseType } from "@/types/releases";
 
-type TrackProps = {
-  item: TrackType | ReleaseType;
-};
+// type TrackProps = {
+//   item: TrackType | ReleaseType;
+//   releaseId?: string;
+// };
 
 const isTrack = (item: TrackType | ReleaseType): item is TrackType => {
   return "audio" in item;
 };
 
-const Track = ({ item }: TrackProps) => {
+const Track = ({ item, releaseId }) => {
   const id = item.id;
   const title = item.title;
   const artwork = item.artwork;
@@ -47,13 +48,13 @@ const Track = ({ item }: TrackProps) => {
           onClick={(e) => {
             audio ? e.preventDefault() : e.stopPropagation();
           }}
-          href={audio ? "#" : `/${uid}?f=all&name=${title}`}
+          href={audio ? "#" : `/discover/${uid}/${releaseId || id}`}
         >
           <Image
             className="rounded-3xl"
-            src={artwork || artwork}
+            src={artwork}
             placeholder="blur"
-            blurDataURL={artwork || artwork}
+            blurDataURL={artwork}
             alt={title}
             fill
             style={{ objectFit: "cover" }}
@@ -65,7 +66,7 @@ const Track = ({ item }: TrackProps) => {
         <Link
           className="text-widgetBlack-400 text-sm"
           onClick={(e) => e.stopPropagation()}
-          href={`/${uid}`}
+          href={`/discover/${uid}`}
         >
           {item.artist}
         </Link>

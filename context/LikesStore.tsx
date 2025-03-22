@@ -50,7 +50,7 @@ const fetchLikes = async (uid) => {
   return data;
 };
 
-const useLikesStore = create<LikesStore>()((set) => ({
+const useLikesStore = create<LikesStore>()((set, get) => ({
   likes: null,
   setLikes: async (userData) => {
     const likes = await fetchLikes(userData?.id);
@@ -61,10 +61,7 @@ const useLikesStore = create<LikesStore>()((set) => ({
       uid: userData?.id,
       trackId: like.id,
     });
-    if (success)
-      set((state) => {
-        return { likes: [...state.likes, like] };
-      });
+    if (success) get().setLikes(userData);
   },
   removeLike: async (track, userData) => {
     const success = await removeLike({ track, userData });

@@ -5,14 +5,13 @@ import { revalidatePath } from "next/cache";
 
 export async function POST(req: Request) {
   try {
-    const { uid, title, artwork, id, artist } = await req.json();
+    const { uid, title, artwork, id } = await req.json();
 
     const [release] = await db
       .insert(releases)
       .values({
         id,
         uid,
-        artist,
         title,
         artwork,
       })

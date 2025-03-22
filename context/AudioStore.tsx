@@ -3,7 +3,7 @@ import { TrackType } from "../types/tracks";
 
 type AudioStore = {
   isPlaying: boolean;
-  trackContext: TrackType;
+  trackContext;
   audioRef: React.MutableRefObject<HTMLAudioElement | null>;
   playContext: (track: TrackType) => void;
   pauseContext: () => void;

@@ -3,6 +3,13 @@
 import { useForm } from "react-hook-form";
 import Form from "../Form/Form";
 import Input from "../Input";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+const schema = z.object({
+  email: z.string().email("Invalid email address"),
+  password: z.string().min(8, "Password must be at least 8 characters"),
+});
 
 function LoginForm({ signIn, Switcher }) {
   const {
@@ -12,7 +19,9 @@ function LoginForm({ signIn, Switcher }) {
     clearErrors,
     watch,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    resolver: zodResolver(schema),
+  });
 
   const onSubmit = async ({ email, password }) => {
     const signInDetails = await signIn(email, password);
@@ -20,20 +29,19 @@ function LoginForm({ signIn, Switcher }) {
     console.log("signInDetails", signInDetails);
 
     if (signInDetails) {
-      setError("login", {
+      setError("email", {
         type: signInDetails.code,
       });
     }
   };
 
   const onChange = () => {
-    clearErrors("login");
+    clearErrors("email");
   };
 
   return (
-    <Form title={"Login to Your Account"}>
+    <Form title={"Sign In"}>
       <form onChange={onChange} onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="email">Email</label>
         <Input
           classNames=""
           id="email"
@@ -41,7 +49,6 @@ function LoginForm({ signIn, Switcher }) {
           register={register("email")}
           onInputFunc={() => {}}
         />
-        <label htmlFor="password">Password</label>
         <input
           id="password"
           placeholder="Your Password"
@@ -49,8 +56,8 @@ function LoginForm({ signIn, Switcher }) {
           name="password"
           {...register("password")}
         />
-        {errors.login && <p>{errors.login.type.toString()}</p>}
-        <input className="submit" type="submit" value="Login" />
+        {errors.email && <p>{errors.email.message}</p>}
+        <input className="submit" type="submit" value="Sign In" />
         <Switcher />
       </form>
     </Form>

@@ -11,8 +11,8 @@ function SignInScreen() {
   const [showLogin, setShowLogin] = useState(true);
   const { userData } = useAuthStore((state) => state);
 
-  if (userData !== undefined && showLogin) {
-    redirect(`/${userData?.id}?f=all`, RedirectType.push);
+  if (!!userData && showLogin) {
+    redirect(`/discover/${userData?.id}`, RedirectType.push);
   }
 
   const textToggle = showLogin

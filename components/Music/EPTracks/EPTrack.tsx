@@ -6,7 +6,7 @@ import useAuthStore from "../../../context/AuthStore";
 import { HandHeart, Timer, Disc3, Library } from "lucide-react";
 
 const Track = ({ item, index }) => {
-  const { artist, audio, uid, title, artwork, mix, duration, id } = item || {};
+  const { audio, uid, title, mix, duration, id } = item || {};
 
   const { isPlaying, trackContext, playContext, pauseContext } = useAudioStore(
     (state) => state
@@ -15,6 +15,8 @@ const Track = ({ item, index }) => {
   const { userData } = useAuthStore((state) => state);
 
   const isPlayingLocal = isPlaying && trackContext?.audio === audio;
+
+  // console.log("item", item);
 
   return (
     <div
@@ -36,20 +38,17 @@ const Track = ({ item, index }) => {
         <p className="w-12 text-center">
           {duration === 0 ? <Timer className="m-auto" /> : duration}
         </p>
-        {userData?.id && id !== "row" ? (
+        {userData?.id && id !== "row" && (
           <Like
             track={{
-              artist,
               title,
-              artwork,
               audio,
               uid,
               id,
             }}
           />
-        ) : (
-          <HandHeart />
         )}
+        {id === "row" && <HandHeart />}
       </div>
     </div>
   );

@@ -4,12 +4,6 @@ import { Suspense } from "react";
 import classNames from "classnames/bind";
 import style from "./Navigation.module.scss";
 import Link from "next/link";
-import {
-  useSelectedLayoutSegments,
-  useRouter,
-  usePathname,
-  useSearchParams,
-} from "next/navigation";
 import { signOutUser } from "../../../api/login";
 import useAuthStore from "../../../context/AuthStore";
 import {
@@ -21,6 +15,7 @@ import {
   UserCheck,
   LayoutDashboard,
   CloudUpload,
+  Plus,
 } from "lucide-react";
 
 type NavTypes = {
@@ -32,9 +27,38 @@ const cx = classNames.bind(style);
 
 const NavContent = ({ open, closeNav }: NavTypes) => {
   const { userData } = useAuthStore((state) => state);
-  const activeSegments = useSelectedLayoutSegments();
-  const searchParams = useSearchParams();
-  const search = searchParams.get("f");
+
+  const loggedIn = [
+    {
+      icon: <CircleUserRound />,
+      href: `/discover/${userData?.id}`,
+      text: userData?.artist,
+    },
+    { icon: <Heart />, href: `/discover/${userData?.id}/likes`, text: "Likes" },
+    // {
+    //   icon: <UserCheck />,
+    //   href: `/${userData?.id}/following`,
+    //   text: "Following",
+    // },
+  ];
+
+  const dashboard = [
+    {
+      icon: <LayoutDashboard />,
+      href: `/dashboard`,
+      text: "Profile",
+    },
+    {
+      icon: <Plus />,
+      href: `/dashboard/release?s=1`,
+      text: "Create",
+    },
+    // {
+    //   icon: <CloudUpload />,
+    //   href: `/dashboard/releases`,
+    //   text: "Releases",
+    // },
+  ];
 
   return (
     <Suspense>
@@ -45,86 +69,32 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
             <span>Nova</span>
           </Link>
           <p className={cx("nav-content__category")}>FEATURED</p>
-          <Link
-            className={cx(
-              activeSegments.length === 0 &&
-                search == "tracks" &&
-                "nav-content__active"
-            )}
-            href="/discover/?f=releases"
-          >
+          <Link href="/discover/releases">
             <Library /> <span>Releases</span>
           </Link>
-          <Link
-            className={cx(
-              activeSegments.length === 0 &&
-                search === "mix" &&
-                "nav-content__active"
-            )}
-            href="/discover?f=mix"
-          >
+          <Link href="/discover/mix">
             <Disc3 /> <span>Mix</span>
           </Link>
           <p className={cx("nav-content__category")}>MY MUSIC</p>
           {!userData?.email ? (
-            <Link
-              className={cx(
-                activeSegments[0] == "login" && "nav-content__active"
-              )}
-              href="/login"
-            >
+            <Link href="/auth/login">
               <CircleUserRound /> <span>Sign In</span>
             </Link>
           ) : (
             <>
-              <Link
-                className={cx(
-                  activeSegments[0] === userData.id &&
-                    activeSegments[1] === "all" &&
-                    "nav-content__active"
-                )}
-                href={`/${userData?.id}?f=all`}
-                onClick={closeNav}
-              >
-                <CircleUserRound /> <span>{userData?.artist}</span>
-              </Link>
-              <Link
-                className={cx(
-                  activeSegments[1] === "likes" && "nav-content__active"
-                )}
-                href={`/${userData?.id}/likes`}
-              >
-                <Heart />
-                <span>Likes</span>
-              </Link>
-              {/* <Link
-                className={cx(
-                  activeSegments.length === 0 &&
-                    search === "following" &&
-                    "nav-content__active"
-                )}
-                href={`/${userData?.id}/following`}
-              >
-                <UserCheck /> <span>Following</span>
-              </Link> */}
-              <Link
-                className={cx(
-                  activeSegments[0] === "edit" && "nav-content__active"
-                )}
-                href={`/profile`}
-              >
-                <LayoutDashboard /> <span>Edit</span>
-              </Link>
-              <Link
-                className={cx(
-                  activeSegments[0] === "release" && "nav-content__active"
-                )}
-                href={`/dashboard/${userData?.id}/release?s=1`}
-              >
-                <CloudUpload /> <span>Release</span>
-              </Link>
+              {loggedIn.map((item) => (
+                <Link key={item.text} href={item.href}>
+                  {item.icon} <span>{item.text}</span>
+                </Link>
+              ))}
             </>
           )}
+          <p className={cx("nav-content__category")}>DASHBOARD</p>
+          {dashboard.map((item) => (
+            <Link key={item.text} href={item.href}>
+              {item.icon} <span>{item.text}</span>
+            </Link>
+          ))}
         </div>
         {!!userData && (
           <Link

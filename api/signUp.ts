@@ -43,14 +43,18 @@ const addNeonDisplayPhoto = async ({
   return response.json();
 };
 
-const registerUser = async ({ email, password, artist }) => {
+const registerUser = async ({ email, password, artistName }) => {
   try {
     const createdUser = await createUserWithEmailAndPassword(
       auth,
       email,
       password
     );
-    await addNeonUser({ email, artist, uid: createdUser?.user?.uid });
+    await addNeonUser({
+      email,
+      artist: artistName,
+      uid: createdUser?.user?.uid,
+    });
   } catch (e) {
     return { ...e };
   }

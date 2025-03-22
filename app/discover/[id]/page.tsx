@@ -1,5 +1,5 @@
-import MusicWrapper from "../../components/Music/EPWrapper";
-import AritstHero from "../../components/ArtistHero";
+import MusicWrapper from "@/components/Music/EPWrapper";
+import AritstHero from "@/components/ArtistHero";
 import { db } from "@/db/drizzle";
 import { eq } from "drizzle-orm";
 import { users } from "@/db/schema";

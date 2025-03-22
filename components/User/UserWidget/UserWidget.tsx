@@ -6,7 +6,7 @@ const UserWidget = ({ item }) => {
   const { id, artwork, artist } = item;
   return (
     <div className="w-full h-full">
-      <Link className="flex flex-col-reverse" href={`/${id}`}>
+      <Link className="flex flex-col-reverse" href={`/discover/${id}`}>
         <img
           className="h-full aspect-square w-full object-cover rounded-full shadow-lg"
           src={artwork}

@@ -1,6 +1,14 @@
 import { useForm } from "react-hook-form";
 import Form from "./Form/Form";
 import { registerUser } from "../../api/signUp";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+const schema = z.object({
+  email: z.string().email("Invalid email address"),
+  password: z.string().min(8, "Password must be at least 8 characters"),
+  artistName: z.string().min(3, "Artist name must be at least 3 characters"),
+});
 
 function SignInForm({ Switcher }) {
   const {
@@ -9,31 +17,29 @@ function SignInForm({ Switcher }) {
     setError,
     clearErrors,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    resolver: zodResolver(schema),
+  });
 
   const onSubmit = async (data) => {
-    const { email, password, artist } = data;
-    console.log("artist", artist);
-    const details = await registerUser({ email, password, artist });
+    const { email, password, artistName } = data;
+    const details = await registerUser({ email, password, artistName });
 
     if (details) {
-      setError("login", {
+      setError("email", {
         type: details?.code,
       });
     }
   };
 
   const onChange = () => {
-    clearErrors("login");
+    clearErrors("email");
   };
 
   return (
-    <Form title="Create An Account">
+    <Form title="Create Account">
       <form onChange={onChange} onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="email">Email</label>
         <input id="email" placeholder="Email" {...register("email")} required />
-
-        <label htmlFor="password">Password</label>
         <input
           id="password"
           placeholder="Password"
@@ -41,11 +47,10 @@ function SignInForm({ Switcher }) {
           required
         />
 
-        <label htmlFor="artist">Display Name</label>
         <input
-          id="artist"
+          id="artistName"
           placeholder="Artist Name"
-          {...register("artist")}
+          {...register("artistName")}
           required
         />
 

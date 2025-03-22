@@ -37,8 +37,6 @@ export async function GET(req: Request) {
       where: eq(users.id, uid),
     });
 
-    console.log("user", user);
-
     return NextResponse.json({ user }, { status: 201 });
   } catch (error) {
     console.error("Error getting likes:", error);
