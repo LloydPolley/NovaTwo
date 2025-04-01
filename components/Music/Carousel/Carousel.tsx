@@ -18,13 +18,13 @@ type CarouselTypes = {
 
 const Carousel = ({ Component, items, text, url }: CarouselTypes) => {
   return (
-    <div className="carousel rounded-xl p-6 lg:px-7">
+    <div className="carousel rounded-xl px-2 py-4 lg:px-7">
       <div className="flex justify-between  border-widgetBlack-400 w-[calc(100%-20px)] lg:w-full ml-5 lg:ml-0 mb-4">
         <h2 className="text-xl capitalize font-bold">{text}</h2>
         {url && (
           <Link
             className="text-sm mt-auto mr-2 text-widgetBlack-300"
-            href={`discover?${url}`}
+            href={`discover/${url}`}
           >
             See more
           </Link>
