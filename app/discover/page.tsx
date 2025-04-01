@@ -56,13 +56,13 @@ export default async function Dj() {
           Component={Track}
           items={releasesData}
           text={"Releases"}
-          url={"f=releases"}
+          url={"releases"}
         />
         <Carousel
           Component={Track}
           items={mixData}
           text={"Mixes"}
-          url={"f=mix"}
+          url={"mix"}
         />
       </div>
     </>

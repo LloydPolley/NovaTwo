@@ -48,7 +48,7 @@ const Track = ({ item, index }) => {
             }}
           />
         )}
-        {id === "row" && <HandHeart />}
+        {id === "row" && userData?.id && <HandHeart />}
       </div>
     </div>
   );

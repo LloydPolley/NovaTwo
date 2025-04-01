@@ -62,7 +62,9 @@ const Track = ({ item, releaseId }) => {
         </Link>
       </div>
       <div className="pt-2 relative w-11/12 m-auto">
-        <p className="text-lg">{title}</p>
+        <p className="text-base lg:text-lg whitespace-nowrap text-ellipsis">
+          {title}
+        </p>
         <Link
           className="text-widgetBlack-400 text-sm"
           onClick={(e) => e.stopPropagation()}

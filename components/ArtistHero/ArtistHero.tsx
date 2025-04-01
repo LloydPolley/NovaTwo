@@ -42,29 +42,23 @@ const AritstHero = ({ title, img, uid }: HeroProps) => {
 
   return (
     <div
-      className="flex flex-col lg:flex-row items-center lg:items-start relative bg-widgetBlack-800 lg:p-7"
+      className="flex flex-col lg:flex-row items-center lg:items-start relative bg-widgetBlack-800  min-h-60 justify-end"
       test-id="artist-hero"
+      style={{
+        backgroundImage: `url(${img})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
     >
-      <div className="size-56 lg:size-64 relative mt-4">
-        <Image
-          src={img}
-          alt={title}
-          placeholder="blur"
-          blurDataURL={img}
-          style={{ objectFit: "cover" }}
-          fill
-          className="object-cover rounded-full"
-        />
-      </div>
-
-      <div className="p-4 flex flex-col justify-end md:p-5 text-center lg:text-left lg:flex-row lg:justify-between lg:m-auto lg:w-10/12">
-        <div>
+      <div className="p-4 flex flex-row justify-between w-full text-center lg:text-left lg:justify-between lg:mt-auto">
+        <div className="text-left">
           <p>Discover</p>
           <h1 className="font-semibold tracking-wide text-4xl md:text-6xl text-white drop-shadow-lg">
             {title}
           </h1>
         </div>
-        <div className="flex gap-8 my-4 lg:ml-auto lg:mt-auto lg:mb-0">
+        <div className="flex justify-evenly gap-8 mt-auto lg:ml-auto lg:mt-auto lg:mb-0">
           {socials.map((social) => {
             // if (!social.url) return null;
             return (
