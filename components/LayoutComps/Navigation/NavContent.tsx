@@ -48,11 +48,11 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
       href: `/dashboard`,
       text: "Profile",
     },
-    {
-      icon: <Plus />,
-      href: `/dashboard/release?s=1`,
-      text: "Create",
-    },
+    // {
+    //   icon: <Plus />,
+    //   href: `/dashboard/${userData?.id}/release?s=1`,
+    //   text: "Create",
+    // },
     // {
     //   icon: <CloudUpload />,
     //   href: `/dashboard/releases`,
@@ -87,14 +87,14 @@ const NavContent = ({ open, closeNav }: NavTypes) => {
                   {item.icon} <span>{item.text}</span>
                 </Link>
               ))}
+              <p className={cx("nav-content__category")}>DASHBOARD</p>
+              {dashboard.map((item) => (
+                <Link key={item.text} href={item.href}>
+                  {item.icon} <span>{item.text}</span>
+                </Link>
+              ))}
             </>
           )}
-          <p className={cx("nav-content__category")}>DASHBOARD</p>
-          {dashboard.map((item) => (
-            <Link key={item.text} href={item.href}>
-              {item.icon} <span>{item.text}</span>
-            </Link>
-          ))}
         </div>
         {!!userData && (
           <Link

@@ -84,7 +84,7 @@ function CreateReleaseForm() {
   };
 
   return (
-    <form className="form" onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <label htmlFor="track-name">Release</label>
       <input
         id="track-name"

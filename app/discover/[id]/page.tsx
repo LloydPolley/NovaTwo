@@ -5,7 +5,7 @@ import { eq } from "drizzle-orm";
 import { users } from "@/db/schema";
 
 export default async function ArtistProfile({ params }) {
-  const { artist, artwork, releases } =
+  const { artist, artwork, releases, soundcloud, instagram, spotify } =
     (await db.query.users.findFirst({
       where: eq(users.id, params?.id),
       with: {
@@ -20,7 +20,14 @@ export default async function ArtistProfile({ params }) {
 
   return (
     <div className="rounded flex-grow">
-      <AritstHero title={artist} img={artwork} uid={params.id} />
+      <AritstHero
+        artist={artist}
+        img={artwork}
+        uid={params.id}
+        soundcloud={soundcloud}
+        instagram={instagram}
+        spotify={spotify}
+      />
       <MusicWrapper releases={releases} />
     </div>
   );

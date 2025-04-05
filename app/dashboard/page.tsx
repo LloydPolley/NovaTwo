@@ -9,18 +9,9 @@ const tiles = ["Profile", "Create", "Releases"];
 function Overview() {
   const { userData } = useAuthStore((state) => state);
 
-  console.log("userData", userData);
-
   return (
-    <div className="flex flex-1 flex-col">
-      <Header title="Dashboard" />
-      <div className="flex flex-row gap-4  p-5">
-        {tiles.map((tile) => (
-          <div key={tile}>{tile}</div>
-        ))}
-      </div>
-
-      <ProfileForm />
+    <div className="flex flex-grow flex-col">
+      {userData && <ProfileForm userData={userData} />}
     </div>
   );
 }

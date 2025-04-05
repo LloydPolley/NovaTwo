@@ -50,23 +50,25 @@ const Track = ({ item, releaseId }) => {
           }}
           href={audio ? "#" : `/discover/${uid}/${releaseId || id}`}
         >
-          <Image
-            className="rounded-3xl"
-            src={artwork}
-            placeholder="blur"
-            blurDataURL={artwork}
-            alt={title}
-            fill
-            style={{ objectFit: "cover" }}
-          />
+          <div className="size-5">
+            <Image
+              className="rounded-xl"
+              src={artwork}
+              placeholder="blur"
+              blurDataURL={artwork}
+              alt={title}
+              fill
+              style={{ objectFit: "cover" }}
+            />
+          </div>
         </Link>
       </div>
       <div className="pt-2 relative w-11/12 m-auto">
-        <p className="text-base lg:text-lg whitespace-nowrap text-ellipsis">
+        <p className="text-sm lg:text-lg whitespace-nowrap text-ellipsis overflow-hidden">
           {title}
         </p>
         <Link
-          className="text-widgetBlack-400 text-sm"
+          className="text-widgetBlack-400 text-xs lg:text-sm"
           onClick={(e) => e.stopPropagation()}
           href={`/discover/${uid}`}
         >

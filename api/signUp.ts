@@ -22,18 +22,26 @@ const addNeonUser = async ({
   return data;
 };
 
-const addNeonDisplayPhoto = async ({
-  artwork,
+const updateUserDoc = async ({
   id,
+  artwork,
+  soundcloud,
+  instagram,
+  spotify,
 }: {
-  artwork: string;
-  id: string;
+  artwork?: string;
+  id?: string;
+  soundcloud?: string;
+  instagram?: string;
+  spotify?: string;
 }) => {
   const response = await fetch(`/api/profile`, {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ artwork, id }),
+    body: JSON.stringify({ artwork, id, soundcloud, instagram, spotify }),
   });
+
+  console.log("response", response);
 
   if (!response.ok) {
     const errorData = await response.json();
@@ -54,17 +62,6 @@ const registerUser = async ({ email, password, artistName }) => {
       email,
       artist: artistName,
       uid: createdUser?.user?.uid,
-    });
-  } catch (e) {
-    return { ...e };
-  }
-};
-
-const updateUserDoc = async (uid, { displayName, artwork }) => {
-  try {
-    await addNeonDisplayPhoto({
-      id: uid,
-      artwork,
     });
   } catch (e) {
     return { ...e };

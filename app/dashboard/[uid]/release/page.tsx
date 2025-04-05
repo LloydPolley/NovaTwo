@@ -15,17 +15,23 @@ const TITLES = [
 ];
 
 export default async function ReleasePage({ params, searchParams }) {
-  const releasesList = await db.query.releases.findMany({
-    where: eq(releases.uid, params?.uid),
-  });
+  const releasesList = await db
+    .select()
+    .from(releases)
+    .where(eq(releases.uid, params?.uid));
+
   const { s, t, i } = searchParams;
 
+  console.log("releaseList", releasesList);
+
   return (
-    <Form title={t || TITLES[s - 1]}>
-      {s === "1" && <PickerForm />}
-      {s === "2" && <CreateReleaseForm />}
-      {s === "3" && <SelectRelease releases={releasesList} />}
-      {s === "4" && <UploadMultiTrackForm release={releasesList[i]} />}
-    </Form>
+    <div className="flex flex-1 flex-col">
+      <Form title={t || TITLES[s - 1]}>
+        {s === "1" && <PickerForm />}
+        {s === "2" && <CreateReleaseForm />}
+        {s === "3" && <SelectRelease releases={releasesList} />}
+        {s === "4" && <UploadMultiTrackForm release={releasesList[i]} />}
+      </Form>
+    </div>
   );
 }

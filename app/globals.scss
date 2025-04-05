@@ -11,9 +11,7 @@ body {
   font-family: var(--font-poppins);
   max-width: 100%;
 
-  @include large {
-    background-color: black;
-  }
+  background-color: black;
 }
 
 h1 {
@@ -46,16 +44,6 @@ a {
 
 body {
   margin: auto;
-}
-
-h3 {
-  font-size: 30px;
-  margin-bottom: 10px;
-}
-
-p,
-label {
-  color: #f3f3f4;
 }
 
 * {
@@ -97,38 +85,7 @@ label {
   position: relative !important;
 }
 
-.overlay {
-  display: none;
-  background: rgb(20, 20, 20);
-  background: radial-gradient(
-    circle,
-    rgba(20, 20, 20, 0.3660057773109243) 0%,
-    rgba(20, 20, 20, 1) 100%
-  );
-
-  opacity: 0.8;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 3;
-}
-
-.page-title {
-  text-align: left;
-  margin-left: 20px;
-  font-size: 10vw;
-
-  @include large {
-    font-size: 65px;
-  }
-}
-
 .form {
-  display: flex;
-  flex-direction: column;
-
   input:not([type="radio"]) {
     background-color: transparent;
     border: 1px solid grey;
@@ -161,91 +118,6 @@ label {
   }
 }
 
-.flash-once {
-  border: 1px solid transparent; /* Initial border color */
-  animation: borderFlashTwice 1s ease-in-out; /* Apply animation */
-}
-
-@keyframes borderFlashTwice {
-  0% {
-    border-color: #374151;
-  }
-  50% {
-    border-color: white;
-  }
-  100% {
-    border-color: #374151;
-  }
-}
-
-ul li:has(input:checked) {
-  border: 1px solid white;
-  // background-color: #6e54b5;
-}
-
-ul li {
-  border: 1px solid transparent;
-}
-
-//glass
-
-// @include large {
-//   .glass-common {
-//     background-color: rgba(0, 0, 0, 0.04);
-//     backdrop-filter: blur(10px);
-//     -webkit-backdrop-filter: blur(10px);
-//   }
-
-//   .glass- {
-//     @extend .glass-common;
-//     background-image: linear-gradient(
-//       74deg,
-//       rgba(255, 255, 255, 0.04) 17%,
-//       rgba(0, 0, 0, 0.04) 91%
-//     ) !important;
-//   }
-
-//   .glass-2 {
-//     @extend .glass-common;
-//     background-image: linear-gradient(
-//       111deg,
-//       rgba(0, 0, 0, 0.04) 30%,
-//       rgba(255, 255, 255, 0.04) 70%
-//     ) !important;
-//   }
-
-//   .glass-3 {
-//     @extend .glass-common;
-//     background-image: linear-gradient(
-//       44deg,
-//       rgba(255, 255, 255, 0.04) 25%,
-//       rgba(0, 0, 0, 0.04) 75%
-//     ) !important;
-//   }
-
-//   .glass-4 {
-//     @extend .glass-common;
-//     background-image: linear-gradient(
-//       160deg,
-//       rgba(0, 0, 0, 0.04) 35%,
-//       rgba(255, 255, 255, 0.04) 65%
-//     ) !important;
-//   }
-
-//   .glass-5 {
-//     @extend .glass-common;
-//     background-image: linear-gradient(
-//       92deg,
-//       rgba(255, 255, 255, 0.04) 15%,
-//       rgba(0, 0, 0, 0.04) 85%
-//     ) !important;
-//   }
-// }
-
-//Carousel
-.carousel {
-}
-
 .flex-pixels {
   flex: 0 0 150px;
 
@@ -254,25 +126,9 @@ ul li {
   }
 }
 
-.scroll-snap-start {
-  scroll-snap-align: start;
-}
-
 .login_page {
   background: linear-gradient(-45deg, #240046, #5a189a, #9d4edd, #4895ef);
   background-size: 400% 400%;
   animation: gradient 10s ease infinite;
   height: 100vh;
-}
-
-@keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
 }

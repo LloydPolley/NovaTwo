@@ -1,4 +1,4 @@
-import Profileform from "../../components/Forms/ProfileForm";
+import Profileform from "../../components/Forms/ProfileFormChange";
 
 function SignInScreen() {
   return <Profileform />;

@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import NavContent from "./NavContent";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
+import { CircleX, Menu, SquareChevronUp, SquareMenu, X } from "lucide-react";
 
 const cx = classNames.bind(style);
 
@@ -24,7 +25,7 @@ const Navigation = () => {
 
   return (
     <>
-      <div className={cx("nav-content-mobile")}>
+      <div className="lg:hidden">
         <NavContent open={open} closeNav={closeNav} />
       </div>
       <div className={cx("nav")}>
@@ -32,20 +33,11 @@ const Navigation = () => {
           <p className="m-0 font-bold">NOVA</p>
         </Link>
         <button
-          className={cx("nav__burger")}
           onClick={() => {
             setOpen(!open);
           }}
         >
-          <div
-            className={cx("line", "line__1", open && "line__1--active")}
-          ></div>
-          <div
-            className={cx("line", "line__2", open && "line__2--active")}
-          ></div>
-          <div
-            className={cx("line", "line__3", open && "line__3--active")}
-          ></div>
+          {open ? <X /> : <Menu />}
         </button>
       </div>
     </>

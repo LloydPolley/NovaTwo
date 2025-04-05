@@ -16,8 +16,6 @@ const Track = ({ item, index }) => {
 
   const isPlayingLocal = isPlaying && trackContext?.audio === audio;
 
-  // console.log("item", item);
-
   return (
     <div
       className="flex w-full p-2 justify-between items-center rounded-lg hover:bg-widgetBlack-600 cursor-pointer"
@@ -31,8 +29,8 @@ const Track = ({ item, index }) => {
         <p className="font-medium truncate w-32 md:w-60">{title}</p>
       </div>
 
-      <div className="flex items-center space-x-4 basis-1/4 justify-end">
-        <p className="w-5 flex justify-center">
+      <div className="flex items-center space-x-4 basis-1/4 justify-between">
+        <p className="w-5 flex justify-between">
           {mix ? <Disc3 /> : <Library />}
         </p>
         <p className="w-12 text-center">

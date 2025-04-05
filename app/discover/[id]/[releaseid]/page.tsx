@@ -3,7 +3,6 @@ import { db } from "@/db/drizzle";
 import { eq } from "drizzle-orm";
 import { users, releases } from "@/db/schema";
 import Link from "next/link";
-import AritstHero from "@/components/ArtistHero";
 import { ArrowLeft } from "lucide-react";
 
 export default async function ArtistProfile({ params }) {
@@ -21,11 +20,10 @@ export default async function ArtistProfile({ params }) {
 
   return (
     <div className="rounded flex-grow">
-      <AritstHero title={data.artist} img={data.artwork} uid={params.id} />
-
-      <div className="pl-5 pt-5">
-        <Link href={`/discover/${params.id}`}>
-          <ArrowLeft />
+      <div className="pl-5 pt-5 sticky top-0 z-10">
+        <Link className="flex flex-row gap-5" href={`/discover/${params.id}`}>
+          <ArrowLeft className="size-8 my-auto" />
+          <h1 className="text-4xl lg:text-6xl font-bold">{data.artist}</h1>
         </Link>
       </div>
 
