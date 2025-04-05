@@ -35,7 +35,7 @@ function SignInScreen() {
       {showLogin ? (
         <LoginForm signIn={signIn} Switcher={switcher} />
       ) : (
-        <SignUpForm Switcher={switcher} />
+        <SignUpForm userData={userData} Switcher={switcher} />
       )}
     </>
   );

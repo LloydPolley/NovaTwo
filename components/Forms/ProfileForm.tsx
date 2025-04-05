@@ -63,7 +63,7 @@ function ProfileForm({ userData }) {
     <Form title="Dashboard" loading={loading}>
       <form onSubmit={handleSubmit(onSubmit)} className="">
         <div className="flex flex-col gap-5 my-5">
-          <h2>Edit Profile</h2>
+          <h2>Add/Edit Profile image</h2>
           <div className="w-full h-[200px] relative ">
             <label
               htmlFor="profile-upload"
@@ -72,15 +72,17 @@ function ProfileForm({ userData }) {
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex z-10 bg-black/75 rounded-full size-11">
                 <Pencil className="size-5 m-auto" />
               </div>
-              <Image
-                className="rounded-xl"
-                src={previewImg}
-                placeholder="blur"
-                blurDataURL={previewImg}
-                alt={userData?.artist}
-                fill
-                style={{ objectFit: "cover" }}
-              />
+              {previewImg && (
+                <Image
+                  className="rounded-xl"
+                  src={previewImg}
+                  placeholder="blur"
+                  blurDataURL={previewImg}
+                  alt={userData?.artist}
+                  fill
+                  style={{ objectFit: "cover" }}
+                />
+              )}
             </label>
           </div>
           <div className="flex flex-col items-center gap-4">

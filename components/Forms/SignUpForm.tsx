@@ -1,8 +1,11 @@
+"use client";
+
 import { useForm } from "react-hook-form";
 import Form from "./Form/Form";
 import { registerUser } from "../../api/signUp";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 
 const schema = z.object({
   email: z.string().email("Invalid email address"),
@@ -10,7 +13,9 @@ const schema = z.object({
   artistName: z.string().min(3, "Artist name must be at least 3 characters"),
 });
 
-function SignInForm({ Switcher }) {
+function SignUpForm({ Switcher, userData }) {
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -29,7 +34,10 @@ function SignInForm({ Switcher }) {
       setError("email", {
         type: details?.code,
       });
+      return;
     }
+
+    router.push(`/`);
   };
 
   const onChange = () => {
@@ -46,15 +54,12 @@ function SignInForm({ Switcher }) {
           {...register("password")}
           required
         />
-
         <input
           id="artistName"
           placeholder="Artist Name"
           {...register("artistName")}
           required
         />
-
-        {/* {errors.login && <p>{errors}</p>} */}
         <input type="submit" value="Create Account" />
         <Switcher />
       </form>
@@ -62,4 +67,4 @@ function SignInForm({ Switcher }) {
   );
 }
 
-export default SignInForm;
+export default SignUpForm;
